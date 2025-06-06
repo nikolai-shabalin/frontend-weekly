@@ -1,0 +1,139 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE_TITLE } from '../consts';
+
+const allPosts = await getCollection('blog');
+const categories = [...new Set(
+  allPosts.map(post => post.id.split('/')[0].toLowerCase())
+)].sort();
+
+const { pathname } = Astro.url;
+const isDigestPage = pathname.startsWith('/digest');
+const currentCategory = pathname.match(/\/blog\/category\/([^\/]+)/)?.[1];
+
+const navItems = [
+  { href: '/digest/', label: 'Дайджесты', isActive: isDigestPage },
+  ...categories.map(category => ({
+    href: `/blog/category/${category}/`,
+    label: category,
+    isActive: category === currentCategory
+  })).filter(item => item.label !== 'digest')
+];
+---
+
+<header class="header">
+  <div class="header__content">
+    <div class="header__logo">
+
+      <a href="/" class="logo-link">
+        {SITE_TITLE}
+      </a>
+    </div>
+    <nav class="header__nav">
+      <ul class="nav-list">
+        {navItems.map(item => (
+          <li class="nav-item">
+            <a href={item.href} class={`nav-link ${item.isActive ? 'nav-link--active' : ''}`}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    padding: var(--space-md);
+    border-bottom: 1px solid rgba(var(--gray), 0.15);
+  }
+
+  .header__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    width: min(100%, var(--content-width));
+    margin-inline: auto;
+  }
+
+  .header__logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--text-xl);
+  }
+
+  .logo-link {
+    color: rgb(var(--black));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .logo-link:hover {
+    color: var(--accent);
+  }
+
+  .header__nav {
+    width: 100%;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    display: block;
+    padding: var(--space-xs) 0;
+    color: rgb(var(--gray-dark));
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link--active {
+    color: var(--accent);
+  }
+
+  .nav-link--active::after {
+    width: 100%;
+  }
+
+  @media (min-width: 720px) {
+    .header__content {
+      flex-direction: row;
+    }
+
+    .header__nav {
+      width: auto;
+    }
+  }
+</style>

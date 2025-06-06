@@ -1,0 +1,58 @@
+<div class="digest-recommendations">
+  <details class="digest-recommendations__details">
+    <summary class="digest-recommendations__summary">Как читать этот дайджест</summary>
+    <div class="digest-recommendations__content">
+      <ul class="digest-recommendations__list">
+        <li class="digest-recommendations__item">Начните с заголовков статей, чтобы получить общее представление о содержании</li>
+        <li class="digest-recommendations__item">Быстро пробегитесь по первым абзацам, чтобы понять актуальность материалов именно для вас</li>
+        <li class="digest-recommendations__item">Выберите наиболее интересные или полезные темы под текущие задачи</li>
+        <li class="digest-recommendations__item">Планируйте чтение: выделите, например, 15 минут утром и 15 минут вечером</li>
+        <li class="digest-recommendations__item">Не пытайтесь прочитать всё сразу — возвращайтесь к дайджесту в удобное время</li>
+        <li class="digest-recommendations__item">При повторном просмотре читайте выбранные статьи более вдумчиво, делая заметки</li>
+        <li class="digest-recommendations__item">Не сожалейте, если прочитали лишь часть: ценность в качестве, а не в количестве</li>
+        <li class="digest-recommendations__item">Используйте закладки для сохранения интересных материалов</li>
+        <li class="digest-recommendations__item">Делитесь инсайтами и ссылками с коллегами — так информация лучше усвоится</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<style>
+  .digest-recommendations {
+    margin: var(--space-xl) auto;
+    padding: var(--space-lg);
+    background-color: rgba(var(--gray-light), 0.5);
+    border-radius: 8px;
+    max-width: var(--content-width);
+  }
+
+  .digest-recommendations__summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: var(--space-sm);
+    color: var(--accent);
+  }
+
+  .digest-recommendations__content {
+    padding: var(--space-md);
+  }
+
+  .digest-recommendations__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .digest-recommendations__item {
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-lg);
+    position: relative;
+  }
+
+  .digest-recommendations__item::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+</style>

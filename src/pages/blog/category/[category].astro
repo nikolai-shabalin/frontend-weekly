@@ -1,0 +1,49 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import PostsList from '../../../components/PostsList.astro';
+import { SITE_TITLE } from '../../../consts';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+
+  const uniqueCategories = [...new Set(
+    allPosts.map(post => {
+      const pathSegments = post.id.split('/');
+      return pathSegments[0].toLowerCase();
+    })
+  )];
+
+  return uniqueCategories.map(category => {
+    const filteredPosts = allPosts.filter(post => post.id.split('/')[0].toLowerCase() === category);
+    return {
+      params: { category },
+      props: { posts: filteredPosts }
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { posts } = Astro.props;
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<BaseHead title={`${category} | ${SITE_TITLE}`} description={`Статьи в категории ${category}`} />
+	</head>
+	<body>
+		<Header />
+		<main>
+      <h1 class="sr-only">Категория: {category}</h1>
+			<PostsList posts={sortedPosts} />
+		</main>
+		<Footer />
+	</body>
+</html>

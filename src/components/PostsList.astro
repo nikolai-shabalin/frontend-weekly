@@ -1,0 +1,95 @@
+---
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+  posts: any[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section class="posts">
+  <ul class="posts__list">
+    {
+      posts.map((post) => (
+        <li class="short-post">
+          <a href={`/blog/${post.slug}/`} class="short-post__link">
+            <h2 class="short-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h2>
+          </a>
+          <p class="short-post__date">
+            <FormattedDate date={post.data.pubDate} />
+          </p>
+          <p class="short-post__description">{post.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .posts__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .short-post {
+    position: relative;
+    padding-bottom: var(--space-2xl);
+    transition: transform 0.3s ease;
+  }
+
+  .short-post:not(:last-child) {
+    border-bottom: 1px solid rgba(var(--gray), 0.15);
+  }
+
+  .short-post:has(.short-post__link:hover) {
+    transform: translateY(-5px);
+  }
+
+  .short-post__link {
+    display: block;
+    text-decoration: none;
+  }
+
+  .short-post__link:hover {
+    border-bottom: none;
+  }
+
+  .short-post__link:hover .short-post__title {
+    color: var(--accent);
+  }
+
+  .short-post__title {
+    font-size: var(--text-2xl);
+    margin: 0 0 var(--space-sm) 0;
+    color: rgb(var(--black));
+    line-height: 1.2;
+    transition: color 0.2s ease;
+  }
+
+  .short-post__date {
+    margin: 0 0 var(--space-lg) 0;
+    color: rgb(var(--gray));
+    font-size: var(--text-sm);
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+
+  .short-post__description {
+    margin: var(--space-md) 0 0 0;
+    font-size: var(--text-md);
+    line-height: 1.6;
+    color: rgb(var(--gray-dark));
+    max-width: var(--content-width);
+  }
+
+  @media (min-width: 720px) {
+    .short-post__title {
+      font-size: var(--text-3xl);
+    }
+  }
+</style>

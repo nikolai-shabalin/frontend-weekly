@@ -1,0 +1,174 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import DigestRecommendations from '../components/DigestRecommendations.astro';
+
+type Props = CollectionEntry<'blog'>['data'] & {
+  slug?: string;
+};
+
+const {title, description, pubDate, slug = ''} = Astro.props;
+const isDigest = slug.startsWith('digest/');
+---
+
+<html lang="ru">
+<head>
+  <BaseHead title={title} description={description}/>
+  <style>
+    .home-link {
+      display: inline-block;
+      margin: var(--space-lg) 0;
+      color: rgb(var(--gray));
+      text-decoration: none;
+      font-size: var(--text-sm);
+      transition: color 0.2s ease;
+    }
+
+    .home-link:hover {
+      color: var(--accent);
+    }
+
+    .post__title {
+      font-size: var(--text-4xl);
+      line-height: 1.1;
+      margin: var(--space-3xl) 0 var(--space-lg) 0;
+      text-align: center;
+    }
+
+    .post :global(time) {
+      margin-bottom: var(--space-2xl);
+      text-align: center;
+      display: block;
+      color: rgb(var(--gray));
+      font-style: italic;
+      font-size: var(--text-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .post__divider {
+      height: 1px;
+      background: rgba(var(--gray), 0.2);
+      margin: var(--space-2xl) auto;
+      width: 60%;
+      max-width: 400px;
+    }
+
+    .content {
+      margin: 0 auto;
+      max-width: var(--content-width);
+    }
+
+    /* Стилизация типографики контента */
+    .content :global(h2) {
+      margin-top: var(--space-3xl);
+      margin-bottom: var(--space-lg);
+      font-size: var(--text-3xl);
+      position: relative;
+    }
+
+    .content :global(h2)::before {
+      content: '';
+      width: 30px;
+      height: 3px;
+      background: var(--accent);
+      position: absolute;
+      top: -10px;
+      left: 0;
+    }
+
+    .content :global(h3) {
+      margin-top: var(--space-2xl);
+      margin-bottom: var(--space-md);
+      font-size: var(--text-2xl);
+    }
+
+    .content :global(ul) {
+      margin-bottom: var(--space-xl);
+    }
+
+    .content :global(p) {
+      margin-bottom: var(--space-lg);
+      font-size: var(--text-lg);
+      line-height: 1.8;
+      text-wrap: pretty;
+    }
+
+    .content :global(code) {
+      font-size: 0.9em;
+    }
+
+    .content :global(pre) {
+      margin: var(--space-xl) 0;
+    }
+
+    .content :global(blockquote) {
+      font-size: var(--text-lg);
+      line-height: 1.6;
+      font-style: italic;
+      color: rgb(var(--gray-dark));
+      background: rgba(var(--gray-light), 0.5);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      border-left: 4px solid var(--accent);
+      margin: var(--space-xl) 0;
+    }
+
+    .content :global(figure) {
+      margin: var(--space-xl) 0;
+    }
+
+    .content :global(figcaption) {
+      font-size: var(--text-sm);
+      color: rgb(var(--gray));
+      text-align: center;
+      margin-top: var(--space-sm);
+    }
+
+    .content :global(img) {
+      border-radius: 8px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .content :global(blockquote p:last-child) {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 720px) {
+      .post__title {
+        font-size: var(--text-3xl);
+      }
+
+      .content :global(h2) {
+        font-size: var(--text-2xl);
+      }
+
+      .content :global(h3) {
+        font-size: var(--text-xl);
+      }
+    }
+  </style>
+</head>
+
+<body>
+<Header />
+<main>
+  <article class="post">
+    <a href="/" class="home-link">На главную</a>
+    <h1 class="post__title" transition:name={`title-${slug}`}>{title}</h1>
+    <FormattedDate date={pubDate}/>
+
+    {isDigest && <DigestRecommendations />}
+
+    <hr class="post__divider"></hr>
+
+    <div class="content">
+      <slot/>
+    </div>
+  </article>
+</main>
+<Footer/>
+</body>
+</html>

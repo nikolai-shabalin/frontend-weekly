@@ -1,0 +1,40 @@
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(title),
+::view-transition-new(title) {
+  animation: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fade-in {
+  from { 
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to { 
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}
+
+::view-transition-old(title) {
+  animation: fade-out 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(title) {
+  animation: fade-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+} 
