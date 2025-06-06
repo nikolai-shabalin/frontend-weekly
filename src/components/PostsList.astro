@@ -13,7 +13,7 @@ const { posts } = Astro.props;
     {
       posts.map((post) => (
         <li class="short-post">
-          <a href={`/blog/${post.slug}/`} class="short-post__link">
+          <a href={`/digest/${post.slug}/`} class="short-post__link">
             <h2 class="short-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h2>
           </a>
           <p class="short-post__date">
