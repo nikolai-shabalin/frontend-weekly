@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shabalin.online/sitemap-index.xml 
+Sitemap: https://frontend-weekly.ru/sitemap-index.xml
