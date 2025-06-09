@@ -1,0 +1,219 @@
+---
+interface Props {
+  banners: Array<{
+    image: string;
+    portfolioUrl: string;
+  }>;
+}
+
+const { banners } = Astro.props;
+---
+
+<div class="digest-banner">
+  <a href="/initiative" class="initiative-link">Узнать об инициативе</a>
+  <a href={banners[0].portfolioUrl} class="banner-link" id="banner-link">
+    <img
+      src={banners[0].image}
+      alt="Frontend Developer Banner"
+      width="960"
+      height="300"
+      class="banner-image"
+      id="banner-image"
+    />
+  </a>
+  <button class="banner-timer" id="banner-timer" type="button" aria-label="Сменить баннер">
+    <svg viewBox="0 0 40 40" class="timer-svg">
+      <circle class="timer-circle-bg" cx="20" cy="20" r="18" />
+      <circle class="timer-circle" cx="20" cy="20" r="18" />
+    </svg>
+  </button>
+  <div class="banner-links">
+    <a href={banners[0].portfolioUrl} class="portfolio-link" id="portfolio-link">Посмотреть портфолио</a>
+  </div>
+</div>
+
+<script is:inline define:vars={{ banners }}>
+  let currentIndex = 0;
+  let timerCircle;
+  let bannerImage;
+  let bannerLink;
+  let portfolioLink;
+  let animationFrame;
+  let startTime;
+  const DURATION = 15000;
+  const CIRCUMFERENCE = 2 * Math.PI * 18;
+
+  function updateTimer(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / DURATION, 1);
+
+    if (timerCircle) {
+      const offset = CIRCUMFERENCE * progress;
+      timerCircle.style.strokeDashoffset = CIRCUMFERENCE - offset;
+    }
+
+    if (progress < 1) {
+      animationFrame = requestAnimationFrame(updateTimer);
+    } else {
+      updateBanner();
+    }
+  }
+
+  function updateBanner() {
+    currentIndex = (currentIndex + 1) % banners.length;
+    bannerImage.src = banners[currentIndex].image;
+    bannerLink.href = banners[currentIndex].portfolioUrl;
+    portfolioLink.href = banners[currentIndex].portfolioUrl;
+    resetTimer();
+  }
+
+  function resetTimer() {
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+    }
+    startTime = null;
+    if (timerCircle) {
+      timerCircle.style.strokeDashoffset = CIRCUMFERENCE;
+    }
+    animationFrame = requestAnimationFrame(updateTimer);
+  }
+
+  function initBanner() {
+    // Randomize initial banner
+    currentIndex = Math.floor(Math.random() * banners.length);
+    bannerImage.src = banners[currentIndex].image;
+    bannerLink.href = banners[currentIndex].portfolioUrl;
+    portfolioLink.href = banners[currentIndex].portfolioUrl;
+
+    // Setup click handler
+    const timerButton = document.getElementById('banner-timer');
+    timerButton?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      updateBanner();
+    });
+
+    // Initialize timer circle
+    if (timerCircle) {
+      timerCircle.style.strokeDasharray = CIRCUMFERENCE;
+      timerCircle.style.strokeDashoffset = CIRCUMFERENCE;
+    }
+
+    // Start initial timer
+    startTime = null;
+    animationFrame = requestAnimationFrame(updateTimer);
+  }
+
+  // Инициализация сразу
+  timerCircle = document.querySelector('.timer-circle');
+  bannerImage = document.getElementById('banner-image');
+  bannerLink = document.getElementById('banner-link');
+  portfolioLink = document.getElementById('portfolio-link');
+  initBanner();
+</script>
+
+<style>
+  .digest-banner {
+    margin: var(--space-xl) auto;
+    max-width: var(--content-width);
+    position: relative;
+  }
+
+  .banner-link {
+    display: block;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .banner-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+  }
+
+  .banner-timer {
+    position: absolute;
+    bottom: 46px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner-timer:hover {
+    opacity: 0.9;
+  }
+
+  .banner-timer:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  .timer-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .timer-circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 4;
+  }
+
+  .timer-circle {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 113.1; /* 2 * PI * 18 */
+    stroke-dashoffset: 113.1; /* Начальное состояние - пустой круг */
+    transition: stroke-dashoffset 0.1s linear;
+  }
+
+  .banner-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  .portfolio-link,
+  .initiative-link {
+    color: rgb(var(--gray));
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color 0.2s ease;
+  }
+
+  .portfolio-link:hover,
+  .initiative-link:hover {
+    color: var(--accent);
+  }
+
+  .initiative-link {
+    display: block;
+    text-align: right;
+    margin-bottom: var(--space-sm);
+    color: rgb(var(--gray));
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color 0.2s ease;
+  }
+
+  .initiative-link:hover {
+    color: var(--accent);
+  }
+</style>

@@ -5,6 +5,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import DigestRecommendations from '../components/DigestRecommendations.astro';
+import DigestBanner from '../components/DigestBanner.astro';
+import FrontieMascot from '../components/FrontieMascot.astro';
+import { banners } from '../data/banners';
 
 type Props = CollectionEntry<'digest'>['data'] & {
   slug?: string;
@@ -159,7 +162,9 @@ const {title, description, pubDate, slug = ''} = Astro.props;
     <h1 class="post__title" transition:name={`title-${slug}`}>{title}</h1>
     <FormattedDate date={pubDate}/>
 
+    <DigestBanner banners={banners} />
     <DigestRecommendations />
+    <FrontieMascot />
 
     <hr class="post__divider"></hr>
 
