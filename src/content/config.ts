@@ -11,4 +11,12 @@ const digest = defineCollection({
 	}),
 });
 
-export const collections = { digest };
+const initiative = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
+export const collections = { digest, initiative };
