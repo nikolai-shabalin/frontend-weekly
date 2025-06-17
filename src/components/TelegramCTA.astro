@@ -1,0 +1,99 @@
+<div class="telegram-cta">
+  <div class="telegram-cta__icon">
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="32" height="32">
+      <path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.341c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.19-2.72 5.56-5.023c.232-.21-.05-.327-.358-.118l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.535-.197 1.004.128.832.953z"/>
+    </svg>
+  </div>
+  <div class="telegram-cta__content">
+    <div class="telegram-cta__text">
+      <h3 class="telegram-cta__title">Присоединяйтесь Telegram-каналу</h3>
+      <p class="telegram-cta__description">Получайте уведомления о новых дайджестах, обсуждайте новости с коллегами и делитесь своим опытом в дружелюбном сообществе фронтенд-разработчиков</p>
+    </div>
+    <a href="https://t.me/greatAttractorCode" target="_blank" class="telegram-cta__button" rel="noopener noreferrer">
+      Подписаться
+    </a>
+  </div>
+</div>
+
+<style>
+  .telegram-cta {
+    margin: var(--space-2xl) 0;
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.1) 0%, rgba(var(--accent-rgb), 0.05) 100%);
+    border-radius: 12px;
+    border: 2px solid var(--accent);
+    box-shadow: 0 4px 6px -1px rgba(var(--accent-rgb), 0.1), 0 2px 4px -1px rgba(var(--accent-rgb), 0.06);
+    position: relative;
+  }
+
+  .telegram-cta__icon {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    color: var(--accent);
+    opacity: 0.8;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .telegram-cta:hover .telegram-cta__icon {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  .telegram-cta__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .telegram-cta__text {
+    flex: 1;
+  }
+
+  .telegram-cta__text .telegram-cta__title {
+    margin: 0 0 var(--space-xs);
+    font-size: var(--text-xl);
+    color: var(--accent);
+  }
+
+  .telegram-cta__description {
+    margin: 0;
+    color: rgb(var(--gray));
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+
+  .telegram-cta__button {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .telegram-cta__button:hover {
+    transform: translateY(-2px);
+    background-color: var(--accent-dark);
+  }
+
+  @media (max-width: 640px) {
+    .telegram-cta {
+      margin: var(--space-xl) 0;
+    }
+
+    .telegram-cta__text {
+      text-align: center;
+    }
+
+    .telegram-cta__button {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+</style> 
