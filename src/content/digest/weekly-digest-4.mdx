@@ -1,0 +1,175 @@
+---
+title: "Еженедельный дайджест #4: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "June 23 2025"
+isDigest: true
+mascotMessages: [
+{ text: "Привет, это Фронти! Готов к свежим новостям? 🦊", index: 0 },
+{ text: "Biome стал умнее, чем когда-либо!", index: 1 },
+{ text: "ES2025 уже здесь! Новая книга — must-read!", index: 2 },
+{ text: "CSS теперь умеет gap-декорации. Красота!", index: 3 },
+{ text: "Node.js + TypeScript = ❤️ Amaro 1.0 в деле!", index: 4 },
+{ text: "pnpm экспериментирует с глобальным хранилищем!", index: 5 },
+{ text: "React растёт: Aria, Native, Relay, всё тут!", index: 6 },
+{ text: "AI, безопасность, новые библиотеки — огонь!", index: 7 },
+{ text: "JavaScript исполнилось 30! 🎉 А ты с ним давно?", index: 8 },
+{ text: "Ура! Дайджест прочитан. До скорого! ✌️", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## Главные новости
+### 📘 Обзор JavaScript (редакция ES2025)
+**[Exploring JavaScript (ES2025 Edition)](https://exploringjs.com/js/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+Axel Rauschmayer выпустил новую книгу по JavaScript. В ней рассказывается о ключевых концепциях языка: типах данных, модулях, классах и промисах. Чтение доступно бесплатно онлайн. Также есть карточки для тренировки.
+
+### 🔍 Biome v2 — новый типо-зависимый линтер
+**[Biome v2: линтер с поддержкой типов без TypeScript-компилятора](https://biomejs.dev/blog/biome-v2/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+Biome v2 умеет проверять ваш код с учётом типов, но без запуска `tsc`. Поддерживает плагины, monorepo, но пока не поддерживает Vue и Svelte.
+
+### ⚙️ SVGO v4
+Вышел SVGO v4. SVGO v4 требует Node.js 16+ и отказывается от `removeViewBox` и `removeTitle` в пресете по умолчанию ради сохранения масштабируемости и доступности. Также введены только именованные экспорты и переработан способ импорта плагинов и селекторов — потребуется обновить конфиг и импорт в коде. Смотрите [гайд по миграции](https://svgo.dev/docs/migrations/migration-from-v3-to-v4/).
+
+<TelegramCTA/>
+
+## HTML и API
+- [Изменение спецификации HTML: экранирование < и > в атрибутах](https://developer.chrome.com/blog/escape-attributes?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Как по-новому обрабатываются угловые скобки в атрибутах, чтобы предотвратить XSS.
+
+### Доступность (Accessibility, ARIA)
+- [Что бы мне хотелось знать о ARIA, когда я только начинал](https://www.smashingmagazine.com/2025/06/what-i-wish-someone-told-me-aria/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Объяснение основ ARIA для доступности сайтов.
+- [Почему "жидкое стекло" в дизайне Apple может быть неудобно для пользователей](https://tarnoff.info/2025/06/11/liquid-glass-apple-you-know-better/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — О возможных проблемах с доступностью из-за нового дизайна Apple.
+- [Почему стоит делать доступные интерфейсы, даже если вам всё равно](https://nolanlawson.com/2025/06/16/selfish-reasons-for-building-accessible-uis/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Иногда доступность полезна даже для самих разработчиков.
+
+## 🧪 CSS и интерфейсы
+- [Новый способ стилизации gap в CSS](https://developer.chrome.com/blog/gap-decorations?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Теперь можно делать красивые разделители между элементами без костылей и псевдоэлементов. Пока только за флагом, но уже есть [демо](https://microsoftedge.github.io/Demos/css-gap-decorations/playground.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- [Анимация зума в CSS: почему порядок трансформаций важен](https://jakearchibald.com/2025/animating-zooming/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Пример неправильной анимации из-за неверного порядка transform.
+- [Tangram-пазл на CSS/SCSS](https://css-tricks.com/breaking-boundaries-building-a-tangram-puzzle-with-scss/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Пример, как сделать интерактивный пазл только средствами CSS.
+- [Сравнение grid: 1fr 1fr vs auto auto vs 50% 50%](https://frontendmasters.com/blog/1fr-1fr-vs-auto-auto-vs-50-50/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — В чём разница между этими значениями? В статье объясняется на простых примерах.
+- **[Почему JPEG всё ещё рулит](https://spectrum.ieee.org/jpeg-image-format-history?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — исторический экскурс от энтузиаста.
+
+## ⚙️ JavaScript
+### 🧪 Использование `await` на верхнем уровне ES-модулей
+**[Top-level await в модулях](https://allthingssmitty.com/2025/06/16/using-await-at-the-top-level-in-es-modules/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — Поддерживается в Node.js 16+ и всех современных браузерах.
+
+- [Payload переходит под крыло Figma](https://payloadcms.com/posts/blog/payload-is-joining-figma?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Headless CMS на Next.js теперь принадлежит Figma.
+
+- **[Обновление Storybook за 2 часа с помощью ИИ](https://honeybook.engineering/goodbye-upgrade-fatigue-how-cursor-upgraded-our-storybook-in-just-2-hours-f1c2ca1e8dc7?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — автоматизация скучных задач.
+
+## ⚛️ React
+### [Состояние React и сообщества в 2025 году](https://blog.isquaredsoftware.com/2025/06/react-community-2025/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Марк Эриксон, ведущий мейнтейнер Redux, делится мыслями о будущем React. Он рассказывает, как Meta и Vercel идут разными путями, как это влияет на фреймворки, документацию и реакцию сообщества.
+
+### [React Native 0.80](https://reactnative.dev/blog/2025/06/12/react-native-0.80?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Новая версия React Native теперь включает React 19.1 и поддержку TypeScript с более строгими типами. Добавлена экспериментальная сборка зависимостей на iOS и заморожена старая архитектура.
+
+### [Relay v20](https://github.com/facebook/relay/releases/tag/v20.0.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Обновлённый GraphQL-фреймворк от Facebook. Улучшена интеграция с React.
+
+### [React Aria Tree](https://react-spectrum.adobe.com/releases/2025-06-05.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Теперь поддерживает drag-and-drop. [Документация](https://react-spectrum.adobe.com/react-aria/Tree.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online#drag-and-drop)
+
+### [Интервью: CTO уходят от React?](https://www.youtube.com/watch?v=HBpOzj-iBUg&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Тео Браун обсуждает статью о возможной тенденции ухода крупных компаний от React.
+
+## TypeScript
+- **[Как TypeScript решил конфликт с ES2025 Iterator](https://2ality.com/2025/06/typescript-iterator-types.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — в новом стандарте появился класс `Iterator`, и TypeScript пришлось адаптироваться.
+
+
+## 🟩 Node.js
+### 📌 Node.js переходит к стабильной поддержке TypeScript с Amaro 1.0
+**[Node.js Moves Toward Stable TypeScript Support with Amaro 1.0](https://socket.dev/blog/node-js-moves-toward-stable-typescript-support-with-amaro-1-0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — Amaro — это официальный инструмент Node для удаления типов из TypeScript-кода, чтобы Node мог его исполнять. Версия [1.0](https://github.com/nodejs/amaro/pull/236?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) знаменует собой важный шаг к переходу поддержки TypeScript в стабильную фазу.
+
+💡 Если хотите погрузиться глубже — [▶️ доклад "The Path to Native TypeScript"](https://www.youtube.com/watch?v=l28lEXaUsak&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) на Node Congress 2025.
+
+### 🚀 pnpm 10.12 и глобальное виртуальное хранилище
+**[pnpm 10.12 Introduces an Experimental Global Virtual Store](https://socket.dev/blog/pnpm-introduces-global-virtual-store-and-expanded-version-catalogs?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — Новая возможность делиться зависимостями между проектами с помощью глобального виртуального хранилища `node_modules`.
+
+### Обзор
+- [Лучшие библиотеки для парсинга сайтов на JavaScript](https://blog.apify.com/best-javascript-web-scraping-libraries/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Crawlee, Cheerio и другие.
+- [Создатель Hono о переносе на Node.js](https://www.youtube.com/watch?v=4ks1RvEM99Y&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- [Тестирование производительности в Node.js](https://blog.appsignal.com/2025/06/04/performance-and-stress-testing-in-nodejs.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — AutoCannon, Artillery, k6.
+- [Создание MCP-сервера с Nx](https://nx.dev/blog/building-mcp-server-with-nx?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+
+### Коротко
+- [FIGLet.js](https://github.com/patorjk/figlet.js?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — рендеринг текста в ASCII. [Демо](https://patorjk.com/software/taag/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- [Stricli от Bloomberg](https://bloomberg.github.io/stricli/blog/intro/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — CLI-фреймворк
+- [Pyodide](https://github.com/pyodide/pyodide?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Python в Node.js и браузере
+- [Профилирование Node-приложений в VS Code](https://pavel-romanov.com/profiling-nodejs-application-with-vs-code?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — от Pavel Romanov
+- [30 лет JavaScript](https://spin.atomicobject.com/happy-birthday-javascript-30/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — статья от Dylan Goings.
+
+## Остальное
+- [Как мы обновили Storybook за 2 часа с помощью ИИ](https://honeybook.engineering/goodbye-upgrade-fatigue-how-cursor-upgraded-our-storybook-in-just-2-hours-f1c2ca1e8dc7?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Uri Klar
+- [Анимация бегущей строки вдоль SVG-пути](https://tympanus.net/codrops/2025/06/17/building-an-infinite-marquee-along-an-svg-path-with-react-motion/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Daniel Petho
+- [Композиционный стриминг с Suspense](https://twofoldframework.com/blog/composable-streaming-with-suspense?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Ryan Toronto
+- [Чеклист "Ты не настоящий фронтендер, пока не..."](https://www.nicchan.me/blog/youre-not-a-front-end-developer-until-youve/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Забавный список "обязательных" ритуалов.
+- [Почему визуальные конструкторы сайтов не стали стандартом](https://www.youtube.com/watch?v=BK_71QjkZmA&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Почему большинство по-прежнему пишет код руками.
+- [Как стать лучше во фронтенде — попробуйте быть "on-call" неделю](https://denodell.com/blog/try-a-week-on-call?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Дежурство по поддержке фронта отлично прокачивает.
+- [Safari на WWDC'25 — критика и взгляд на перспективы браузера](https://infrequently.org/2025/06/the-ghost-of-christmas-past/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Почему Apple тормозит развитие web.
+- [Иконка "гамбургер-меню": мифы и реальность](https://www.nngroup.com/articles/hamburger-menu-icon-recognizability/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Почему она до сих пор спорная, несмотря на популярность.
+
+### 🤖 AI и безопасность
+- [Риск вредоносных расширений для браузеров растёт](https://socket.dev/blog/the-growing-risk-of-malicious-browser-extensions?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Как защититься от вредоносных расширений.
+
+### [Защита AI-агентов от инъекций и злоупотреблений](https://workos.com/blog/securing-ai-agents?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Обзор от WorkOS о безопасности и контроле AI-агентов, встраиваемых в фронтенд.
+
+### [use-mcp: хук для подключения к MCP-серверам](https://github.com/modelcontextprotocol/use-mcp?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Упрощает аутентификацию и работу с AI-инструментами через MCP-стандарт.
+
+### [Clerk OAuth и поддержка MCP](https://clerk.com/changelog/2025-06-13-oauth-improvements?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online&utm_content=06-18-25&dub_id=dvUhZsqunn2s6VQ8)
+Теперь Clerk поддерживает ревокацию токенов и динамические клиенты для AI-интеграций.
+
+
+## 🛠 Инструменты и библиотеки
+### [react-searchable-dropdown](https://react-searchable-dropdown.netlify.app/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Настраиваемый dropdown-компонент с поддержкой больших наборов данных, виртуализации и пользовательских опций.
+
+### [Liquid Glass для React](https://liquid-glass.maxrovensky.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Реализация нового «жидкого стекла» из дизайна Apple в React-приложениях.
+
+### [react-call 1.8](https://react-call.desko.dev/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Позволяет вызывать компоненты React императивно, даже вне контекста React. Поддержка upsert-компонентов.
+
+### [Slice Viewer](https://github.com/vangelov/slice-viewer?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Просмотр медицинских сканов с использованием React и WebGL.
+
+### [Ant Design Charts 2.4](https://github.com/ant-design/ant-design-charts?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Библиотека графиков на базе React.
+
+### [State in URL 5.0](https://github.com/asmyshlyaev177/state-in-url?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Хранение состояния в URL. Поддержка Next.js, Remix и React Router.
+
+### [React ChatBotify 2.1](https://github.com/react-chatbotify/react-chatbotify?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Библиотека для создания чат-ботов.
+
+- **[WelsonJS](https://github.com/gnh1201/welsonjs?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — создание Windows-приложений с использованием встроенного JS-движка Windows.
+_Go Namhyeon_
+- **[Croner 9.1](https://croner.56k.guru/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — Триггеры по cron, поддержка TypeScript.
+_Hexagon_
+- **[log-vwer](https://github.com/iamqitmeer/log-vwer?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — простой дашборд для логов Node.js.
+_Qitmeer Raza_
+
+- **[Git 2.50.0](https://about.gitlab.com/blog/what-s-new-in-git-2-50-0/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — важный релиз, включая итоги от GitHub.
+- [Anime.js 4.0 — JS-библиотека для анимаций](https://animejs.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Удобна для новичков и поддерживает много вариантов анимаций.
+- [Anchors — Tailwind-плагин для Anchor Positioning API](https://github.com/toolwind/anchors?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Помогает пробовать Anchor Positioning в Tailwind-проектах.
+- [Critical CSS Generator](https://critical-css-extractor.kigo.studio/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Генерирует критический CSS для ускорения загрузки страницы.
+- [DarkModeJS 2.0 — управление тёмной темой](https://github.com/Assortment/darkmodejs?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Позволяет легко реагировать на смену темы у пользователя.
+- [RampenSau — генератор цветовых палитр](https://github.com/meodai/rampensau?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Генерирует палитры с помощью hue и easing-функций, есть демо.
+- [Tonkotsu — AI IDE](https://www.tonkotsu.ai?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Помогает планировать и выполнять задачи с помощью ИИ.
+
+### 🆕 Релизы
+- **[Entities 6.0](https://github.com/fb55/entities?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — кодирование/декодирование HTML/XML.
+- **[ESLint 9.29.0](https://eslint.org/blog/2025/06/eslint-v9.29.0-released/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — поддержка `using` и `await using`.
+- **[LogTape 0.12](https://hackers.pub/@hongminhee/2025/logtape-0-12?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — логгер без зависимостей.
+- **[fast-png 7.0](https://github.com/image-js/fast-png?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — PNG-кодек на JS.
+- **[node-llama-cpp 3.10](https://github.com/withcatai/node-llama-cpp/releases/tag/v3.10.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — LLMs на Node.
+- **[Discord.js 14.20](https://github.com/discordjs/discord.js/releases/tag/14.20.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+- **[Ableton.js 3.7](https://github.com/leolabs/ableton-js?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+- **[Fastify 5.4](https://github.com/fastify/fastify/releases/tag/v5.4.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+- **[Mongoose 8.16](https://github.com/Automattic/mongoose?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+- **[Piscina 5.1](https://github.com/piscinajs/piscina?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+- **[tiff 7.0](https://github.com/image-js/tiff?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**
+- **[Bun v1.2.16](https://bun.sh/blog/bun-v1.2.16?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — теперь можно возвращать файлы в `Bun.serve`, улучшена совместимость с Node.js.
+- **[Astro 5.10](https://astro.build/blog/astro-5100/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — стабильная поддержка адаптивных изображений и новая фича: live content collections.
+- **[ESLint v9.29.0](https://eslint.org/blog/2025/06/eslint-v9.29.0-released/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — поддержка `using`/`await using`.
