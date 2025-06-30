@@ -1,0 +1,155 @@
+---
+title: "Еженедельный дайджест #5: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "June 30 2025"
+isDigest: true
+mascotMessages: [
+  { text: "Привет! Готов к свежим новостям? 🦊", index: 0 },
+  { text: "ES2025 официально принят! 🎉", index: 1 },
+  { text: "CSS теперь умеет scroll-анимации!", index: 2 },
+  { text: "React Native + macOS = чат-боты!", index: 3 },
+  { text: "Vite 7.0 вышел в свет! 🚀", index: 4 },
+  { text: "Node.js worker threads — мощь!", index: 5 },
+  { text: "JavaScript исполнилось 30 лет! 🎂", index: 6 },
+  { text: "AI + Playwright = автотесты!", index: 7 },
+  { text: "OAuth простыми словами 📚", index: 8 },
+  { text: "До встречи в следующем дайджесте! ✌️", index: 9 }
+]
+---
+
+import TelegramCTA from '../../../components/TelegramCTA.astro';
+
+## Главные новости
+### ECMAScript 2025 официально принят
+[Ecma International утвердила спецификацию ECMAScript 2025](https://2ality.com/2025/06/ecmascript-2025.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). Если нет желания читать весь стандарт, [вот краткий разбор от Dr. Axel](https://tc39.es/ecma262/2025/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). Он объясняет нововведения простым языком.
+
+<TelegramCTA/>
+
+## HTML и API
+- [JSON-модули теперь доступны в браузерах](https://web.dev/blog/json-imports-baseline-newly-available?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+## CSS
+### 🌀 [Руководство по scroll-driven анимациям на чистом CSS](https://webkit.org/blog/17101/a-guide-to-scroll-driven-animations-with-just-css/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Теперь можно создавать анимации, зависящие от прокрутки, **без JavaScript**. Используются функции `scroll()` и `view()`, позволяющие, например, делать индикаторы прогресса и плавные появления. Также затрагиваются вопросы доступности и снижения укачивания у пользователей.
+
+### 💎 [Жидкое стекло, но в CSS](https://atlaspuplabs.com/blog/liquid-glass-but-in-css?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Попытка воспроизвести Apple-стиль «Liquid Glass» средствами CSS. Хотя поддержка браузеров ограничена, выглядит эффектно и технологично.
+
+### 🧠 [Плавное сравнение CSS cascade layers, BEM и utility-классов](https://www.smashingmagazine.com/2025/06/css-cascade-layers-bem-utility-classes-specificity-control/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Victor объясняет, как правильно управлять специфичностью в CSS, чтобы избежать необходимости использовать `!important`.
+
+### 📦 [CSS-функция `if()` в Chrome 137](https://css-tricks.com/lightly-poking-at-the-css-if-function-in-chrome-137/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Новая мощная возможность CSS — условные выражения. В статье наглядно показано, как использовать `if()` вместе с другими свойствами.
+
+### 🎨 [Погружение в цвета CSS](https://css-tricks.com/color-everything-in-css/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Объясняется, как работают функции `lab()` и `oklch()` в CSS, и почему они дают больше контроля, чем стандартные RGB и HSL.
+
+### Коротко
+- 🗳️ [Опрос State of CSS 2025](https://survey.devographics.com/en-US/survey/state-of-css/2025?source=frontendfocus&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) ещё открыт.
+
+## JavaScript
+### 🤯 [Как упростить работу с регулярными выражениями в JavaScript](https://2ality.com/2025/06/javascript-regexp-tips.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Axel Rauschmayer делится советами, как писать регулярки читаемо и понятно — как если бы вы писали обычный код.
+
+### Что дальше ждёт JavaScript?
+[Команда Deno рассказала о 9 новых предложениях для языка](https://deno.com/blog/updates-from-tc39?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), которые сейчас находятся на рассмотрении TC39. Там есть примеры кода, так что удобно для новичков.
+
+### Коротко
+- [Введение в компилятор Porffor](https://porffor.dev/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — [видео-доклад](https://www.youtube.com/watch?v=RU5N5O-O5Zw&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+## React
+### [🚀 Recharts 3.0: D3-библиотека графиков для React](https://github.com/recharts/recharts/releases/tag/v3.0.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Вышла третья версия библиотеки [Recharts](https://github.com/recharts/recharts?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), построенной на D3 и SVG-компонентах. Это популярная библиотека для визуализации данных в React. В новой версии улучшена архитектура, и теперь доступны разные типы графиков: линейные, столбчатые, круговые, диаграммы рассеяния и радары.
+
+### [▶ Как работает повторный рендеринг в React](https://shramko.dev/blog/react-rerender?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Понятное объяснение того, когда и почему происходят повторные рендеры в React. Полезно новичкам для понимания производительности и правильного использования хуков.
+
+### [▶ Переход с WordPress на Next.js и Vercel](https://www.ericdodds.com/blog/using-cursor-to-migrate-my-wordpress-blog-to-nextjs-and-vercel?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+История переезда блога с WordPress на современный стек с использованием Next.js, Vercel и инструмента Cursor. Хороший пример для тех, кто хочет сделать что-то подобное.
+
+### [▶ Можем ли мы с помощью ИИ перенести страницу на Next.js?](https://thoughtbot.com/blog/can-ai-rebuild-a-rails-page-in-next-js-we-tried-it?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Команда попыталась с помощью искусственного интеллекта воссоздать страницу на Rails в Next.js. Получилось интересно — хороший материал для вдохновения и анализа возможностей ИИ.
+
+### Коротко
+- [🧠 Будущее графики в React Native](https://shopify.engineering/webgpu-skia-web-graphics?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — обсуждение технологий вроде WebGPU, Three.js и Skia Graphite.
+- [⚛️ Переосмысление ViewTransition из React для Vanilla JS](https://plainvanillaweb.com/blog/articles/2025-06-12-view-transitions/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+
+## 📦 Node.js
+### 🚀 [План развития AdonisJS 7](https://adonisjs.com/blog/roadmap-to-adonisjs-7?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Adonis — это фреймворк на TypeScript, ориентированный на удобство и готовый к работе «из коробки». Разработчики представили **дорожную карту версии 7**, которая обещает:
+- Поддержку `diagnostic_channel` из Node.js,
+- Безопасный генератор URL,
+- Новый слой шифрования,
+- Интеграцию с TanStack Query и систему уведомлений.
+
+Также опубликована [сравнительная статья о Adonis и Nest](https://www.reddit.com/r/node/comments/1kwdvt5/honojs_vs_fastify/munqm7q/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+### 🧵 [Потоки в Node.js: гайд по многопоточности](https://nodesource.com/blog/worker-threads-nodejs-multithreading-in-javascript?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Хотя Node.js изначально работает в однопоточном режиме, **worker threads** дают возможность распараллеливать задачи. Это особенно полезно для тяжёлых операций вне основного потока.
+
+### ⚖️ [Сравнение сериализации в Node.js](https://adamfaulkner.github.io/serialization_from_nodejs.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Подробное сравнение JSON, Protobuf и MsgPack — какие способы сериализации работают быстрее и эффективнее.
+
+### 🧪 [MongoDB Memory Server для тестов](https://blog.appsignal.com/2025/06/18/testing-mongodb-in-node-with-the-mongodb-memory-server.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Инструмент, который позволяет запускать MongoDB в памяти — удобно для юнит-тестирования без необходимости поднимать настоящую БД.
+
+### 🧪 [Генерация тестов Playwright с помощью AI](https://www.youtube.com/watch?v=MIlcVo1x3Is&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Видео об использовании AI в связке с Playwright MCP сервером для автоматической генерации end-to-end тестов.
+
+### 🔌 [Совместная работа CommonJS и ESM в Node.js](https://www.youtube.com/watch?v=YRueCer2kig&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Объяснение, как правильно соединить модули двух систем — CommonJS и ES-модули, особенно в больших проектах.
+
+### 🧠 [RAG-система на Node + OpenAI](https://www.zignuts.com/blog/build-rag-system-nodejs-openai?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Практика создания Retrieval-Augmented Generation системы с использованием Node.js и OpenAI API.
+
+## Коротко
+- [Новый custom element &lt;syntax-highlight&gt;](https://andreruffert.github.io/syntax-highlight-element/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — красивый синтаксис без span-хаоса.
+- [Новая книга "Exploring JavaScript: ES2025 Edition"](https://exploringjs.com/js/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) + [карточки для запоминания](https://exploringjs.com/js/downloads/exploring-js-cards-topics-preview.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) от Dr. Axel.
+- [Git 2.50.0](https://about.gitlab.com/blog/what-s-new-in-git-2-50-0/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — крупное обновление с [обзором от GitHub](https://github.blog/open-source/git/highlights-from-git-2-50/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- [Новая политика Firefox для расширений](https://blog.mozilla.org/addons/2025/06/23/updated-add-on-policies-simplified-clarified/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) вступит в силу в августе.
+
+## 📺 Видео и статьи
+- [Почему визуальные редакторы сайтов не прижились](https://www.youtube.com/watch?v=BK_71QjkZmA&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — мнение от Salma Alam-Naylor.
+- [Уроки из разработки inline-документ вьювера](https://spin.atomicobject.com/inline-document-viewer/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Anjali Munasinghe делится опытом.
+- [3D аудио-визуализатор на Three.js + Web Audio API](https://tympanus.net/codrops/2025/06/18/coding-a-3d-audio-visualizer-with-three-js-gsap-web-audio-api/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — красочное демо.
+- [JavaScript испортил веб и назвал это прогрессом](https://www.jonoalderson.com/conjecture/javascript-broke-the-web-and-called-it-progress/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — провокационная колонка от Jono Alderson.
+- [Более удобный API для Intersection и Mutation Observer](https://css-tricks.com/a-better-api-for-the-intersection-and-mutation-observers/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Zell делает их проще и понятнее.
+- [▶ Создание десктоп-приложения для macOS с React Native](https://www.youtube.com/watch?v=Apy672AQb4U&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — видеоурок по созданию чат-бота с ИИ на React Native.
+
+
+## 🔐 Безопасность и доступ
+- [История ботов и борьбы с ними](https://sinja.io/blog/bot-or-not?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — IP, капчи, headless-браузеры и поведенческий анализ. Отличный обзор от OlegWock.
+- [Как работает OAuth](https://clerk.com/blog/how-oauth-works?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online&utm_content=06-25-25-fef&dub_id=3Vwlh0Udg59ppYvi) — понятное объяснение с примерами и советами по безопасности.
+
+## ⚙️ Инструменты и фреймворки
+- [**Vite 7.0 вышел**](https://vite.dev/blog/announcing-vite7.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- [**Bun 1.2.17**](https://bun.sh/blog/bun-v1.2.17?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — улучшения совместимости с Node.js и новый серверный бандлинг.
+- [**Node.js 20.19.3 (LTS)**](https://nodejs.org/en/blog/release/v20.19.3?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — обновлены сертификаты, V8 и API WebCrypto.
+- [**SVGO 4.0**](https://svgo.dev/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — оптимизатор SVG с улучшенной архитектурой и поддержкой ESM/CJS.
+- [**Hono 4.8**](https://github.com/honojs/hono/releases/tag/v4.8.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — лёгкий фреймворк для серверной разработки под множество платформ.
+- [**LogTape 1.0.0**](https://hackers.pub/@hongminhee/2025/announcing-logtape-1-0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — универсальный логгер для JavaScript-приложений.
+- [Astro 5.10](https://astro.build/blog/astro-5100/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — адаптивные изображения готовы к продакшену + экспериментальная fetch-функция.
+- [Firefox 140.0](https://www.mozilla.org/en-US/firefox/140.0/releasenotes/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — вертикальные вкладки, `fetchpriority` для SVG, и [обновлённая документация для разработчиков](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/140?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- [Mossaik](https://mossaik.app/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — генератор красивых SVG-фонов прямо в браузере.
+- [Contrast Report](https://contrast.report/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — удобная проверка контрастности по WCAG.
+- [Text to SVG](https://text-to-svg.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — конвертация текста в SVG-путь.
+- [SlimImg](https://slimimg.tools/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — компрессия изображений прямо в браузере.
+- [🔌 Подключение React-приложения к MCP-серверу за 3 строки](https://blog.cloudflare.com/connect-any-react-application-to-an-mcp-server-in-three-lines-of-code/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Cloudflare выпустила хук `use-mcp`, который позволяет легко интегрировать клиент с сервером по протоколу Model Context Protocol.
+- [📟 Warka](https://github.com/k3nz0/Warka?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — фреймворк для создания интерфейсов на e-ink дисплеях с React.
+- [🔊 Soundz](https://soundzjs.vercel.app/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — новая библиотека для добавления звуков к компонентам React.
+- [🌐 react-force-graph](https://github.com/vasturiano/react-force-graph?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — визуализация графов в 2D, 3D, VR и AR.
+- [📽 ReMDX 0.16](https://github.com/nkzw-tech/remdx?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — минималистичная библиотека для презентаций с использованием React и MDX.
+- [🧩 Intergalactic 16.4](https://developer.semrush.com/intergalactic/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — набор из более чем 50 компонентов React.
+- [🏢 React Admin 5.9](https://github.com/marmelab/react-admin/releases/tag/v5.9.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — фреймворк для создания интерфейсов админок.
+- [📱 rn-swiper-list 2.5](https://github.com/Skipperlla/rn-swiper-list?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — свайпы в стиле Tinder для React Native.
+- [📝 MDXEditor 3.37](https://mdxeditor.dev/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — редактор Markdown-контента на React.
+- [📚 BlockNote 0.32](https://github.com/TypeCellOS/BlockNote/releases/tag/v0.32.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — редактор блоков в стиле Notion.
+
+## 🧪 Библиотеки и релизы
+- [zx 8.6](https://github.com/google/zx/releases/tag/8.6.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — улучшенный способ написания shell-скриптов на Node.
+- [Typegoose 12.17](https://github.com/typegoose/typegoose?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — определяйте Mongoose-модели через TypeScript-классы.
+- [OpenAI Node 5.7](https://github.com/openai/openai-node?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — новая версия официальной библиотеки для API OpenAI.
+- [Electron 37.0](https://github.com/electron/electron?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — новый релиз фреймворка для десктопных приложений.
+- [BullMQ 5.56](https://github.com/taskforcesh/bullmq?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — распределённая очередь на Redis.
+- [Mocha 11.7](https://github.com/mochajs/mocha?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — стабильный фреймворк для тестирования.
+- [🔧 CKEditor: как они уменьшили размер бандла на 40%](https://ckeditor.com/blog/how-we-reduced-ckeditor-bundle-size/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
