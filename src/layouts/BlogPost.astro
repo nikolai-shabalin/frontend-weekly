@@ -11,9 +11,10 @@ import { banners } from '../data/banners';
 
 type Props = CollectionEntry<'digest'>['data'] & {
   slug?: string;
+  mascotMessages?: import('../types/mascot').MascotMessage[];
 };
 
-const {title, description, pubDate, slug = ''} = Astro.props;
+const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.props;
 ---
 
 <html lang="ru">
@@ -164,7 +165,7 @@ const {title, description, pubDate, slug = ''} = Astro.props;
 
     <DigestBanner banners={banners} />
     <DigestRecommendations />
-    <FrontieMascot />
+    <FrontieMascot messages={mascotMessages} />
 
     <hr class="post__divider"></hr>
 
