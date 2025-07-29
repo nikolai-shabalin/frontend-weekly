@@ -8,10 +8,6 @@ export const banners = [
     portfolioUrl: 'https://spb.hh.ru/resume/1e09b0f3ff0ef080f40039ed1f4b78384f5a73'
   },
   {
-    image: '/images/banners/ivanov-sergei.png',
-    portfolioUrl: 'https://hh.ru/resume/836a6b31ff0ca2c1ef0039ed1f794e55567757'
-  },
-  {
     image: '/images/banners/petrushin.png',
     portfolioUrl: 'https://bryansk.hh.ru/resume/bd32116dff0e988b470039ed1f3339324e6d59'
   },
