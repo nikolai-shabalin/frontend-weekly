@@ -1,134 +1,128 @@
 ---
 title: "Еженедельный дайджест #10: Новости фронтенда"
 description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
-pubDate: "July 29 2025"
+pubDate: "Aug 04 2025"
 mascotMessages: [
-  { text: "HTML 2025: опрос открыт! 📝", index: 0 },
-  { text: "SVG теперь проще простого! 🖼️", index: 1 },
-  { text: "Liquid Glass: Apple удивляет! 🍏", index: 2 },
-  { text: "Firefox с WebGPU и вкладками! 🦊", index: 3 },
-  { text: "CSS if(): условия в стиле! 🧩", index: 4 },
-  { text: "React: хуки и новый UI! ⚛️", index: 5 },
-  { text: "Node 18 — EOL, но не беда! 🐧", index: 6 },
-  { text: "Создай свой npm-пакет! 📦", index: 7 },
-  { text: "AI-агент на 200 строк! 🤖", index: 8 },
-  { text: "Reagraph: графы на WebGL! 📊", index: 9 }
+  { text: "MDN — 20 лет! 🎉", index: 0 },
+  { text: "CSS-карусель без JS! 🎠", index: 1 },
+  { text: "Masonry в Chrome! 🧱", index: 2 },
+  { text: "Scroll-Spy на CSS! 🧭", index: 3 },
+  { text: "React 19.1.1 вышел! ⚛️", index: 4 },
+  { text: "TanStack DB — новая БД! 💾", index: 5 },
+  { text: "Node.js с TypeScript! 🐧", index: 6 },
+  { text: "Reanimated 4 — анимации! ✨", index: 7 },
+  { text: "Transformers.js 3.7! 🤖", index: 8 },
+  { text: "pnpm 10.14 — новые фичи! 📦", index: 9 }
 ]
 ---
 
 import TelegramCTA from '../../components/TelegramCTA.astro';
 
 ## 🧪 HTML и API
-### 🎉 [20 лет MDN](https://frontendfoc.us/link/172373/web)
+### 🎉 [20 лет MDN](https://developer.mozilla.org/en-US/blog/mdn-turns-20/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 MDN отмечает юбилей! За это время собрано более 14 000 страниц документации по 18 000 веб-фичам. Отличный повод поблагодарить команду проекта.
 
-- ✨ [Новое в Safari Technology Preview 224](https://frontendfoc.us/link/172377/web): поддержка новых анимационных свойств.
-- 🤖 [AI-режим в Microsoft Edge](https://frontendfoc.us/link/172378/web): демонстрация на видео.
-- 🧑‍⚖️ [Wikimedia против британского закона о безопасности в интернете](https://frontendfoc.us/link/172379/web).
-- 📅 [Скоро день HTML](https://frontendfoc.us/link/172380/web): более 40 мероприятий по всему миру.
-- 🗳️ [Открыт опрос State of HTML](https://frontendfoc.us/link/172381/web): можешь повлиять на развитие веба.
-- 📊 [Результаты опроса Stack Overflow 2025](https://frontendfoc.us/link/172382/web): 45 000 разработчиков поделились своим опытом.
-- 📜 [W3C публикует документ о ценностях организации](https://frontendfoc.us/link/172383/web).
-- 🐦 [PNG, сохранённый в... птицу?](https://frontendfoc.us/link/172384/web): немного хардкорного стеба.
-- ▶️ [Адаптивное видео теперь просто](https://frontendfoc.us/link/172385/web): подробности о том, как отображать видео в разных ориентациях и под контекст.
-- [Как работает JSX в Astro](https://react.statuscode.com/link/172423/web)
+- ✨ [Новое в Safari Technology Preview 224](https://webkit.org/blog/17210/release-notes-for-safari-technology-preview-224/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): поддержка новых анимационных свойств.
+- 🤖 [AI-режим в Microsoft Edge](https://blogs.windows.com/msedgedev/2025/07/28/introducing-copilot-mode-in-edge-a-new-way-to-browse-the-web/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): демонстрация на видео.
+- 🧑‍⚖️ [Wikimedia против британского закона о безопасности в интернете](https://wikimediafoundation.org/news/2025/07/17/wikimedia-foundation-challenges-uk-online-safety-act-regulations/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- 📅 [Скоро день HTML](https://html.energy/html-day/2025/index.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): более 40 мероприятий по всему миру.
+- 🗳️ [Открыт опрос State of HTML](https://survey.devographics.com/en-US/survey/state-of-html/2025?ref=frontendfocus&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): можешь повлиять на развитие веба.
+- 📊 [Результаты опроса Stack Overflow 2025](https://survey.stackoverflow.co/2025?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): 45 000 разработчиков поделились своим опытом.
+- 📜 [W3C публикует документ о ценностях организации](https://www.w3.org/TR/2025/STMT-w3c-vision-20250729/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- 🐦 [PNG, сохранённый в... птицу?](https://www.youtube.com/watch?v=hCQCP-5g5bo&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): немного хардкорного стеба.
+- ▶️ [Адаптивное видео теперь просто](https://www.kooslooijesteijn.net/blog/responsive-video-easy?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): подробности о том, как отображать видео в разных ориентациях и под контекст.
+- [Как работает JSX в Astro](https://carlosn.com.br/blog/post/notes-on-rewriting-jsx-as-astro/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 
 ## 🎨 CSS и дизайн
-### 📸 [CSS-карусель без JavaScript](https://frontendfoc.us/link/172371/web)
-Адам Аргайл показывает, как можно сделать слайдер-галерею без единой строчки JavaScript. Используются свойства вроде `scroll-snap-type`, `overscroll-behavior` и `anchor-name`. Можно даже собрать такую карусель с помощью [визуального конфигуратора](https://frontendfoc.us/link/172372/web). Работает в Chrome 135+.
+### 📸 [CSS-карусель без JavaScript](https://chrome.dev/carousel/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Адам Аргайл показывает, как можно сделать слайдер-галерею без единой строчки JavaScript. Используются свойства вроде `scroll-snap-type`, `overscroll-behavior` и `anchor-name`. Можно даже собрать такую карусель с помощью [визуального конфигуратора](https://chrome.dev/carousel-configurator/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). Работает в Chrome 135+.
 
-### 🧱 [CSS Masonry: поддержка появляется](https://frontendfoc.us/link/172375/web)
+### 🧱 [CSS Masonry: поддержка появляется](https://developer.chrome.com/blog/masonry-update?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Google экспериментирует с новой фичей для создания "каменной" сетки (masonry layout). Пока всё ещё за флагом в Chrome/Edge 140, но уже можно потестировать и оставить фидбек.
 
-### 🧩 [Masonry-сетка, которую можно использовать уже сейчас](https://frontendfoc.us/link/172376/web)
+### 🧩 [Masonry-сетка, которую можно использовать уже сейчас](https://css-tricks.com/making-a-masonry-layout-that-works-today/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Zell Liew объясняет, как сделать masonry-сетку уже сегодня, не дожидаясь официальной поддержки. Смешивается CSS с небольшим количеством JS.
 
-### 🧭 [Scroll-Spy на чистом CSS](https://frontendfoc.us/link/172450/web)
+### 🧭 [Scroll-Spy на чистом CSS](https://una.im/scroll-target-group/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 С новой фичей `scroll-target-group` и псевдоклассом `:target-current`, можно легко реализовать подсветку активного раздела в навигации — и всё это на CSS!
 
 <TelegramCTA/>
 
 ## 🌐 JavaScript
-### 📚 [Много-много рантаймов JavaScript за последнее десятилетие](https://nodeweekly.com/link/172334/web)
+### 📚 [Много-много рантаймов JavaScript за последнее десятилетие](https://buttondown.com/whatever_jamie/archive/the-many-many-many-javascript-runtimes-of-the-last-decade/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Автор потратил целый год, чтобы собрать большую статью о различных средах выполнения JS: от Node.js до облачных платформ и малоизвестных движков. Отличный способ расширить кругозор по экосистеме JavaScript.
 
-- 📄 [Операторы логического присваивания в JavaScript](https://nodeweekly.com/link/172344/web) — короткий, но полезный обзор новых возможностей вроде `x ||= y` и `x &&= y`. Экономят код и читаемы.
+- 📄 [Операторы логического присваивания в JavaScript](https://allthingssmitty.com/2025/07/28/logical-assignment-operators-in-javascript-small-syntax-big-wins/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — короткий, но полезный обзор новых возможностей вроде `x ||= y` и `x &&= y`. Экономят код и читаемы.
 
 ## TypeScript
-- 🧪 [TypeScript 5.9 RC](https://nodeweekly.com/link/172335/web) — релиз-кандидат. Важное нововведение: `import defer` и поддержка `--module node20`.
-- 📄 [Проблема типов в многорепозиторной архитектуре](https://nodeweekly.com/link/172343/web) — как работать с типами между несколькими репами. Подходит тем, кто использует монорепы или микросервисы.
+- 🧪 [TypeScript 5.9 RC](https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-rc/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — релиз-кандидат. Важное нововведение: `import defer` и поддержка `--module node20`.
+- 📄 [Проблема типов в многорепозиторной архитектуре](https://www.carrick.tools/blog/the-multi-repository-typescript-problem?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — как работать с типами между несколькими репами. Подходит тем, кто использует монорепы или микросервисы.
 
 
 ## ⚛️ React
-### [React 19.1.1](https://javascriptweekly.com/link/172601/web)
+### [React 19.1.1](https://github.com/facebook/react/releases/tag/v19.1.1?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Минорное обновление основной библиотеки React.
-### [TanStack DB: Встраиваемая клиентская база данных для TanStack Query](https://react.statuscode.com/link/172410/web)
+### [TanStack DB: Встраиваемая клиентская база данных для TanStack Query](https://tanstack.com/blog/tanstack-db-0.1-the-embedded-client-database-for-tanstack-query?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 **TanStack DB** — новая клиентская база данных, которая позволяет выполнять живые запросы с миллисекундной задержкой и поддерживает "оптимистичные" обновления. Это особенно полезно, если ты работаешь с `TanStack Query` и хочешь ещё больше гибкости в хранении данных прямо в приложении.
 
-### [Зачем вообще нужен `useCallback`](https://react.statuscode.com/link/172412/web)
+### [Зачем вообще нужен `useCallback`](https://tkdodo.eu/blog/the-useless-use-callback?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 В статье разбирается, почему `useCallback` и `useMemo` часто кажутся бесполезными. Автор объясняет, как один неперемемоизированный проп может свести на нет всё кэширование и как React Compiler и `useEffectEvent` могут помочь в будущем.
 
-### [Как Parcel собирает React Server Components](https://react.statuscode.com/link/172416/web)
+### [Как Parcel собирает React Server Components](https://devongovett.me/blog/parcel-rsc.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Parcel недавно добавил поддержку React Server Components. В статье объясняется, как это работает, что значит директива `"use client"` и зачем всё это нужно.
 
-### [Предкомпиляция React Native для iOS в версии 0.81](https://react.statuscode.com/link/172418/web)
+### [Предкомпиляция React Native для iOS в версии 0.81](https://expo.dev/blog/precompiled-react-native-for-ios?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 React Native теперь будет собираться для iOS быстрее в 10 раз благодаря предкомпиляции. Пока в RC, но уже можно попробовать и оценить прирост скорости.
 
-### [Reanimated 4: Анимации в стиле CSS для React Native](https://react.statuscode.com/link/172424/web)
-Обновление библиотеки Reanimated приносит мощные инструменты для анимаций в React Native. Теперь можно делать плавные и выразительные анимации без лишней боли — как в CSS, но с полным контролем в JS. Есть даже [видео-демо](https://react.statuscode.com/link/172425/web), чтобы быстро вникнуть.
+### [Reanimated 4: Анимации в стиле CSS для React Native](https://blog.swmansion.com/reanimated-4-stable-release-the-future-of-react-native-animations-ba68210c3713?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Обновление библиотеки Reanimated приносит мощные инструменты для анимаций в React Native. Теперь можно делать плавные и выразительные анимации без лишней боли — как в CSS, но с полным контролем в JS. Есть даже [видео-демо](https://www.youtube.com/watch?v=Wr2fOM_xD2I&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), чтобы быстро вникнуть.
 
-- [Remix 3: конец архитектуры, ориентированной на React](https://react.statuscode.com/link/172421/web)
+- [Remix 3: конец архитектуры, ориентированной на React](https://thenewstack.io/remix-3-and-the-end-of-react-centric-architectures/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 
 ## ⚙️ Node.js
-### [Node.js 22.18 (LTS): Поддержка TypeScript по умолчанию](https://javascriptweekly.com/link/172586/web)
+### [Node.js 22.18 (LTS): Поддержка TypeScript по умолчанию](https://nodejs.org/en/blog/release/v22.18.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Теперь можно запускать TypeScript-файлы напрямую командой `node app.ts`, без дополнительных настроек. Эта функция вдохновлена подходом Bun и Deno.
 
-### [Node.js 24.5 (текущая версия)](https://javascriptweekly.com/link/172587/web)
+### [Node.js 24.5 (текущая версия)](https://nodejs.org/en/blog/release/v24.5.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Обновление добавляет поддержку прокси в `node:http(s)`, OpenSSL 3.5 и отключает флаг с `--experimental-wasm-modules`.
 
-- 📄 [Руководство Node.js-разработчика по Unix domain сокетам](https://nodeweekly.com/link/172339/web) — Unix-сокеты работают быстрее TCP и полезны для взаимодействия между процессами. Простой вводный материал.
-- 📺 [Создатель Bun о совместимости с Node.js](https://nodeweekly.com/link/172340/web) — интервью с автором Bun, где он рассказывает, почему основное внимание уходит не на фичи, а на полную совместимость с Node.js.
-- 📄 [Как построить MCP-сервер на Node.js для LLM](https://nodeweekly.com/link/172342/web) — объясняется, как давать LLM доступ к данным через серверы, написанные на Node.js.
+- 📄 [Руководство Node.js-разработчика по Unix domain сокетам](https://nodevibe.substack.com/p/the-nodejs-developers-guide-to-unix?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — Unix-сокеты работают быстрее TCP и полезны для взаимодействия между процессами. Простой вводный материал.
+- 📺 [Создатель Bun о совместимости с Node.js](https://www.youtube.com/watch?v=VGjJWXFYyQo&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — интервью с автором Bun, где он рассказывает, почему основное внимание уходит не на фичи, а на полную совместимость с Node.js.
+- 📄 [Как построить MCP-сервер на Node.js для LLM](https://snyk.io/articles/how-to-build-node-js-mcp-servers-that-expose-data-resources-to-llms/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — объясняется, как давать LLM доступ к данным через серверы, написанные на Node.js.
 
 ## 🧠 Обучение и статьи
-- ▶️ [Сравнение Zod и Valibot: Валидаторы JS/TS](https://javascriptweekly.com/link/172602/web) — 12-минутное видео, сравнение синтаксиса и подходов.
-- 📘 [Как компилируется Svelte 5: "в голове"](https://javascriptweekly.com/link/172636/web) — объяснение внутренних преобразований в Svelte.
-- 📘 [Логические операторы присваивания в JavaScript](https://javascriptweekly.com/link/172638/web) — `||=`, `&&=`, `??=` — зачем они нужны и как применяются.
-- 📘 [Новая API производительности в Chrome DevTools](https://javascriptweekly.com/link/172603/web) — как настраивать собственные треки профилирования.
-- 📘 [Проблема TypeScript в монорепозиториях](https://javascriptweekly.com/link/172606/web) — обсуждение подходов к типовой безопасности между пакетами.
-- 📘 [Почему vi.spyOn лучше vi.mock](https://javascriptweekly.com/link/172639/web) — советы по написанию тестов.
-- 📘 [2D-физика в играх с Matter.js и React Native Skia](https://javascriptweekly.com/link/172607/web) — гайд по созданию простой игры с физикой.
-- 📺 [Создатель Bun о совместимости с Node.js](https://javascriptweekly.com/link/172605/web)
+- ▶️ [Сравнение Zod и Valibot: Валидаторы JS/TS](https://www.youtube.com/watch?v=6P-2urhScwk&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — 12-минутное видео, сравнение синтаксиса и подходов.
+- 📘 [Как компилируется Svelte 5: "в голове"](https://lihautan.com/compile-svelte-5-in-your-head?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — объяснение внутренних преобразований в Svelte.
+- 📘 [Новая API производительности в Chrome DevTools](https://csswizardry.com/2025/07/the-extensibility-api/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — как настраивать собственные треки профилирования.
+- 📘 [Почему vi.spyOn лучше vi.mock](https://laconicwit.com/vi-mock-is-a-footgun-why-vi-spyon-should-be-your-default/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — советы по написанию тестов.
+- 📘 [2D-физика в играх с Matter.js и React Native Skia](https://expo.dev/blog/build-2d-game-style-physics-with-matter-js-and-react-native-skia?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — гайд по созданию простой игры с физикой.
 
 ## Безопасность
-- 🔐 [Google представил OSS Rebuild](https://nodeweekly.com/link/172336/web) — новый инструмент для проверки безопасности open source пакетов через сравнение артефактов.
-- ⚠️ [Атака через npm и пакет `is`](https://nodeweekly.com/link/172337/web) — hijack через фишинговый домен. Подробнее: [как крали логины разработчиков](https://nodeweekly.com/link/172338/web).
+- 🔐 [Google представил OSS Rebuild](https://security.googleblog.com/2025/07/introducing-oss-rebuild-open-source.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — новый инструмент для проверки безопасности open source пакетов через сравнение артефактов.
+- ⚠️ [Атака через npm и пакет `is`](https://socket.dev/blog/npm-is-package-hijacked-in-expanding-supply-chain-attack?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — hijack через фишинговый домен. Подробнее: [как крали логины разработчиков](https://socket.dev/blog/npm-phishing-email-targets-developers-with-typosquatted-domain?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
 
 ## ⚒️ Инструменты и библиотеки
-- 🧪 [AudioTee.js](https://nodeweekly.com/link/172345/web) — библиотека для захвата системного звука на macOS из Node.js. Основана на Swift. [Исходники на GitHub](https://nodeweekly.com/link/172346/web).
-- 🤖 [Transformers.js 3.7](https://nodeweekly.com/link/172347/web) — запуск ML-моделей прямо в браузере. Обновление включает поддержку распознавания речи и новые модели. [Подробнее о серверной инференции](https://nodeweekly.com/link/172348/web).
-- 🧩 [match-sorter 8.1](https://nodeweekly.com/link/172350/web) — фильтрация и сортировка массивов по лучшему совпадению. [Попробовать вживую](https://nodeweekly.com/link/172351/web).
-- [pnpm 10.14](https://javascriptweekly.com/link/172633/web) — теперь можно указывать версии Node, Deno или Bun в `package.json`, и они будут автоматически устанавливаться.
-- [Storybook 9.1](https://javascriptweekly.com/link/172596/web) — обновление UI-среды для компонентов.
-- [TypeScript 5.9 RC](https://javascriptweekly.com/link/172634/web) — релиз-кандидат с небольшими улучшениями.
-- [ESLint v9.32.0](https://javascriptweekly.com/link/172597/web), [Preact 10.27](https://javascriptweekly.com/link/172598/web), [Angular 20.1.4](https://javascriptweekly.com/link/172599/web), [Deno 2.4.3](https://javascriptweekly.com/link/172600/web)
+- 🧪 [AudioTee.js](https://stronglytyped.uk/articles/audioteejs-macos-system-audio-capture-nodejs?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — библиотека для захвата системного звука на macOS из Node.js. Основана на Swift. [Исходники на GitHub](https://github.com/makeusabrew/audioteejs?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- 🤖 [Transformers.js 3.7](https://github.com/huggingface/transformers.js/releases/tag/3.7.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — запуск ML-моделей прямо в браузере. Обновление включает поддержку распознавания речи и новые модели. [Подробнее о серверной инференции](https://huggingface.co/docs/transformers.js/tutorials/node?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- 🧩 [match-sorter 8.1](https://github.com/kentcdodds/match-sorter?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — фильтрация и сортировка массивов по лучшему совпадению. [Попробовать вживую](https://codesandbox.io/p/sandbox/wyk856yo48?file=%2Findex.js&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- [pnpm 10.14](https://pnpm.io/blog/releases/10.14?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — теперь можно указывать версии Node, Deno или Bun в `package.json`, и они будут автоматически устанавливаться.
+- [Storybook 9.1](https://github.com/storybookjs/storybook/releases/tag/v9.1.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — обновление UI-среды для компонентов.
+- [ESLint v9.32.0](https://eslint.org/blog/2025/07/eslint-v9.32.0-released/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), [Preact 10.27](https://github.com/preactjs/preact/releases/tag/10.27.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), [Angular 20.1.4](https://github.com/angular/angular/releases/tag/20.1.4?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), [Deno 2.4.3](https://github.com/denoland/deno/releases/tag/v2.4.3?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 ### Новые версии
-- [Rooks.js 8.4](https://react.statuscode.com/link/172428/web) — почти 100 React-хуков для разных нужд: определение онлайна, голосовой ввод, отслеживание клавиш и т.п.
-- [Better Upload](https://react.statuscode.com/link/172426/web) — загрузка файлов напрямую в S3 из React-приложений.
-- [React Three Viverse](https://react.statuscode.com/link/172429/web) — создание 3D-приложений на основе Three.js и React Three Fiber.
-- [Tinybase 6.5](https://react.statuscode.com/link/172433/web) — реактивное хранилище для локальных приложений.
-- [TanStack Form 1.15](https://react.statuscode.com/link/172434/web) — типобезопасные формы в вебе.
-- [IntentUI 3.3](https://react.statuscode.com/link/172435/web) — компоненты на базе React Aria.
-- [Preact 10.27](https://react.statuscode.com/link/172436/web) — мини-версия React (всего 3KB).
-- [BlockNote 0.35](https://react.statuscode.com/link/172437/web) — редактор в стиле Notion.
-- [React-three-fiber 9.3](https://react.statuscode.com/link/172438/web) — рендерер Three.js под React.
-- [Ink 6.1](https://react.statuscode.com/link/172439/web) — написание CLI-приложений на React.
-- 📦 [Inquirer 12.9](https://nodeweekly.com/link/172352/web) — терминальные интерактивные формы.
-- 🧵 [Node File Trace 0.30](https://nodeweekly.com/link/172353/web) — трекинг используемых файлов в приложении.
-- 🧩 [MongoDB Node.js Driver 6.18](https://nodeweekly.com/link/172354/web)
-- ⏱ [node-rate-limiter-flexible 7.2](https://nodeweekly.com/link/172355/web) — лимитирование запросов. Добавлена поддержка Drizzle ORM.
-- ✍️ [Ghost 6.0 RC](https://nodeweekly.com/link/172357/web) — новый релиз платформы для блогов.
-- ☁️ [@google-cloud/bigtable 6.2](https://nodeweekly.com/link/172358/web)
-- 🌐 [Axios 1.11](https://nodeweekly.com/link/172359/web)
-- 🖼 [TIFF 7.1](https://nodeweekly.com/link/172360/web)
-- 👮‍♂️ [ESLint v9.32.0](https://nodeweekly.com/link/172361/web)
+- [Rooks.js 8.4](https://rooks.vercel.app/docs?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — почти 100 React-хуков для разных нужд: определение онлайна, голосовой ввод, отслеживание клавиш и т.п.
+- [Better Upload](https://better-upload.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — загрузка файлов напрямую в S3 из React-приложений.
+- [React Three Viverse](https://pmndrs.github.io/viverse/getting-started/index?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — создание 3D-приложений на основе Three.js и React Three Fiber.
+- [Tinybase 6.5](https://github.com/tinyplex/tinybase/releases/tag/v6.5.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — реактивное хранилище для локальных приложений.
+- [TanStack Form 1.15](https://github.com/TanStack/form/releases/tag/v1.15.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — типобезопасные формы в вебе.
+- [IntentUI 3.3](https://github.com/irsyadadl/intentui?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — компоненты на базе React Aria.
+- [BlockNote 0.35](https://github.com/TypeCellOS/BlockNote?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — редактор в стиле Notion.
+- [React-three-fiber 9.3](https://github.com/pmndrs/react-three-fiber/releases/tag/v9.3.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — рендерер Three.js под React.
+- [Ink 6.1](https://github.com/vadimdemedes/ink?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — написание CLI-приложений на React.
+- 📦 [Inquirer 12.9](https://github.com/SBoudrias/Inquirer.js?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — терминальные интерактивные формы.
+- 🧵 [Node File Trace 0.30](https://github.com/vercel/nft?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — трекинг используемых файлов в приложении.
+- 🧩 [MongoDB Node.js Driver 6.18](https://github.com/mongodb/node-mongodb-native/releases/tag/v6.18.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- ⏱ [node-rate-limiter-flexible 7.2](https://github.com/animir/node-rate-limiter-flexible?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — лимитирование запросов. Добавлена поддержка Drizzle ORM.
+- ✍️ [Ghost 6.0 RC](https://github.com/TryGhost/Ghost/releases/tag/v6.0.0-rc.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — новый релиз платформы для блогов.
+- ☁️ [@google-cloud/bigtable 6.2](https://github.com/googleapis/nodejs-bigtable?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- 🌐 [Axios 1.11](https://github.com/axios/axios/releases/tag/v1.11.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- 🖼 [TIFF 7.1](https://github.com/image-js/tiff?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
