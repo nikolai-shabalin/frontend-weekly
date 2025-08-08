@@ -6,27 +6,60 @@ interface Props {
 }
 
 const { posts } = Astro.props;
+type Group = { label: string; posts: any[] };
+const groups: Group[] = [];
+
+for (const post of posts) {
+  const date: Date = post.data.pubDate;
+  const monthName = date.toLocaleString('ru-RU', { month: 'long' });
+  const label = `${monthName.charAt(0).toUpperCase()}${monthName.slice(1)} ${date.getFullYear()}`;
+
+  const lastGroup = groups[groups.length - 1];
+  if (!lastGroup || lastGroup.label !== label) {
+    groups.push({ label, posts: [post] });
+  } else {
+    lastGroup.posts.push(post);
+  }
+}
 ---
 
 <section class="posts">
-  <ul class="posts__list">
-    {
-      posts.map((post) => (
-        <li class="short-post">
-          <a href={`/${post.slug}/`} class="short-post__link">
-            <h2 class="short-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h2>
-          </a>
-          <p class="short-post__date">
-            <FormattedDate date={post.data.pubDate} />
-          </p>
-          <p class="short-post__description">{post.data.description}</p>
-        </li>
-      ))
-    }
-  </ul>
+  {
+    groups.map((group) => (
+      <div class="posts__group">
+        <h2 class="posts__month">{group.label}</h2>
+        <ul class="posts__list">
+          {
+            group.posts.map((post) => (
+              <li class="short-post">
+                <a href={`/${post.slug}/`} class="short-post__link">
+                  <h3 class="short-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
+                </a>
+                <p class="short-post__date">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+                <p class="short-post__description">{post.data.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    ))
+  }
 </section>
 
 <style>
+  .posts__group + .posts__group {
+    margin-top: var(--space-5xl);
+  }
+
+  .posts__month {
+    margin: 0 0 var(--space-lg) 0;
+    font-size: var(--text-2xl);
+    line-height: 1.2;
+    color: rgb(var(--black));
+  }
+
   .posts__list {
     display: flex;
     flex-direction: column;
