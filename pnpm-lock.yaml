@@ -13,7 +13,7 @@ importers:
         version: 0.9.4(typescript@5.9.2)
       '@astrojs/mdx':
         specifier: 4.3.4
-        version: 4.3.4(astro@5.13.4(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1))
+        version: 4.3.4(astro@5.13.5(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1))
       '@astrojs/rss':
         specifier: 4.0.12
         version: 4.0.12
@@ -24,8 +24,8 @@ importers:
         specifier: 9.34.0
         version: 9.34.0
       astro:
-        specifier: 5.13.4
-        version: 5.13.4(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1)
+        specifier: 5.13.5
+        version: 5.13.5(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1)
       eslint:
         specifier: 9.34.0
         version: 9.34.0
@@ -172,8 +172,8 @@ packages:
   '@emmetio/stream-reader@2.2.0':
     resolution: {integrity: sha512-fXVXEyFA5Yv3M3n8sUGT7+fvecGrZP4k6FnWWMSZVQf69kAq0LLpaBQLGcPR30m3zMmKYhECP4k/ZkzvhEW5kw==}
 
-  '@emnapi/runtime@1.4.5':
-    resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==}
+  '@emnapi/runtime@1.5.0':
+    resolution: {integrity: sha512-97/BJ3iXHww3djw6hYIfErCZFee7qCtrneuLa20UXFCOTCfBM2cvQHjWJ2EG0s0MtdNwInarqCTz35i4wWXHsQ==}
 
   '@esbuild/aix-ppc64@0.25.9':
     resolution: {integrity: sha512-OaGtL73Jck6pBKjNIe24BnFE6agGl+6KxDtTfHhy1HmhthfKouEcOhqpSL64K4/0WCtbKFLOdzD/44cJ4k9opA==}
@@ -917,8 +917,8 @@ packages:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
 
-  astro@5.13.4:
-    resolution: {integrity: sha512-Mgq5GYy3EHtastGXqdnh1UPuN++8NmJSluAspA5hu33O7YRs/em/L03cUfRXtc60l5yx5BfYJsjF2MFMlcWlzw==}
+  astro@5.13.5:
+    resolution: {integrity: sha512-XmBzkl13XU97+n/QiOM5uXQdAVe0yKt5gO+Wlgc8dHRwHR499qhMQ5sMFckLJweUINLzcNGjP3F5nG4wV8a2XA==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -2718,12 +2718,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.3.4(astro@5.13.4(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1))':
+  '@astrojs/mdx@4.3.4(astro@5.13.5(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.6
       '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
       acorn: 8.15.0
-      astro: 5.13.4(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1)
+      astro: 5.13.5(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1)
       es-module-lexer: 1.7.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -2840,7 +2840,7 @@ snapshots:
 
   '@emmetio/stream-reader@2.2.0': {}
 
-  '@emnapi/runtime@1.4.5':
+  '@emnapi/runtime@1.5.0':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -3118,12 +3118,12 @@ snapshots:
 
   '@img/sharp-wasm32@0.33.5':
     dependencies:
-      '@emnapi/runtime': 1.4.5
+      '@emnapi/runtime': 1.5.0
     optional: true
 
   '@img/sharp-wasm32@0.34.3':
     dependencies:
-      '@emnapi/runtime': 1.4.5
+      '@emnapi/runtime': 1.5.0
     optional: true
 
   '@img/sharp-win32-arm64@0.34.3':
@@ -3456,7 +3456,7 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro@5.13.4(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1):
+  astro@5.13.5(@types/node@24.3.0)(rollup@4.49.0)(typescript@5.9.2)(yaml@2.8.1):
     dependencies:
       '@astrojs/compiler': 2.12.2
       '@astrojs/internal-helpers': 0.7.2
