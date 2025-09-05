@@ -1,0 +1,72 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SupportBlock from '../components/SupportBlock.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<BaseHead title={`${SITE_TITLE} - Поддержка`} description="Поддержите автора и продолжение выхода дайджестов" />
+	</head>
+	<body>
+		<Header />
+		<main class="support-page">
+			<div class="support-content">
+				<h1>Поддержка автора</h1>
+				<p>Поддержи автора и выход дайджестов</p>
+
+				<div class="support-block-container">
+					<SupportBlock />
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.support-page {
+		padding: var(--space-2xl) var(--space-md);
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.support-content {
+		max-width: var(--content-width);
+		text-align: center;
+	}
+
+	.support-content h1 {
+		font-size: var(--text-2xl);
+		font-weight: 700;
+		margin-bottom: var(--space-lg);
+		color: rgb(var(--black));
+	}
+
+	.support-content p {
+		font-size: var(--text-lg);
+		line-height: 1.6;
+		color: rgb(var(--gray));
+		margin-bottom: var(--space-xl);
+	}
+
+	.support-content a {
+		color: var(--accent);
+		text-decoration: underline;
+		transition: color 0.2s ease;
+	}
+
+	.support-content a:hover {
+		color: var(--accent-hover);
+		text-decoration: none;
+	}
+
+	.support-block-container {
+		margin-top: var(--space-xl);
+	}
+</style>

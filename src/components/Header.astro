@@ -7,6 +7,9 @@ import { SITE_TITLE } from '../consts';
     <a href="/" class="logo-link">
       {SITE_TITLE}
     </a>
+    <a href="/support" class="support-button">
+      Поддержи
+    </a>
   </div>
 </header>
 
@@ -18,7 +21,7 @@ import { SITE_TITLE } from '../consts';
 
   .header__content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md);
@@ -37,5 +40,21 @@ import { SITE_TITLE } from '../consts';
 
   .logo-link:hover {
     color: var(--accent);
+  }
+
+  .support-button {
+    color: rgb(var(--gray));
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+    border: 1px solid rgba(var(--gray), 0.3);
+  }
+
+  .support-button:hover {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 </style>
