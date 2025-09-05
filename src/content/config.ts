@@ -8,6 +8,7 @@ const digest = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
+		isHidden: z.boolean().default(false),
 		mascotMessages: z.array(
 			z.object({
 				text: z.string(),
