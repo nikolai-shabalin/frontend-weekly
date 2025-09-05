@@ -1,21 +1,30 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
+import { createHash } from 'node:crypto';
 import BlogPost from '../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('digest');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+	return posts.map((post) => {
+		const slug = post.data.isHidden
+			? `${post.slug}-${createHash('md5').update(post.slug).digest('hex').substring(0, 8)}`
+			: post.slug;
+
+		return {
+			params: { slug },
+			props: { ...post, originalSlug: post.slug },
+		};
+	});
 }
 
-type Props = CollectionEntry<'digest'>;
+type Props = CollectionEntry<'digest'> & {
+	originalSlug: string;
+};
 
 const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data} slug={post.slug}>
+<BlogPost {...post.data} slug={post.originalSlug}>
 	<Content />
 </BlogPost>

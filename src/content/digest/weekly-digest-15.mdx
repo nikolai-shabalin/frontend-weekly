@@ -2,6 +2,7 @@
 title: "Еженедельный дайджест #15: Новости фронтенда"
 description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
 pubDate: "Sep 08 2025"
+isHidden: true
 mascotMessages: [
   { text: "Big O с картинками — люблю визуалки! 📊", index: 0 },
   { text: "CSS random() — кидаю кубик 🎲", index: 1 },
@@ -51,6 +52,24 @@ CSS получает новый способ «прикреплять» элем
 
 ## 📦 JavaScript
 - ⏱️ Почему браузеры «душат» таймеры JavaScript — разбор от [Nolan Lawson](https://nolanlawson.com/2025/08/31/why-do-browsers-throttle-javascript-timers/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+### [Точная длина текста с помощью Intl.Segmenter](https://blog.sangeeth.dev/posts/accurate-text-lengths-with-intl-segmenter-api/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Если `.length` даёт «странные» числа (эмодзи, диакритика, азиатские письменности), используйте `Intl.Segmenter`. Пост показывает, как корректно считать символы и почему это важно для валидации и обрезки строк в UI.
+
+### [Сделать XML читаемым без XSLT](https://jakearchibald.com/2025/making-xml-human-readable-without-xslt/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Нишевый, но практичный разбор: как быстро «подсветить» и отформатировать XML на стороне клиента JavaScript‑ом, чтобы удобно смотреть данные в браузере.
+
+### [Функциональные Web Components «по‑простому»](https://piccalil.li/blog/functional-custom-elements-the-easy-way/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Статья о том, как собирать кастомные элементы без лишней сложности в духе функционального подхода — пригодится, если нужны маленькие изолированные виджеты без фреймворка.
+
+### [Стресс‑тест правила Biome `noFloatingPromises`](https://vercel.com/blog/stress-testing-biomes-nofloatingpromises-lint-rule?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Практика для начинающих: что такое «плавающие промисы», почему они опасны и как линтер помогает ловить ошибки рантайма ещё на этапе разработки.
+
+
+## 📦 Angular
+
+### [Летнее обновление Angular: без zone.js, новые анимации, AI‑интеграции и отладка](https://blog.angular.dev/angular-summer-update-2025-1987592a0b42?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+Команда подвела итоги: зон‑лесс change detection движется к «по умолчанию», улучшаются анимации, появляются интеграции с ИИ‑инструментами и удобнее дебаг. Новичкам важно знать: современный Angular активно упрощают и ускоряют.
 
 ## 📦 TypeScript 
 - 🧷 TypeScript 6.0: Дэниел Розенвассер предлагает включать [`--strict`](https://github.com/microsoft/TypeScript/issues/62333?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) по умолчанию. Ещё планы — в отдельной [сводке](https://github.com/microsoft/TypeScript/issues?q=milestone%3A%22TypeScript+6.0.0%22&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
