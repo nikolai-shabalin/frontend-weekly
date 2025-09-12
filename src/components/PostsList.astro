@@ -30,8 +30,9 @@ for (const post of posts) {
         <h2 class="posts__month">{group.label}</h2>
         <ul class="posts__list">
           {
-            group.posts.map((post) => (
+          group.posts.map((post) => (
               <li class="short-post">
+                <span class="post-tag">Дайджест</span>
                 <a href={`/${post.slug}/`} class="short-post__link">
                   <h3 class="short-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
                 </a>
@@ -71,16 +72,25 @@ for (const post of posts) {
 
   .short-post {
     position: relative;
-    padding-bottom: var(--space-2xl);
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-3xl);
+    background: rgba(var(--gray-light), 0.4);
+    border: 1px solid rgba(var(--gray), 0.15);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(var(--gray), 0.05);
+  }
+
+  .short-post:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(var(--gray), 0.15);
   }
 
   .short-post:not(:last-child) {
-    border-bottom: 1px solid rgba(var(--gray), 0.15);
-  }
-
-  .short-post:has(.short-post__link:hover) {
-    transform: translateY(-5px);
+    border-bottom: none;
   }
 
   .short-post__link {
@@ -102,6 +112,19 @@ for (const post of posts) {
     color: rgb(var(--black));
     line-height: 1.2;
     transition: color 0.2s ease;
+  }
+
+  .post-tag {
+    align-self: flex-start;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: rgb(var(--accent-dark));
+    background: rgba(var(--accent), 0.15);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
   }
 
   .short-post__date {
