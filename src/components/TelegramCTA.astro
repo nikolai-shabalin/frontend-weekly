@@ -32,12 +32,18 @@
     right: var(--space-md);
     color: var(--accent);
     opacity: 0.8;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    animation: pulse 2s ease-in-out infinite;
   }
 
-  .telegram-cta:hover .telegram-cta__icon {
-    transform: scale(1.1);
-    opacity: 1;
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
   }
 
   .telegram-cta__content {
@@ -96,4 +102,4 @@
       max-width: 100%;
     }
   }
-</style> 
+</style>
