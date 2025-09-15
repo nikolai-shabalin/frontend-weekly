@@ -1,0 +1,397 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SponsorLink from '../components/SponsorLink.astro';
+import AudienceGrowthChart from '../components/AudienceGrowthChart.astro';
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<BaseHead
+			title="Спонсорство — Frontend Weekly"
+			description="Станьте спонсором Frontend Weekly и получите возможность продвигать свои материалы среди разработчиков"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article class="sponsors-page">
+				<header class="sponsors-header">
+					<h1>Спонсорство Frontend Weekly</h1>
+					<p class="sponsors-intro">
+						Хотите рассказать о своём проекте, курсе или сервисе тысячам фронтенд-разработчиков?
+						Станьте спонсором нашего дайджеста!
+					</p>
+				</header>
+
+				<section class="sponsors-audience">
+					<h2>Наша аудитория</h2>
+					<AudienceGrowthChart />
+				</section>
+
+				<section class="sponsors-benefits">
+					<h2>Что получают спонсоры</h2>
+					<div class="benefits-grid">
+						<div class="benefit-card">
+							<h3>🎯 Целевая аудитория</h3>
+							<p>Ваше сообщение увидят тысячи фронтенд-разработчиков, которые активно следят за новостями индустрии</p>
+						</div>
+						<div class="benefit-card">
+							<h3>✨ Выделение контента</h3>
+							<p>Спонсорские материалы выделяются специальным дизайном и пометкой, привлекая больше внимания</p>
+						</div>
+						<div class="benefit-card">
+							<h3>📈 Высокий CTR</h3>
+							<p>Наши читатели активно кликают по ссылкам в дайджесте, что обеспечивает хорошую конверсию</p>
+						</div>
+						<div class="benefit-card">
+							<h3>🤝 Долгосрочное сотрудничество</h3>
+							<p>Возможность размещать материалы в нескольких выпусках подряд для максимального эффекта</p>
+						</div>
+					</div>
+				</section>
+
+				<section class="sponsors-example">
+					<h2>Пример спонсорского материала</h2>
+					<p>Вот как выглядит спонсорская ссылка в нашем дайджесте:</p>
+
+					<SponsorLink
+						href="https://example.com/awesome-course"
+						title="Курс по современному React: от основ до продвинутых паттернов"
+						description="Изучите React 18+ с нуля: хуки, серверные компоненты, Suspense и многое другое. Практические проекты и менторство от опытных разработчиков."
+					/>
+				</section>
+
+				<section class="sponsors-requirements">
+					<h2>Требования к материалам</h2>
+					<ul>
+						<li><strong>Релевантность:</strong> Материал должен быть полезен фронтенд-разработчикам</li>
+						<li><strong>Качество:</strong> Высокое качество контента и отсутствие спама</li>
+						<li><strong>Честность:</strong> Прозрачность в описании продукта или сервиса</li>
+						<li><strong>Актуальность:</strong> Свежий и актуальный контент</li>
+					</ul>
+				</section>
+
+				<section class="sponsors-pricing">
+					<h2>Стоимость размещения</h2>
+					<div class="pricing-cards">
+						<div class="pricing-card test-drive">
+							<h3>Тест-драйв</h3>
+							<div class="price">10 000 ₽</div>
+							<div class="price-note">Попробуйте эффект</div>
+							<ul>
+								<li>Размещение в одном выпуске</li>
+								<li>Выделенный дизайн</li>
+								<li>Базовая статистика</li>
+								<li>Идеально для первого опыта</li>
+							</ul>
+						</div>
+						<div class="pricing-card featured">
+							<h3>Три выпуска</h3>
+							<div class="price">25 000 ₽</div>
+							<div class="price-note">Экономия 5 000 ₽</div>
+							<ul>
+								<li>Размещение в трёх выпусках</li>
+							</ul>
+						</div>
+						<div class="pricing-card">
+							<h3>Месяц</h3>
+							<div class="price">40 000 ₽</div>
+							<div class="price-note">Максимальная выгода</div>
+							<ul>
+								<li>Размещение в 4-5 выпусках</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section class="sponsors-contact">
+					<h2>Как стать спонсором</h2>
+					<p>
+						Для размещения спонсорского материала или получения дополнительной информации
+						свяжитесь с нами:
+					</p>
+					<div class="contact-info">
+						<a href="mailto:dev.nikolai.shabalin@gmail.com" class="contact-email">
+							dev.nikolai.shabalin@gmail.com
+						</a>
+						<div class="contact-telegram">
+							<a href="https://t.me/aurfon" class="telegram-link" target="_blank" rel="noopener noreferrer" aria-label="Связаться в Telegram"></a>
+						</div>
+					</div>
+					<p class="contact-note">
+						Напишите на почту или в телеграм. В сообщении укажите описание вашего продукта/сервиса и желаемый период размещения.
+					</p>
+				</section>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.sponsors-page {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.sponsors-header {
+		text-align: center;
+		margin-bottom: var(--space-3xl);
+		background: linear-gradient(135deg, rgba(var(--accent), 0.1), rgba(var(--accent), 0.05));
+		border-radius: 16px;
+	}
+
+  .sponsors-header h1 {
+    font-size: var(--text-4xl);
+  }
+
+	.sponsors-intro {
+		font-size: var(--text-lg);
+		color: rgb(var(--gray-dark));
+		margin: var(--space-lg) 0 0 0;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.sponsors-audience {
+		margin: var(--space-3xl) 0;
+		text-align: center;
+	}
+
+	.sponsors-audience h2 {
+		margin-bottom: var(--space-lg);
+		color: rgb(var(--black));
+	}
+
+	.benefits-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--space-xl);
+		margin: var(--space-xl) 0;
+	}
+
+	.benefit-card {
+		padding: var(--space-lg);
+		background: rgba(var(--gray-light), 0.3);
+		border-radius: 12px;
+		border: 1px solid rgba(var(--gray), 0.1);
+	}
+
+	.benefit-card h3 {
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-sm);
+    margin-top: 0;
+		color: rgb(var(--black));
+	}
+
+	.benefit-card p {
+		font-size: var(--text-sm);
+		color: rgb(var(--gray-dark));
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	.sponsors-example {
+		margin: var(--space-3xl) 0;
+		padding: var(--space-xl);
+		background: rgba(var(--gray-light), 0.2);
+		border-radius: 12px;
+		border: 1px solid rgba(var(--gray), 0.1);
+	}
+
+  .sponsors-example h2 {
+    margin-top: 0;
+    font-size: var(--text-3xl);
+  }
+
+	.sponsors-requirements ul {
+		background: rgba(var(--gray-light), 0.2);
+		padding: var(--space-lg);
+		border-radius: 8px;
+		border-left: 4px solid var(--accent);
+	}
+
+	.sponsors-requirements li {
+		margin-bottom: var(--space-sm);
+		font-size: var(--text-sm);
+		line-height: 1.6;
+	}
+
+	.pricing-cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: var(--space-lg);
+		margin: var(--space-xl) 0;
+	}
+
+	.pricing-card {
+		padding: var(--space-xl);
+		background: rgba(var(--gray-light), 0.3);
+		border: 2px solid rgba(var(--gray), 0.1);
+		border-radius: 12px;
+		text-align: center;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.pricing-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 24px rgba(var(--gray), 0.15);
+	}
+
+	.pricing-card.featured {
+		border-color: var(--accent);
+		background: rgba(var(--accent), 0.05);
+		transform: scale(1.05);
+	}
+
+	.pricing-card.test-drive {
+		border-color: #ff6b35;
+		background: rgba(255, 107, 53, 0.05);
+		position: relative;
+	}
+
+	.pricing-card.test-drive::before {
+		content: "🔥";
+		position: absolute;
+		top: -8px;
+		right: 15px;
+		font-size: 20px;
+		background: #ffffff;
+		padding: 4px;
+		border-radius: 50%;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	.pricing-card h3 {
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-sm);
+	}
+
+	.price {
+		font-size: var(--text-3xl);
+		font-weight: 700;
+		color: var(--accent);
+		margin: var(--space-md) 0;
+	}
+
+	.price-note {
+		font-size: var(--text-sm);
+		color: var(--accent-dark);
+		font-weight: 600;
+		margin-bottom: var(--space-md);
+	}
+
+	.pricing-card ul {
+		list-style: none;
+		padding: 0;
+		margin: var(--space-lg) 0 0 0;
+		text-align: left;
+	}
+
+	.pricing-card li {
+		font-size: var(--text-sm);
+		margin-bottom: var(--space-xs);
+		padding-left: var(--space-md);
+		position: relative;
+	}
+
+	.pricing-card li::before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	.sponsors-contact {
+		text-align: center;
+		margin: var(--space-3xl) 0;
+		padding: var(--space-2xl);
+		background: linear-gradient(135deg, rgba(var(--accent), 0.1), rgba(var(--accent), 0.05));
+		border-radius: 16px;
+	}
+
+	.contact-info {
+		margin: var(--space-lg) 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-md);
+	}
+
+	.contact-email {
+		display: inline-block;
+		font-size: var(--text-lg);
+		font-weight: 600;
+		color: var(--accent);
+		background: rgba(var(--accent), 0.1);
+		padding: var(--space-sm) var(--space-lg);
+		border-radius: 8px;
+		text-decoration: none;
+		transition: background 0.2s ease;
+	}
+
+	.contact-email:hover {
+		background: rgba(var(--accent), 0.2);
+	}
+
+	.contact-telegram {
+		display: flex;
+		align-items: center;
+	}
+
+	.telegram-link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-xs);
+		font-size: var(--text-md);
+		font-weight: 600;
+		color: #0088cc;
+		background: rgba(0, 136, 204, 0.1);
+		padding: var(--space-sm) var(--space-lg);
+		border-radius: 8px;
+		text-decoration: none;
+		transition: background 0.2s ease;
+	}
+
+	.telegram-link:hover {
+		background: rgba(0, 136, 204, 0.2);
+	}
+
+	.telegram-link::before {
+		content: "";
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230088cc'%3E%3Cpath d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		margin-right: 4px;
+	}
+
+	.contact-note {
+		font-size: var(--text-sm);
+		color: rgb(var(--gray));
+		margin: var(--space-md) 0 0 0;
+		font-style: italic;
+	}
+
+	@media (max-width: 720px) {
+		.benefits-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.pricing-cards {
+			grid-template-columns: 1fr;
+		}
+
+		.pricing-card.featured {
+			transform: none;
+		}
+	}
+</style>

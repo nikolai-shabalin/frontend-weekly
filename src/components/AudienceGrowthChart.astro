@@ -1,0 +1,196 @@
+---
+// Компонент для отображения графика роста аудитории
+---
+
+<div class="audience-chart">
+  <h3>Рост аудитории дайджеста</h3>
+  <div class="chart-container">
+    <svg viewBox="0 0 400 200" class="growth-chart">
+      <!-- Сетка -->
+      <defs>
+        <pattern id="grid" width="40" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 20" fill="none" stroke="rgba(var(--gray), 0.1)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+
+      <!-- Оси -->
+      <line x1="40" y1="20" x2="40" y2="180" stroke="rgb(var(--gray))" stroke-width="2"/>
+      <line x1="40" y1="180" x2="380" y2="180" stroke="rgb(var(--gray))" stroke-width="2"/>
+
+      <!-- Подписи осей -->
+      <text x="30" y="15" text-anchor="middle" class="axis-label">Читатели</text>
+
+      <!-- Подписи по оси Y -->
+      <text x="35" y="25" text-anchor="end" class="tick-label">2.5k</text>
+      <text x="35" y="65" text-anchor="end" class="tick-label">2.0k</text>
+      <text x="35" y="105" text-anchor="end" class="tick-label">1.5k</text>
+      <text x="35" y="145" text-anchor="end" class="tick-label">1.0k</text>
+      <text x="35" y="185" text-anchor="end" class="tick-label">500</text>
+
+      <!-- Подписи по оси X -->
+      <text x="100" y="195" text-anchor="middle" class="tick-label">Июн</text>
+      <text x="180" y="195" text-anchor="middle" class="tick-label">Июл</text>
+      <text x="260" y="195" text-anchor="middle" class="tick-label">Авг</text>
+      <text x="340" y="195" text-anchor="middle" class="tick-label">Сен</text>
+
+      <!-- Линия роста -->
+      <path d="M 100 145 Q 180 120 260 90 Q 340 60 380 25"
+            fill="none"
+            stroke="var(--accent)"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+
+      <!-- Точки данных -->
+      <circle cx="100" cy="145" r="4" fill="var(--accent)"/>
+      <circle cx="180" cy="120" r="4" fill="var(--accent)"/>
+      <circle cx="260" cy="90" r="4" fill="var(--accent)"/>
+      <circle cx="340" cy="53" r="4" fill="var(--accent)"/>
+
+      <!-- Текущая точка (выделенная) -->
+      <circle cx="380" cy="25" r="6" fill="var(--accent)" stroke="#ffffff" stroke-width="2"/>
+
+      <!-- Анимация линии -->
+      <path d="M 100 145 Q 180 120 260 90 Q 340 60 380 25"
+            fill="none"
+            stroke="var(--accent)"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-dasharray="1000"
+            stroke-dashoffset="1000"
+            class="animated-line">
+        <animate attributeName="stroke-dashoffset"
+                 values="1000;0"
+                 dur="2s"
+                 fill="freeze"/>
+      </path>
+    </svg>
+  </div>
+
+  <div class="chart-stats">
+    <div class="stat-item">
+      <span class="stat-value">2,000</span>
+      <span class="stat-label">текущих читателей</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">85%</span>
+      <span class="stat-label">возвращаются</span>
+    </div>
+  </div>
+
+  <div class="data-source">
+    <small>📊 Данные Яндекс.Метрики за последние 4 месяца</small>
+  </div>
+</div>
+
+<style>
+  .audience-chart {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
+    background: rgba(var(--gray-light), 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(var(--gray), 0.1);
+  }
+
+  .audience-chart h3 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: rgb(var(--black));
+    font-size: var(--text-lg);
+  }
+
+  .chart-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .growth-chart {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  .axis-label {
+    font-size: 12px;
+    fill: rgb(var(--gray));
+    font-weight: 500;
+  }
+
+  .tick-label {
+    font-size: 10px;
+    fill: rgb(var(--gray));
+    font-weight: 400;
+  }
+
+  .trend-text {
+    font-size: 11px;
+    fill: var(--accent);
+    font-weight: 600;
+  }
+
+  .animated-line {
+    animation: drawLine 2s ease-in-out forwards;
+  }
+
+  @keyframes drawLine {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .chart-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: var(--space-sm);
+    background: rgba(var(--accent), 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(var(--accent), 0.1);
+  }
+
+  .stat-value {
+    display: block;
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: var(--text-xs);
+    color: rgb(var(--gray-dark));
+    font-weight: 500;
+  }
+
+  .data-source {
+    text-align: center;
+    margin-top: var(--space-sm);
+  }
+
+  .data-source small {
+    color: rgb(var(--gray));
+    font-size: var(--text-xs);
+    font-style: italic;
+  }
+
+  @media (max-width: 720px) {
+    .chart-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+      padding: var(--space-xs);
+    }
+  }
+</style>
