@@ -1,12 +1,12 @@
 :root {
   /* цвета */
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
+  --accent: #23c344;
+  --accent-dark: #159a2e;
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
   --gray-light: 229, 233, 240;
   --gray-dark: 34, 41, 57;
-  --gray-gradient: rgba(var(--gray-light), 50%), #ffffff;
+  --gray-gradient: rgba(var(--gray-light), 10%), #ffffff;
   --focus-outline-color: #000000;
   --bg-color: #ffffff;
   --box-shadow:
@@ -63,9 +63,7 @@ body {
   font-family: var(--font-body);
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(var(--gray-gradient));
-  background-repeat: no-repeat;
-  background-size: 100% 600px;
+  background-image: none;
   background-color: var(--bg-color);
   color: rgb(var(--gray-dark));
   font-size: var(--text-lg);

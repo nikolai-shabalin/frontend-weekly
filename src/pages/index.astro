@@ -2,25 +2,186 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import PostsList from '../components/PostsList.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('digest'))
-	.filter(post => !post.data.isHidden)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .filter(post => !post.data.isHidden)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const [featuredPost, ...otherPosts] = posts;
 ---
 
 <!doctype html>
 <html lang="ru">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      .featured-post {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        margin-bottom: var(--space-3xl);
+        padding: var(--space-3xl) var(--space-2xl);
+        background: rgba(var(--accent), 0.1);
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(var(--gray), 0.1);
+      }
+
+      .featured-title {
+        font-size: var(--text-4xl);
+        color: rgb(var(--black));
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .featured-date {
+        color: rgb(var(--gray));
+        font-size: var(--text-sm);
+        font-style: italic;
+        letter-spacing: 0.05em;
+        margin: 0;
+      }
+
+      .featured-description {
+        font-size: var(--text-lg);
+        color: rgb(var(--gray-dark));
+        margin: 0 0 var(--space-md) 0;
+        max-width: 60ch;
+      }
+
+      .featured-link {
+        text-decoration: none;
+      }
+
+      .featured-link:hover .featured-title {
+        color: var(--accent-dark);
+      }
+
+      .featured-read-more {
+        align-self: flex-start;
+        color: #ffffff;
+        background: var(--accent);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        padding: var(--space-xs) var(--space-md);
+        border-radius: 999px;
+        text-decoration: none;
+        transition: background 0.2s ease;
+      }
+
+      .featured-read-more:hover {
+        background: var(--accent-dark);
+      }
+
+      .posts-grid__heading {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-xl);
+        color: rgb(var(--black));
+      }
+
+      .grid {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--space-2xl);
+      }
+
+      .grid-post {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-xl);
+        background: rgba(var(--gray-light), 0.4);
+        border: 1px solid rgba(var(--gray), 0.15);
+        border-radius: 12px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 2px 4px rgba(var(--gray), 0.05);
+      }
+
+      .grid-post:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(var(--gray), 0.15);
+      }
+
+      .grid-post__title {
+        font-size: var(--text-xl);
+        margin: 0;
+        color: rgb(var(--black));
+      }
+
+      .grid-post__date {
+        color: rgb(var(--gray));
+        font-size: var(--text-xs);
+        font-style: italic;
+        letter-spacing: 0.05em;
+        margin: 0;
+      }
+
+      .grid-post__description {
+        font-size: var(--text-sm);
+        color: rgb(var(--gray-dark));
+        margin: 0;
+      }
+
+      .grid-post__link {
+        text-decoration: none;
+      }
+
+      .grid-post__link:hover .grid-post__title {
+        color: var(--accent-dark);
+      }
+
+      .post-tag {
+        align-self: flex-start;
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: rgb(var(--accent-dark));
+        background: rgba(var(--accent), 0.15);
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    </style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1 class="sr-only">Статьи</h1>
-			<PostsList posts={posts} />
+        <h1 class="sr-only">Статьи</h1>
+        {featuredPost && (
+          <section class="featured-post">
+            <span class="post-tag">Дайджест</span>
+            <a href={`/${featuredPost.slug}/`} class="featured-link">
+              <h2 class="featured-title" transition:name={`title-${featuredPost.slug}`}>{featuredPost.data.title}</h2>
+            </a>
+            <p class="featured-date">
+              {new Date(featuredPost.data.pubDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </p>
+            <p class="featured-description">{featuredPost.data.description}</p>
+            <a href={`/${featuredPost.slug}/`} class="featured-read-more">Читать дальше →</a>
+          </section>
+        )}
+
+        <section class="posts-grid">
+          <h2 class="posts-grid__heading">Другие выпуски</h2>
+          <ul class="grid">
+            {otherPosts.map((post) => (
+              <li class="grid-post" key={post.slug}>
+                <span class="post-tag">Дайджест</span>
+                <a href={`/${post.slug}/`} class="grid-post__link">
+                  <h3 class="grid-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
+                </a>
+                <p class="grid-post__date">
+                  {new Date(post.data.pubDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </p>
+                <p class="grid-post__description">{post.data.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
 		</main>
 		<Footer />
 	</body>
