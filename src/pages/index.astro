@@ -169,7 +169,7 @@ const [featuredPost, ...otherPosts] = posts;
           <h2 class="posts-grid__heading">Другие выпуски</h2>
           <ul class="grid">
             {otherPosts.map((post) => (
-              <li class="grid-post" key={post.slug}>
+              <li class="grid-post">
                 <span class="post-tag">Дайджест</span>
                 <a href={`/${post.slug}/`} class="grid-post__link">
                   <h3 class="grid-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
