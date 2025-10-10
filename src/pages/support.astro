@@ -15,8 +15,34 @@ import { SITE_TITLE } from '../consts';
 		<Header />
 		<main class="support-page">
 			<div class="support-content">
-				<h1>Поддержка автора</h1>
-				<p>Поддержи автора и выход дайджестов</p>
+				<div class="support-hero">
+					<h1 class="support-hero__title">Поддержка проекта</h1>
+					<p class="support-hero__subtitle">
+						Frontend Weekly — это бесплатный еженедельный дайджест самых важных новостей из мира фронтенд-разработки
+					</p>
+				</div>
+
+				<div class="support-info">
+					<div class="support-info__card">
+						<h2 class="support-info__heading">Зачем поддерживать?</h2>
+						<ul class="support-info__list">
+							<li>Регулярные еженедельные выпуски с самыми важными новостями</li>
+							<li>Кураторская работа — отбор только актуального и полезного контента</li>
+							<li>Экономия вашего времени на поиск информации</li>
+							<li>Развитие русскоязычного комьюнити фронтенд-разработчиков</li>
+						</ul>
+					</div>
+
+					<div class="support-info__card support-info__card--accent">
+						<h2 class="support-info__heading">Что дает поддержка</h2>
+						<ul class="support-info__list">
+							<li>Возможность продолжать выпускать качественные дайджесты</li>
+							<li>Мотивация на создание нового контента</li>
+							<li>Улучшение качества материалов</li>
+							<li>Ваше имя в списке благодарностей (опционально)</li>
+						</ul>
+					</div>
+				</div>
 
 				<div class="support-block-container">
 					<SupportBlock />
@@ -29,44 +55,130 @@ import { SITE_TITLE } from '../consts';
 
 <style>
 	.support-page {
-		padding: var(--space-2xl) var(--space-md);
-		min-height: 60vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		padding: var(--space-3xl) var(--space-md);
+		min-height: 70vh;
 	}
 
 	.support-content {
 		max-width: var(--content-width);
+		margin: 0 auto;
+	}
+
+	.support-hero {
 		text-align: center;
+		margin-bottom: var(--space-4xl);
+		padding-bottom: var(--space-3xl);
+		border-bottom: 4px solid rgb(var(--black));
+		position: relative;
 	}
 
-	.support-content h1 {
-		font-size: var(--text-2xl);
-		font-weight: 700;
-		margin-bottom: var(--space-lg);
-		color: rgb(var(--black));
+	.support-hero::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 120px;
+		height: 4px;
+		background: var(--accent);
 	}
 
-	.support-content p {
+	.support-hero__title {
+		font-size: var(--text-4xl);
+		font-weight: 900;
+		margin: 0 0 var(--space-lg) 0;
+		letter-spacing: -0.04em;
+		line-height: 1;
+	}
+
+	.support-hero__subtitle {
 		font-size: var(--text-lg);
 		line-height: 1.6;
-		color: rgb(var(--gray));
-		margin-bottom: var(--space-xl);
+		color: rgb(var(--gray-dark));
+		max-width: 60ch;
+		margin: 0 auto;
 	}
 
-	.support-content a {
+	.support-info {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: var(--space-2xl);
+		margin-bottom: var(--space-4xl);
+	}
+
+	.support-info__card {
+		padding: var(--space-2xl);
+		background: rgb(var(--white));
+		border: 3px solid rgb(var(--black));
+		box-shadow: 6px 6px 0 rgb(var(--black));
+		transition: all var(--transition-base);
+	}
+
+	.support-info__card:hover {
+		transform: translate(3px, 3px);
+		box-shadow: 3px 3px 0 rgb(var(--black));
+	}
+
+	.support-info__card--accent {
+		background: rgba(255, 51, 102, 0.05);
+		border-color: var(--accent);
+		box-shadow: 6px 6px 0 var(--accent);
+	}
+
+	.support-info__card--accent:hover {
+		box-shadow: 3px 3px 0 var(--accent);
+	}
+
+	.support-info__heading {
+		font-size: var(--text-2xl);
+		font-weight: 800;
+		margin: 0 0 var(--space-lg) 0;
+		letter-spacing: -0.02em;
+	}
+
+	.support-info__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.support-info__list li {
+		position: relative;
+		padding-left: var(--space-xl);
+		margin-bottom: var(--space-md);
+		font-size: var(--text-base);
+		line-height: 1.6;
+	}
+
+	.support-info__list li::before {
+		content: '→';
+		position: absolute;
+		left: 0;
 		color: var(--accent);
-		text-decoration: underline;
-		transition: color 0.2s ease;
-	}
-
-	.support-content a:hover {
-		color: var(--accent-hover);
-		text-decoration: none;
+		font-weight: 900;
+		font-size: var(--text-lg);
 	}
 
 	.support-block-container {
-		margin-top: var(--space-xl);
+		margin-top: var(--space-4xl);
+	}
+
+	@media (max-width: 768px) {
+		.support-page {
+			padding: var(--space-2xl) var(--space-md);
+		}
+
+		.support-hero__title {
+			font-size: var(--text-3xl);
+		}
+
+		.support-info {
+			grid-template-columns: 1fr;
+			gap: var(--space-lg);
+		}
+
+		.support-info__card {
+			padding: var(--space-xl);
+		}
 	}
 </style>
