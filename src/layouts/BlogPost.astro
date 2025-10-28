@@ -21,125 +21,311 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
 <head>
   <BaseHead title={title} description={description}/>
   <style>
-    .home-link {
-      display: inline-block;
-      margin: var(--space-lg) 0;
-      color: rgb(var(--gray));
-      text-decoration: none;
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-2xl);
       font-size: var(--text-sm);
-      transition: color 0.2s ease;
+      font-weight: 700;
+      color: rgb(var(--gray-dark));
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: none;
+      padding: var(--space-sm) 0;
+      transition: all var(--transition-base);
     }
 
-    .home-link:hover {
+    .back-link:hover {
       color: var(--accent);
+      background: transparent;
+      transform: translateX(-4px);
+    }
+
+    .back-link-arrow {
+      transition: transform var(--transition-base);
+    }
+
+    .back-link:hover .back-link-arrow {
+      transform: translateX(-4px);
+    }
+
+    .post-header {
+      text-align: left;
+      margin-bottom: var(--space-4xl);
+      padding-bottom: var(--space-3xl);
+      border-bottom: 4px solid rgb(var(--black));
+      position: relative;
+    }
+
+    .post-header::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 120px;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    .post__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .post__tag {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgb(var(--white));
+      background: rgb(var(--black));
+      padding: var(--space-xs) var(--space-md);
+      border: 3px solid rgb(var(--black));
+      box-shadow: 3px 3px 0 var(--accent);
+    }
+
+    .post :global(time) {
+      font-size: var(--text-sm);
+      color: rgb(var(--gray));
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .post__title {
       font-size: var(--text-4xl);
-      line-height: 1.1;
-      margin: var(--space-3xl) 0 var(--space-lg) 0;
-      text-align: center;
+      line-height: 0.95;
+      margin: 0 0 var(--space-lg) 0;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: none;
+      max-width: 20ch;
     }
 
-    .post :global(time) {
-      margin-bottom: var(--space-2xl);
-      text-align: center;
-      display: block;
-      color: rgb(var(--gray));
-      font-style: italic;
-      font-size: var(--text-sm);
-      letter-spacing: 0.05em;
-    }
-
-    .post__divider {
-      height: 1px;
-      background: rgba(var(--gray), 0.2);
-      margin: var(--space-2xl) auto;
-      width: 60%;
-      max-width: 400px;
+    .post__description {
+      font-size: var(--text-lg);
+      line-height: 1.6;
+      color: rgb(var(--gray-dark));
+      max-width: 60ch;
+      margin: 0;
     }
 
     .content {
+      max-width: var(--content-width-narrow);
       margin: 0 auto;
-      max-width: var(--content-width);
     }
 
-    /* Стилизация типографики контента */
+    /* Улучшенная типографика контента */
     .content :global(h2) {
-      margin-top: var(--space-3xl);
-      margin-bottom: var(--space-lg);
       font-size: var(--text-3xl);
+      font-weight: 900;
+      margin-top: var(--space-4xl);
+      margin-bottom: var(--space-xl);
+      padding-top: var(--space-xl);
+      border-top: 3px solid rgb(var(--black));
       position: relative;
+      letter-spacing: -0.03em;
     }
 
     .content :global(h2)::before {
       content: '';
-      width: 30px;
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 80px;
       height: 3px;
       background: var(--accent);
-      position: absolute;
-      top: -10px;
-      left: 0;
     }
 
     .content :global(h3) {
-      margin-top: var(--space-2xl);
-      margin-bottom: var(--space-md);
       font-size: var(--text-2xl);
+      font-weight: 800;
+      margin-top: var(--space-3xl);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+      color: rgb(var(--black));
+      position: relative;
+      padding-left: var(--space-md);
     }
 
-    .content :global(ul) {
-      margin-bottom: var(--space-xl);
+    .content :global(h3)::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.3em;
+      width: 4px;
+      height: 1.2em;
+      background: var(--accent);
+    }
+
+    .content :global(h4) {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      margin-top: var(--space-2xl);
+      margin-bottom: var(--space-md);
     }
 
     .content :global(p) {
-      margin-bottom: var(--space-lg);
-      font-size: var(--text-lg);
+      font-size: var(--text-base);
       line-height: 1.8;
+      margin-bottom: var(--space-xl);
       text-wrap: pretty;
+      color: rgb(var(--gray-dark));
+    }
+
+    .content :global(p strong) {
+      color: rgb(var(--black));
+      font-weight: 700;
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+      margin-bottom: var(--space-2xl);
+      padding-left: var(--space-2xl);
+    }
+
+    .content :global(li) {
+      margin-bottom: var(--space-md);
+      padding-left: var(--space-sm);
+    }
+
+    .content :global(li::marker) {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .content :global(a) {
+      color: var(--accent);
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent);
+      transition: all var(--transition-fast);
+    }
+
+    .content :global(a:hover) {
+      color: var(--accent-dark);
+      background: rgba(255, 51, 102, 0.1);
+      border-bottom-color: var(--accent-dark);
     }
 
     .content :global(code) {
+      font-family: var(--font-mono);
       font-size: 0.9em;
+      background: rgba(var(--gray-light), 0.8);
+      border: 2px solid rgb(var(--gray-medium));
+      padding: 0.2em 0.5em;
+      border-radius: 3px;
+      font-weight: 600;
     }
 
     .content :global(pre) {
-      margin: var(--space-xl) 0;
+      background: rgb(var(--gray-dark));
+      color: rgb(var(--white));
+      padding: var(--space-xl);
+      margin: var(--space-2xl) 0;
+      overflow-x: auto;
+      border: 3px solid rgb(var(--black));
+      box-shadow: var(--shadow-brutal);
+    }
+
+    .content :global(pre code) {
+      background: transparent;
+      border: none;
+      color: rgb(var(--white));
+      padding: 0;
     }
 
     .content :global(blockquote) {
       font-size: var(--text-lg);
-      line-height: 1.6;
+      line-height: 1.7;
       font-style: italic;
       color: rgb(var(--gray-dark));
-      background: rgba(var(--gray-light), 0.5);
-      padding: var(--space-lg);
-      border-radius: 4px;
-      border-left: 4px solid var(--accent);
-      margin: var(--space-xl) 0;
+      background: rgb(var(--gray-light));
+      padding: var(--space-xl) var(--space-2xl);
+      margin: var(--space-2xl) 0;
+      border-left: 6px solid var(--accent);
+      position: relative;
     }
 
-    .content :global(figure) {
-      margin: var(--space-xl) 0;
-    }
-
-    .content :global(figcaption) {
-      font-size: var(--text-sm);
-      color: rgb(var(--gray));
-      text-align: center;
-      margin-top: var(--space-sm);
-    }
-
-    .content :global(img) {
-      border-radius: 8px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    .content :global(blockquote::before) {
+      content: '"';
+      position: absolute;
+      top: -0.2em;
+      left: var(--space-md);
+      font-size: var(--text-4xl);
+      color: var(--accent);
+      font-family: Georgia, serif;
+      line-height: 1;
+      font-weight: 700;
     }
 
     .content :global(blockquote p:last-child) {
       margin-bottom: 0;
     }
 
-    @media (max-width: 720px) {
+    .content :global(img) {
+      margin: var(--space-2xl) 0;
+      border: 4px solid rgb(var(--black));
+      box-shadow: var(--shadow-brutal);
+    }
+
+    .content :global(figure) {
+      margin: var(--space-3xl) 0;
+    }
+
+    .content :global(figcaption) {
+      font-size: var(--text-sm);
+      color: rgb(var(--gray));
+      text-align: center;
+      margin-top: var(--space-md);
+      font-style: italic;
+    }
+
+    .content :global(hr) {
+      border: none;
+      border-top: 3px solid rgb(var(--black));
+      margin: var(--space-4xl) 0;
+      position: relative;
+    }
+
+    .content :global(hr)::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .content :global(table) {
+      width: 100%;
+      margin: var(--space-2xl) 0;
+      border: 3px solid rgb(var(--black));
+      border-collapse: collapse;
+    }
+
+    .content :global(th),
+    .content :global(td) {
+      padding: var(--space-md);
+      border: 1px solid rgb(var(--black));
+      text-align: left;
+    }
+
+    .content :global(th) {
+      background: rgb(var(--black));
+      color: rgb(var(--white));
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: var(--text-sm);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
       .post__title {
         font-size: var(--text-3xl);
       }
@@ -159,15 +345,23 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
 <Header />
 <main>
   <article class="post">
-    <a href="/" class="home-link">На главную</a>
-    <h1 class="post__title" transition:name={`title-${slug}`}>{title}</h1>
-    <FormattedDate date={pubDate}/>
+    <a href="/" class="back-link">
+      <span class="back-link-arrow">←</span>
+      На главную
+    </a>
+
+    <header class="post-header">
+      <div class="post__meta">
+        <span class="post__tag">Дайджест</span>
+        <FormattedDate date={pubDate}/>
+      </div>
+      <h1 class="post__title" transition:name={`title-${slug}`}>{title}</h1>
+      <p class="post__description">{description}</p>
+    </header>
 
     <DigestBanner banners={banners} />
     <DigestRecommendations />
     <FrontieMascot messages={mascotMessages} />
-
-    <hr class="post__divider"></hr>
 
     <div class="content">
       <slot/>

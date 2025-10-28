@@ -1,42 +1,273 @@
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+/* Современные анимации и переходы */
+
+/* Плавное появление элементов при загрузке */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-::view-transition-old(title),
-::view-transition-new(title) {
-  animation: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* View Transitions API для плавных переходов между страницами */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@keyframes fade-out {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
+/* Анимация для заголовков с атрибутом transition:name */
+::view-transition-old(title),
+::view-transition-new(title) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 ::view-transition-old(title) {
-  animation: fade-out 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-name: slide-out-up;
 }
 
 ::view-transition-new(title) {
-  animation: fade-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-name: slide-in-up;
+}
+
+@keyframes slide-out-up {
+  to {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
+/* Плавное появление контента */
+@media (prefers-reduced-motion: no-preference) {
+  .hero {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .featured {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+  }
+
+  .archive {
+    animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+  }
+
+  .post-card {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+  }
+
+  .post-card:nth-child(1) { animation-delay: 0.1s; }
+  .post-card:nth-child(2) { animation-delay: 0.2s; }
+  .post-card:nth-child(3) { animation-delay: 0.3s; }
+  .post-card:nth-child(4) { animation-delay: 0.4s; }
+  .post-card:nth-child(5) { animation-delay: 0.5s; }
+  .post-card:nth-child(6) { animation-delay: 0.6s; }
+
+  .post-header {
+    animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .content {
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s backwards;
+  }
+}
+
+/* Уважение к настройкам пользователя */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Анимация при наведении на ссылки */
+a {
+  position: relative;
+}
+
+/* Эффект "подчёркивания" для ссылок */
+@media (prefers-reduced-motion: no-preference) {
+  a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Анимация для кнопок */
+button,
+.button,
+[role="button"] {
+  transform: translateZ(0);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active,
+.button:active,
+[role="button"]:active {
+  transform: scale(0.95);
+}
+
+/* Hover эффекты для карточек */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .post-card,
+  .featured__card {
+    transition: 
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Скроллинг с плавностью */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Фокус-состояния с анимацией */
+@media (prefers-reduced-motion: no-preference) {
+  *:focus-visible {
+    transition: outline-offset 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *:focus-visible {
+    outline-offset: 0.25rem;
+  }
+}
+
+/* Загрузка изображений с эффектом */
+img {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Эффект появления для контента */
+.content > * {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content > *:nth-child(1) { animation-delay: 0.1s; }
+  .content > *:nth-child(2) { animation-delay: 0.15s; }
+  .content > *:nth-child(3) { animation-delay: 0.2s; }
+  .content > *:nth-child(4) { animation-delay: 0.25s; }
+  .content > *:nth-child(5) { animation-delay: 0.3s; }
 }
