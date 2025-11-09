@@ -26,11 +26,27 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 
 ## 📦 JavaScript
 * **Почему `NaN !== NaN`** — краткая и понятная заметка про IEEE-754 и особенности сравнения чисел с `NaN`. Читайте: [**Why `NaN !== NaN`**](https://nodeweekly.com/link/176520/web)
-
+* **Как работают source maps** «под капотом»: от генерации до применения — [разбор](https://react.statuscode.com/link/176602/web).
 
 ## TypeScript
 
 ## ⚛️ React
+### Storybook 10: теперь только ESM, легче на 29% и с новым automocking
+**Что изменилось:** Storybook полностью отказался от CommonJS в пользу ESM, за счёт чего сборки стали легче. Появился новый подход к *авто-мокингу модулей* (совместно с командой [Vitest](https://react.statuscode.com/link/176572/web)), добавили поддержку **Next.js 16** и **Vitest 4**, а также «прокачали» формат историй CSF ([обновлённая версия CSF](https://react.statuscode.com/link/176573/web)).
+**Зачем новичку:** быстрее сборка, проще моки в тестах, меньше сюрпризов с модулями. Подробнее в анонсе — [Storybook 10](https://react.statuscode.com/link/176571/web).
+
+* Видео: **React Compiler 1.0 + TanStack Start** — как *авто-мемоизация* ускоряет приложение: короткий разбор от Джека Херрингтона — [смотреть 9 мин](https://react.statuscode.com/link/176581/web).
+* Reddit-тред: почему у Facebook **140 слоёв контекст-провайдеров** и чем это оправдано — [обсуждение](https://react.statuscode.com/link/176578/web).
+* Исследование: Evil Martians посмотрели на **стартUPы с фандингом** — *React* у большинства — [разбор](https://react.statuscode.com/link/176579/web).
+
+* **Встраиваем Godot в RN-приложение:** свежий open-source мост, Android/iOS, доступ к API из JS — [Born React Native Godot](https://react.statuscode.com/link/176574/web) (про движок [Godot](https://react.statuscode.com/link/176575/web)).
+* **Как передать базу SQLite через AirDrop** из RN-приложения — пошагово [в статье](https://react.statuscode.com/link/176584/web).
+
+* **Критическая уязвимость в React Native Community CLI:** при запуске dev-сервера возможен *удалённый запуск команд*. Детали и рекомендации — [отчёт JFrog](https://react.statuscode.com/link/176576/web), проект CLI — [здесь](https://react.statuscode.com/link/176577/web).
+
+* **Запускаем Next.js внутри ChatGPT:** глубокий разбор «нативной интеграции» — [статья Vercel](https://react.statuscode.com/link/176585/web).
+
+* **Генеративное искусство в браузере:** как рисовать абстракции на Three.js из React — [гид](https://react.statuscode.com/link/176583/web).
 
 ## ⚙️ Node.js
 ### Путеводитель по миграции с Node v22 на v24
@@ -61,6 +77,16 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 * **Electron 39.0** — апдейт до Chromium 142, V8 14.2 и [**Node 22.20**](https://nodeweekly.com/link/176525/web). Подробности в посте: [**Electron 39.0**](https://nodeweekly.com/link/176524/web)
 * **on-change 6.0** — наблюдение за объектами/массивами через Proxy (рекурсивно). Репо: [**on-change**](https://nodeweekly.com/link/176526/web)
 * **sitemap.js 9.0** — библиотека и CLI для генерации XML-карт сайта; теперь ESM-first. Подробнее: [**sitemap.js**](https://nodeweekly.com/link/176528/web)
+* **react-jsonschema-form 6.0:** делаем формы из *JSON Schema* «из коробки», есть [живое демо](https://react.statuscode.com/link/176587/web) и описание в [репозитории](https://react.statuscode.com/link/176586/web).
+* **React Syntax Highlighter:** простой компонент для подсветки кода — [сайт](https://react.statuscode.com/link/176588/web) и [GitHub](https://react.statuscode.com/link/176589/web).
+* **Slim Select 3.0:** продвинутый `<select>` без зависимостей; в v3 появился **официальный React-компонент** — [анонс](https://react.statuscode.com/link/176590/web) и [v3](https://react.statuscode.com/link/176591/web).
+* **React Native Big Calendar v4.19:** календарь «как в Google/Outlook», доступны [демо-примеры](https://react.statuscode.com/link/176593/web) — [страница релиза](https://react.statuscode.com/link/176592/web).
+* **React Native WebGPU 0.4:** реализация WebGPU на базе *Dawn*, теперь работает и в **React Native Web** — [читать](https://react.statuscode.com/link/176594/web), о *Dawn* — [здесь](https://react.statuscode.com/link/176595/web).
+* **React Chessboard 5.8:** адаптивная шахматная доска — [репозиторий](https://react.statuscode.com/link/176596/web).
+* **React Uploady 1.12:** компоненты и хуки для загрузки файлов — [репозиторий](https://react.statuscode.com/link/176597/web).
+* **Reactist 29.0:** набор открытых React-компонентов — [репозиторий](https://react.statuscode.com/link/176598/web).
+* **Reagent 2.0:** интерфейс к React из ClojureScript — [подробнее](https://react.statuscode.com/link/176599/web).
+* **ESLint v9.39.1:** минорный релиз линтера — [ноты](https://react.statuscode.com/link/176600/web).
 
 ### Обновления
 * [**Dependency Cruiser 17.2**](https://nodeweekly.com/link/176529/web) — визуализация зависимостей проекта.
@@ -73,7 +99,3 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 * [**rimraf 6.1**](https://nodeweekly.com/link/176536/web) — аналог `rm -rf` из Node.
 * [**Ink 6.4**](https://nodeweekly.com/link/176537/web) — создаём CLI-приложения на React.
 * [**ESLint v9.39.1**](https://nodeweekly.com/link/176538/web) — минорные улучшения и исправления.
-
-
-
-
