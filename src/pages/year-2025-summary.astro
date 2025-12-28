@@ -1,0 +1,501 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const stats = {
+  "totalIssues": 30,
+  "totalArticles": 1407,
+  "averageArticlesPerIssue": 46.9,
+  "byMonth": {
+    "2025-06": {
+      "month": "июнь 2025 г.",
+      "issues": 5,
+      "articles": 289
+    },
+    "2025-07": {
+      "month": "июль 2025 г.",
+      "issues": 4,
+      "articles": 208
+    },
+    "2025-08": {
+      "month": "август 2025 г.",
+      "issues": 4,
+      "articles": 138
+    },
+    "2025-09": {
+      "month": "сентябрь 2025 г.",
+      "issues": 5,
+      "articles": 202
+    },
+    "2025-10": {
+      "month": "октябрь 2025 г.",
+      "issues": 4,
+      "articles": 197
+    },
+    "2025-11": {
+      "month": "ноябрь 2025 г.",
+      "issues": 4,
+      "articles": 180
+    },
+    "2025-12": {
+      "month": "декабрь 2025 г.",
+      "issues": 4,
+      "articles": 193
+    }
+  },
+  "byCategory": {
+    "HTML и Платформа": 93,
+    "CSS и дизайн": 178,
+    "React и фреймворки": 170,
+    "Видео и статьи": 37,
+    "Разное": 54,
+    "JavaScript": 107,
+    "SEO и поиск": 2,
+    "Обновления и релизы": 7,
+    "Инструменты и библиотеки": 528,
+    "Главные новости": 7,
+    "Доступность и UX": 1,
+    "Обучение и статьи": 31,
+    "Мнения и обзоры": 3,
+    "Безопасность": 2,
+    "Вдохновение": 1,
+    "Обновления с WWDC 2025": 4,
+    "TypeScript": 10,
+    "Недавняя серия постов в блоге Дэна Абрамова": 4,
+    "Node.js": 148,
+    "Экспериментальное и интересное": 0,
+    "Базы данных и API": 0,
+    "Безопасность и доступ": 2,
+    "Angular": 1,
+    "Доступность (A11Y)": 2,
+    "ИИ": 11,
+    "DevTools и производительность": 0,
+    "Доступность (A11y) и UI-паттерны": 0,
+    "Производительность и DevTools": 0,
+    "Адвент-календари для веб-разработчиков": 4
+  },
+  "mostActiveMonth": "июнь 2025 г.",
+  "year": 2025
+};
+
+// Форматирование чисел
+function formatNumber(num) {
+  return new Intl.NumberFormat('ru-RU').format(num);
+}
+
+// Получение топ категорий
+function getTopCategories(categories) {
+  return Object.entries(categories)
+    .filter(([name, count]) => count > 0 && !name.includes('️'))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([name, count]) => ({ name, count }));
+}
+
+// Получение максимального значения для нормализации
+function getMaxValue(data) {
+  return Math.max(...Object.values(data).map(d => typeof d === 'object' ? d.articles : d));
+}
+---
+
+<html lang="ru">
+  <head>
+    <BaseHead 
+      title="Итоги дайджеста за 2025 год | Frontend Weekly" 
+      description="Статистика еженедельного дайджеста фронтенд-новостей за 2025 год: количество выпусков, статей, категорий и многое другое" 
+    />
+    <style>
+      :root {
+        --als-black: #000000;
+        --als-white: #ffffff;
+        --als-gray-light: #f5f5f5;
+        --als-gray: #999999;
+        --als-red: #ff0000;
+        --grid-border: 1px solid #000000;
+        --font-mono: 'JetBrains Mono', 'Monaco', 'Courier New', monospace;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: var(--als-white);
+        color: var(--als-black);
+        line-height: 1.2;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .als-layout {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Grid Header */
+      .als-hero {
+        border-bottom: var(--grid-border);
+        padding: 40px 20px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 20px;
+      }
+
+      .als-hero-title {
+        font-size: clamp(4rem, 15vw, 12rem);
+        font-weight: 900;
+        line-height: 0.8;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+      }
+
+      .als-hero-tag {
+        background: var(--als-red);
+        color: white;
+        padding: 4px 12px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        height: min-content;
+      }
+
+      .als-hero-subtitle {
+        grid-column: 1 / -1;
+        font-size: 1.5rem;
+        font-weight: 400;
+        max-width: 600px;
+        margin-top: 20px;
+        text-transform: uppercase;
+      }
+
+      /* Stats Grid */
+      .als-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: var(--grid-border);
+      }
+
+      .als-stat-item {
+        padding: 30px 20px;
+        border-right: var(--grid-border);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 200px;
+      }
+
+      .als-stat-item:last-child {
+        border-right: none;
+      }
+
+      .als-stat-label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--als-gray);
+        margin-bottom: 20px;
+      }
+
+      .als-stat-number {
+        font-size: clamp(2rem, 5vw, 4.5rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+
+      /* Section */
+      .als-section {
+        border-bottom: var(--grid-border);
+      }
+
+      .als-section-header {
+        padding: 20px;
+        background: var(--als-black);
+        color: var(--als-white);
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* Matrix / Data Section */
+      .als-months-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .als-months-table tr {
+        border-bottom: 1px solid #eeeeee;
+      }
+
+      .als-months-table tr:last-child {
+        border-bottom: none;
+      }
+
+      .als-months-table td {
+        padding: 15px 20px;
+        vertical-align: middle;
+      }
+
+      .als-month-num {
+        font-family: var(--font-mono);
+        color: var(--als-gray);
+        width: 40px;
+      }
+
+      .als-month-name {
+        font-weight: 700;
+        text-transform: uppercase;
+        width: 200px;
+      }
+
+      .als-month-bar-cell {
+        flex-grow: 1;
+      }
+
+      .als-bar-bg {
+        height: 8px;
+        background: var(--als-gray-light);
+        width: 100%;
+        position: relative;
+      }
+
+      .als-bar-fill {
+        height: 100%;
+        background: var(--als-black);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .als-bar-fill.active {
+        background: var(--als-red);
+      }
+
+      .als-month-val {
+        font-family: var(--font-mono);
+        text-align: right;
+        width: 100px;
+        font-weight: 700;
+      }
+
+      /* Categories */
+      .als-categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+
+      .als-category-item {
+        padding: 20px;
+        border-right: 1px solid #eeeeee;
+        border-bottom: 1px solid #eeeeee;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .als-category-name {
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+      }
+
+      .als-category-count {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        color: var(--als-red);
+      }
+
+      /* Conclusion */
+      .als-conclusion {
+        padding: 60px 20px;
+        background: var(--als-gray-light);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .als-conclusion-title {
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 0.9;
+      }
+
+      .als-conclusion-text {
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      .als-conclusion-text p {
+        margin-bottom: 1.5rem;
+      }
+
+      .als-holiday-note {
+        margin-top: 40px;
+        padding: 20px;
+        border: 2px solid var(--als-red);
+        display: inline-block;
+      }
+
+      .als-holiday-title {
+        color: var(--als-red);
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      /* Mobile */
+      @media (max-width: 800px) {
+        .als-stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .als-stat-item:nth-child(2) {
+          border-right: none;
+        }
+        .als-stat-item:nth-child(even) {
+          border-right: none;
+        }
+        .als-conclusion {
+          grid-template-columns: 1fr;
+        }
+        .als-month-name {
+          width: 100px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .als-stats-grid {
+          grid-template-columns: 1fr;
+        }
+        .als-stat-item {
+          border-right: none;
+        }
+        .als-month-bar-cell {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main class="als-layout">
+      {stats ? (
+        <>
+          <div class="als-hero">
+            <h1 class="als-hero-title">2025</h1>
+            <div class="als-hero-tag">Итоги</div>
+            <p class="als-hero-subtitle">
+              frontend weekly: годовой статистический отчет
+            </p>
+          </div>
+
+          <div class="als-stats-grid">
+            <div class="als-stat-item">
+              <span class="als-stat-label">Выпусков записано</span>
+              <span class="als-stat-number">{formatNumber(stats.totalIssues)}</span>
+            </div>
+            <div class="als-stat-item">
+              <span class="als-stat-label">Всего статей</span>
+              <span class="als-stat-number">{formatNumber(stats.totalArticles)}</span>
+            </div>
+            <div class="als-stat-item">
+              <span class="als-stat-label">В среднем на выпуск</span>
+              <span class="als-stat-number">{stats.averageArticlesPerIssue}</span>
+            </div>
+            <div class="als-stat-item">
+              <span class="als-stat-label">Тематических тегов</span>
+              <span class="als-stat-number">{Object.keys(stats.byCategory).filter(c => stats.byCategory[c] > 0).length}</span>
+            </div>
+          </div>
+
+          <section class="als-section">
+            <div class="als-section-header">
+              <span>Матрица месячной активности</span>
+              <span>Метрика: количество статей</span>
+            </div>
+            <table class="als-months-table">
+              {Object.entries(stats.byMonth)
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .map(([key, data], index) => {
+                  const maxArticles = getMaxValue(stats.byMonth);
+                  const percentage = (data.articles / maxArticles) * 100;
+                  const isMostActive = stats.mostActiveMonth === data.month;
+                  return (
+                    <tr>
+                      <td class="als-month-num">{(index + 1).toString().padStart(2, '0')}</td>
+                      <td class="als-month-name">{data.month}</td>
+                      <td class="als-month-bar-cell">
+                        <div class="als-bar-bg">
+                          <div class="als-bar-fill" style={`width: ${percentage}%; background: ${isMostActive ? 'var(--als-red)' : 'var(--als-black)'}`}></div>
+                        </div>
+                      </td>
+                      <td class="als-month-val">{data.articles}</td>
+                    </tr>
+                  );
+                })}
+            </table>
+          </section>
+
+          <section class="als-section">
+            <div class="als-section-header">
+              <span>Топ категорий</span>
+              <span>Распределение</span>
+            </div>
+            <div class="als-categories">
+              {getTopCategories(stats.byCategory).map(({ name, count }) => (
+                <div class="als-category-item">
+                  <span class="als-category-name">{name}</span>
+                  <span class="als-category-count">{formatNumber(count)}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="als-conclusion">
+            <div>
+              <h2 class="als-conclusion-title">До встречи<br/>в две тысячи<br/>двадцать<br/>шестом.</h2>
+              
+              <div class="als-holiday-note">
+                <span class="als-holiday-title">Статус: В отпуске</span>
+                <p>Выпуски дайджеста уходят на новогодние каникулы. Возвращаемся в январе.</p>
+              </div>
+            </div>
+            
+            <div class="als-conclusion-text">
+              <p>
+                Фронтенд-сообществу: 🎉
+              </p>
+              <p>
+                Еще один год стремительной эволюции позади. Мы благодарны за ваше внимание на протяжении всего 2025 года. 
+              </p>
+              <p>
+                Наша цель остается неизменной: отфильтровывать шум, чтобы донести до вас сигнал. Надеемся, эти дайджесты служили надежным навигационным инструментом в огромном море обновлений веб-разработки.
+              </p>
+              <p>
+                В 2026 году желаем вам устойчивых архитектур, производительных рантаймов и значимых проектов. Пусть ваши зависимости будут стабильными, а время сборки — коротким. 🚀
+              </p>
+            </div>
+          </section>
+        </>
+      ) : (
+        <div class="error-state">
+          <h1 class="error-title">Данные отсутствуют</h1>
+          <p class="error-text">
+            Статистический движок вернул null.
+          </p>
+          <div class="error-code">pnpm run analyze:digest</div>
+        </div>
+      )}
+    </main>
+    <Footer />
+  </body>
+</html>
