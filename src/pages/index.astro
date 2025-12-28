@@ -10,6 +10,17 @@ const posts = (await getCollection('digest'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const [featuredPost, ...otherPosts] = posts;
+
+const groupedPosts = otherPosts.reduce((groups, post) => {
+  const date = new Date(post.data.pubDate);
+  const month = date.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' });
+  const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
+  if (!groups[capitalizedMonth]) {
+    groups[capitalizedMonth] = [];
+  }
+  groups[capitalizedMonth].push(post);
+  return groups;
+}, {} as Record<string, typeof otherPosts>);
 ---
 
 <!doctype html>
@@ -146,6 +157,21 @@ const [featuredPost, ...otherPosts] = posts;
         letter-spacing: 0.05em;
       }
 
+      .month-group {
+        margin-bottom: var(--space-3xl);
+      }
+
+      .month-header {
+        font-size: var(--text-lg);
+        font-weight: 700;
+        color: rgb(var(--gray));
+        margin: 0 0 var(--space-xl) 0;
+        padding-bottom: var(--space-xs);
+        border-bottom: 2px solid rgba(var(--gray), 0.1);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
       .summary-banner {
         margin-bottom: var(--space-3xl);
         padding: var(--space-2xl);
@@ -230,20 +256,26 @@ const [featuredPost, ...otherPosts] = posts;
 
         <section class="posts-grid">
           <h2 class="posts-grid__heading">Другие выпуски</h2>
-          <ul class="grid">
-            {otherPosts.map((post) => (
-              <li class="grid-post">
-                <span class="post-tag">Дайджест</span>
-                <a href={`/${post.slug}/`} class="grid-post__link">
-                  <h3 class="grid-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
-                </a>
-                <p class="grid-post__date">
-                  {new Date(post.data.pubDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
-                </p>
-                <p class="grid-post__description">{post.data.description}</p>
-              </li>
-            ))}
-          </ul>
+          
+          {Object.entries(groupedPosts).map(([month, posts]) => (
+            <div class="month-group">
+              <h3 class="month-header">{month}</h3>
+              <ul class="grid">
+                {posts.map((post) => (
+                  <li class="grid-post">
+                    <span class="post-tag">Дайджест</span>
+                    <a href={`/${post.slug}/`} class="grid-post__link">
+                      <h3 class="grid-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
+                    </a>
+                    <p class="grid-post__date">
+                      {new Date(post.data.pubDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </p>
+                    <p class="grid-post__description">{post.data.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </section>
 		</main>
 		<Footer />
