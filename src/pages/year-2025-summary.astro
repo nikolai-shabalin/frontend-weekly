@@ -2,7 +2,24 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-const stats = {
+
+interface MonthData {
+  month: string;
+  issues: number;
+  articles: number;
+}
+
+interface StatsData {
+  totalIssues: number;
+  totalArticles: number;
+  averageArticlesPerIssue: number;
+  byMonth: Record<string, MonthData>;
+  byCategory: Record<string, number>;
+  mostActiveMonth: string;
+  year: number;
+}
+
+const stats: StatsData = {
   "totalIssues": 30,
   "totalArticles": 1407,
   "averageArticlesPerIssue": 46.9,
@@ -79,22 +96,22 @@ const stats = {
 };
 
 // Форматирование чисел
-function formatNumber(num) {
+function formatNumber(num: number): string {
   return new Intl.NumberFormat('ru-RU').format(num);
 }
 
 // Получение топ категорий
-function getTopCategories(categories) {
+function getTopCategories(categories: Record<string, number>): Array<{ name: string; count: number }> {
   return Object.entries(categories)
-    .filter(([name, count]) => count > 0 && !name.includes('️'))
-    .sort((a, b) => b[1] - a[1])
+    .filter(([name, count]: [string, unknown]) => typeof count === 'number' && count > 0 && !name.includes('️'))
+    .sort((a, b) => (b[1] as number) - (a[1] as number))
     .slice(0, 10)
-    .map(([name, count]) => ({ name, count }));
+    .map(([name, count]) => ({ name, count: count as number }));
 }
 
 // Получение максимального значения для нормализации
-function getMaxValue(data) {
-  return Math.max(...Object.values(data).map(d => typeof d === 'object' ? d.articles : d));
+function getMaxValue(data: Record<string, MonthData>): number {
+  return Math.max(...Object.values(data).map((d: MonthData | null) => d?.articles ?? 0));
 }
 ---
 
@@ -413,7 +430,7 @@ function getMaxValue(data) {
             </div>
             <div class="als-stat-item">
               <span class="als-stat-label">Тематических тегов</span>
-              <span class="als-stat-number">{Object.keys(stats.byCategory).filter(c => stats.byCategory[c] > 0).length}</span>
+               <span class="als-stat-number">{Object.keys(stats.byCategory).filter((c: string) => (stats.byCategory[c] ?? 0) > 0).length}</span>
             </div>
           </div>
 
