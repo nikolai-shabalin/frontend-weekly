@@ -14,13 +14,13 @@
   "devDependencies": {
     "@astrojs/check": "0.9.6",
     "@astrojs/mdx": "4.3.13",
-    "@astrojs/rss": "4.0.14",
-    "@astrojs/sitemap": "3.6.0",
+    "@astrojs/rss": "4.0.15",
+    "@astrojs/sitemap": "3.7.0",
     "@eslint/js": "9.39.2",
-    "astro": "5.16.6",
+    "astro": "5.17.1",
     "eslint": "9.39.2",
     "sharp": "0.34.5",
-    "stylelint": "16.26.1",
+    "stylelint": "17.1.0",
     "stylelint-config-expa": "1.0.0",
     "typescript": "5.9.3"
   },
