@@ -171,73 +171,11 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
         text-transform: uppercase;
         letter-spacing: 0.1em;
       }
-
-      .summary-banner {
-        margin-bottom: var(--space-3xl);
-        padding: var(--space-2xl);
-        background: #000;
-        color: #fff;
-        border-radius: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-sm);
-        position: relative;
-        overflow: hidden;
-        text-decoration: none;
-        transition: transform 0.2s ease;
-      }
-
-      .summary-banner:hover {
-        transform: translateY(-4px);
-      }
-
-      .summary-banner::before {
-        content: '2025';
-        position: absolute;
-        right: -10px;
-        bottom: -30px;
-        font-size: 8rem;
-        font-weight: 900;
-        opacity: 0.15;
-        pointer-events: none;
-        line-height: 1;
-      }
-
-      .summary-banner__title {
-        font-size: var(--text-2xl);
-        margin: 0;
-        color: #fff;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: -0.02em;
-      }
-
-      .summary-banner__description {
-        margin: 0;
-        opacity: 0.9;
-        max-width: 50ch;
-        font-size: var(--text-base);
-      }
-
-      .summary-banner__cta {
-        margin-top: var(--space-xs);
-        font-weight: 700;
-        color: #ff0000;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-size: var(--text-sm);
-      }
     </style>
 	</head>
 	<body>
 		<Header />
 		<main>
-
-        <a href="/year-2025-summary" class="summary-banner">
-          <h2 class="summary-banner__title">Итоги 2025 года</h2>
-          <p class="summary-banner__description">Отчёт о работе дайджеста за прошедший год.</p>
-          <span class="summary-banner__cta">Смотреть отчет →</span>
-        </a>
 
         <h1 class="sr-only">Статьи</h1>
         {featuredPost && (
