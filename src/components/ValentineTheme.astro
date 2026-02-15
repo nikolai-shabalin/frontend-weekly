@@ -1,0 +1,237 @@
+---
+/**
+ * Компонент Valentine's Day темы для дайджеста.
+ * Переопределяет цвета на розово-красные, добавляет декоративные сердечки
+ * и анимацию сердечек при клике на ссылки.
+ */
+---
+
+<!-- Декоративные фоновые сердечки -->
+<div class="valentine-bg" aria-hidden="true">
+  <span class="valentine-bg__heart" style="left:5%;animation-delay:0s;font-size:1.5rem;">♥</span>
+  <span class="valentine-bg__heart" style="left:15%;animation-delay:2s;font-size:1rem;">♥</span>
+  <span class="valentine-bg__heart" style="left:25%;animation-delay:4s;font-size:2rem;">♥</span>
+  <span class="valentine-bg__heart" style="left:40%;animation-delay:1s;font-size:1.2rem;">♥</span>
+  <span class="valentine-bg__heart" style="left:55%;animation-delay:3s;font-size:1.8rem;">♥</span>
+  <span class="valentine-bg__heart" style="left:70%;animation-delay:5s;font-size:1rem;">♥</span>
+  <span class="valentine-bg__heart" style="left:80%;animation-delay:2.5s;font-size:1.5rem;">♥</span>
+  <span class="valentine-bg__heart" style="left:92%;animation-delay:0.5s;font-size:1.3rem;">♥</span>
+</div>
+
+<!-- Контейнер для анимации сердечек при клике -->
+<div id="hearts-overlay" aria-hidden="true"></div>
+
+<style is:global>
+  /* ====== Valentine's Day цветовая тема ====== */
+  :root {
+    --accent: #e91e63 !important;
+    --accent-dark: #c2185b !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #ff6090 !important;
+      --accent-dark: #ff80ab !important;
+    }
+  }
+
+  /* Полоска над h2 — сердечко вместо чёрточки */
+  .content h2::before {
+    content: '♥' !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    position: absolute !important;
+    top: -16px !important;
+    left: 0 !important;
+    font-size: 1rem !important;
+    color: #e91e63 !important;
+    line-height: 1 !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .content h2::before {
+      color: #ff6090 !important;
+    }
+  }
+
+  /* Ссылки: при ховере пульсируют */
+  .content a {
+    position: relative;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .content a:hover {
+    color: #e91e63 !important;
+  }
+
+  .content a::after {
+    content: ' ♥';
+    font-size: 0.7em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: #e91e63;
+  }
+
+  .content a:hover::after {
+    opacity: 1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .content a:hover {
+      color: #ff6090 !important;
+    }
+    .content a::after {
+      color: #ff6090;
+    }
+  }
+
+  /* ====== Фоновые плавающие сердечки ====== */
+  .valentine-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .valentine-bg__heart {
+    position: absolute;
+    bottom: -2rem;
+    color: #f8bbd0;
+    opacity: 0.35;
+    animation: valentine-float 12s ease-in-out infinite;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .valentine-bg__heart {
+      color: #880e4f;
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes valentine-float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.35;
+    }
+    90% {
+      opacity: 0.35;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* ====== Оверлей для анимации кликов ====== */
+  #hearts-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .click-heart {
+    position: absolute;
+    pointer-events: none;
+    font-size: 1.5rem;
+    animation: click-heart-rise 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    z-index: 9999;
+    will-change: transform, opacity;
+  }
+
+  @keyframes click-heart-rise {
+    0% {
+      transform: translate(0, 0) scale(0.5) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--dx), var(--dy)) scale(1.3) rotate(var(--rot));
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const overlay = document.getElementById('hearts-overlay');
+    if (!overlay) return;
+
+    const heartEmojis = ['❤️', '💕', '💖', '💗', '💘', '💝', '♥'];
+    const colors = ['#e91e63', '#f44336', '#ff4081', '#ff80ab', '#f06292', '#ec407a'];
+
+    function spawnHearts(x: number, y: number, count = 12) {
+      const fragment = document.createDocumentFragment();
+
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('span');
+        heart.classList.add('click-heart');
+        heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+        // Случайные направления разлёта
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.8;
+        const distance = 60 + Math.random() * 100;
+        const dx = Math.cos(angle) * distance;
+        const dy = -Math.abs(Math.sin(angle) * distance) - 30 - Math.random() * 60;
+        const rot = (Math.random() - 0.5) * 90;
+
+        heart.style.left = `${x}px`;
+        heart.style.top = `${y}px`;
+        heart.style.setProperty('--dx', `${dx}px`);
+        heart.style.setProperty('--dy', `${dy}px`);
+        heart.style.setProperty('--rot', `${rot}deg`);
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.fontSize = `${1 + Math.random() * 1.2}rem`;
+        heart.style.animationDelay = `${Math.random() * 0.15}s`;
+
+        fragment.appendChild(heart);
+      }
+
+      overlay!.appendChild(fragment);
+
+      // Удаляем сердечки после окончания анимации
+      setTimeout(() => {
+        fragment.childNodes.forEach((node) => {
+          if (node.parentNode === overlay!) {
+            overlay!.removeChild(node);
+          }
+        });
+      }, 1200);
+    }
+
+    // Перехватываем клики на ссылках в .content
+    const content = document.querySelector('.content');
+    if (!content) return;
+
+    content.addEventListener('click', (e: Event) => {
+      const me = e as MouseEvent;
+      const target = me.target as HTMLElement;
+      const link = target.closest('a');
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      if (!href) return;
+
+      // Спавним сердечки в месте клика
+      e.preventDefault();
+      spawnHearts(me.clientX, me.clientY, 14);
+
+      // Переходим по ссылке после анимации
+      setTimeout(() => {
+        // Если ссылка внешняя — открываем в новой вкладке
+        if (href.startsWith('http') && !href.includes(window.location.hostname)) {
+          window.open(href, '_blank', 'noopener');
+        } else {
+          window.location.href = href;
+        }
+      }, 700);
+    });
+  });
+</script>
