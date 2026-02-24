@@ -1,5 +1,5 @@
 ---
-title: "❤️ Еженедельный дайджест #34: Новости фронтенда ❤️"
+title: "Еженедельный дайджест #34: Новости фронтенда"
 description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
 pubDate: "Feb 24 2026"
 mascotMessages: [
@@ -17,9 +17,6 @@ mascotMessages: [
 ---
 
 import TelegramCTA from '../../components/TelegramCTA.astro';
-import ValentineTheme from '../../components/ValentineTheme.astro';
-
-## Доступность
 
 ## 🧪 HTML и Платформа
 ### [Анонсирован Interop 2026](https://webkit.org/blog/17818/announcing-interop-2026/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
@@ -48,11 +45,9 @@ Interop — это ежегодная инициатива, где команд�
 - [Адаптивная «пирамидальная» сетка на современном CSS](https://css-tricks.com/making-a-responsive-pyramidal-grid-with-modern-css/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — практический туториал по нестандартной раскладке без тяжёлого JS.
 - [Пробуем сделать идеальную круговую диаграмму на CSS](https://css-tricks.com/trying-to-make-the-perfect-pie-chart-in-css/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — эксперимент/разбор приёмов, ограничений и компромиссов.
 
-
 <TelegramCTA/>
 
 ## 📦 JavaScript
-
 ### [Прощай innerHTML — привет setHTML для более сильной защиты от XSS](https://hacks.mozilla.org/2026/02/goodbye-innerhtml-hello-sethtml-stronger-xss-protection-in-firefox-148/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Firefox (начиная с v148) поддержал [Sanitizer API](https://wicg.github.io/sanitizer-api/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online): вместо того чтобы вставлять HTML через `innerHTML`, можно использовать безопасный по умолчанию подход через [`setHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). В заметке также упоминается, что Chrome 146 (beta) добавляет поддержку, а Safari пока нет — поэтому библиотеки вроде [DOMPurify](https://github.com/cure53/DOMPurify?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) ещё будут актуальны.
 
@@ -66,9 +61,6 @@ Firefox (начиная с v148) поддержал [Sanitizer API](https://wicg
 Новый форматтер кода, который старается быть **полностью совместимым с [Prettier](https://prettier.io/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)**, но работает заметно быстрее (в описании заявляют «в разы/десятки раз»). Это «сестринский» проект для [Oxlint](https://oxc.rs/blog/2025-06-10-oxlint-stable.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и конкурирует с [Biome](https://biomejs.dev/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). Из интересного: форматирование «встроенных» языков (JSX/YAML/HTML и т.п.), сортировка Tailwind‑классов ([class sorting](https://oxc.rs/docs/guide/usage/formatter/sorting.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online#sort-tailwind-css-classes)) и сортировка импортов ([import sorting](https://oxc.rs/docs/guide/usage/formatter/sorting.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online#sort-imports)).
 
 - [«JS‑heavy подходы не совместимы с долгосрочными целями по производительности»](https://sgom.es/posts/2026-02-13-js-heavy-approaches-are-not-compatible-with-long-term-performance-goals/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — взгляд инженера по веб‑перфомансу: почему «тяжёлые» фронтенд‑фреймворки могут мешать удерживать скорость продукта, и почему сервер‑ориентированные подходы иногда выигрывают.
-
-
-##  TypeScript
 
 ## ⚛️ React и фреймворки
 ### [React Doctor: быстрый «чекап» React-кодовой базы](https://www.react.doctor/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
@@ -89,6 +81,13 @@ Firefox (начиная с v148) поддержал [Sanitizer API](https://wicg
 В продакшене иногда важнее не скорость, а «сколько RAM съедает сервис». В статье разбирают совместную работу Cloudflare, Igalia и участников Node над образом **`node-caged`**: это Docker‑образ с **Node 25**, где в V8 включена **сжатая адресация (pointer compression)**.
 Идея простая: многие указатели в памяти можно хранить в более компактном виде — за счёт этого уменьшается общий «след» процесса и иногда получается около **50% экономии**. Но есть компромиссы: такие оптимизации могут влиять на совместимость окружения, поведение памяти/адресного пространства и не всегда подходят всем workloads. Поэтому важно понимать, *что именно* выигрывает ваш проект и *какой ценой*.
 
+- 🔒 [Страницы npm‑пакетов теперь ссылаются напрямую на анализ безопасности Socket](https://socket.dev/blog/socket-security-analysis-is-now-one-click-away-on-npm?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) (пример: [отчёт для `express`](https://socket.dev/npm/package/express?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)).
+
+- [В `zlib` на подходе поддержка кастомных Brotli‑словарей](https://github.com/nodejs/node/pull/61763?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — полезно, когда вы много раз сжимаете *похожие* данные и хотите выжать ещё проценты.
+- Также вышли релизы: [Node.js 25.6.1 (Current)](https://nodejs.org/en/blog/release/v25.6.1?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и [Node.js 24.13.1 (LTS)](https://nodejs.org/en/blog/release/v24.13.1?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- Node.js: [v25.7.0 (Current)](https://nodejs.org/en/blog/release/v25.7.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и [v24.14.0 (LTS)](https://nodejs.org/en/blog/release/v24.14.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- [Temporal API близка к включению по умолчанию в Node.js](https://github.com/nodejs/node/pull/61806?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — важная новость для работы с датами/временем в JS: стандартная современная API может стать «по умолчанию» в одном из будущих релизов Node.
+
 ### [Вышел npm v11.10.0](https://github.blog/changelog/2026-02-18-npm-bulk-trusted-publishing-config-and-script-security-now-generally-available/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
 Релиз добавляет несколько вещей, которые заметны в ежедневной разработке:
 
@@ -96,12 +95,6 @@ Firefox (начиная с v148) поддержал [Sanitizer API](https://wicg
 - Мейнтейнеры могут обновлять настройки **trusted publishing** сразу для нескольких пакетов за одну операцию.
 - Отдельно упоминают флаг [`--min-release-age`](https://github.com/npm/cli/pull/8965?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — полезно, если вы хотите «подождать N часов/дней» после публикации версии, прежде чем предлагать/разрешать её установку в CI.
 
-- 🔒 [Страницы npm‑пакетов теперь ссылаются напрямую на анализ безопасности Socket](https://socket.dev/blog/socket-security-analysis-is-now-one-click-away-on-npm?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) (пример: [отчёт для `express`](https://socket.dev/npm/package/express?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)).
-
-- [В `zlib` на подходе поддержка кастомных Brotli‑словарей](https://github.com/nodejs/node/pull/61763?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — полезно, когда вы много раз сжимаете *похожие* данные и хотите выжать ещё проценты.
-- Также вышли релизы: [Node.js 25.6.1 (Current)](https://nodejs.org/en/blog/release/v25.6.1?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и [Node.js 24.13.1 (LTS)](https://nodejs.org/en/blog/release/v24.13.1?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
-- Node.js: [v25.7.0 (Current)](https://nodejs.org/en/blog/release/v25.7.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и [v24.14.0 (LTS)](https://nodejs.org/en/blog/release/v24.14.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
-- [Temporal API близка к включению по умолчанию в Node.js](https://github.com/nodejs/node/pull/61806?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — важная новость для работы с датами/временем в JS: стандартная современная API может стать «по умолчанию» в одном из будущих релизов Node.
 
 ## 🤖 ИИ
 - [Google показывает превью WebMCP](https://developer.chrome.com/blog/webmcp-epp?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — идея стандарта, где сайты смогут «выдавать» возможности (abilities) AI‑агентам.
