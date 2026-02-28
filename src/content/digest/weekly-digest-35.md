@@ -25,6 +25,15 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 ### [Interop 2026: браузеры наконец догоняют друг друга](https://frontendfoc.us/link/181168/web)
 Подкаст/разбор инициатив Interop: цель — чтобы важные веб‑фичи работали **одинаково во всех движках**. Обсуждают то, где особенно много пользы для фронтенда: container style queries, anchor positioning, scroll‑driven animations, view transitions и т. п. (Внутри есть ссылка на [контекст про Interop этого года](https://frontendfoc.us/link/181169/web).)
 
+
+### Как стилизовать новый псевдоэлемент `::search-text`
+
+В статье [How to Style the New ::search-text](https://css-tricks.com/how-to-style-the-new-search-text-and-other-highlight-pseudo-elements/) объясняется, как работать с новым псевдоэлементом `::search-text`.
+
+Он позволяет стилизовать **результаты поиска по странице** (например, когда пользователь использует встроенный поиск браузера).
+
+Это открывает новые возможности для улучшения UX — можно настраивать цвет фона, текста и другие параметры подсветки.
+
 - [Как уважать системный размер текста на мобильных ОС](https://frontendfoc.us/link/181177/web) — почему увеличение текста в Android/iOS не всегда масштабирует текст на веб‑странице и что с этим делать.
 - [Нативные HTML‑компоненты не гарантируют хороший UX](https://frontendfoc.us/link/181179/web) — напоминание, что «native» ≠ «удобно»: важно учитывать контекст, поведение, ожидания и доступность.
 - [Navigation API стала Baseline (Newly Available) во всех основных браузерах](https://frontendfoc.us/link/181217/web) — это значит, что API считается достаточно доступным «по умолча
