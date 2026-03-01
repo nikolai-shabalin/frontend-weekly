@@ -78,15 +78,7 @@ body {
   min-height: 100vh;
 }
 
-@media (max-width: 720px) {
-  body {
-    font-size: var(--text-md);
-  }
 
-  main {
-    padding: var(--space-xl) var(--space-md);
-  }
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -103,11 +95,20 @@ body {
 }
 
 main {
-  width: var(--content-width);
-  max-width: calc(100% - 2rem);
-  margin-inline: auto;
+  margin-inline: max(20px, (100% - var(--content-width)) / 2);
   padding: var(--space-3xl) var(--space-md);
   flex: 1 0 auto;
+}
+
+@media (max-width: 720px) {
+  body {
+    font-size: var(--text-md);
+  }
+
+  main {
+    margin-inline: 0;
+    padding: var(--space-xl) var(--space-sm);
+  }
 }
 
 h1,

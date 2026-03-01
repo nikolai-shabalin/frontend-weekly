@@ -171,6 +171,21 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
         text-transform: uppercase;
         letter-spacing: 0.1em;
       }
+
+      @media (max-width: 720px) {
+        main {
+          margin-inline: 0;
+          padding-inline: var(--space-sm);
+        }
+
+        .featured-post {
+          padding-inline: var(--space-md);
+        }
+
+        .grid-post {
+          padding-inline: var(--space-md);
+        }
+      }
     </style>
 	</head>
 	<body>
