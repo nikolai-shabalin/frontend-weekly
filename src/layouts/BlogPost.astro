@@ -20,64 +20,99 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
 <head>
   <BaseHead title={title} description={description}/>
   <style>
+    .post {
+      max-width: min(100%, 1440px);
+      margin-inline: auto;
+    }
+
     .home-link {
-      display: inline-block;
-      margin: var(--space-lg) 0;
-      color: rgb(var(--gray));
-      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin: var(--space-lg) 0 var(--space-xl);
+      color: rgb(var(--ink-soft));
       font-size: var(--text-sm);
-      transition: color 0.2s ease;
+      font-family: var(--font-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
 
     .home-link:hover {
-      color: var(--accent);
+      color: var(--accent-dark);
+      transform: translateX(-2px);
     }
 
     .post__title {
-      font-size: var(--text-4xl);
-      line-height: 1.1;
-      margin: var(--space-3xl) 0 var(--space-lg) 0;
-      text-align: center;
+      font-size: var(--text-5xl);
+      line-height: 1.06;
+      margin: 0 0 var(--space-lg) 0;
+      text-align: left;
+      max-width: 16ch;
+    }
+
+    .post::before {
+      content: '';
+      display: block;
+      width: clamp(220px, 28vw, 320px);
+      height: 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent), var(--accent-yellow));
+      margin-bottom: var(--space-lg);
     }
 
     .post :global(time) {
-      margin-bottom: var(--space-2xl);
-      text-align: center;
+      margin-bottom: var(--space-xl);
+      text-align: left;
       display: block;
-      color: rgb(var(--gray));
-      font-style: italic;
+      color: rgb(var(--muted));
       font-size: var(--text-sm);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
+      font-family: var(--font-accent);
+      text-transform: uppercase;
     }
 
     .post__divider {
-      height: 1px;
-      background: rgba(var(--gray), 0.2);
-      margin: var(--space-2xl) auto;
-      width: 60%;
-      max-width: 400px;
+      height: 3px;
+      border: 0;
+      margin: var(--space-2xl) 0;
+      width: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(var(--line), 0.7) 0 18px,
+        rgba(243, 191, 31, 0.95) 18px 30px
+      );
+      border-radius: 999px;
     }
 
     .content {
       margin: 0 auto;
-      max-width: var(--content-width);
+      max-width: min(100%, 1440px);
+      padding: var(--space-2xl) var(--space-lg);
+      background: var(--paper-color);
+      border: 2px solid rgba(var(--line), 0.52);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      animation: rise-in 0.5s ease both;
     }
 
-    /* Стилизация типографики контента */
     .content :global(h2) {
       margin-top: var(--space-3xl);
       margin-bottom: var(--space-lg);
-      font-size: var(--text-3xl);
+      font-size: var(--text-4xl);
       position: relative;
+      padding-left: 1.2rem;
     }
 
     .content :global(h2)::before {
       content: '';
-      width: 30px;
-      height: 3px;
-      background: var(--accent);
+      width: 0.45rem;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent-red), var(--accent-yellow));
       position: absolute;
-      top: -10px;
+      top: 0;
       left: 0;
     }
 
@@ -89,12 +124,17 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
 
     .content :global(ul) {
       margin-bottom: var(--space-xl);
+      padding-left: 1.35rem;
+    }
+
+    .content :global(li::marker) {
+      color: var(--accent-red);
     }
 
     .content :global(p) {
       margin-bottom: var(--space-lg);
       font-size: var(--text-lg);
-      line-height: 1.8;
+      line-height: 1.75;
       text-wrap: pretty;
     }
 
@@ -110,11 +150,11 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
       font-size: var(--text-lg);
       line-height: 1.6;
       font-style: italic;
-      color: rgb(var(--gray-dark));
-      background: rgba(var(--gray-light), 0.5);
-      padding: var(--space-lg);
-      border-radius: 4px;
-      border-left: 4px solid var(--accent);
+      color: rgb(var(--ink-soft));
+      background: rgba(243, 191, 31, 0.22);
+      padding: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-xl);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      border-left: 8px solid var(--accent-red);
       margin: var(--space-xl) 0;
     }
 
@@ -124,14 +164,18 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
 
     .content :global(figcaption) {
       font-size: var(--text-sm);
-      color: rgb(var(--gray));
+      color: rgb(var(--muted));
       text-align: center;
       margin-top: var(--space-sm);
+      font-family: var(--font-accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .content :global(img) {
-      border-radius: 8px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius-md);
+      border: 2px solid rgba(var(--line), 0.4);
+      box-shadow: 0 10px 24px rgba(70, 38, 15, 0.16);
     }
 
     .content :global(blockquote p:last-child) {
@@ -140,15 +184,19 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
 
     @media (max-width: 720px) {
       .post__title {
-        font-size: var(--text-3xl);
+        font-size: var(--text-4xl);
       }
 
       .content :global(h2) {
-        font-size: var(--text-2xl);
+        font-size: var(--text-3xl);
       }
 
       .content :global(h3) {
         font-size: var(--text-xl);
+      }
+
+      .content {
+        padding: var(--space-xl) var(--space-md);
       }
     }
   </style>

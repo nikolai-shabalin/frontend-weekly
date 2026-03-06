@@ -24,8 +24,11 @@ import SupportBlock from './SupportBlock.astro';
   .footer {
     padding: var(--space-2xl) var(--space-md);
     margin-top: var(--space-3xl);
-    border-top: 1px solid rgba(var(--gray), 0.2);
-    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    border-top: 3px solid rgba(var(--line), 0.6);
+    background:
+      radial-gradient(620px 240px at 90% 20%, rgba(243, 191, 31, 0.26), transparent 70%),
+      radial-gradient(380px 180px at 10% 100%, rgba(115, 182, 72, 0.16), transparent 72%),
+      var(--paper-color);
   }
 
   .footer__content {
@@ -40,9 +43,11 @@ import SupportBlock from './SupportBlock.astro';
 
   .copyright {
     font-size: var(--text-sm);
-    color: rgb(var(--gray));
+    color: rgb(var(--muted));
     margin: 0;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
+    font-family: var(--font-accent);
+    text-transform: uppercase;
   }
 
   .social {
@@ -51,16 +56,23 @@ import SupportBlock from './SupportBlock.astro';
   }
 
   .social__link {
-    color: rgb(var(--gray));
-    transition: color 0.2s ease, transform 0.2s ease;
+    color: rgb(var(--ink-soft));
+    transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
     display: flex;
     align-items: center;
     border-bottom: none;
+    background: rgba(243, 191, 31, 0.25);
+    border: 2px solid rgba(var(--line), 0.35);
+    border-radius: 999px;
+    width: 2.6rem;
+    height: 2.6rem;
+    justify-content: center;
   }
 
   .social__link:hover,
   .social__link:focus-visible {
-    color: var(--accent);
+    color: var(--accent-red);
+    background: rgba(243, 191, 31, 0.45);
     transform: translateY(-2px);
   }
 

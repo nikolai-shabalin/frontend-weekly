@@ -37,8 +37,13 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	.support-content {
-		max-width: var(--content-width);
+		max-width: min(var(--content-width), 760px);
 		text-align: center;
+    background: var(--paper-color);
+    border: 2px solid rgba(var(--line), 0.5);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl) var(--space-lg);
+    box-shadow: var(--shadow-soft);
 	}
 
 	.support-content h1 {
@@ -49,9 +54,9 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	.support-content p {
-		font-size: var(--text-lg);
+		font-size: var(--text-md);
 		line-height: 1.6;
-		color: rgb(var(--gray));
+		color: rgb(var(--ink-soft));
 		margin-bottom: var(--space-xl);
 	}
 
@@ -62,7 +67,7 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	.support-content a:hover {
-		color: var(--accent-hover);
+		color: var(--accent-red);
 		text-decoration: none;
 	}
 

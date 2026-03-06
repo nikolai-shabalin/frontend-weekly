@@ -5,7 +5,8 @@ import { SITE_TITLE } from '../consts';
 <header class="header">
   <div class="header__content">
     <a href="/" class="logo-link">
-      {SITE_TITLE}
+      <span class="logo-link__badge">FW</span>
+      <span class="logo-link__text">{SITE_TITLE}</span>
     </a>
     <a href="/support" class="support-button">
       Поддержи
@@ -16,7 +17,7 @@ import { SITE_TITLE } from '../consts';
 <style>
   .header {
     padding: var(--space-md);
-    border-bottom: 1px solid rgba(var(--gray), 0.15);
+    backdrop-filter: blur(6px);
   }
 
   .header__content {
@@ -25,36 +26,75 @@ import { SITE_TITLE } from '../consts';
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md);
-    width: min(100%, var(--content-width));
+    width: min(100%, var(--content-width) + 40px);
     margin-inline: auto;
+    border: 2px solid rgba(var(--line), 0.65);
+    background: linear-gradient(130deg, #f9e070, #f5bf3b 64%, #f2a53f);
+    border-radius: 999px;
+    padding: 0.5rem 0.65rem;
+    box-shadow: var(--shadow-soft);
   }
 
   .logo-link {
-    color: rgb(var(--black));
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: rgb(var(--ink));
     text-decoration: none;
     transition: color 0.2s ease;
+    font-size: var(--text-lg);
+    min-width: 0;
+  }
+
+  .logo-link__badge {
+    display: inline-grid;
+    place-items: center;
+    width: 2.2rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: var(--accent-red);
+    color: #fff7ea;
     font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: var(--text-xl);
+    font-size: var(--text-sm);
+    line-height: 1;
+  }
+
+  .logo-link__text {
+    font-family: var(--font-heading);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .logo-link:hover {
-    color: var(--accent);
+    color: #5b2d10;
   }
 
   .support-button {
-    color: #ffffff;
-    background: var(--accent);
+    color: #fdf9ee;
+    background: var(--accent-green);
     text-decoration: none;
     font-size: var(--text-sm);
-    font-weight: 600;
-    padding: var(--space-xs) var(--space-md);
+    font-weight: 700;
+    padding: 0.45rem 1rem;
     border-radius: 999px;
-    border: none;
-    transition: background 0.2s ease;
+    border: 2px solid rgba(44, 75, 24, 0.25);
+    transition: transform 0.2s ease, filter 0.2s ease;
   }
 
   .support-button:hover {
-    background: var(--accent-dark);
+    transform: translateY(-1px);
+    filter: saturate(110%);
+  }
+
+  @media (max-width: 720px) {
+    .header {
+      padding-inline: var(--space-sm);
+    }
+
+    .logo-link__text {
+      max-width: 11rem;
+    }
   }
 </style>
