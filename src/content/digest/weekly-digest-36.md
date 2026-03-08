@@ -48,7 +48,7 @@ Popover API превращает всплывающие подсказки из 
 
 <TelegramCTA/>
 
-## 📦 JavaScript
+## 📦 JavaScript\
 ### Внешние карты импорта доступны уже сегодня!
 Ли Веру (Lea Verou) предложила [решение](https://javascriptweekly.com/link/181457/web) проблемы с [веб-зависимостями](https://javascriptweekly.com/link/181458/web), которая обсуждалась несколько недель назад. Техника, позволяющая эмулировать поддержку внешних карт импорта (import maps), проста, но неочевидна, и она уже [реализована в JSPM 4.0](https://javascriptweekly.com/link/181459/web).
 
@@ -81,14 +81,32 @@ WASM прошел долгий путь, но с ним по-прежнему с
 
 
 ## ⚛️ React и фреймворки
+### Как использовать компонент `Activity` в React 19.2 для сохранения состояния видео
+**Джошуа Алфонс из Mux** на примере видео показывает, как использовать новый [компонент `Activity` из React 19.2](https://react.dev/reference/react/Activity), чтобы сохранять позицию воспроизведения видео даже тогда, когда компонент скрыт из вида. Этот прием пригодится в любых ситуациях, где нужно, чтобы состояние компонента не сбрасывалось при смене видимости. [Подробнее в блоге Mux.](https://www.mux.com/blog/react-is-changing-the-game-for-streaming-apps-with-the-activity-component)
+
+- **Кент С. Доддс** рассказал о своем опыте миграции с Remix v2 на React Router v7, используя ИИ-инструмент Cursor. Он подробно описал, [как автоматизировал этот процесс.](https://kentcdodds.com/blog/how-i-used-cursor-to-migrate-frameworks)
+
 
 ## 📘 TypeScript
 ### Заметки по миграции с TypeScript 5.x на 6.0
 Опубликованы [подробные заметки для перехода](https://javascriptweekly.com/link/181453/web) с TypeScript 5 на TypeScript 6.0. Автор предполагает, что их можно скормить ИИ-агенту для помощи в миграции.
 
 ## ⚙️ Node.js
-### Меняется график релизов Node.js
-Хотя это ещё не официально, но в [предварительном посте](https://javascriptweekly.com/link/181405/web) раскрываются планы по изменению графика релизов Node.js: теперь будет один крупный релиз в год, каждый релиз станет LTS (с долгосрочной поддержкой), и исчезнет разделение на чётные и нечётные версии.
+### Эволюция графика релизов Node.js: работа в процессе
+Команда Node.js давно обсуждает возможность перехода на новый график — один крупный релиз в год вместо двух. Предлагается убрать разделение на четные и нечетные версии, сделав каждый релиз LTS-версией (с предварительными 11 месяцами статуса alpha/current). Это предварительный анонс, окончательная публикация ожидается в апреле, поэтому всё может измениться (вот [ссылка на резервную версию](https://nodeweekly.com/link/181593/web)). Забавный побочный эффект: последняя LTS-версия Node будет совпадать с годом. Например, Node 28 станет LTS в 2028 году, и так далее.
+
+### Вышел Node.js 25.8.0 (Current)
+Обычный промежуточный релиз, но с интересным дополнением — флагом [`--permission-audit`](https://nodeweekly.com/link/181553/web). Если вы хотите использовать [модель разрешений](https://nodeweekly.com/link/181554/web) или отлаживать ошибки, связанные с ней, этот флаг включает модель в режиме «только предупреждение». Это отличный способ провести аудит вашего приложения перед полноценным включением функции.
+
+### OpenJS запускает программу модернизации Node.js
+The OpenJS Foundation [запустила программу по обновлению и модернизации Node.js](https://nodeweekly.com/link/181555/web), направленную на помощь предприятиям в безопасном переходе с устаревших и неподдерживаемых версий Node.js.
+
+### Почему я выбрал Electron вместо нативных технологий (и сделал бы это снова)
+[Выпуск подкаста Syntax](https://nodeweekly.com/link/181566/web), в котором обсуждаются причины использования Electron для создания десктопных приложений.
+
+### npmx.dev: новый быстрый поиск по npm-реестру
+[npmx.dev](https://nodeweekly.com/link/181588/web) — это новый способ быстрого поиска и просмотра официального npm-реестра, который на этой неделе перешел в стадию альфа. [Пост с подробностями](https://nodeweekly.com/link/181589/web).
+
 
 ## 🤖 ИИ
 
@@ -126,4 +144,31 @@ WASM прошел долгий путь, но с ним по-прежнему с
 ### Heatmap: просмотрщик изменений для ревью кода
 Просто замените «github․com» в любом URL пул-реквеста на «0github․com» и [увидите](https://frontendfoc.us/link/181541/web) цветную разметку каждой строки/токена, показывающую, сколько внимания требует данный PR от человека.
 
+### VMPrint: движок верстки на чистом JS для идеального вывода PDF
+Обычно для печати в PDF используют headless-браузеры, но [VMPrint](https://nodeweekly.com/link/181567/web) гарантирует идентичный макет при идентичных входных данных, вплоть до позиции каждого символа. [Вот пример PDF](https://nodeweekly.com/link/181568/web).
+
+### Dinero.js 2.0: безопасная работа с денежными значениями
+[Библиотека](https://nodeweekly.com/link/181569/web) для создания, расчета и форматирования денежных сумм. [Версия 2.0](https://nodeweekly.com/link/181570/web) — это полный переписывание с новой, древовидно-шейкабельной функциональной архитектурой.
+
+### TinyBase 8.0: Реактивное хранилище данных для локально-первых приложений
+**TinyBase** — это реактивное хранилище данных, которое может выступать в роли полноценного бэкенда для многих типов приложений. Оно отлично работает само по себе или [интегрируется с облачными хранилищами, клиентскими БД и SQL.](https://tinybase.org/guides/the-basics/architectural-options/) В версии 8.0 появилась поддержка middleware и возможность хранить объекты и массивы в «ячейках». [Узнать больше о новом релизе.](https://tinybase.org/guides/releases/#v8-0)
+
+### React Native Grab: мгновенный поиск исходного кода по UI
+Команда Callstack представила раннюю версию полезного инструмента для разработчиков React Native. **React Native Grab** — это middleware для Metro, которое позволяет встряхнуть устройство, войти в режим «захвата», нажать на любой элемент интерфейса и сразу же получить в буфер обмена путь к файлу с его исходным кодом и контекст компонента. Проект вдохновлен [React Grab](https://www.react-grab.com/) и доступен на [GitHub.](https://github.com/callstackincubator/react-native-grab)
+
+
 ### Обновления
+- [Fastify 5.8](https://nodeweekly.com/link/181575/web) — быстрый веб-фреймворк получил [тайм-ауты на уровне обработчиков](https://nodeweekly.com/link/181576/web) и совместимость с Pino v9/v10.
+- [GramIO 0.7](https://nodeweekly.com/link/181578/web) — фреймворк для Telegram Bot API с поддержкой [Telegram Bot API 9.5](https://nodeweekly.com/link/181579/web).
+- [mp3tag.js 3.16](https://nodeweekly.com/link/181580/web) — чтение и запись ID3-метаданных в MP3, MP4/M4A, AIFF и AAC файлы.
+- [sax-js 1.5](https://nodeweekly.com/link/181581/web) — SAX-стиль парсер XML и HTML от Исаака Шлютера.
+- [jose 6.2](https://nodeweekly.com/link/181582/web) — библиотека для JSON Object Signing and Encryption.
+- [NodeBB 4.9](https://nodeweekly.com/link/181583/web) — форумное ПО на Node.js.
+- [AVA 7.0](https://nodeweekly.com/link/181584/web) — популярный тест-раннер для Node.js.
+- [React Native Skia 2.5](https://github.com/Shopify/react-native-skia) — высокопроизводительная 2D-графика на базе Skia для React Native. [Документация.](https://shopify.github.io/react-native-skia/docs/getting-started/installation)
+- [React-Custom-Scroll 7.1](https://github.com/rommguy/react-custom-scroll) — библиотека для кастомизации полос прокрутки с сохранением нативного поведения. Теперь с поддержкой React 19. [Демо.](https://rommguy.github.io/react-custom-scroll/exampleDist/index.html)
+- [Cron Generator 2.2](https://github.com/sojinantony01/react-cron-generator) — компонент для визуального создания cron-выражений. [Демо.](https://sojinantony01.github.io/react-cron-generator/)
+- [next-translate 3.0](https://github.com/aralroca/next-translate) — инструмент для легкой интернационализации (i18n) в Next.js.
+- [React Icons 5.6](https://github.com/react-icons/react-icons) — популярная библиотека для подключения иконок в React-приложения.
+- [ilamy Calendar 1.4](https://github.com/kcsujeet/ilamy-calendar) — полнофункциональный компонент календаря в стиле Google Календаря.
+
