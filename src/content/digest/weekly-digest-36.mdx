@@ -1,0 +1,183 @@
+---
+title: "🌸 Еженедельный дайджест #36: Новости фронтенда 🌸"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Mar 08 2026"
+mascotMessages: [
+  { text: "Фронти на связи, выпуск #36! 🗞️", index: 0 },
+  { text: "В URL теперь даже переносы строк не пугают. 🔗", index: 1 },
+  { text: "Popover API все ближе к нативной магии. ✨", index: 2 },
+  { text: "CSS-эксплойт серьезный, браузер лучше обновить. 🔒", index: 3 },
+  { text: "Chrome уходит в релиз раз в две недели. 🚀", index: 4 },
+  { text: "Navigation API в Baseline, SPA жить проще. 🧭", index: 5 },
+  { text: "Bun 1.3.10 залетел очень бодро. ⚡", index: 6 },
+  { text: "Deno 2.7 привез Temporal и ARM для Windows. 🛠️", index: 7 },
+  { text: "Node 25.8 дал удобный permission-аудит. 🧠", index: 8 },
+  { text: "CodePen 2.0 уже хочется потрогать руками. 🎨", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+import WomensDayTheme from '../../components/WomensDayTheme.astro';
+
+<WomensDayTheme />
+
+## 🧪 HTML и Платформа
+### Вы можете использовать символы новой строки (и табуляции) в URL
+Дэниел Лемир понятно объясняет нюансы [спецификации WHATWG URL](https://url.spec.whatwg.org?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), показывая, что браузеры допускают использование символов новой строки и табуляции внутри URL. Да, технически это не совсем валидно, но это работает. Это позволяет делать длинные строки более читаемыми. [Статья Дэниела Лемира](https://lemire.me/blog/2026/02/28/you-can-use-newline-characters-in-urls/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+
+### Начало работы с Popover API
+Popover API превращает всплывающие подсказки из того, что вы симулируете с помощью JavaScript, в то, что браузер понимает нативно. Это хорошее [введение в использование API от Годстайма Абуру](https://www.smashingmagazine.com/2026/03/getting-started-popover-api/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+💡 Зелл Лью недавно [задался вопросом](https://css-tricks.com/popover-api-or-dialog-api-which-to-choose/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), что и когда использовать: Popover API или Dialog API?
+
+### Chrome переходит на двухнедельный цикл релизов
+Начиная с сентября, в попытке «соответствовать требованиям современного веба», Chrome перейдет с четырехнедельного на двухнедельный цикл выпуска стабильных версий. Об изменениях для каналов Dev и Canary не сообщается. Подробности можно узнать [в официальном блоге Chrome для разработчиков](https://developer.chrome.com/blog/chrome-two-week-release?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+- **🧭 Вышла Safari Technology Preview 238.** Она добавляет поддержку нового настраиваемого элемента `<select>`. [Смотрите заметки о релизе](https://webkit.org/blog/17848/release-notes-for-safari-technology-preview-238/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- **⚙️ Рэйчел Эндрюс делится последним обновлением веб-платформы.** Ознакомиться с ним можно [по этой ссылке](https://web.dev/blog/web-platform-02-2026?hl=en&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+- **border-shape: будущее неквадратного веба**
+    Автор Уна Кравец рассказывает о новом мощном CSS-свойстве `border-shape`, которое скоро появится в браузерах. Оно позволит разработчикам задавать элементам не только прямоугольные, но и любые другие [произвольные формы границ](https://una.im/border-shape/?utm_source=frontend&utm_campaign=shabalin_online&utm_medium=digest).
+
+- **Исчерпывающее руководство по стилизации списков с помощью CSS**
+    Ричард Разер создал подробное руководство, которое поможет вам вывести стилизацию списков на новый уровень. В статье подробно разбираются свойства `list-style`, псевдоэлемент `::marker`, функции `counters()` и `counter()`, а также правило `@counter-style`. Если вы хотите научиться создавать [по-настоящему крутые списки](https://piccalil.li/blog/an-in-depth-guide-to-customising-lists-with-css/?utm_source=frontend&utm_campaign=shabalin_online&utm_medium=digest), это чтение обязательно для вас.
+
+- **Ключевые слова для CSS text-indent?**
+    Короткое и полезное видео о том, как использовать ключевые слова `each-line` и `hanging` в связке со свойством `text-indent`. Это простой способ сделать [типографику на вашем сайте](https://www.youtube.com/watch?utm_source=frontend&utm_campaign=shabalin_online&utm_medium=digest&v=rUOS-zaVrAE&feature=youtu.be) более профессиональной и аккуратной.
+
+- **Потенциально скоро в вашем браузере появится :near()**
+    Дэниел Шварц Дэнни размышляет о возможностях нового псевдокласса `:near()`, который сейчас находится на стадии предложения. Эта функция позволит отслеживать, когда курсор мыши находится [рядом с элементом](https://css-tricks.com/potentially-coming-to-a-browser-near-you/?utm_source=frontend&utm_campaign=shabalin_online&utm_medium=digest), открывая новые горизонты для интерактивных интерфейсов.
+
+
+## 🎨 CSS и дизайн
+### Эксплойт... в CSS?!
+Уязвимость, описанная в статье (первая крупная zero-day эксплойт 2026 года), связана с обработкой Chromium CSS-правила `@font-feature-values`, но запускается через JavaScript. Ли Мейер [исследует эту проблему](https://css-tricks.com/an-exploit-in-css/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и настоятельно рекомендует обновить браузеры.
+
+### Chip Away (Критика «чипсов»)
+Донни Д'Амато [критикует](https://blog.damato.design/posts/chip-away/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) часто используемый паттерн дизайна — «чипсы» или небольшие плашки с текстом, — указывая на их недостатки и предлагая альтернативы.
+
+- **[Липкая сетка с прокруткой: создание анимированной сетки, управляемой прокруткой](https://tympanus.net/codrops/2026/03/02/sticky-grid-scroll-building-a-scroll-driven-animated-grid/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** — Эффекты, управляемые прокруткой, могут быть разными, но этот [выглядит действительно круто](https://tympanus.net/Tutorials/StickyGridScroll/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). (Автор: Тео Плавински)
+- **[Различие между «компонентами» и «утилитами» в Tailwind](https://css-tricks.com/distinguishing-components-and-utilities-in-tailwind/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** от Зелла Лью.
+- **[Полное руководство по букмарклетам](https://css-tricks.com/a-complete-guide-to-bookmarklets/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)** от Деклана Чидлоу.
+- **📄 W3C опубликовал документ «CSS Snapshot 2026».** Он определяет текущее состояние спецификации CSS. Важно отметить, что документ предназначен скорее для разработчиков браузеров, а не веб-разработчиков. [Ознакомиться с документом](https://www.w3.org/TR/2026/NOTE-css-2026-20260226/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+### Внешние карты импорта доступны уже сегодня!
+Ли Веру (Lea Verou) предложила [решение](https://lea.verou.me/blog/2026/external-import-maps-today/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) проблемы с [веб-зависимостями](https://lea.verou.me/blog/2026/web-deps/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), которая обсуждалась несколько недель назад. Техника, позволяющая эмулировать поддержку внешних карт импорта (import maps), проста, но неочевидна, и она уже [реализована в JSPM 4.0](https://jspm.org/jspm-4.0-release?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online#import-map-package-management).
+
+### Почему WebAssembly — язык второго сорта в вебе?
+WASM прошел долгий путь, но с ним по-прежнему сложно работать из-за огромного количества связующего кода. Райан Хант в [статье на Mozilla Hacks](https://hacks.mozilla.org/2026/02/making-webassembly-a-first-class-language-on-the-web/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) доказывает, что модель компонентов WebAssembly (Component Model) может изменить ситуацию, позволяя модулям напрямую взаимодействовать с браузерными API и загружаться прямо из тегов `<script>`.
+
+### Мы заслуживаем лучший Streams API для JavaScript
+Джеймс М. Снелл (James M Snell) публикует [пост](https://blog.cloudflare.com/a-better-web-streams-api/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), чтобы начать разговор о проблемах текущего Streams API. Он демонстрирует альтернативный подход к работе с потоками, который обходит "фундаментальные проблемы удобства и производительности" текущего стандарта. Его аргументы и опыт выглядят очень убедительно.
+
+### Навигационный API теперь в Baseline
+[**Navigation API** стал новым стандартом (Baseline Newly Available)](https://web.dev/blog/baseline-navigation-api?hl=en&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и теперь поддерживается во всех основных браузерах. Этот API упрощает управление навигацией в одностраничных приложениях (SPA).
+
+### Иллюзия JavaScript-защиты от копирования
+Ахмед Арат (Ahmed Arat) на примере взлома защиты одного (не совсем безопасного для работы) сайта объясняет, почему [создание системы DRM/защиты от копирования](https://www.therantydev.com/javascript-drms-are-stupid?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) только на JavaScript (в отличие от подходов на базе [EME](https://en.wikipedia.org/wiki/Encrypted_Media_Extensions?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)) — это не более чем "сложное создание препятствий".
+
+### От instanceof к Error.isError для безопасной проверки ошибок
+Мэтт Смит (Matt Smith) рассказывает, как [перейти от `instanceof` к `Error.isError`](https://allthingssmitty.com/2026/02/23/from-instanceof-to-error-iserror-safer-error-checking-in-javascript/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) для более надёжной проверки ошибок в JavaScript.
+
+### Проксирование fetch-запросов на серверном JavaScript
+Николас Закас (Nicholas C. Zakas) делится опытом о том, как [проксировать fetch-запросы](https://humanwhocodes.com/blog/2026/03/proxying-fetch-requests-server-side-javascript/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) на стороне сервера.
+
+### Вышел Bun v1.3.10: неожиданно большое обновление
+Вышла новая версия **Bun** — быстрого инструмента для JavaScript и TypeScript. В этом релизе полностью переписали REPL (интерактивную среду), сделав её удобнее и красивее. Появилась опция `--compile --target=browser`, которая позволяет собирать самодостаточные HTML-файлы, включающие в себя весь JavaScript, CSS и другие ресурсы — идеально для простых одностраничных приложений. Также добавлена полная поддержка [ES-декораторов](https://github.com/tc39/proposal-decorators?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) (этап 3 TC39), ускорен цикл событий и улучшена оптимизация импортов.
+
+### Deno 2.7
+Вышел **Deno 2.7** — альтернативный рантайм для JavaScript. В новой версии стабилизирована поддержка Temporal API (современная работа с датами и временем), добавлена поддержка Windows на ARM и возможность использовать `overrides` в `package.json`.
+
+## ⚛️ React и фреймворки
+### Как использовать компонент `Activity` в React 19.2 для сохранения состояния видео
+**Джошуа Алфонс из Mux** на примере видео показывает, как использовать новый [компонент `Activity` из React 19.2](https://react.dev/reference/react/Activity?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), чтобы сохранять позицию воспроизведения видео даже тогда, когда компонент скрыт из вида. Этот прием пригодится в любых ситуациях, где нужно, чтобы состояние компонента не сбрасывалось при смене видимости. [Подробнее в блоге Mux.](https://www.mux.com/blog/react-is-changing-the-game-for-streaming-apps-with-the-activity-component?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+
+- **Кент С. Доддс** рассказал о своем опыте миграции с Remix v2 на React Router v7, используя ИИ-инструмент Cursor. Он подробно описал, [как автоматизировал этот процесс.](https://kentcdodds.com/blog/how-i-used-cursor-to-migrate-frameworks?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+
+
+## 📘 TypeScript
+### Заметки по миграции с TypeScript 5.x на 6.0
+Опубликованы [подробные заметки для перехода](https://gist.github.com/privatenumber/3d2e80da28f84ee30b77d53e1693378f?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) с TypeScript 5 на TypeScript 6.0. Автор предполагает, что их можно скормить ИИ-агенту для помощи в миграции.
+
+## ⚙️ Node.js
+### Эволюция графика релизов Node.js: работа в процессе
+Команда Node.js давно обсуждает возможность перехода на новый график — один крупный релиз в год вместо двух. Предлагается убрать разделение на четные и нечетные версии, сделав каждый релиз LTS-версией (с предварительными 11 месяцами статуса alpha/current). Это предварительный анонс, окончательная публикация ожидается в апреле, поэтому всё может измениться (вот [ссылка на резервную версию](https://gist.github.com/peterc/c67c356a802f37b0ea5528fcf8546cb7?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)). Забавный побочный эффект: последняя LTS-версия Node будет совпадать с годом. Например, Node 28 станет LTS в 2028 году, и так далее.
+
+### Вышел Node.js 25.8.0 (Current)
+Обычный промежуточный релиз, но с интересным дополнением — флагом [`--permission-audit`](https://github.com/nodejs/node/pull/61869?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). Если вы хотите использовать [модель разрешений](https://nodejs.org/api/permissions.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) или отлаживать ошибки, связанные с ней, этот флаг включает модель в режиме «только предупреждение». Это отличный способ провести аудит вашего приложения перед полноценным включением функции.
+
+### OpenJS запускает программу модернизации Node.js
+The OpenJS Foundation [запустила программу по обновлению и модернизации Node.js](https://openjsf.org/blog/nodejs-lts-upgrade-program?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), направленную на помощь предприятиям в безопасном переходе с устаревших и неподдерживаемых версий Node.js.
+
+### Почему я выбрал Electron вместо нативных технологий (и сделал бы это снова)
+[Выпуск подкаста Syntax](https://syntax.fm/show/983/why-i-chose-electron-over-native-and-i-d-do-it-again?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), в котором обсуждаются причины использования Electron для создания десктопных приложений.
+
+### npmx.dev: новый быстрый поиск по npm-реестру
+[npmx.dev](https://npmx.dev/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — это новый способ быстрого поиска и просмотра официального npm-реестра, который на этой неделе перешел в стадию альфа. [Пост с подробностями](https://npmx.dev/blog/alpha-release?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+
+## ⚒️ Инструменты и библиотеки
+### Вышел AdonisJS v7: "всё включено" для Node.js
+**AdonisJS** — популярный Node.js-фреймворк, который предоставляет всё необходимое "из коробки": аутентификацию, ORM, очереди, тестирование и многое другое. С выходом седьмой версии появился [совершенно новый сайт](https://adonisjs.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), интеграция с OpenTelemetry и новые стартовые наборы для быстрого создания приложений.
+
+### React PDF 10.4
+Вышла версия **React PDF 10.4** библиотеки для отображения PDF-документов в React-приложениях. [Обновление](https://github.com/wojtekmaj/react-pdf/releases/tag/v10.4.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) добавляет возможность переопределять цвета, используемые при рендеринге.
+
+### Yoopta Editor 6.0: головной редактор текста для React
+**Yoopta Editor** — это библиотека с открытым исходным кодом (лицензия MIT) для создания блочных редакторов текста в стиле Notion. Он является "головным" (headless), что даёт полную свободу в дизайне, но уже включает множество UI-компонентов для быстрого старта. Посмотрите [живой пример на площадке](https://yoopta.dev/playground?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+### ng2-charts: графики для Angular на Chart.js
+Библиотека **ng2-charts** для создания графиков в Angular, основанная на Chart.js, теперь поддерживает Angular 20.
+
+### vue-superselect: головной селект для Vue 3
+**vue-superselect** — это "головная" (headless) библиотека для создания выпадающих списков и комбобоксов во Vue 3.
+
+### Milkdown 7.19
+Вышел **Milkdown 7.19** — фреймворк для создания WYSIWYG-редакторов markdown с плагинной архитектурой.
+
+### ▶  Пробуем новый CodePen 2.0
+Мы большие фанаты CodePen, и здорово видеть, как платформа развивается с новыми функциями и полным переписыванием кода. Кэсси Уильямс [рассказывает об изменениях](https://www.youtube.com/watch?v=0R4l8nlmCAQ&utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) в новом видео: новая файловая система, вкладки, процессоры кода и многое другое. Сейчас [идет закрытое бета-тестирование](https://codepen.io/beta?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online), но можно запросить приглашение.
+
+### ASCII Drawing Board: веб-инструмент для рисования ASCII-диаграмм
+У этого [инструмента от Дениса](https://www.delopsu.com/draw?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) есть несколько интересных функций, включая «кисть» трех размеров, настраиваемый размер холста и возможность сохранять текстовые «кисти» для последующего использования.
+
+### Swatchify: извлечение доминирующих цветов из изображений
+Доступен как CLI на Go, JS-библиотека и REST API. [Инструмент Джеймса Кэмпбелла](https://james-see.github.io/swatchify/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) работает полностью в браузере и не имеет зависимостей. Принимает 6 различных форматов изображений и выводит результат в виде текста, JSON или PNG-палитры. [Репозиторий здесь](https://github.com/james-see/swatchify?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+### 8bitcn/ui: набор из более чем 50 доступных компонентов в ретро-стиле
+Для тех, кто любит пиксельную графику 80-х! [Платформа от OrcDev](https://www.8bitcn.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) также является реестром shadcn/ui, поэтому вы можете легко добавлять свои компоненты. [Код здесь](https://github.com/TheOrcDev/8bitcn-ui?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+### Heatmap: просмотрщик изменений для ревью кода
+Просто замените «github․com» в любом URL пул-реквеста на «0github․com» и [увидите](https://0github.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) цветную разметку каждой строки/токена, показывающую, сколько внимания требует данный PR от человека.
+
+### VMPrint: движок верстки на чистом JS для идеального вывода PDF
+Обычно для печати в PDF используют headless-браузеры, но [VMPrint](https://github.com/cosmiciron/vmprint?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) гарантирует идентичный макет при идентичных входных данных, вплоть до позиции каждого символа. [Вот пример PDF](https://github.com/cosmiciron/vmprint/blob/main/documents/readme-assets/readme.pdf?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+### Dinero.js 2.0: безопасная работа с денежными значениями
+[Библиотека](https://www.dinerojs.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) для создания, расчета и форматирования денежных сумм. [Версия 2.0](https://github.com/dinerojs/dinero.js/releases/tag/v2.0.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — это полный переписывание с новой, древовидно-шейкабельной функциональной архитектурой.
+
+### TinyBase 8.0: Реактивное хранилище данных для локально-первых приложений
+**TinyBase** — это реактивное хранилище данных, которое может выступать в роли полноценного бэкенда для многих типов приложений. Оно отлично работает само по себе или [интегрируется с облачными хранилищами, клиентскими БД и SQL.](https://tinybase.org/guides/the-basics/architectural-options/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) В версии 8.0 появилась поддержка middleware и возможность хранить объекты и массивы в «ячейках». [Узнать больше о новом релизе.](https://tinybase.org/guides/releases/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online#v8-0)
+
+### React Native Grab: мгновенный поиск исходного кода по UI
+Команда Callstack представила раннюю версию полезного инструмента для разработчиков React Native. **React Native Grab** — это middleware для Metro, которое позволяет встряхнуть устройство, войти в режим «захвата», нажать на любой элемент интерфейса и сразу же получить в буфер обмена путь к файлу с его исходным кодом и контекст компонента. Проект вдохновлен [React Grab](https://www.react-grab.com/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и доступен на [GitHub.](https://github.com/callstackincubator/react-native-grab?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+
+### txiki.js: маленький и мощный JavaScript-рантайм
+**txiki.js** — это новый JavaScript-рантайм, построенный на базе QuickJS-ng и libuv. Он небольшой, но мощный, поддерживает последние возможности ECMAScript и соответствует стандартам [WinterTC](https://wintertc.org/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online). Исходный код доступен на [GitHub](https://github.com/saghul/txiki.js?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online).
+
+## Обновления
+- [Fastify 5.8](https://github.com/fastify/fastify/releases/tag/v5.8.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — быстрый веб-фреймворк получил [тайм-ауты на уровне обработчиков](https://github.com/fastify/fastify/pull/6521?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) и совместимость с Pino v9/v10.
+- [GramIO 0.7](https://gramio.dev/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — фреймворк для Telegram Bot API с поддержкой [Telegram Bot API 9.5](https://core.telegram.org/bots/api?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online#march-1-2026).
+- [mp3tag.js 3.16](https://mp3tag.js.org/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — чтение и запись ID3-метаданных в MP3, MP4/M4A, AIFF и AAC файлы.
+- [sax-js 1.5](https://github.com/isaacs/sax-js?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — SAX-стиль парсер XML и HTML от Исаака Шлютера.
+- [jose 6.2](https://github.com/panva/jose?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — библиотека для JSON Object Signing and Encryption.
+- [NodeBB 4.9](https://github.com/NodeBB/NodeBB/releases/tag/v4.9.0?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — форумное ПО на Node.js.
+- [AVA 7.0](https://github.com/avajs/ava?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — популярный тест-раннер для Node.js.
+- [React Native Skia 2.5](https://github.com/Shopify/react-native-skia?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — высокопроизводительная 2D-графика на базе Skia для React Native. [Документация.](https://shopify.github.io/react-native-skia/docs/getting-started/installation/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- [React-Custom-Scroll 7.1](https://github.com/rommguy/react-custom-scroll?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — библиотека для кастомизации полос прокрутки с сохранением нативного поведения. Теперь с поддержкой React 19. [Демо.](https://rommguy.github.io/react-custom-scroll/exampleDist/index.html?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- [Cron Generator 2.2](https://github.com/sojinantony01/react-cron-generator?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — компонент для визуального создания cron-выражений. [Демо.](https://sojinantony01.github.io/react-cron-generator/?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online)
+- [next-translate 3.0](https://github.com/aralroca/next-translate?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — инструмент для легкой интернационализации (i18n) в Next.js.
+- [React Icons 5.6](https://github.com/react-icons/react-icons?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — популярная библиотека для подключения иконок в React-приложения.
+- [ilamy Calendar 1.4](https://github.com/kcsujeet/ilamy-calendar?utm_source=frontend&utm_medium=digest&utm_campaign=shabalin_online) — полнофункциональный компонент календаря в стиле Google Календаря.
