@@ -126,6 +126,8 @@ body {
       radial-gradient(900px 400px at -18% 14%, rgba(215, 62, 49, 0.14), transparent 70%),
       radial-gradient(640px 280px at 90% 82%, rgba(115, 182, 72, 0.12), transparent 75%),
       var(--bg-color);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }
 
