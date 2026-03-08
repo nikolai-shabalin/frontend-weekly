@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --accent: #ef6b2e;
   --accent-dark: #c84514;
   --accent-rgb: 239, 107, 46;
@@ -49,6 +50,32 @@
   --shadow-soft: 0 14px 30px rgba(93, 59, 34, 0.12);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --accent: #ff8a57;
+    --accent-dark: #ffb07f;
+    --accent-rgb: 255, 138, 87;
+    --accent-yellow: #f3bf1f;
+    --accent-green: #85c160;
+    --accent-red: #ff7a6f;
+    --bg-color: #19120d;
+    --paper-color: #261b14;
+    --ink: 244, 234, 220;
+    --ink-soft: 210, 188, 164;
+    --muted: 174, 149, 123;
+    --line: 116, 89, 64;
+    --focus-outline-color: #f7cfa9;
+    --black: 244, 234, 220;
+    --gray: 174, 149, 123;
+    --gray-dark: 210, 188, 164;
+    --gray-light: 38, 27, 20;
+    --gray-gradient: rgba(38, 27, 20, 0.82), #19120d;
+    --accent-hover: #ffd0b0;
+    --shadow-soft: 0 14px 30px rgba(0, 0, 0, 0.35);
+  }
+}
+
 *:focus-visible {
   outline: 3px solid var(--focus-outline-color);
   outline-offset: 3px;
@@ -87,6 +114,19 @@ body {
     var(--bg-color);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background:
+      radial-gradient(1200px 360px at 110% -10%, rgba(243, 191, 31, 0.18), transparent 68%),
+      radial-gradient(900px 400px at -18% 14%, rgba(215, 62, 49, 0.14), transparent 70%),
+      radial-gradient(640px 280px at 90% 82%, rgba(115, 182, 72, 0.12), transparent 75%),
+      var(--bg-color);
+  }
 }
 
 main {

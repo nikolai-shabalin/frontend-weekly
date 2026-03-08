@@ -68,7 +68,7 @@ import { SITE_TITLE } from '../consts';
   }
 
   .logo-link:hover {
-    color: #5b2d10;
+    color: var(--accent-hover);
   }
 
   .support-button {
@@ -86,6 +86,19 @@ import { SITE_TITLE } from '../consts';
   .support-button:hover {
     transform: translateY(-1px);
     filter: saturate(110%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .header__content {
+      border-color: rgba(var(--line), 0.8);
+      background: linear-gradient(130deg, #33251c, #422d20 64%, #56372a);
+    }
+
+    .support-button {
+      color: rgb(var(--ink));
+      background: var(--accent);
+      border-color: rgba(var(--accent-rgb), 0.4);
+    }
   }
 
   @media (max-width: 720px) {
