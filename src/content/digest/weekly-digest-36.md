@@ -1,7 +1,7 @@
 ---
 title: "Еженедельный дайджест #36: Новости фронтенда"
 description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
-pubDate: "Mar 09 2026"
+pubDate: "Mar 08 2026"
 mascotMessages: [
   { text: "Фронти на связи — выпуск #34! 🗞️", index: 0 },
   { text: "Interop 2026: браузеры синкаются! 🤝", index: 1 },
@@ -35,6 +35,17 @@ Popover API превращает всплывающие подсказки из 
 
 - **🧭 Вышла Safari Technology Preview 238.** Она добавляет поддержку нового настраиваемого элемента `<select>`. [Смотрите заметки о релизе](https://frontendfoc.us/link/181516/web).
 - **⚙️ Рэйчел Эндрюс делится последним обновлением веб-платформы.** Ознакомиться с ним можно [по этой ссылке](https://frontendfoc.us/link/181517/web).
+- **border-shape: будущее неквадратного веба**
+    Автор Уна Кравец рассказывает о новом мощном CSS-свойстве `border-shape`, которое скоро появится в браузерах. Оно позволит разработчикам задавать элементам не только прямоугольные, но и любые другие [произвольные формы границ](https://una.im/border-shape/?utm_source=CSS-Weekly&utm_campaign=Issue-637&utm_medium=web).
+
+- **Исчерпывающее руководство по стилизации списков с помощью CSS**
+    Ричард Разер создал подробное руководство, которое поможет вам вывести стилизацию списков на новый уровень. В статье подробно разбираются свойства `list-style`, псевдоэлемент `::marker`, функции `counters()` и `counter()`, а также правило `@counter-style`. Если вы хотите научиться создавать [по-настоящему крутые списки](https://piccalil.li/blog/an-in-depth-guide-to-customising-lists-with-css/?utm_source=CSS-Weekly&utm_campaign=Issue-637&utm_medium=web), это чтение обязательно для вас.
+
+- **Ключевые слова для CSS text-indent?**
+    Короткое и полезное видео о том, как использовать ключевые слова `each-line` и `hanging` в связке со свойством `text-indent`. Это простой способ сделать [типографику на вашем сайте](https://youtu.be/rUOS-zaVrAE?utm_source=CSS-Weekly&utm_campaign=Issue-637&utm_medium=web) более профессиональной и аккуратной.
+
+- **Потенциально скоро в вашем браузере появится :near()**
+    Дэниел Шварц Дэнни размышляет о возможностях нового псевдокласса `:near()`, который сейчас находится на стадии предложения. Эта функция позволит отслеживать, когда курсор мыши находится [рядом с элементом](https://css-tricks.com/potentially-coming-to-a-browser-near-you/?utm_source=CSS-Weekly&utm_campaign=Issue-637&utm_medium=web), открывая новые горизонты для интерактивных интерфейсов.
 
 
 ## 🎨 CSS и дизайн
@@ -156,8 +167,7 @@ The OpenJS Foundation [запустила программу по обновле
 ### React Native Grab: мгновенный поиск исходного кода по UI
 Команда Callstack представила раннюю версию полезного инструмента для разработчиков React Native. **React Native Grab** — это middleware для Metro, которое позволяет встряхнуть устройство, войти в режим «захвата», нажать на любой элемент интерфейса и сразу же получить в буфер обмена путь к файлу с его исходным кодом и контекст компонента. Проект вдохновлен [React Grab](https://www.react-grab.com/) и доступен на [GitHub.](https://github.com/callstackincubator/react-native-grab)
 
-
-### Обновления
+## Обновления
 - [Fastify 5.8](https://nodeweekly.com/link/181575/web) — быстрый веб-фреймворк получил [тайм-ауты на уровне обработчиков](https://nodeweekly.com/link/181576/web) и совместимость с Pino v9/v10.
 - [GramIO 0.7](https://nodeweekly.com/link/181578/web) — фреймворк для Telegram Bot API с поддержкой [Telegram Bot API 9.5](https://nodeweekly.com/link/181579/web).
 - [mp3tag.js 3.16](https://nodeweekly.com/link/181580/web) — чтение и запись ID3-метаданных в MP3, MP4/M4A, AIFF и AAC файлы.
@@ -171,4 +181,3 @@ The OpenJS Foundation [запустила программу по обновле
 - [next-translate 3.0](https://github.com/aralroca/next-translate) — инструмент для легкой интернационализации (i18n) в Next.js.
 - [React Icons 5.6](https://github.com/react-icons/react-icons) — популярная библиотека для подключения иконок в React-приложения.
 - [ilamy Calendar 1.4](https://github.com/kcsujeet/ilamy-calendar) — полнофункциональный компонент календаря в стиле Google Календаря.
-
