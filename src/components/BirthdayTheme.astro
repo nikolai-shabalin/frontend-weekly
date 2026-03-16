@@ -1,0 +1,251 @@
+---
+/**
+ * Локальная birthday-тема для одного выпуска дайджеста.
+ * Добавляет праздничный декор и "взрыв" конфетти по клику на ссылки.
+ */
+---
+
+<div class="birthday-bg" aria-hidden="true">
+  <span class="birthday-bg__emoji" style="left:5%;top:10%;animation-delay:0s;--drift-x:10px;--drift-y:16px;">🎈</span>
+  <span class="birthday-bg__emoji" style="left:16%;top:30%;animation-delay:1.6s;--drift-x:-12px;--drift-y:11px;">🎉</span>
+  <span class="birthday-bg__emoji" style="left:28%;top:68%;animation-delay:3.1s;--drift-x:8px;--drift-y:13px;">🎂</span>
+  <span class="birthday-bg__emoji" style="left:41%;top:14%;animation-delay:2.2s;--drift-x:-9px;--drift-y:15px;">🥳</span>
+  <span class="birthday-bg__emoji" style="left:53%;top:46%;animation-delay:4.4s;--drift-x:11px;--drift-y:10px;">🎁</span>
+  <span class="birthday-bg__emoji" style="left:67%;top:74%;animation-delay:0.8s;--drift-x:-10px;--drift-y:14px;">🎊</span>
+  <span class="birthday-bg__emoji" style="left:79%;top:20%;animation-delay:3.7s;--drift-x:12px;--drift-y:9px;">🧁</span>
+  <span class="birthday-bg__emoji" style="left:92%;top:58%;animation-delay:5.3s;--drift-x:-8px;--drift-y:12px;">🎈</span>
+  <span class="birthday-bg__emoji" style="left:8%;top:44%;animation-delay:2.9s;--drift-x:9px;--drift-y:12px;">🎊</span>
+  <span class="birthday-bg__emoji" style="left:12%;top:82%;animation-delay:4.6s;--drift-x:-10px;--drift-y:9px;">🎁</span>
+  <span class="birthday-bg__emoji" style="left:22%;top:54%;animation-delay:0.9s;--drift-x:11px;--drift-y:15px;">🥳</span>
+  <span class="birthday-bg__emoji" style="left:25%;top:9%;animation-delay:5.8s;--drift-x:-7px;--drift-y:13px;">🎉</span>
+  <span class="birthday-bg__emoji" style="left:34%;top:35%;animation-delay:1.3s;--drift-x:13px;--drift-y:10px;">🎈</span>
+  <span class="birthday-bg__emoji" style="left:37%;top:86%;animation-delay:3.3s;--drift-x:-11px;--drift-y:11px;">🧁</span>
+  <span class="birthday-bg__emoji" style="left:47%;top:63%;animation-delay:2.6s;--drift-x:10px;--drift-y:16px;">🎂</span>
+  <span class="birthday-bg__emoji" style="left:58%;top:12%;animation-delay:5.1s;--drift-x:-12px;--drift-y:10px;">🎊</span>
+  <span class="birthday-bg__emoji" style="left:62%;top:54%;animation-delay:1.1s;--drift-x:8px;--drift-y:14px;">🎁</span>
+  <span class="birthday-bg__emoji" style="left:71%;top:33%;animation-delay:4.1s;--drift-x:-9px;--drift-y:12px;">🎉</span>
+  <span class="birthday-bg__emoji" style="left:75%;top:90%;animation-delay:2.4s;--drift-x:12px;--drift-y:9px;">🥳</span>
+  <span class="birthday-bg__emoji" style="left:84%;top:41%;animation-delay:0.5s;--drift-x:-8px;--drift-y:15px;">🧁</span>
+  <span class="birthday-bg__emoji" style="left:88%;top:8%;animation-delay:3.5s;--drift-x:10px;--drift-y:11px;">🎈</span>
+  <span class="birthday-bg__emoji" style="left:95%;top:78%;animation-delay:1.8s;--drift-x:-10px;--drift-y:13px;">🎂</span>
+</div>
+
+<div id="birthday-overlay" aria-hidden="true"></div>
+
+<style is:global>
+  :root {
+    --accent: #ff7a00 !important;
+    --accent-dark: #f45d01 !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #ffb347 !important;
+      --accent-dark: #ff9a1f !important;
+    }
+  }
+
+  .content h2::before {
+    content: '🎂' !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    position: absolute !important;
+    top: -18px !important;
+    left: 0 !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+  }
+
+  .content ul li::marker {
+    color: #ff7a00;
+  }
+
+  .content a {
+    position: relative;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .content a:hover {
+    color: #f45d01 !important;
+  }
+
+  .content a::after {
+    content: ' ' attr(data-bday-emoji);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-size: 0.85em;
+  }
+
+  .content a:hover::after {
+    opacity: 1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .content a:hover {
+      color: #ffb347 !important;
+    }
+  }
+
+  .birthday-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .birthday-bg__emoji {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.36;
+    font-size: 1.55rem;
+    animation: birthday-float 7.8s ease-in-out infinite;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .birthday-bg__emoji {
+      opacity: 0.26;
+    }
+  }
+
+  @keyframes birthday-float {
+    0% {
+      transform: translate(0, 0) rotate(-4deg) scale(0.98);
+      opacity: 0.2;
+    }
+    35% {
+      transform: translate(var(--drift-x), calc(var(--drift-y) * -1)) rotate(5deg) scale(1.04);
+      opacity: 0.36;
+    }
+    70% {
+      transform: translate(calc(var(--drift-x) * -0.6), var(--drift-y)) rotate(-2deg) scale(1);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translate(0, 0) rotate(3deg) scale(0.98);
+      opacity: 0.22;
+    }
+  }
+
+  #birthday-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .click-confetti {
+    position: absolute;
+    pointer-events: none;
+    animation: confetti-burst 0.82s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  @keyframes confetti-burst {
+    0% {
+      transform: translate(0, 0) scale(0.7) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--dx), var(--dy)) scale(1.25) rotate(var(--rot));
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  document.addEventListener('astro:page-load', () => {
+    if (window.__birthdayThemeReady) return;
+    window.__birthdayThemeReady = true;
+
+    const overlay = document.getElementById('birthday-overlay');
+    const content = document.querySelector('.content');
+    if (!overlay || !content) return;
+
+    const confettiPool = ['🎉', '🎊', '✨', '🎈', '🪅', '🥳', '🎁', '🍰'];
+    const hoverEmojiPool = ['🎉', '🎊', '🎈', '🎁', '🥳', '🧁', '🎂', '✨', '🍰'];
+    const confettiColors = ['#ff7a00', '#ffb347', '#ff4f5e', '#f45d01', '#ff9a1f'];
+
+    function setRandomHoverEmoji(link) {
+      const emoji = hoverEmojiPool[Math.floor(Math.random() * hoverEmojiPool.length)];
+      link.setAttribute('data-bday-emoji', emoji);
+    }
+
+    function spawnConfetti(x, y, count = 26) {
+      const created = [];
+      for (let i = 0; i < count; i++) {
+        const confetti = document.createElement('span');
+        confetti.className = 'click-confetti';
+        confetti.textContent = confettiPool[Math.floor(Math.random() * confettiPool.length)];
+
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.7;
+        const distance = 52 + Math.random() * 96;
+        const dx = Math.cos(angle) * distance;
+        const dy = -Math.abs(Math.sin(angle) * distance) - 28 - Math.random() * 58;
+        const rot = `${(Math.random() - 0.5) * 130}deg`;
+
+        confetti.style.left = `${x}px`;
+        confetti.style.top = `${y}px`;
+        confetti.style.setProperty('--dx', `${dx}px`);
+        confetti.style.setProperty('--dy', `${dy}px`);
+        confetti.style.setProperty('--rot', rot);
+        confetti.style.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confetti.style.fontSize = `${0.95 + Math.random() * 1.2}rem`;
+        confetti.style.animationDelay = `${Math.random() * 0.1}s`;
+
+        overlay.appendChild(confetti);
+        created.push(confetti);
+      }
+
+      window.setTimeout(() => {
+        created.forEach((node) => node.remove());
+      }, 1100);
+    }
+
+    const links = content.querySelectorAll('a');
+    links.forEach((link) => setRandomHoverEmoji(link));
+
+    content.addEventListener('mouseover', (event) => {
+      const mouseEvent = event;
+      const target = mouseEvent.target;
+      const link = target instanceof Element ? target.closest('a') : null;
+      if (!link) return;
+
+      const from = mouseEvent.relatedTarget;
+      if (from instanceof Node && link.contains(from)) return;
+
+      setRandomHoverEmoji(link);
+    });
+
+    content.addEventListener('click', (event) => {
+      const mouseEvent = event;
+      if (mouseEvent.button !== 0 || mouseEvent.metaKey || mouseEvent.ctrlKey || mouseEvent.shiftKey || mouseEvent.altKey) {
+        return;
+      }
+
+      const target = mouseEvent.target;
+      const link = target instanceof Element ? target.closest('a') : null;
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('javascript:')) return;
+
+      event.preventDefault();
+      spawnConfetti(mouseEvent.clientX, mouseEvent.clientY, 26);
+
+      window.setTimeout(() => {
+        const targetAttr = link.getAttribute('target');
+        if (targetAttr === '_blank') {
+          window.open(href, '_blank', 'noopener');
+          return;
+        }
+
+        window.location.assign(href);
+      }, 520);
+    });
+  });
+</script>
