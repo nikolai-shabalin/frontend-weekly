@@ -50,6 +50,9 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 ### Насколько быстрым должен быть сайт на самом деле
 В статье [«Насколько быстро — это уже достаточно быстро?»](https://frontendfoc.us/link/181893/web) предлагают смотреть на производительность не только через сухие метрики, но и через реальный пользовательский опыт. Это хороший вводный материал для новичков, которые уже знают про Lighthouse и Core Web Vitals, но хотят понять, как связывать цифры с ощущением скорости.
 
+### Исследование утечек памяти во фронтенде
+В [эмпирическом исследовании утечек памяти](https://stackinsight.dev/blog/memory-leak-empirical-study/) автор проанализировал 500 репозиториев, из которых 210 были React-приложениями. Самые частые проблемы оказались довольно приземлёнными: забытые `clearTimeout` / `clearInterval` и неубранные обработчики событий. Для новичков это хороший материал, чтобы понять, какие мелкие недочёты со временем превращаются в реальные баги производительности.
+
 - В заметке [про `requestAnimationFrame`](https://frontendfoc.us/link/181902/web) разбирают, как с его помощью сделать анимации плавнее и не перегружать браузер.
 - В подборке [бенчмарков минификации JavaScript](https://frontendfoc.us/link/181948/web) сравнивают скорость и качество работы инструментов вроде esbuild, Bun, SWC и Uglify.
 - В [TC39 стартовало 113-е заседание](https://javascriptweekly.com/link/181805/web), и одной из главных тем стало [выдвижение Temporal API на stage 4](https://javascriptweekly.com/link/181806/web). Это важный шаг для современного и более удобного API работы с датами и временем в JavaScript.
@@ -58,6 +61,26 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 
 
 ## ⚛️ React и фреймворки
+### Vite 8.0
+[Vite 8.0](https://vite.dev/blog/announcing-vite8) — крупное обновление популярного инструмента сборки. Для разработчиков на React особенно важно, что [`@vitejs/plugin-react` v6](https://vite.dev/blog/announcing-vite8) больше не требует Babel: часть работы теперь берёт на себя Oxc. Ещё одно большое изменение — [Rolldown](https://rolldown.rs/) приходит на замену Rollup и esbuild в ряде сценариев. Также появились поддержка Wasm для SSR, проброс логов браузерной консоли в терминал и заметные улучшения производительности. Для проектов на Remix, TanStack Start и Astro это особенно хорошие новости.
+
+- [Vitest 4.1](https://vitest.dev/blog/vitest-4-1.html) получил поддержку Vite 8, так что обновлять тестовую инфраструктуру будет проще.
+
+### Переписали 130 тысяч строк с React на Svelte за две недели
+В статье [«Как мы переписали 130K строк с React на Svelte за две недели»](https://strawberrybrowser.com/blog/react-to-svelte) команда рассказывает, как быстро мигрировала большой проект. Материал интересен тем, что показывает: с современными инструментами и LLM переход между фреймворками стал заметно реальнее, чем раньше. А в [обсуждении на Bluesky](https://bsky.app/profile/rich-harris.dev/post/3mgps2bmkes2t) эта история используется как аргумент против идеи, что все будут навсегда заперты в одном популярном стеке.
+
+### shadcn/cli v4
+[shadcn/cli v4](https://ui.shadcn.com/docs/changelog/2026-03-cli-v4) — важное обновление CLI для [shadcn/ui](https://ui.shadcn.com/). Теперь инструмент лучше подходит не только людям, но и AI-агентам: появились *skills*, пресеты для быстрого переключения дизайн-систем, *dry run* для предварительного просмотра изменений и обновлённый [`shadcn/create`](https://ui.shadcn.com/docs/cli), который помогает быстрее просматривать готовые наборы компонентов.
+
+- [Dan Abramov отметил](https://bsky.app/profile/danabra.mov/post/3mgmxqsgugk25), что на сайте React появился режим **Copy Page**, который копирует страницу как Markdown. Можно также просто добавить [`.md` к URL документации](https://react.dev/learn/react-compiler/installation.md).
+- В [посте Joe Savona](https://x.com/en_JS/status/2031606726689173846) говорится, что у React Compiler скоро появится версия на Rust.
+- В официальной документации React [появятся интерактивные RSC-песочницы](https://github.com/reactjs/react.dev/pull/8300).
+- Пользователям [React Admin](https://marmelab.com/react-admin/) пригодится [сводка свежих изменений](https://marmelab.com/blog/2026/02/26/react-admin-february-2026-update.html).
+- [Рендеринг ошибок в React Server Components](https://twofoldframework.com/blog/error-rendering-with-rsc) объясняет, что происходит, когда серверный компонент падает во время рендера.
+- В видео [TanStack Start SSR: 3 Reasons to Love It](https://www.youtube.com/watch?v=EnzKA0fQkBM) разбирают, чем хорош SSR в TanStack Start.
+- Статья [о динамических формах в React и Next.js](https://www.smashingmagazine.com/2026/03/building-dynamic-forms-react-next-js/) показывает, как строить формы со сложной логикой.
+- Материал [Why React Fiber Exists](https://inside-react.vercel.app/blog/understanding-why-react-fiber-exists) полезен тем, кто хочет понять, зачем React понадобилась своя архитектура рендера.
+
 ### Eleventy теперь называется Build Awesome
 Создатель 11ty объявил, что [Eleventy меняет имя на Build Awesome](https://frontendfoc.us/link/181879/web). Ребрендинг должен выровнять название с экосистемой [Font Awesome](https://frontendfoc.us/link/181880/web) и [Web Awesome](https://frontendfoc.us/link/181881/web), а вместе с этим планировался запуск Pro-версии с визуальным редактором. Правда, связанный с этим [Kickstarter позже поставили на паузу](https://frontendfoc.us/link/181882/web). Новость вызвала споры: разработчики активно обсуждали [сам ребрендинг](https://frontendfoc.us/link/181883/web), [свои впечатления](https://frontendfoc.us/link/181884/web) и [общее направление проекта](https://frontendfoc.us/link/181885/web).
 
@@ -66,7 +89,6 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 
 ### Astro 6.0
 [Astro 6.0](https://javascriptweekly.com/link/181874/web) начинает использовать новый Environment API из Vite в команде `astro dev`. Для разработчика это значит, что локальная разработка становится ближе к реальному продакшен-окружению, а значит неприятных сюрпризов после деплоя должно быть меньше. Ещё одна заметная новинка — новый Fonts API, который упрощает работу с кастомными шрифтами.
-
 
 - В [разборе source maps для Next.js](https://javascriptweekly.com/link/181832/web) объясняется, как настроить карты исходников так, чтобы Sentry показывал стек ошибок по вашему коду, а не по непонятным минифицированным чанкам.
 - Из релизов вышли [React Native 0.85 RC.0](https://javascriptweekly.com/link/181825/web) и [Recharts 3.8](https://javascriptweekly.com/link/181827/web).
@@ -173,3 +195,15 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 - Вышел [pnpm 10.32.0](https://nodeweekly.com/link/182007/web) — очередное обновление популярного пакетного менеджера.
 - Доступен [Prisma 7.5](https://nodeweekly.com/link/181998/web) — новая версия одной из самых популярных ORM в TypeScript-мире.
 
+
+- [React Aria 1.16.0](https://react-aria.adobe.com/releases/v1-16-0.html) добавил мультивыбор в ComboBox, и это можно [посмотреть в демо](https://react-aria.adobe.com/ComboBox).
+- [React Modal Sheet 5.4](https://github.com/Temzasse/react-modal-sheet) — гибкий bottom sheet-компонент на базе Motion.
+- [Recharts 3.8](https://github.com/recharts/recharts/releases/tag/v3.8.0) — обновление библиотеки графиков для React.
+- [BaseUI 1.3](https://base-ui.com/) — библиотека неоформленных UI-компонентов, на базе которых можно собирать собственный дизайн.
+- [react-share v5.3.0](https://github.com/nygardk/react-share/releases/tag/v5.3.0) — кнопки шеринга для React-приложений.
+
+- [Hit Area](https://bazza.dev/craft/2026/hit-area) добавляет Tailwind CSS-утилиты `hit-area-*`, чтобы расширять область нажатия вокруг маленьких элементов интерфейса. Это особенно полезно для кнопок и иконок на мобильных устройствах.
+- [Ionic Framework 8.8](https://ionic.io/blog/announcing-ionic-framework-8-8) получил очередное обновление для разработки интерфейсов и кроссплатформенных приложений.
+
+- [Bippy](https://www.bippy.dev/) — набор инструментов для работы с внутренностями React. Он маскируется под devtools и получает доступ к внутренним механизмам React без изменений в коде приложения.
+- [theSVG](https://www.thesvg.org/) — каталог из 4000+ брендовых иконок, которые можно взять как SVG или JSX для React. Для примера можно посмотреть [логотип Apple](https://www.thesvg.org/icon/apple).
