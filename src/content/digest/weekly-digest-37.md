@@ -49,15 +49,39 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 
 - В заметке [про `requestAnimationFrame`](https://frontendfoc.us/link/181902/web) разбирают, как с его помощью сделать анимации плавнее и не перегружать браузер.
 - В подборке [бенчмарков минификации JavaScript](https://frontendfoc.us/link/181948/web) сравнивают скорость и качество работы инструментов вроде esbuild, Bun, SWC и Uglify.
+- В [TC39 стартовало 113-е заседание](https://javascriptweekly.com/link/181805/web), и одной из главных тем стало [выдвижение Temporal API на stage 4](https://javascriptweekly.com/link/181806/web). Это важный шаг для современного и более удобного API работы с датами и временем в JavaScript.
+- В [сравнении минификаторов JavaScript](https://javascriptweekly.com/link/181807/web) лидирует [SWC](https://javascriptweekly.com/link/181808/web), но [Minify](https://javascriptweekly.com/link/181809/web) и минификатор [Oxc](https://javascriptweekly.com/link/181810/web) идут очень близко и при этом работают быстрее.
+- В статье [как декодировать VIN на JavaScript](https://javascriptweekly.com/link/181835/web) объясняется, как работать с кодами идентификации автомобилей, а при необходимости можно отдельно посмотреть, [что такое VIN](https://javascriptweekly.com/link/181836/web).
+
 
 ## ⚛️ React и фреймворки
 ### Eleventy теперь называется Build Awesome
 Создатель 11ty объявил, что [Eleventy меняет имя на Build Awesome](https://frontendfoc.us/link/181879/web). Ребрендинг должен выровнять название с экосистемой [Font Awesome](https://frontendfoc.us/link/181880/web) и [Web Awesome](https://frontendfoc.us/link/181881/web), а вместе с этим планировался запуск Pro-версии с визуальным редактором. Правда, связанный с этим [Kickstarter позже поставили на паузу](https://frontendfoc.us/link/181882/web). Новость вызвала споры: разработчики активно обсуждали [сам ребрендинг](https://frontendfoc.us/link/181883/web), [свои впечатления](https://frontendfoc.us/link/181884/web) и [общее направление проекта](https://frontendfoc.us/link/181885/web).
 
+### Solid 2.0.0 Beta: эпоха `<Suspense>` закончилась
+[Бета Solid 2.0](https://javascriptweekly.com/link/181868/web) приносит важный сдвиг в том, как фреймворк работает с асинхронностью. Теперь вычисления могут возвращать `Promise` и асинхронные итераторы напрямую, а реактивная система умеет сама «останавливать» и «возобновлять» нужные участки приложения без старой схемы с `<Suspense>`. Вместо него для первого рендера теперь используется `<Loading>`, а для мутаций появился новый примитив `action()` с поддержкой оптимистичных обновлений. Для новичка это значит одно: работа с загрузками и изменением данных становится более встроенной в сам фреймворк, а не навешивается поверх. Но если проект уже на Solid 1.x, изменения довольно серьёзные, поэтому лучше сразу открыть [гайд по миграции](https://javascriptweekly.com/link/181871/web).
+
+### Astro 6.0
+[Astro 6.0](https://javascriptweekly.com/link/181874/web) начинает использовать новый Environment API из Vite в команде `astro dev`. Для разработчика это значит, что локальная разработка становится ближе к реальному продакшен-окружению, а значит неприятных сюрпризов после деплоя должно быть меньше. Ещё одна заметная новинка — новый Fonts API, который упрощает работу с кастомными шрифтами.
+
+
+- В [разборе source maps для Next.js](https://javascriptweekly.com/link/181832/web) объясняется, как настроить карты исходников так, чтобы Sentry показывал стек ошибок по вашему коду, а не по непонятным минифицированным чанкам.
+- Из релизов вышли [React Native 0.85 RC.0](https://javascriptweekly.com/link/181825/web) и [Recharts 3.8](https://javascriptweekly.com/link/181827/web).
+
 
 ## 📘 TypeScript
+### TypeScript 6.0 Release Candidate
+[Релиз-кандидат TypeScript 6.0](https://javascriptweekly.com/link/181803/web) выглядит не как революция, а как важный подготовительный шаг перед будущим TypeScript 7.0, который Microsoft хочет сильнее связать с нативной реализацией на Go. Главная практическая мысль для разработчика: если вы обновитесь и приведёте `tsconfig.json` к новым требованиям, то потом будет проще перейти на следующие версии. Между недавней beta и текущим RC отличий немного — Microsoft отдельно перечисляет [небольшие изменения](https://javascriptweekly.com/link/181804/web).
+
+### Семь лет до TypeScript: как Patreon перевёл 11 000 файлов
+В материале [о миграции Patreon на TypeScript](https://javascriptweekly.com/link/181829/web) рассказывается, как команда постепенно переводила огромную кодовую базу с JavaScript. Это не статья про «волшебную кнопку миграции», а честный разбор того, какие инструменты, приёмы и организационные решения помогают перевести большой проект без остановки разработки. Полезно всем, кто думает, что перейти на TypeScript можно только в маленьком проекте.
+
+### ArkType 2.2: типы TypeScript как runtime-валидаторы
+[ArkType 2.2](https://javascriptweekly.com/link/181841/web) интересен идеей «один раз описал тип — и он работает и как типизация, и как проверка во время выполнения». Для новичков это удобная мысль: не нужно отдельно писать TypeScript-тип и отдельно валидатор. В версии 2.2 появился `type.fn`, который умеет проверять аргументы и возвращаемое значение функций прямо во время работы программы.
 
 ## ⚙️ Node.js
+### Node.js 25.8.0: режим аудита для permission model
+В [Node.js 25.8.0](https://javascriptweekly.com/link/181816/web) добавили опцию [`--permission-audit`](https://javascriptweekly.com/link/181817/web), которая позволяет запускать [модель разрешений Node.js](https://javascriptweekly.com/link/181818/web) в режиме предупреждений. Это удобно, если вы хотите проверить, какие доступы реально использует приложение, но пока не готовы жёстко всё запрещать. Хороший промежуточный этап перед полноценным включением ограничений.
 
 
 ## Браузеры и DevTools
@@ -68,7 +92,15 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 - В обзоре [новинок DevTools в Chrome 146](https://frontendfoc.us/link/181890/web) показывают встроенные аудиты Lighthouse и новые возможности отладки, связанные с DevTools MCP server.
 - В материале [о поддержке PWA в браузерах и на устройствах](https://frontendfoc.us/link/181888/web) собрана полезная практическая сводка по тому, где прогрессивные веб-приложения работают хорошо, а где всё ещё есть ограничения.
 
-## 🤖 ИИ
+## 🤖 ИИ и остальное
+
+
+### Как украсть npm publish token через GitHub Issue
+В статье [про кражу npm-токенов через GitHub Issue](https://javascriptweekly.com/link/181833/web) разобран показательный сценарий атаки. В одном репозитории использовалась AI-система для разбора issues, и заголовок issue напрямую попадал в prompt. Дальше это стало только первым шагом многоэтапной атаки. Для фронтендера и любого open source-разработчика здесь важный урок: автоматизация с ИИ, CI и токенами может быть опасной, если между пользовательским вводом и секретами нет жёсткой изоляции.
+
+### Wikipedia пострадала от самораспространяющегося JavaScript-червя
+[Разбор инцидента в Wikipedia](https://javascriptweekly.com/link/181834/web) показывает, как случайно активированный скрипт использовал общий глобальный сценарий и испортил почти 4 000 страниц на Meta-Wiki. Это хороший пример того, почему общие пользовательские скрипты и глобальные хуки в крупных системах требуют очень осторожного обращения.
+
 
 ## ⚒️ Инструменты и библиотеки
 ### Reveal.js 6.0
@@ -77,9 +109,32 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 ### Video.js 10 Beta
 Популярный видеоплеер [Video.js](https://frontendfoc.us/link/181943/web) серьёзно переработали: [бета Video.js v10](https://frontendfoc.us/link/181891/web) уже доступна. Это важная новость для тех, кто встраивает видео на сайты и хочет следить за обновлением старых, но до сих пор востребованных библиотек.
 
+### TinyBase 8.0: реактивное хранилище для local-first приложений
+[TinyBase 8.0](https://javascriptweekly.com/link/181843/web) — это реактивное хранилище данных и движок синхронизации, который в некоторых сценариях может закрыть роль целого маленького бэкенда. Он умеет [интегрироваться с разными системами хранения](https://javascriptweekly.com/link/181844/web), а в [версии 8.0](https://javascriptweekly.com/link/181845/web) появились middleware и возможность хранить объекты и массивы прямо в ячейках. Для local-first приложений это довольно заметное обновление.
+
+### VMPrint: движок вёрстки PDF на чистом JavaScript
+[VMPrint](https://javascriptweekly.com/link/181846/web) предлагает интересную альтернативу связке с headless Chrome для генерации PDF. Авторы делают ставку на предсказуемый и повторяемый результат: если вход одинаковый, раскладка PDF тоже должна быть одинаковой вплоть до мелких деталей. Можно посмотреть и [пример готового PDF](https://javascriptweekly.com/link/181847/web).
+
 ### Обновления
 - [Inspira UI](https://frontendfoc.us/link/181906/web) предлагает набор open-source компонентов для анимированных интерфейсов на Vue и Nuxt; посмотреть примеры можно в [галерее компонентов](https://frontendfoc.us/link/181947/web).
 - Сервис [Photo Palettes](https://frontendfoc.us/link/181911/web) умеет строить цветовые палитры по фотографиям и может пригодиться в работе над визуальным стилем интерфейса.
 - В каталоге [All SVG Icons](https://frontendfoc.us/link/181909/web) собрано более 250 тысяч SVG-иконок, которые можно настраивать, скачивать и копировать в форматах для SVG, React, Vue и других стеков.
 - [HeyForm](https://frontendfoc.us/link/181949/web) — open-source конструктор форм, опросов и анкет.
 - [EXIF Metadata Viewer](https://frontendfoc.us/link/181914/web) — расширение для Chrome, которое показывает скрытые метаданные изображений.
+- Вышли [pnpm v10.32.0](https://javascriptweekly.com/link/181826/web) и [Jest 30.3](https://javascriptweekly.com/link/181828/web) — небольшие, но полезные обновления для повседневной разработки.
+
+- Из релизов: [Ember 6.11](https://javascriptweekly.com/link/181823/web), [Ionic Framework 8.8](https://javascriptweekly.com/link/181824/web) и [Knockout 3.5.2](https://javascriptweekly.com/link/181820/web). Особенно забавно, что Knockout получил первое обновление за шесть лет.
+
+
+- [RevoGrid](https://javascriptweekly.com/link/181838/web) — производительный data grid для больших наборов данных, который работает с Vue, Angular, React, Svelte и обычным JavaScript. У проекта есть [живое демо](https://javascriptweekly.com/link/181839/web) и [репозиторий на GitHub](https://javascriptweekly.com/link/181840/web).
+- [SQLite JS 1.3](https://javascriptweekly.com/link/181848/web) позволяет писать пользовательские функции SQLite на JavaScript.
+- [Heapify 1.0](https://javascriptweekly.com/link/181849/web) — быстрая очередь с приоритетами на базе бинарной кучи.
+- [OpenPlayer.js 3.0](https://javascriptweekly.com/link/181850/web) — модульный HTML5-медиаплеер с поддержкой tree-shaking.
+- [Emittery 2.0](https://javascriptweekly.com/link/181851/web) — современный асинхронный event emitter.
+- [Svelte Sonner 1.1](https://javascriptweekly.com/link/181852/web) — компонент toast-уведомлений для Svelte.
+- [EmbedPDF 2.8](https://javascriptweekly.com/link/181853/web) — JavaScript-просмотрщик PDF, не привязанный к конкретному фреймворку.
+- [Tabulator 6.4](https://javascriptweekly.com/link/181854/web) — библиотека для интерактивных таблиц.
+- [melonJS 18.0](https://javascriptweekly.com/link/181855/web) — лёгкий 2D-движок для HTML5-игр.
+- [flatted 3.4](https://javascriptweekly.com/link/181856/web) — быстрый парсер circular JSON.
+- [Poku 4.0](https://javascriptweekly.com/link/181857/web) — кроссплатформенный test runner.
+
