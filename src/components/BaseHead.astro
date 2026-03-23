@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/transitions.css';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -20,7 +20,7 @@ const { title, description, image } = Astro.props;
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <meta name="generator" content={Astro.generator} />
 
-<ViewTransitions />
+<ClientRouter />
 
 <!-- View Transitions -->
 <meta name="view-transition" content="same-origin" />

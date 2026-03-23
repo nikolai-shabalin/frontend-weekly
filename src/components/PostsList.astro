@@ -33,8 +33,8 @@ for (const post of posts) {
           group.posts.map((post) => (
               <li class="short-post">
                 <span class="post-tag">Дайджест</span>
-                <a href={`/${post.slug}/`} class="short-post__link">
-                  <h3 class="short-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
+                <a href={`/${post.id}/`} class="short-post__link">
+                  <h3 class="short-post__title" transition:name={`title-${post.id}`}>{post.data.title}</h3>
                 </a>
                 <p class="short-post__date">
                   <FormattedDate date={post.data.pubDate} />

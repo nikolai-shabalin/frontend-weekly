@@ -39,9 +39,9 @@
   --space-2xl: 3rem;
   --space-3xl: 4rem;
 
-  --font-heading: 'Russo One', sans-serif;
-  --font-body: 'Manrope', sans-serif;
-  --font-accent: 'Anonymous Pro', monospace;
+  --font-heading: "Russo One", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-accent: "Anonymous Pro", monospace;
 
   --content-width: 1440px;
   --radius-lg: 28px;
@@ -102,7 +102,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-lg);
   line-height: 1.65;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.01em;
   color: rgb(var(--ink));
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
