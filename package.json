@@ -12,15 +12,15 @@
     "lint:scripts": "eslint"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.6",
-    "@astrojs/mdx": "4.3.13",
-    "@astrojs/rss": "4.0.15",
-    "@astrojs/sitemap": "3.7.0",
+    "@astrojs/check": "0.9.8",
+    "@astrojs/mdx": "5.0.2",
+    "@astrojs/rss": "4.0.17",
+    "@astrojs/sitemap": "3.7.1",
     "@eslint/js": "10.0.1",
-    "astro": "5.18.0",
-    "eslint": "10.0.3",
+    "astro": "6.0.8",
+    "eslint": "10.1.0",
     "sharp": "0.34.5",
-    "stylelint": "17.4.0",
+    "stylelint": "17.5.0",
     "stylelint-config-expa": "1.0.0",
     "typescript": "5.9.3"
   },

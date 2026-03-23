@@ -229,14 +229,14 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
         {featuredPost && (
           <section class="featured-post">
             <span class="post-tag">Дайджест</span>
-            <a href={`/${featuredPost.slug}/`} class="featured-link">
-              <h2 class="featured-title" transition:name={`title-${featuredPost.slug}`}>{featuredPost.data.title}</h2>
+            <a href={`/${featuredPost.id}/`} class="featured-link">
+              <h2 class="featured-title" transition:name={`title-${featuredPost.id}`}>{featuredPost.data.title}</h2>
             </a>
             <p class="featured-date">
               {new Date(featuredPost.data.pubDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
             <p class="featured-description">{featuredPost.data.description}</p>
-            <a href={`/${featuredPost.slug}/`} class="featured-read-more">Читать дальше →</a>
+            <a href={`/${featuredPost.id}/`} class="featured-read-more">Читать дальше →</a>
           </section>
         )}
 
@@ -250,8 +250,8 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
                 {posts.map((post) => (
                   <li class="grid-post">
                     <span class="post-tag">Дайджест</span>
-                    <a href={`/${post.slug}/`} class="grid-post__link">
-                      <h3 class="grid-post__title" transition:name={`title-${post.slug}`}>{post.data.title}</h3>
+                    <a href={`/${post.id}/`} class="grid-post__link">
+                      <h3 class="grid-post__title" transition:name={`title-${post.id}`}>{post.data.title}</h3>
                     </a>
                     <p class="grid-post__date">
                       {new Date(post.data.pubDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
