@@ -1,0 +1,174 @@
+---
+title: "Еженедельный дайджест #39: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Mar 30 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #39! 🗞️", index: 0 },
+  { text: "Safari 26.4 подвёз мощный набор платформенных новинок. 🧪", index: 1 },
+  { text: "CSS всё увереннее отъедает задачи у JavaScript. 🎨", index: 2 },
+  { text: "Next.js 16.2 закрепил Adapter API и стал гибче. ⚛️", index: 3 },
+  { text: "TypeScript 6.0 потребует пересмотреть tsconfig. 📘", index: 4 },
+  { text: "Node закрыл девять уязвимостей 24 марта 2026. 🔒", index: 5 },
+  { text: "Storybook MCP готовит компоненты к эпохе AI-агентов. 🤖", index: 6 },
+  { text: "Knip v6 вычищает лишнее ещё быстрее. 🧹", index: 7 },
+  { text: "React Joyride 3.0 вернулся с переписанным ядром. 🚀", index: 8 },
+  { text: "Edge.js пробует запускать Node в WASM-песочнице. 🧱", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+### WebKit Features for Safari 26.4
+[Safari 26.4](https://webkit.org/blog/17862/webkit-features-for-safari-26-4/) получился очень насыщенным обновлением для тех, кто следит за платформой. В релизе появились CSS Grid Lanes, доработки Anchor Positioning, исправления для `zoom`, а также поддержка математических функций внутри `img`. Такие заметки полезно читать не только пользователям Safari: по ним хорошо видно, какие возможности веб-платформы начинают созревать по-настоящему.
+
+### Web Rewind: 30 лет веба в одном интерактивном путешествии
+[Web Rewind](https://www.web-rewind.com/) от Opera — это аккуратно собранная интерактивная прогулка по тридцати годам истории веба. Скорее не учебник, а визуальный аттракцион, но именно такие проекты хорошо напоминают, насколько быстро менялась среда, в которой мы работаем.
+
+### Подсветка сносок без лишней магии
+Китти Жиро показывает простой, но очень полезный приём: [как подсвечивать footnotes](https://kittygiraudel.com/2026/03/18/highlighting-footnotes/) после перехода по ссылке. Это маленькая деталь интерфейса, которая заметно улучшает чтение длинных текстов и документации.
+
+- [Firefox 149 получил split-view](https://frontendfoc.us/link/182756/web) и теперь умеет удобнее показывать две вкладки рядом.
+- [Structure Revealer](https://frontendfoc.us/link/182772/web) — bookmarklet для быстрой визуализации структурных HTML-элементов на странице. Полезно для accessibility-аудита и отладки разметки.
+
+## 🎨 CSS и дизайн
+### The Great CSS Expansion
+В статье [The Great CSS Expansion](https://blog.gitbutler.com/the-great-css-expansion) хорошо разложено, как современный CSS постепенно забирает себе задачи, которые раньше почти автоматически решались через JavaScript. Это полезный материал, чтобы сверить свои привычки с тем, что платформа уже умеет нативно, и не тащить скрипты туда, где они больше не нужны.
+
+### `light-dark()` скоро сможет переключать не только цвета
+Брамус рассказывает, что [`light-dark()` расширяют до поддержки изображений](https://www.bram.us/2026/03/19/more-easy-light-dark-mode-switching-light-dark-is-about-to-support-images/). Если эта возможность приживётся в браузерах, логика темизации станет заметно чище: переключение между светлой и тёмной версией ассета можно будет держать прямо в CSS, без дополнительных обходных решений.
+
+### Трюк с «блокером» для sticky header
+Джош Комо раскрыл, как устроен его [Sneaky Header Blocker Trick](https://www.joshwcomeau.com/css/header-blockers/). Это хороший пример того, как аккуратная CSS-идея создаёт ощущение «магии» в интерфейсе, хотя внутри всё довольно рационально.
+
+### Цветовая система из примитивов и семантики
+В материале [The Color System I Wish I Understood Sooner](https://theadminbar.com/semantics-and-primitives-color-system/) разбирают двухслойный подход к цветам: отдельно базовые токены, отдельно семантические значения. Если в проекте цвета уже начали расползаться по компонентам и состояниям, такой подход помогает вернуть предсказуемость.
+
+- В статье [о scroll-driven анимациях для `corner-shape`](https://css-tricks.com/experimenting-with-scroll-driven-corner-shape-animations/) показывают, что новое свойство хорошо дружит с анимацией и может пригодиться для выразительных UI-эффектов.
+- Заметка [про SVG favicon с учётом системной темы](https://pawelgrzybek.com/svg-favicons-that-respect-theme-preference/) напоминает о маленькой детали, которая делает сайт аккуратнее без лишней сложности.
+- [Folded Corner with CSS](https://kittygiraudel.com/2026/03/05/folded-corner-with-css/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) — аккуратный разбор эффекта загнутого угла на чистом CSS.
+- В статье [про `contrast-color()`](https://una.im/contrast-color?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) Уна Краветс показывает, как браузер может сам выбирать более читаемый цвет текста для заданного фона.
+- Материал [про dropdown внутри scrollable containers](https://www.smashingmagazine.com/2026/03/dropdowns-scrollable-containers-why-break-how-fix/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) полезен всем, кто сталкивался с обрезанными меню и попапами в панелях с прокруткой.
+- В заметке [Two Circles, One Arrow, and Anchor Positioning](https://frontendmasters.com/blog/two-circles-one-arrow-and-anchor-positioning/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) показывают ещё один нетривиальный сценарий для Anchor Positioning.
+
+<TelegramCTA/>
+
+## 🌐 Браузеры и DevTools
+### Браузерные новости недели
+Эта неделя снова получилась богатой на платформенные и браузерные мелочи, которые по отдельности выглядят скромно, а вместе хорошо показывают вектор развития экосистемы.
+
+- [BaseWatch](https://basewatch.dev/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) присылает уведомления, когда CSS-свойства доходят до Baseline-поддержки.
+- [Awesome Mac](https://frontendfoc.us/link/182758/web) остаётся хорошим каталогом приложений для macOS, а его [раздел с developer tools](https://frontendfoc.us/link/182759/web) особенно полезен для тех, кто любит собирать аккуратный инструментарий.
+
+## 📦 JavaScript
+### Три столпа JavaScript-раздутия
+Джеймс Гарбутт в статье [The Three Pillars of JavaScript Bloat](https://43081j.com/2026/03/three-pillars-of-javascript-bloat) разбирает три частые причины чрезмерного роста `node_modules`: наследие старой совместимости, микробиблиотеки ради одной функции и устаревшие ponyfill-подходы. Материал полезен не только как критика экосистемы, но и как практическая подсказка, где искать лишний вес в собственном проекте.
+
+### Иногда TypeScript быстрее связки Rust + WASM
+Инженеры Thesys неожиданно показали, что [переписывание Rust/WASM-парсера на TypeScript может ускорить систему](https://www.openui.com/blog/rust-wasm-parser). Главная мысль тут не в «TypeScript быстрее Rust», а в том, что граница между WASM и JavaScript иногда сама становится дорогой операцией.
+
+### Edge.js: Node.js внутри WebAssembly-песочницы
+[Edge.js](https://wasmer.io/posts/edgejs-safe-nodejs-using-wasm-sandbox) пытается запускать Node-приложения в изолированной WASM-среде, сохраняя совместимость с существующим кодом и модулями. Проект пока ранний, но сама идея выглядит очень любопытно для сценариев, где хочется и Node-экосистему, и более жёсткие границы исполнения.
+
+- [pnpm 11 beta](https://github.com/pnpm/pnpm/releases/tag/v11.0.0-beta.0) показывает, куда движется пакетный менеджер: SQLite-powered store, обновлённая конфигурация, более строгая безопасность сборки и новые команды вроде `pnpm sbom`.
+- [JavaScript Thinks Everything's a Date](https://javascriptweekly.com/link/182680/web) — ещё один повод порадоваться прогрессу Temporal.
+- [An Introductory Guide to Bookmarklets](https://javascriptweekly.com/link/182681/web) — хороший вводный текст про совсем маленькие, но всё ещё полезные кусочки JavaScript в закладках.
+- [Node.js Worker Threads are Problematic, But They Work Great for Us](https://javascriptweekly.com/link/182683/web) — практический взгляд на инструмент, который часто ругают, но который всё равно может отлично работать в реальном проде.
+- [Chibivue](https://javascriptweekly.com/link/182664/web) — мини-реализация Vue.js и сопутствующая книга, в которой фреймворк предлагают собрать своими руками.
+
+## ⚛️ React и фреймворки
+### Next.js 16.2: Adapter API стал стабильным
+Команда Vercel выпустила отдельный разбор того, [как Next.js 16.2 выходит на новые платформы через Adapter API](https://nextjs.org/blog/nextjs-across-platforms). Это важное изменение для экосистемы: адаптеры позволяют платформам тоньше управлять сборкой и рантаймом, а значит, у Next появляется более реалистичный путь к жизни за пределами «одного правильного хоста».
+
+### Storybook MCP для React
+[Storybook MCP for React](https://storybook.js.org/blog/storybook-mcp-for-react/) — одна из самых показательных новостей недели про пересечение фронтенда и AI-инструментов. Storybook теперь может выступать источником структурированного знания о компонентах для coding agents, чтобы тем было проще писать истории, тесты и даже исправления багов.
+
+### `data-testid` как запах доступности
+Доминик Дорфмайстер в тексте [Test IDs Are an Accessibility Smell](https://tkdodo.eu/blog/test-ids-are-an-a11y-smell) спорит не с самим тестированием, а с привычкой опираться на искусственные селекторы там, где лучше бы использовать роли и доступные элементы интерфейса. Полезный материал для команд, у которых тесты и a11y живут в разных вселенных.
+
+### React Joyride 3.0
+[React Joyride 3.0](https://react-joyride.com/) — крупное переписывание популярной библиотеки для onboarding-туров внутри приложений. Проект перешёл на современный React, получил новые хуки и в целом выглядит как хороший повод пересмотреть старые туры, если они у вас давно не обновлялись.
+
+- [TanStack DB 0.6](https://tanstack.com/blog/tanstack-db-0.6-app-ready-with-persistence-and-includes) продолжает двигать идею локальной реактивной базы данных внутри приложения. В релизе особенно интересны persistence через SQLite и offline-сценарии.
+- В [большом бенчмарке SSR-фреймворков на React](https://blog.platformatic.dev/react-ssr-framework-benchmark-tanstack-start-react-router-nextjs) сравнили TanStack Start, React Router и Next.js под высокой нагрузкой. Хорошее напоминание, что производительность фреймворка часто меняется прямо по ходу таких исследований.
+- [A Gentle Intro to npm Workspaces, With Visuals](https://wasp.sh/blog/2026/03/25/gentle-intro-npm-workspaces) — понятный вводный материал для тех, кто только подступается к workspace-подходу.
+- [Semiotic 3.0](https://semiotic.nteract.io/) вернул к жизни React + D3-фреймворк для визуализации данных, особенно сильный в нестандартных типах графиков.
+- [Two React Design Choices Developers Don’t Like, But Can’t Avoid](https://dev.to/playfulprogramming/two-react-design-choices-developers-dont-like-but-cant-avoid-d6g) — текст Райана Карниато о том, почему некоторые спорные решения React не так уж случайны.
+- [Storybook 10.3.0](https://github.com/storybookjs/storybook/releases/tag/v10.3.0) добавил поддержку Vite 8, Next.js 16.2 и ESLint 10, а также превью MCP-сервера для React-разработки.
+- [Astro 6.1](https://astro.build/blog/astro-610/) — свежее обновление Astro, которое тоже стоит держать в поле зрения фронтендерам.
+
+## 📘 TypeScript
+### TypeScript 6.0 затягивает настройки по умолчанию
+[TypeScript 6.0](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/) — не просто ещё один релиз компилятора, а заметная подготовка к будущему TypeScript 7.0 с нативной реализацией на Go. Главное здесь не новые фичи, а то, что команда активно меняет дефолты и подталкивает проекты к более строгой и современной конфигурации.
+
+- `strict` теперь по умолчанию `true`.
+- `module` теперь по умолчанию `esnext`.
+- `types` теперь по умолчанию `[]`, так что часть проектов внезапно перестанет автоматически подтягивать типы из `node_modules/@types`.
+- `--moduleResolution node` уходит в прошлое, и для Node-проектов всё важнее `nodenext`.
+- `rootDir` теперь по умолчанию `.` — это тоже способно неожиданно всплыть в старых конфигурациях.
+
+## ⚙️ Node.js
+### Security releases Node.js от 24 марта 2026
+24 марта 2026 года команда Node.js выпустила [пакет security-обновлений](https://nodejs.org/en/blog/vulnerability/march-2026-security-releases) для веток 25.x, 24.x, 22.x и 20.x. Закрыто девять уязвимостей, включая две высокой серьёзности, поэтому это как раз тот тип обновления, который лучше не откладывать «на потом».
+
+### Как в V8 проектировали защиту от HashDoS
+Официальный пост [про новый integer hash для V8](https://nodejs.org/en/blog/vulnerability/march-2026-hashdos) очень технический, но именно поэтому особенно интересный. Это редкий случай, когда security-история одновременно даёт и практический контекст, и хорошую инженерную экскурсию в устройство рантайма.
+
+### Куда делись 400 мегабайт памяти
+В разборе [Where Did 400 Megabytes of Memory Go?](https://frn.sh/pmem/) расследуют, почему один Node/WebSocket-под в Kubernetes ел заметно больше памяти, чем остальные, хотя стандартные показатели выглядели вполне безобидно. Хороший материал для тех, кто уже упирался в ситуации, где `process.memoryUsage()` явно не рассказывает всю правду.
+
+- Вокруг ядра Node снова обсуждают роль AI-кода: в сообществе появилась [петиция против вкладов, собранных с помощью ИИ](https://javascriptweekly.com/link/182660/web).
+- История с Deno тоже не прошла мимо недели: после ухода части сотрудников Джош Коллинсворт отдельно [написал, что Deno не исчезает](https://javascriptweekly.com/link/182663/web).
+
+## 🤖 ИИ
+### CSS-рефакторинг с «страховочной сеткой» из ИИ
+Даниэла Барон в статье [CSS Refactoring with an AI Safety Net](https://danielabaron.me/blog/css-refactoring-with-an-ai-safety-net/) показывает более зрелый подход к AI-инструментам: не отдавать им весь проект целиком, а использовать как ограниченного помощника в контролируемом рефакторинге. Получился хороший antidote против бессистемного vibe coding.
+
+### Designing with Claude Code
+В видео [Designing with Claude Code](https://www.youtube.com/watch?v=lkKGQVHrXzE) Стив Шогер показывает, как кодовый агент вписывается именно в дизайнерский процесс, а не только в программирование. Полезно посмотреть тем, кто пока воспринимает такие инструменты исключительно как «генераторы кода».
+
+### React Native Executorch
+[React Native Executorch](https://github.com/software-mansion/react-native-executorch) от Software Mansion предлагает декларативный способ гонять AI-модели прямо на устройстве. Для React Native это особенно интересно: on-device AI постепенно становится не демонстрацией, а нормальным направлением прикладной разработки.
+
+- Дэн Абрамов рассказал, как использовал Claude, чтобы подготовить [фикс для бага в React](https://github.com/facebook/react/pull/36134), связанного с [конкретной проблемой в трекере](https://github.com/facebook/react/issues/35821). Короткое объяснение подхода он оставил [в Bluesky](https://bsky.app/profile/danabra.mov/post/3mhrdue7gds2h).
+- [WordPress.com теперь даёт управлять сайтом через AI-агента](https://frontendfoc.us/link/182801/web) — ещё один пример того, как агентные интерфейсы просачиваются в привычные веб-продукты.
+- Фил Итон собрал обзор [политик AI-assisted contributions у 112 source-available проектов](https://theconsensus.dev/p/2026/03/02/source-available-projects-and-their-ai-contribution-policies.html). Хорошее чтение для команд, которые ещё только формулируют собственные правила.
+
+## ⚒️ Инструменты и библиотеки
+### Knip v6
+[Knip v6](https://knip.dev/) продолжает делать одну очень полезную вещь: находить мусор в проекте, который со временем перестают замечать даже внимательные команды. В новой версии инструмент опирается на `oxc-parser` и обещает ускорение в 2-4 раза, что особенно приятно на крупных монорепозиториях.
+
+### Knex.js 3.2 и возвращение активной разработки
+[Knex.js 3.2](https://knexjs.org/) сам по себе уже неплохая новость для тех, у кого эта библиотека годами лежит в проде. Но ещё интереснее сигнал вокруг проекта: команда отдельно объявила о [возвращении активной разработки](https://knexjs.org/blog/posts/2026-03-23-welcome/), так что у старого знакомого SQL query builder снова появился заметный импульс.
+
+### csskit
+[csskit](https://csskit.rs/) выглядит как инструмент, за которым стоит следить уже сейчас: форматирование, минификация, бандлинг и другие операции вокруг CSS в одном быстром toolchain. До production-ready состояния, судя по описанию, он ещё не дошёл, но направление очень любопытное.
+
+### Ещё несколько интересных инструментов
+- [ArrowJS 1.0](https://javascriptweekly.com/link/182689/web) предлагает реактивный UI-рантайм на платформенных примитивах, без привычного тяжёлого фреймворкового слоя.
+- [Sugar High 1.0](https://sugar-high.vercel.app/) — лёгкий JSX syntax highlighter, который можно использовать и вне React.
+- [Secretlint](https://github.com/secretlint/secretlint) — узкоспециализированный инструмент для поиска секретов и чувствительных строк в репозитории.
+
+### Обновления
+- [Vavite 6](https://github.com/cyco130/vavite) позволяет использовать Vite и для серверного Node-кода, включая HMR на обеих сторонах приложения.
+- [htmlparser2 12.0](https://github.com/fb55/htmlparser2) обновил один из самых известных HTML/XML-парсеров для Node и браузера.
+- [Deno 2.7.6-2.7.8](https://github.com/denoland/deno/releases) добавили полезные улучшения вокруг `deno eval`, flamegraph и NodeRuntime CDP.
+- [pnpm/action-setup 5.0](https://github.com/pnpm/action-setup) теперь работает на Node.js v24.
+- [pnpm 10.33](https://github.com/pnpm/pnpm/releases/tag/v10.33.0) добавил настройку `dedupePeers`.
+- [OpenAI Node 6.33.0](https://github.com/openai/openai-node/releases/tag/v6.33.0) продолжает быстро обновляться вслед за API и моделями.
+- [Jotai 2.19.0](https://github.com/pmndrs/jotai/releases/tag/v2.19.0) — свежее обновление минималистичного state management для React.
+- [React Stripe.js 6.0](https://github.com/stripe/react-stripe-js) — новая версия официальных React-компонентов для Stripe Elements.
+- [Bun 1.3.11](https://bun.com/blog/bun-v1.3.11), [Valibot 1.3](https://javascriptweekly.com/link/182671/web) и [ESLint 10.1](https://javascriptweekly.com/link/182672/web) — ещё три заметных обновления из JavaScript-экосистемы.
+- [Faker 10.4](https://nodeweekly.com/link/182840/web) и [ws 8.20.0](https://nodeweekly.com/link/182841/web) — небольшие, но полезные обновления популярных библиотек.
+
+## 🗂️ Ресурсы и вдохновение
+### Полезные каталоги, демо и штуки для закладок
+- [theSVG](https://frontendfoc.us/link/182803/web) собирает 4000+ брендовых SVG-иконок, которые можно брать как SVG или сразу как JSX.
+- [docmd](https://frontendfoc.us/link/182775/web) — минималистичный генератор документации без тяжёлого фреймворкового слоя.
+- [Tooscut](https://frontendfoc.us/link/182777/web) показывает, как далеко уже ушёл браузерный видеомонтаж на WebGPU и WASM.
+- [Elena](https://frontendfoc.us/link/182779/web) — маленькая библиотека для progressive web components, где HTML и CSS по-прежнему стоят впереди JavaScript.
+- [Detail](https://detail.design/) — коллекция интерфейсных мелочей, которые делают продукт визуально аккуратнее и приятнее.
+- [Stroke](https://stroke.abhii.space/) превращает нарисованный от руки жест в Motion-анимацию для интерфейса.
+- [gh-space-shooter](https://frontendfoc.us/link/182795/web) превращает contribution graph GitHub в стилизованных Space Invaders — бесполезно, но очень смешно.
+- [CroSSword](https://comicss.art/games/11/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) — CSS-кроссворд на 89 терминов для тех, кто хочет развлечься и заодно что-то вспомнить.
+- [CSS Art: Cat Looking at the Stars](https://codepen.io/alvaromontoro/pen/MYeVvgr?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) — просто приятный пример того, что люди продолжают вытворять на чистом HTML и CSS.

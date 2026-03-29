@@ -13,16 +13,16 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.8",
-    "@astrojs/mdx": "5.0.2",
-    "@astrojs/rss": "4.0.17",
-    "@astrojs/sitemap": "3.7.1",
+    "@astrojs/mdx": "5.0.3",
+    "@astrojs/rss": "4.0.18",
+    "@astrojs/sitemap": "3.7.2",
     "@eslint/js": "10.0.1",
-    "astro": "6.0.8",
+    "astro": "6.1.1",
     "eslint": "10.1.0",
     "sharp": "0.34.5",
-    "stylelint": "17.5.0",
+    "stylelint": "17.6.0",
     "stylelint-config-expa": "1.0.0",
-    "typescript": "5.9.3"
+    "typescript": "6.0.2"
   },
   "engines": {
     "node": ">=22"
