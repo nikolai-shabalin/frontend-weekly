@@ -28,6 +28,9 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 ### Подсветка сносок без лишней магии
 Китти Жиро показывает простой, но очень полезный приём: [как подсвечивать footnotes](https://kittygiraudel.com/2026/03/18/highlighting-footnotes/) после перехода по ссылке. Это маленькая деталь интерфейса, которая заметно улучшает чтение длинных текстов и документации.
 
+- [Firefox 149 получил split-view](https://frontendfoc.us/link/182756/web) и теперь умеет удобнее показывать две вкладки рядом.
+- [Structure Revealer](https://frontendfoc.us/link/182772/web) — bookmarklet для быстрой визуализации структурных HTML-элементов на странице. Полезно для accessibility-аудита и отладки разметки.
+
 ## 🎨 CSS и дизайн
 ### The Great CSS Expansion
 В статье [The Great CSS Expansion](https://blog.gitbutler.com/the-great-css-expansion) хорошо разложено, как современный CSS постепенно забирает себе задачи, которые раньше почти автоматически решались через JavaScript. Это полезный материал, чтобы сверить свои привычки с тем, что платформа уже умеет нативно, и не тащить скрипты туда, где они больше не нужны.
@@ -43,8 +46,19 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 
 - В статье [о scroll-driven анимациях для `corner-shape`](https://css-tricks.com/experimenting-with-scroll-driven-corner-shape-animations/) показывают, что новое свойство хорошо дружит с анимацией и может пригодиться для выразительных UI-эффектов.
 - Заметка [про SVG favicon с учётом системной темы](https://pawelgrzybek.com/svg-favicons-that-respect-theme-preference/) напоминает о маленькой детали, которая делает сайт аккуратнее без лишней сложности.
+- [Folded Corner with CSS](https://kittygiraudel.com/2026/03/05/folded-corner-with-css/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) — аккуратный разбор эффекта загнутого угла на чистом CSS.
+- В статье [про `contrast-color()`](https://una.im/contrast-color?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) Уна Краветс показывает, как браузер может сам выбирать более читаемый цвет текста для заданного фона.
+- Материал [про dropdown внутри scrollable containers](https://www.smashingmagazine.com/2026/03/dropdowns-scrollable-containers-why-break-how-fix/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) полезен всем, кто сталкивался с обрезанными меню и попапами в панелях с прокруткой.
+- В заметке [Two Circles, One Arrow, and Anchor Positioning](https://frontendmasters.com/blog/two-circles-one-arrow-and-anchor-positioning/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) показывают ещё один нетривиальный сценарий для Anchor Positioning.
 
 <TelegramCTA/>
+
+## 🌐 Браузеры и DevTools
+### Браузерные новости недели
+Эта неделя снова получилась богатой на платформенные и браузерные мелочи, которые по отдельности выглядят скромно, а вместе хорошо показывают вектор развития экосистемы.
+
+- [BaseWatch](https://basewatch.dev/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) присылает уведомления, когда CSS-свойства доходят до Baseline-поддержки.
+- [Awesome Mac](https://frontendfoc.us/link/182758/web) остаётся хорошим каталогом приложений для macOS, а его [раздел с developer tools](https://frontendfoc.us/link/182759/web) особенно полезен для тех, кто любит собирать аккуратный инструментарий.
 
 ## 📦 JavaScript
 ### Три столпа JavaScript-раздутия
@@ -57,6 +71,10 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 [Edge.js](https://wasmer.io/posts/edgejs-safe-nodejs-using-wasm-sandbox) пытается запускать Node-приложения в изолированной WASM-среде, сохраняя совместимость с существующим кодом и модулями. Проект пока ранний, но сама идея выглядит очень любопытно для сценариев, где хочется и Node-экосистему, и более жёсткие границы исполнения.
 
 - [pnpm 11 beta](https://github.com/pnpm/pnpm/releases/tag/v11.0.0-beta.0) показывает, куда движется пакетный менеджер: SQLite-powered store, обновлённая конфигурация, более строгая безопасность сборки и новые команды вроде `pnpm sbom`.
+- [JavaScript Thinks Everything's a Date](https://javascriptweekly.com/link/182680/web) — ещё один повод порадоваться прогрессу Temporal.
+- [An Introductory Guide to Bookmarklets](https://javascriptweekly.com/link/182681/web) — хороший вводный текст про совсем маленькие, но всё ещё полезные кусочки JavaScript в закладках.
+- [Node.js Worker Threads are Problematic, But They Work Great for Us](https://javascriptweekly.com/link/182683/web) — практический взгляд на инструмент, который часто ругают, но который всё равно может отлично работать в реальном проде.
+- [Chibivue](https://javascriptweekly.com/link/182664/web) — мини-реализация Vue.js и сопутствующая книга, в которой фреймворк предлагают собрать своими руками.
 
 ## ⚛️ React и фреймворки
 ### Next.js 16.2: Adapter API стал стабильным
@@ -73,6 +91,11 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 
 - [TanStack DB 0.6](https://tanstack.com/blog/tanstack-db-0.6-app-ready-with-persistence-and-includes) продолжает двигать идею локальной реактивной базы данных внутри приложения. В релизе особенно интересны persistence через SQLite и offline-сценарии.
 - В [большом бенчмарке SSR-фреймворков на React](https://blog.platformatic.dev/react-ssr-framework-benchmark-tanstack-start-react-router-nextjs) сравнили TanStack Start, React Router и Next.js под высокой нагрузкой. Хорошее напоминание, что производительность фреймворка часто меняется прямо по ходу таких исследований.
+- [A Gentle Intro to npm Workspaces, With Visuals](https://wasp.sh/blog/2026/03/25/gentle-intro-npm-workspaces) — понятный вводный материал для тех, кто только подступается к workspace-подходу.
+- [Semiotic 3.0](https://semiotic.nteract.io/) вернул к жизни React + D3-фреймворк для визуализации данных, особенно сильный в нестандартных типах графиков.
+- [Two React Design Choices Developers Don’t Like, But Can’t Avoid](https://dev.to/playfulprogramming/two-react-design-choices-developers-dont-like-but-cant-avoid-d6g) — текст Райана Карниато о том, почему некоторые спорные решения React не так уж случайны.
+- [Storybook 10.3.0](https://github.com/storybookjs/storybook/releases/tag/v10.3.0) добавил поддержку Vite 8, Next.js 16.2 и ESLint 10, а также превью MCP-сервера для React-разработки.
+- [Astro 6.1](https://astro.build/blog/astro-610/) — свежее обновление Astro, которое тоже стоит держать в поле зрения фронтендерам.
 
 ## 📘 TypeScript
 ### TypeScript 6.0 затягивает настройки по умолчанию
@@ -94,6 +117,9 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 ### Куда делись 400 мегабайт памяти
 В разборе [Where Did 400 Megabytes of Memory Go?](https://frn.sh/pmem/) расследуют, почему один Node/WebSocket-под в Kubernetes ел заметно больше памяти, чем остальные, хотя стандартные показатели выглядели вполне безобидно. Хороший материал для тех, кто уже упирался в ситуации, где `process.memoryUsage()` явно не рассказывает всю правду.
 
+- Вокруг ядра Node снова обсуждают роль AI-кода: в сообществе появилась [петиция против вкладов, собранных с помощью ИИ](https://javascriptweekly.com/link/182660/web).
+- История с Deno тоже не прошла мимо недели: после ухода части сотрудников Джош Коллинсворт отдельно [написал, что Deno не исчезает](https://javascriptweekly.com/link/182663/web).
+
 ## 🤖 ИИ
 ### CSS-рефакторинг с «страховочной сеткой» из ИИ
 Даниэла Барон в статье [CSS Refactoring with an AI Safety Net](https://danielabaron.me/blog/css-refactoring-with-an-ai-safety-net/) показывает более зрелый подход к AI-инструментам: не отдавать им весь проект целиком, а использовать как ограниченного помощника в контролируемом рефакторинге. Получился хороший antidote против бессистемного vibe coding.
@@ -105,6 +131,8 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 [React Native Executorch](https://github.com/software-mansion/react-native-executorch) от Software Mansion предлагает декларативный способ гонять AI-модели прямо на устройстве. Для React Native это особенно интересно: on-device AI постепенно становится не демонстрацией, а нормальным направлением прикладной разработки.
 
 - Дэн Абрамов рассказал, как использовал Claude, чтобы подготовить [фикс для бага в React](https://github.com/facebook/react/pull/36134), связанного с [конкретной проблемой в трекере](https://github.com/facebook/react/issues/35821). Короткое объяснение подхода он оставил [в Bluesky](https://bsky.app/profile/danabra.mov/post/3mhrdue7gds2h).
+- [WordPress.com теперь даёт управлять сайтом через AI-агента](https://frontendfoc.us/link/182801/web) — ещё один пример того, как агентные интерфейсы просачиваются в привычные веб-продукты.
+- Фил Итон собрал обзор [политик AI-assisted contributions у 112 source-available проектов](https://theconsensus.dev/p/2026/03/02/source-available-projects-and-their-ai-contribution-policies.html). Хорошее чтение для команд, которые ещё только формулируют собственные правила.
 
 ## ⚒️ Инструменты и библиотеки
 ### Knip v6
@@ -116,6 +144,11 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 ### csskit
 [csskit](https://csskit.rs/) выглядит как инструмент, за которым стоит следить уже сейчас: форматирование, минификация, бандлинг и другие операции вокруг CSS в одном быстром toolchain. До production-ready состояния, судя по описанию, он ещё не дошёл, но направление очень любопытное.
 
+### Ещё несколько интересных инструментов
+- [ArrowJS 1.0](https://javascriptweekly.com/link/182689/web) предлагает реактивный UI-рантайм на платформенных примитивах, без привычного тяжёлого фреймворкового слоя.
+- [Sugar High 1.0](https://sugar-high.vercel.app/) — лёгкий JSX syntax highlighter, который можно использовать и вне React.
+- [Secretlint](https://github.com/secretlint/secretlint) — узкоспециализированный инструмент для поиска секретов и чувствительных строк в репозитории.
+
 ### Обновления
 - [Vavite 6](https://github.com/cyco130/vavite) позволяет использовать Vite и для серверного Node-кода, включая HMR на обеих сторонах приложения.
 - [htmlparser2 12.0](https://github.com/fb55/htmlparser2) обновил один из самых известных HTML/XML-парсеров для Node и браузера.
@@ -125,4 +158,17 @@ import TelegramCTA from '../../components/TelegramCTA.astro';
 - [OpenAI Node 6.33.0](https://github.com/openai/openai-node/releases/tag/v6.33.0) продолжает быстро обновляться вслед за API и моделями.
 - [Jotai 2.19.0](https://github.com/pmndrs/jotai/releases/tag/v2.19.0) — свежее обновление минималистичного state management для React.
 - [React Stripe.js 6.0](https://github.com/stripe/react-stripe-js) — новая версия официальных React-компонентов для Stripe Elements.
-- [Detail](https://detail.design/) — коллекция маленьких UX-решений, которые можно подсмотреть для интерфейсной полировки.
+- [Bun 1.3.11](https://bun.com/blog/bun-v1.3.11), [Valibot 1.3](https://javascriptweekly.com/link/182671/web) и [ESLint 10.1](https://javascriptweekly.com/link/182672/web) — ещё три заметных обновления из JavaScript-экосистемы.
+- [Faker 10.4](https://nodeweekly.com/link/182840/web) и [ws 8.20.0](https://nodeweekly.com/link/182841/web) — небольшие, но полезные обновления популярных библиотек.
+
+## 🗂️ Ресурсы и вдохновение
+### Полезные каталоги, демо и штуки для закладок
+- [theSVG](https://frontendfoc.us/link/182803/web) собирает 4000+ брендовых SVG-иконок, которые можно брать как SVG или сразу как JSX.
+- [docmd](https://frontendfoc.us/link/182775/web) — минималистичный генератор документации без тяжёлого фреймворкового слоя.
+- [Tooscut](https://frontendfoc.us/link/182777/web) показывает, как далеко уже ушёл браузерный видеомонтаж на WebGPU и WASM.
+- [Elena](https://frontendfoc.us/link/182779/web) — маленькая библиотека для progressive web components, где HTML и CSS по-прежнему стоят впереди JavaScript.
+- [Detail](https://detail.design/) — коллекция интерфейсных мелочей, которые делают продукт визуально аккуратнее и приятнее.
+- [Stroke](https://stroke.abhii.space/) превращает нарисованный от руки жест в Motion-анимацию для интерфейса.
+- [gh-space-shooter](https://frontendfoc.us/link/182795/web) превращает contribution graph GitHub в стилизованных Space Invaders — бесполезно, но очень смешно.
+- [CroSSword](https://comicss.art/games/11/?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) — CSS-кроссворд на 89 терминов для тех, кто хочет развлечься и заодно что-то вспомнить.
+- [CSS Art: Cat Looking at the Stars](https://codepen.io/alvaromontoro/pen/MYeVvgr?utm_source=CSS-Weekly&utm_campaign=Issue-638&utm_medium=web) — просто приятный пример того, что люди продолжают вытворять на чистом HTML и CSS.
