@@ -1,0 +1,172 @@
+---
+title: "Еженедельный дайджест #40: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Apr 06 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #40! 🗞️", index: 0 },
+  { text: "Pretext предлагает по-новому смотреть на живые layout'ы. 📐", index: 1 },
+  { text: "История с axios снова напомнила о боли supply chain. 🔐", index: 2 },
+  { text: "CSS Containment пора доставать из категории «когда-нибудь». 🎨", index: 3 },
+  { text: "React Joyride 3.0 приехал с переписанным ядром. ⚛️", index: 4 },
+  { text: "Storybook MCP всё ближе подводит React к эпохе AI-агентов. 🤖", index: 5 },
+  { text: "Transformers.js v4 запускает серьёзные модели прямо в браузере. 🧠", index: 6 },
+  { text: "Node.js 25.9 добавил новый контроль памяти и свежий streams API. 🟢", index: 7 },
+  { text: "Babylon.js 9.0 прокачивает 3D-возможности веба. 🌌", index: 8 },
+  { text: "Knip v6 продолжает беспощадно вычищать лишнее из проектов. 🧹", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и платформа
+### Pretext: библиотека для измерения многострочного текста и живых макетов
+[Pretext](https://chenglou.me/pretext/) предлагает измерять текст и перестраивать интерфейс без постоянных походов в DOM. Одна из самых неприятных задач в UI-разработке, понять сколько места реально займёт текст, с таким подходом становится заметно проще. В [динамическом демо](https://chenglou.me/pretext/dynamic-layout/) хорошо видно, как макет подстраивается на лету, а в [репозитории проекта](https://github.com/chenglou/pretext) уже можно посмотреть на API и код.
+
+Чтобы разобраться, почему вокруг идеи столько шума, пригодятся и дополнительные материалы: у Саймона Уиллисона есть [понятный обзор причин хайпа вокруг Pretext](https://simonwillison.net/2026/Mar/29/pretext/), Ден Оделл отдельно объясняет [какие реальные проблемы библиотека пытается решить](https://denodell.com/blog/youre-looking-at-the-wrong-pretext-demo), а Донни Д’Амато в [более сдержанном разборе ожиданий](https://blog.damato.design/posts/pretext-review/) напоминает, что это не «конец CSS», а скорее взгляд на то, куда могут двигаться layout-инструменты дальше.
+
+### Мартовский срез веб-платформы
+В обзоре [изменений веб-платформы за март](https://web.dev/blog/web-platform-03-2026) Рэйчел Эндрю собрала всё, что успело дозреть в браузерах за месяц. Такой формат помогает не следить за каждым спецификационным тикетом отдельно, а раз в месяц быстро сверять, что уже можно пробовать в реальных проектах.
+
+- [Обозреватель возможностей веб-платформы](https://web-platform-dx.github.io/web-features-explorer/) стал удобной витриной новых API и возможностей платформы: там можно фильтровать фичи по браузерам, стадии доступности и даже читать [ежемесячные заметки о релизах](https://web-platform-dx.github.io/web-features-explorer/release-notes/march-2026/).
+- Джейк Арчибальд в заметке про [странности `popover=hint`](https://github.com/whatwg/html/issues/12304#issue-4121948352) показывает, что даже у свежих платформенных возможностей важно проверять поведение в деталях, а не только наличие поддержки.
+- Материал [с мыслью «проблема не в сохранении веба, а в его потере»](https://www.techdirt.com/2026/02/17/preserving-the-web-is-not-the-problem-losing-it-is/) напоминает, что архивирование веба не враг современного интернета, а его страховка, особенно на фоне попыток ограничивать доступ к [Wayback Machine](https://web.archive.org/).
+
+## 🎨 CSS и дизайн
+### CSS Containment: полезная возможность, которой до сих пор мало пользуются
+В статье [что такое CSS Containment и как его использовать](https://csswizardry.com/2026/04/what-is-css-containment-and-how-can-i-use-it/) Гарри Робертс раскладывает по полочкам свойство [`contain`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain). Если объяснять совсем просто, оно помогает браузеру лучше понимать границы влияния элемента, а значит иногда улучшает производительность и уменьшает неожиданные побочные эффекты при перерисовке страницы.
+
+Здесь особенно ценна практическая часть: автор не просто перечисляет значения свойства, а объясняет, когда оно помогает, а когда может добавить сложность в отладке. После такого разбора `contain` уже не выглядит экзотикой из DevTools-скриншотов.
+
+- В свежем draft [модуля CSS Image Animation Level 1](https://drafts.csswg.org/css-image-animation-1/) предлагают свойство `image-animation`, которое должно дать браузеру более явный контроль над воспроизведением анимированных изображений.
+- Для вдохновения можно запустить [CSS обречён: DOOM в 3D на CSS](https://nielsleenheer.com/articles/2026/css-is-doomed-rendering-doom-in-3d-with-css/): это почти абсурдный, но очень показательный эксперимент, где DOOM рендерится через CSS-трансформации, а [демо](https://cssdoom.wtf/) можно открыть прямо в браузере.
+- В статье [почему дизайн в коде делает сильнее как дизайнера](https://adamsilver.io/blog/why-designing-in-code-makes-you-a-better-designer/) хорошо показано, почему работа с настоящим интерфейсом иногда учит дизайну лучше, чем статичные макеты.
+
+<TelegramCTA/>
+
+## ♿ Доступность и UX
+### Доступность не должна жить отдельной задачей в бэклоге
+Текст [о том, как внедрять accessibility-улучшения незаметно, но системно](https://piccalil.li/blog/applying-accessibility-fixes-with-stealth-for-the-greater-good/) предлагает зрелый подход к a11y: не ждать специального большого «аудита доступности», а вшивать такие улучшения в обычную ежедневную работу. Доступность часто кажется чем-то слишком большим и сложным, хотя на практике она лучше всего улучшается маленькими постоянными шагами.
+
+### `data-testid` не всегда лучший путь
+В статье [почему `data-testid` часто становится запахом плохой доступности](https://tkdodo.eu/blog/test-ids-are-an-a11y-smell) Доминик Дорфмайстер спорит не с тестами, а с привычкой опираться на искусственные селекторы там, где можно тестировать интерфейс через роли и доступные элементы. Такой подход делает тесты ближе к реальному пользовательскому поведению и параллельно подталкивает разметку в более здоровую сторону.
+
+- Разбор [вариантов предзагрузки изображений через JavaScript](https://macarthur.me/posts/preloading-images/) полезен всем, кто хочет ускорить отображение UI, но пока не очень понимает, какой способ загрузки выбрать в конкретной ситуации.
+- В материале [об управлении cookie-consent в 2026 году](https://cloudfour.com/thinks/cookie-consent-management-in-2026-part-1-overview/) собраны и продуктовые, и технические мысли о том, как аккуратнее работать с cookie-баннерами; если хочется глубже, автор отдельно приложил [технические рекомендации](https://cloudfour.com/thinks/cookie-consent-management-in-2026-part-2-technical-tips/).
+- Статья [о подводных камнях magic links](https://etodd.io/2026/03/22/magic-link-pitfalls/) напоминает, что «вход без пароля» выглядит дружелюбно только на поверхности: у magic link-подхода хватает [дополнительных подводных камней](https://etodd.io/2026/03/31/more-magic-link-pitfalls/), о которых стоит знать заранее.
+- В заметке [о приёмах автоматизации форм без боли для пользователей](https://css-tricks.com/form-automation-tips-for-happier-user-and-clients/) разбирают, как автоматизация форм может не раздражать, а реально облегчать жизнь пользователям.
+
+## 🔐 Безопасность
+### Компрометация `axios` стала главным напоминанием недели
+[Популярный пакет `axios` оказался скомпрометирован](https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan): в одну из версий попала вредоносная зависимость с трояном удалённого доступа. Пугает здесь не только масштаб самого пакета, но и то, что проблема могла затронуть проекты косвенно, через дерево зависимостей. Поэтому даже тем, кто лично `axios` не использует, стоит [проверить, не задела ли их атака](https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan#am-i-affected).
+
+Хорошим дополнением к новости выглядит статья [о скрытом радиусе поражения после компрометации axios](https://socket.dev/blog/hidden-blast-radius-of-the-axios-compromise), где объясняют, почему supply chain-атаки опасны не только самим фактом взлома, но и тем, как далеко расходятся последствия по экосистеме. А если хочется перейти от тревоги к практике, то полезно почитать [гайд по cooldown-механикам для зависимостей](https://daniakash.com/posts/simplest-supply-chain-defense/), который показывает, как не тянуть самые свежие релизы в прод в первые же часы.
+
+- Пошаговый материал [как безопасно публиковать пакеты в npm в 2026 году](https://gist.github.com/kettanaito/debde3cabfae4f68d37cf0f8f3a6a666) стоит добавить в закладки всем, кто поддерживает публичные библиотеки.
+- Инструмент [Secretlint](https://github.com/secretlint/secretlint) помогает искать секреты и чувствительные строки в репозитории до того, как они попадут наружу.
+- Текст [об обходе permission model в Node.js через Brotli](https://blig.one/2026/03/29/nodejs-brotli-uaf.html) интересен как пример того, почему даже строгие защитные механизмы нужно постоянно перепроверять на обходные пути.
+
+## 📦 JavaScript
+### Как устроены signals внутри
+В статье [о push-pull-алгоритме внутри signals](https://willybrauner.com/journal/signal-the-push-pull-based-algorithm) пошагово разбирают внутреннюю механику signals-подхода, который сегодня влияет на Solid, Vue, Angular и другие реактивные системы. Если раньше signals казались магией уровня «что-то само обновилось», этот материал помогает увидеть за ними конкретный алгоритм и лучше понять, почему современная реактивность работает именно так.
+
+### JavaScript-раздутие всё ещё реальная проблема
+Текст [о трёх столпах JavaScript-раздутия](https://43081j.com/2026/03/three-pillars-of-javascript-bloat) удобно объясняет, откуда берётся лишний вес в `node_modules`: старые compatibility-пакеты, микробиблиотеки ради одной функции и по инерции оставленные ponyfills. После такого разбора на размер зависимостей уже проще смотреть не как на «ну так получилось», а как на управляемую инженерную задачу.
+
+- Материал [с мягким введением в npm Workspaces и картинками](https://wasp.sh/blog/2026/03/25/gentle-intro-npm-workspaces) остаётся одним из самых понятных разборов монорепозиториев и локальных пакетов.
+- История [о замене Node.js на Bun ради пятикратного роста пропускной способности](https://trigger.dev/blog/firebun) интересна не как универсальный рецепт, а как честный кейс сравнения рантаймов под реальной нагрузкой.
+
+### Ещё из JavaScript-экосистемы
+- В заметке [о декомпиляции нового приложения Белого дома](https://blog.thereallo.dev/blog/decompiling-the-white-house-app) разбирают довольно тревожные находки внутри React Native-приложения, от динамической подгрузки JavaScript до неожиданных обходов ограничений.
+- Статья [о 3D-галерее, которая реагирует на скролл](https://tympanus.net/codrops/2026/03/09/building-a-scroll-reactive-3d-gallery-with-three-js-velocity-and-mood-based-backgrounds/) хороша как источник идей для тех, кто хочет делать более кинематографичные интерфейсы на Three.js.
+
+### Релизы JavaScript-экосистемы
+- [Inertia.js 3.0](https://inertiajs.com/) выпустила новую версию прослойки между SPA и серверными фреймворками, а команда отдельно описала [главные изменения в v3](https://laravel.com/blog/inertiajs-v3-is-now-in-beta).
+- [Mantine 9.0](https://mantine.dev/changelog/9-0-0/) обновила крупную экосистему React-компонентов и UI-утилит.
+- [CKEditor 48.0](https://github.com/ckeditor/ckeditor5/releases/tag/v48.0.0) продолжает развивать один из самых известных веб-редакторов.
+- [pnpm 10.33](https://github.com/pnpm/pnpm/releases/tag/v10.33.0) добавил ещё одно небольшое, но полезное обновление для тех, кто живёт в больших workspace-проектах.
+
+## ⚛️ React и фреймворки
+### React Joyride 3.0
+[React Joyride 3.0](https://react-joyride.com/) вышел как полноценное современное переосмысление библиотеки для onboarding-туров внутри приложений. Проект переписали под новые версии React, добавили [список новых возможностей в v3](https://react-joyride.com/docs/new-in-v3), а на [живых демо](https://react-joyride.com/demos) хорошо видно, как теперь собирать пошаговые подсказки без ощущения, что вы работаете с наследием прошлой эпохи.
+
+### Next.js 16.2 делает адаптеры по-настоящему важной частью экосистемы
+В разборе [как Next.js 16.2 через Adapter API идёт на новые платформы](https://nextjs.org/blog/nextjs-across-platforms) команда Vercel объясняет, зачем фреймворку нужны адаптеры и как они помогают запускать Next.js не только в «родной» среде. Хорошо видно, что современный full-stack-фреймворк — это уже не просто React плюс роутинг, а целая договорённость между билдом, сервером и хостинг-платформой.
+
+### Storybook MCP для React
+[Storybook MCP для React](https://storybook.js.org/blog/storybook-mcp-for-react/) показывает, как привычные фронтенд-инструменты перестраиваются под эпоху AI-агентов. Идея простая: Storybook начинает отдавать структурированную информацию о компонентах так, чтобы агенты могли лучше писать истории, тесты и даже помогать с исправлением багов. На практике это выглядит как один из первых реально осязаемых мостов между UI-библиотекой и агентной разработкой.
+
+- [TanStack DB 0.6](https://tanstack.com/blog/tanstack-db-0.6-app-ready-with-persistence-and-includes) продолжает развивать идею локальной реактивной базы данных внутри приложения и теперь делает большой упор на persistence, offline-режим и вложенные структуры данных.
+- [Astro 6.1](https://astro.build/blog/astro-610/) добавил более плавные view transitions на мобильных устройствах и несколько полезных улучшений вокруг изображений.
+- [Semiotic 3.0](https://semiotic.nteract.io/) вернул к жизни сильный React + D3-инструмент для нестандартных визуализаций, от обычных line chart до более редких карт и Sankey-диаграмм.
+- [React Stripe.js 6.0](https://github.com/stripe/react-stripe-js) обновил официальный набор React-компонентов для Stripe Elements.
+- [Sugar High 1.0](https://sugar-high.vercel.app/) предлагает лёгкий подсветчик JSX, который не требует React в рантайме; если захочется внедрить его в проект, рядом есть и [репозиторий библиотеки](https://github.com/huozhi/sugar-high).
+- [Jotai 2.19.0](https://github.com/pmndrs/jotai/releases/tag/v2.19.0) продолжает развивать минималистичный state management для React без лишней церемонии.
+- В выпуске [React Native Radio про пять месяцев релизов React Native и Expo](https://infinite.red/react-native-radio/rnr-357-react-native-082084-expo-55) можно быстро наверстать то, что происходило в mobile-части экосистемы.
+- Если интересны события сообщества, то [React Norway](https://reactnorway.com/) выглядит как заметная конференция июня с сильным составом спикеров.
+
+## 📘 TypeScript
+### TypeScript 6.0 затягивает настройки по умолчанию
+[TypeScript 6.0](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/) не столько про новые синтаксические игрушки, сколько про ужесточение и оздоровление конфигурации. Для многих проектов это значит, что старый `tsconfig` пора пересматривать внимательнее, особенно если вы давно жили на исторических дефолтах и почти не трогали настройки.
+
+- Утилита [ts-blank-space 0.8](https://github.com/bloomberg/ts-blank-space) умеет быстро вырезать типы из кода на чистом JavaScript, используя парсер из TypeScript 6.
+- Библиотека [numpy-ts 1.2](https://github.com/dupontcyborg/numpy-ts/releases/tag/v1.2.0) продолжает строить мир NumPy-подобных вычислений в TS/JS и уже добралась примерно до половины производительности нативной реализации; у проекта есть и [отдельная домашняя страница](https://numpyts.dev/).
+- Новость о том, что [IntelliJ IDEA теперь бесплатно включает базовые возможности для JavaScript и TypeScript](https://blog.jetbrains.com/idea/2026/03/js-ts-free-support/), тоже может быть полезной тем, кто давно присматривался к IDE JetBrains, но не хотел платить за Ultimate только ради фронтенд-задач.
+
+## ⚙️ Node.js
+### Node.js 25.9.0
+[Node.js 25.9.0](https://nodejs.org/en/blog/release/v25.9.0) приехал не как громкий переломный релиз, а как набор практичных улучшений. Из заметного: появился флаг `--max-heap-size` для более явного контроля памяти процесса, в экспериментальном виде добавили [новый streams API `stream/iter`](https://blog.cloudflare.com/a-better-web-streams-api/) с [документацией](https://nodejs.org/docs/latest/api/stream_iter.html#iterable-streams), а тестовый раннер стал гибче в сценариях с mock-модулями.
+
+### Ещё несколько полезных Node-новинок
+- Библиотека [node-re2](https://github.com/uhop/node-re2) даёт почти drop-in-замену для `RegExp`, но с движком [RE2](https://en.wikipedia.org/wiki/RE2_(software)), который защищён от целого класса ReDoS-атак за счёт линейного времени сопоставления.
+- Инструмент [Defuddle](https://github.com/kepano/defuddle) вычищает лишний HTML-шум и оставляет только основное содержимое страницы; у проекта есть и [онлайн-демо](https://defuddle.md/).
+- Проект [WWWBasic](https://github.com/google/wwwbasic) неожиданно возвращает BASIC в браузер и Node, а [QuickBEAM](https://github.com/elixir-volt/quickbeam) пробует запускать JavaScript поверх виртуальной машины Erlang/Elixir.
+- В релизе [Deno 2.7.11](https://github.com/denoland/deno/releases/tag/v2.7.11) снова много внимания уделили совместимости с Node.js, включая улучшения вокруг `crypto`, `child_process`, `workers` и [TTY-поведения на Windows](https://github.com/denoland/deno/pull/32999).
+- [wasm-git](https://github.com/petersalomonsen/wasm-git) уже выглядит не экспериментом, а вполне серьёзной идеей: это версия Git, собранная в WASM, которую можно использовать прямо из Node.
+
+### Ещё из Node-мира
+- [Security releases Node.js от 24 марта 2026 года](https://nodejs.org/en/blog/vulnerability/march-2026-security-releases) закрыли уязвимости сразу в нескольких ветках, включая [v25.8.2](https://nodejs.org/en/blog/release/v25.8.2), [v24.14.1](https://nodejs.org/en/blog/release/v24.14.1), [v22.22.2](https://nodejs.org/en/blog/release/v22.22.2) и [v20.20.2](https://nodejs.org/en/blog/release/v20.20.2).
+- Проект [EmDash](https://blog.cloudflare.com/emdash-wordpress/) от Cloudflare позиционируют как духовного наследника WordPress, который может жить и на Cloudflare, и на обычном Node.js-сервере.
+- Короткое интервью [Most Developers Misunderstand Node.js in Production](https://www.youtube.com/watch?v=rqmTDVdnMT8) полезно тем, кто хочет сверить свои представления о проде с мнением core contributor.
+- Гайд [Getting Started Building Agents with the Vercel AI SDK in Node](https://thecodebarbarian.com/getting-started-with-the-vercel-ai-sdk-agents-in-nodejs.html) пригодится тем, кто хочет быстро попробовать agent-подход именно в Node-приложении.
+
+## 🤖 ИИ
+### Transformers.js v4
+[Transformers.js v4](https://github.com/huggingface/transformers.js/releases/tag/4.0.0) делает ещё один шаг к идее «серьёзный AI прямо в клиентском приложении». Библиотека подтягивает модели из экосистемы [Hugging Face](https://huggingface.co/), теперь опирается на WebGPU и уже показывает на [живых демо](https://huggingface.co/collections/webml-community/transformersjs-v4-demos), что браузер может не только красиво анимировать интерфейс, но и выполнять задачи из мира текста, аудио и компьютерного зрения.
+
+### React Native Executorch
+[React Native Executorch](https://github.com/software-mansion/react-native-executorch) интересен тем, что предлагает более удобный, декларативный способ запускать AI-модели прямо на устройстве. Для мобильной разработки это важный сдвиг: on-device AI перестаёт быть экзотикой для демо и начинает превращаться в обычный инженерный инструмент.
+
+- История о том, как Дэн Абрамов с помощью Claude подготовил [фикс для React](https://github.com/facebook/react/pull/36134) и описал подход в [коротком пояснении](https://bsky.app/profile/danabra.mov/post/3mhrdue7gds2h), показывает более взрослый стиль работы с AI: не «пусть агент всё сделает сам», а «пусть поможет ускорить понятную задачу».
+- Новость о том, что у пользователей GitHub Copilot Free/Pro/Pro+ данные и фрагменты кода [по умолчанию пойдут в обучение будущих моделей](https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/), стоит держать в голове всем, кто работает с чувствительным кодом.
+- Заодно GitHub уже успел отключить странную историю, где Copilot [вставил рекламу прямо в pull request](https://notes.zachmanson.com/copilot-edited-an-ad-into-my-pr/); команда отдельно [объяснила, как это вообще произошло](https://x.com/martinwoodward/status/2038612131084464521).
+- И ещё одна поучительная история недели: [исходники Claude Code утекли через source maps в npm-пакете](https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/), что стало хорошим напоминанием о том, насколько много лишнего можно случайно опубликовать вместе со сборкой.
+
+## ⚒️ Инструменты и библиотеки
+### Babylon.js 9.0
+[Babylon.js 9.0](https://blogs.windows.com/windowsdeveloper/2026/03/26/announcing-babylon-js-9-0/) выглядит как сильное обновление для всех, кто строит 3D-сцены в вебе. Релиз приносит новые эффекты освещения, редактор частиц, улучшения производительности и более серьёзные возможности для сложной графики вроде [объёмного освещения](https://playground.babylonjs.com/?webgpu&areaLights=1&volumetricLight=1&clusteredLights=1&camera=volumetric#8BQJH7) и [Gaussian Splatting](https://playground.babylonjs.com/#J3MJSN). Если хочется сразу посмотреть на код, у движка есть и [открытый репозиторий](https://github.com/BabylonJS/Babylon.js).
+
+### Knip v6
+[Knip v6](https://knip.dev/blog/knip-v6) продолжает делать одну очень нужную вещь: находить в проекте неиспользуемые файлы, экспорты и зависимости. В шестой версии инструмент переехал на `oxc`, поэтому на больших кодовых базах стал работать заметно быстрее, а это как раз тот случай, когда полезная утилита перестаёт быть «слишком тяжёлой, чтобы запускать её часто».
+
+- [Heerich.js](https://meodai.github.io/heerich/) строит трёхмерные voxel-сцены и выводит их как чистый SVG, что делает проект одновременно и техническим инструментом, и красивой демонстрацией возможностей веб-графики.
+- Плеер [ArtPlayer](https://github.com/zhw2590582/ArtPlayer) предлагает богатый HTML5-видеоплеер с множеством настроек; оценить его без установки можно в [живой песочнице](https://artplayer.org/).
+- Сервис [XML Comparator](https://www.xmlcomparator.xyz/) пригодится в тех редких, но болезненных задачах, когда нужно быстро сравнить два XML-файла и аккуратно подсветить отличия.
+- Для визуализации активности пригодится [Heat.js 5.1](https://github.com/williamtroup/Heat.js), а для работы с Markdown в кодовой базе теперь есть [ESLint Markdown Plugin 8.0](https://github.com/eslint/markdown).
+
+### Обновления
+- [Inertia.js 3.0](https://inertiajs.com/) выпустила новую крупную версию и отдельно рассказала, [что изменилось в v3](https://laravel.com/blog/inertiajs-v3-is-now-in-beta).
+- [dotenv 17.4](https://github.com/motdotla/dotenv) продолжает развиваться даже несмотря на то, что загрузка `.env` уже появилась как [встроенная возможность Node](https://nodejs.org/api/environment_variables.html#cli-options).
+- В prerelease-ветке [Ky 2.0](https://github.com/sindresorhus/ky/releases/tag/v2.0.0-0) готовят обновление популярного HTTP-клиента на основе Fetch API.
+- [globby 16.2](https://github.com/sindresorhus/globby) добавил поддержку [глобального файла `gitignore`](https://github.com/sindresorhus/globby?tab=readme-ov-file#globalgitignore), а [Got 15.0](https://github.com/sindresorhus/got/releases/tag/v15.0.0) продолжает обновлять один из самых мощных HTTP-клиентов для Node.
+- [file-type 22.0](https://github.com/sindresorhus/file-type/releases/tag/v22.0.0) обновил популярную утилиту для определения типа бинарных файлов.
+- [RxDB 17.0](https://rxdb.info/releases/17.0.0.html) продолжает продвигать local-first-подход и реактивную NoSQL-базу для JavaScript-приложений.
+- [filesize.js 11.0.15](https://filesizejs.com/) по-прежнему решает маленькую, но постоянную задачу: превращает байты в понятный человеку текст.
+- [css-select 7.0](https://github.com/fb55/css-select) обновил движок CSS-селекторов и теперь полноценно живёт в ESM-мире.
+- [Path-to-RegExp 8.4](https://github.com/pillarjs/path-to-regexp) остаётся одной из базовых библиотек для маршрутизации и преобразования путей в регулярные выражения.
+- [Aedes 1.0.2](https://github.com/moscajs/aedes) обновил Node.js MQTT-брокер, который умеет работать поверх любых stream-серверов.
+
+## 🗂️ Ресурсы и вдохновение
+- [Stroke](https://stroke.abhii.space/) превращает нарисованный жест или подпись в код для Motion-анимации, и это один из тех маленьких инструментов, которые мгновенно хочется попробовать в собственном интерфейсе.
+- Если нужен свежий взгляд на шрифты для IDE, сервис [CodingFont](https://www.codingfont.com/) предлагает выбирать их почти как в турнирной сетке.
+- Для тех, кто работает с 3D и выразительными лендингами, статья [о сборке 3D-галереи, которая реагирует на скролл](https://tympanus.net/codrops/2026/03/09/building-a-scroll-reactive-3d-gallery-with-three-js-velocity-and-mood-based-backgrounds/) показывает, как собрать насыщенную, но при этом осмысленную скролл-сцену.
+- Обзор [A Gentle Intro to npm Workspaces](https://wasp.sh/blog/2026/03/25/gentle-intro-npm-workspaces) можно держать под рукой как ещё одну понятную точку входа в тему workspaces, если хочется посмотреть на неё с более Node-ориентированного угла.
