@@ -4,6 +4,7 @@
   --accent-dark: #c84514;
   --accent-rgb: 239, 107, 46;
   --accent-yellow: #f3bf1f;
+  --accent-yellow-bg-rgb: 243, 191, 31;
   --accent-green: #73b648;
   --accent-red: #d73e31;
   --bg-color: #f5f0df;
@@ -57,6 +58,7 @@
     --accent-dark: #ffb07f;
     --accent-rgb: 255, 138, 87;
     --accent-yellow: #f3bf1f;
+    --accent-yellow-bg-rgb: 175, 124, 24;
     --accent-green: #85c160;
     --accent-red: #ff7a6f;
     --bg-color: #19120d;
@@ -108,7 +110,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background:
-    radial-gradient(1200px 360px at 110% -10%, rgba(243, 191, 31, 0.35), transparent 68%),
+    radial-gradient(1200px 360px at 110% -10%, rgba(var(--accent-yellow-bg-rgb), 0.35), transparent 68%),
     radial-gradient(900px 400px at -18% 14%, rgba(215, 62, 49, 0.2), transparent 70%),
     radial-gradient(640px 280px at 90% 82%, rgba(115, 182, 72, 0.22), transparent 75%),
     var(--bg-color);
@@ -122,7 +124,7 @@ body {
 @media (prefers-color-scheme: dark) {
   body {
     background:
-      radial-gradient(1200px 360px at 110% -10%, rgba(243, 191, 31, 0.18), transparent 68%),
+      radial-gradient(1200px 360px at 110% -10%, rgba(var(--accent-yellow-bg-rgb), 0.18), transparent 68%),
       radial-gradient(900px 400px at -18% 14%, rgba(215, 62, 49, 0.14), transparent 70%),
       radial-gradient(640px 280px at 90% 82%, rgba(115, 182, 72, 0.12), transparent 75%),
       var(--bg-color);
