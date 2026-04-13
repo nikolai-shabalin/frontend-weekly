@@ -1,0 +1,155 @@
+---
+title: "Еженедельный дайджест #41: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Apr 13 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #41! 🗞️", index: 0 },
+  { text: "View Transitions становятся заметно практичнее. 🎬", index: 1 },
+  { text: "JetStream 3.0 обновил правила игры для JS/WASM-бенчмарков. 📊", index: 2 },
+  { text: "WebAIM Million 2026 напомнил, что доступность нельзя откладывать. ♿", index: 3 },
+  { text: "JSIR может стать основой нового поколения JS-инструментов. 🧠", index: 4 },
+  { text: "GitHub показал, как выжимать производительность из большого React-интерфейса. ⚛️", index: 5 },
+  { text: "Axios снова заставил всерьёз думать о supply chain-защите. 🔐", index: 6 },
+  { text: "tsdown научился собирать самостоятельные Node-исполняемые файлы. ⚙️", index: 7 },
+  { text: "Babylon.js 9.0 и Crashcat добавили неделе больше графики и физики. 🌌", index: 8 },
+  { text: "MonoSketch и Wiretext доказывают, что текстовые интерфейсы всё ещё вдохновляют. ✏️", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и платформа
+### `view-transitions-toolkit` упрощает работу с View Transitions
+[`view-transitions-toolkit`](https://www.bram.us/2026/04/02/view-transitions-toolkit/) собирает в одном месте типовые приёмы для View Transitions, которые раньше приходилось писать руками по кускам. Если вы только присматриваетесь к красивым переходам между экранами, полезно начать с [npm-пакета](https://www.npmjs.com/package/view-transitions-toolkit), посмотреть [живые демо](https://chrome.dev/view-transitions-toolkit/) и при желании разобрать [код на GitHub](https://github.com/GoogleChromeLabs/view-transitions-toolkit/), чтобы понять, как такие анимации устраиваются без тяжёлой магии.
+
+### JetStream 3.0: новый ориентир для производительности JavaScript и WASM
+Через семь лет после прошлой версии вышел [JetStream 3.0](https://browserbench.org/announcements/jetstream3/) — крупное обновление популярного набора бенчмарков для браузеров. Важно не только то, что тесты обновили, но и то, что над ними вместе работали команды [WebKit](https://webkit.org/blog/17899/introducing-the-jetstream-3-benchmark-suite/), [Chromium](https://blog.chromium.org/2026/03/jetstream-3-a-modern-benchmark.html) и Mozilla. Если хочется посмотреть на всё руками, можно открыть [сам инструмент](https://browserbench.org/JetStream3.0/), а для более вдумчивого чтения пригодится и [разбор методологии и анализа](https://browserbench.org/JetStream3.0/in-depth.html).
+
+### Ленивую загрузку `<video>` и `<audio>` теперь проще внедрять нативно
+Статья про [lazy-loading для HTML-видео и аудио](https://engineering.squarespace.com/blog/2026/how-to-use-standard-html-video-and-audio-lazy-loading-on-the-web-today) показывает, что браузерная платформа продолжает забирать себе задачи, которые раньше часто закрывали сторонними трюками. Для новичков это хорошая новость: медиа можно загружать аккуратнее и без лишнего JavaScript, а если интересна предыстория, у автора есть и отдельный текст о том, [как эта возможность попала в HTML Standard](https://engineering.squarespace.com/blog/2026/squarespace-and-web-standards-how-we-helped-bring-html-video-and-audio-lazy-loading-to-todays-browsers).
+
+### Маскировка e-mail в HTML всё ещё работает, но не любая
+В материале [Email Address Obfuscation in HTML: What Works in 2026?](https://spencermortensen.com/articles/email-obfuscation/) автор проверил множество способов прятать адреса от ботов и показал, что часть старых приёмов уже скорее создаёт ложное чувство безопасности. Тот же эксперимент коротко пересказали и в заметке о том, как [двадцать пять способов обфускации e-mail ведут себя в 2026 году](https://spencermortensen.com/articles/email-obfuscation/), так что теперь проще не повторять устаревшие рецепты вроде HTML entities и URL encoding.
+
+- Идея [HTML in Canvas](https://github.com/WICG/html-in-canvas) предлагает рендерить HTML через `canvas`, чтобы гибче контролировать отображение интерфейса.
+- Для авторов расширений полезно знать, что у [Chrome Web Store появился новый процесс апелляций](https://developer.chrome.com/blog/cws-new-appeals-process), если расширение отклонили.
+
+## 🎨 CSS и дизайн
+### Чем заменить `!important`, если хочется навести порядок в стилях
+В статье [Alternatives to the `!important` Keyword](https://css-tricks.com/alternatives-to-the-important-keyword/) хорошо объясняют, что `!important` чаще лечит симптом, а не причину. Для новичка это удобный вход в тему специфичности: вместо силового приоритета лучше разобраться со слоями, селекторами и структурой CSS, чтобы стили не приходилось «перекрикивать».
+
+### `subgrid` продолжает решать реальные layout-боли
+Материал [CSS `subgrid` is Super Good](https://dbushell.com/2026/04/02/css-subgrid-is-super-good/) показывает очень прикладной сценарий: как выравнивать контент в CMS-страницах без бесконечных обёрток и хакающих `margin`. Если термин пока звучит страшно, можно держать рядом и [ссылку на сам `subgrid`](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Subgrid): идея там простая — дочерний грид начинает жить по колонкам родителя и макет становится предсказуемее.
+
+### Name-only containers выглядят как неожиданно полезный способ скопинга
+В статье [Name-Only Containers: The Scoping We Needed](https://frontendmasters.com/blog/name-only-containers-the-scoping-we-needed/) предлагают использовать именованные контейнеры как нативный способ ограничивать область действия CSS-логики. Это не полная замена `@scope`, но очень интересный пример того, как новые возможности платформы постепенно снижают потребность в тяжёлых обходных решениях.
+
+### Chrome прокачал многоколоночный layout
+Разбор [New CSS Multi-Column Layout Features in Chrome](https://css-tricks.com/css-multi-column-layout-wrapping-features/) знакомит с `column-wrap` и `column-height`, которые появились в Chrome 145. Для начинающих это хороший повод заново посмотреть на multi-column layout: теперь он лучше подходит не только для журнальных текстов, но и для более сложных макетов.
+
+### Ещё несколько CSS-находок недели
+- В заметке [Detect at-rule support in CSS](https://www.bram.us/2026/03/15/at-rule/) показывают, как аккуратно проверять поддержку `@`-правил, а не только обычных свойств.
+- Статья про [pointer-box-offset](https://robinrendle.com/notes/pointer-box-offset/) объясняет, как можно увеличивать интерактивную область элементов без перестройки самого интерфейса, а обсуждение [увеличения pointer target size на GitHub](https://github.com/w3c/csswg-drafts/issues/4708) даёт контекст, зачем эта идея вообще понадобилась.
+- Если вы когда-нибудь хотели выбрать корневой элемент по-разному, пригодится текст [The Different Ways to Select HTML in CSS](https://css-tricks.com/the-different-ways-to-select-html-in-css/).
+- Статья [The Great CSS Expansion](https://blog.gitbutler.com/the-great-css-expansion) хорошо показывает, как современный CSS забирает себе задачи, которые раньше почти автоматически решались через JavaScript.
+- Для вдохновения можно посмотреть на [x86 CPU made in CSS](https://lyra.horse/x86css/), на [CSS is DOOMed](https://nielsleenheer.com/articles/2026/css-is-doomed-rendering-doom-in-3d-with-css/), затем [запустить демо](https://cssdoom.wtf/) и при желании [заглянуть в код](https://github.com/NielsLeenheer/cssDOOM).
+- Проверить своё чутьё поможет квиз [CSS or BS?](https://www.keithcirkel.co.uk/css-or-bs/), а если хочется просто поиграть с анимацией, можно [запустить свою Artemis 2 на CSS и скролле](https://codepen.io/cbolson/full/jEMxeZW).
+
+<TelegramCTA/>
+
+## ♿ Доступность и UX
+### WebAIM Million 2026: доступность снова проседает
+[The WebAIM Million 2026 Report](https://webaim.org/projects/million/) неприятно читать, но именно поэтому его стоит открыть. Авторы проверили миллион главных страниц и увидели, что проблемы доступности не исчезают, а во многом даже растут. Для новичков главный вывод простой: accessibility не чинится автоматически ни фреймворками, ни генераторами кода, её всё равно нужно проектировать и проверять осознанно.
+
+- В заметке [Making Emojis and Icons Screen Reader Accessible](https://blog.pope.tech/2026/04/01/making-emojis-and-icons-screen-reader-accessible/) показывают, как не ломать озвучивание интерфейса декоративными символами.
+- Текст [Screen Readers are Not Testing Tools](https://yatil.net/blog/screen-readers-are-not-testing-tools) напоминает важную вещь: скринридер помогает лучше понять опыт пользователя, но сам по себе не заменяет полноценное тестирование доступности.
+
+## 📦 JavaScript
+### JSIR: Google продвигает новый уровень абстракции для JS-инструментов
+[JSIR: A High-Level IR for JavaScript from Google](https://discourse.llvm.org/t/rfc-jsir-a-high-level-ir-for-javascript/90456) — одна из тех новостей, которые не меняют повседневную жизнь мгновенно, но могут повлиять на всю экосистему через год-два. Google не только открыла [сам инструмент JSIR](https://github.com/google/jsir), но и предложила отрасли общий подход к [IR, промежуточному представлению кода](https://en.wikipedia.org/wiki/Intermediate_representation). Если объяснять совсем просто, AST рассказывает, как код выглядит, а IR — что код делает. Именно на таком уровне потом часто рождаются более умные линтеры, бандлеры и системы рефакторинга.
+
+### Что нужно знать о JavaScript в 2026 году
+Если хочется быстро синхронизироваться с экосистемой, статья [What to Know in JavaScript (2026 Edition)](https://frontendmasters.com/blog/what-to-know-in-javascript-2026-edition/) остаётся хорошим обзором языка, рантаймов, сборки и фреймворков. Это не учебник по одной теме, а удобная карта местности для тех, кто давно не оглядывался по сторонам.
+
+### Minimum Release Age: простая защита от слишком свежих вредных пакетов
+Текст [Minimum Release Age is an Underrated Supply Chain Defense](https://daniakash.com/posts/simplest-supply-chain-defense/) объясняет очень практичную идею: не ставить зависимости в первую же минуту после публикации. Такой «период охлаждения» не решает все проблемы supply chain, но часто даёт время сообществу, сканерам и самим авторам заметить компрометацию до того, как она доедет до продакшна.
+
+### Поддержка open source тоже остаётся технической темой
+- Полезная маленькая находка: [Quick Tip: `Intl` Can Localize Units, Too](https://www.stefanjudis.com/today-i-learned/intl-can-localize-units-too/) напоминает, что локализация единиц измерения уже давно встроена в платформу.
+- В заметке [Things Learned Migrating to Solid 2.0](https://www.brenelz.com/posts/migrating-to-solid-2/) собраны реальные выводы после обновления на новую версию Solid.
+- Если следите за соседними экосистемами, загляните в [последний monthly roundup от команды Svelte](https://svelte.dev/blog/whats-new-in-svelte-april-2026).
+- Эксперимент [QuickBEAM](https://github.com/elixir-volt/quickbeam) пробует запускать JavaScript на виртуальной машине BEAM, знакомой по [Elixir](https://elixir-lang.org/).
+- Для интеграций с X теперь есть и [официальный SDK `xdk-typescript`](https://github.com/xdevplatform/xdk-typescript), хотя относиться к такой зависимости, конечно, всё равно лучше осторожно.
+
+## 🔐 Безопасность
+### Axios подробно разобрал свою компрометацию в npm
+[A Post-Mortem of the Axios Compromise](https://github.com/axios/axios/issues/10636) — важное чтение даже для тех, кто не использует `axios` напрямую. Команда описала, как произошла [атака на цепочку поставок](https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan), почему туда попал троян и какую роль сыграла [социальная инженерия](https://simonwillison.net/2026/Apr/3/supply-chain-social-engineering/). Отдельно стоит прочитать и предупреждение о том, что атаки на [high-impact Node.js maintainers](https://socket.dev/blog/attackers-hunting-high-impact-nodejs-maintainers) продолжаются: проблема не закончилась одним инцидентом.
+
+- Программа вознаграждений за уязвимости у Node.js временно встала на паузу: об этом пишет [Node's Security Bug Bounty Program Paused Due to Loss of Funding](https://nodejs.org/en/blog/announcements/discontinuing-security-bug-bounties), а подробности про сам [Internet Bug Bounty на паузе](https://hackerone.com/ibb?type=team) добавляют контекст.
+- Отдельный звоночек недели: один пакет копировал Markdown-файлы в конфиг Claude Code через `postinstall`, о чём рассказали в заметке [copied Markdown files into Claude Code's config](https://www.reddit.com/r/node/comments/1sapgun/psa_npm_package_using_postinstall_to_inject/). Если не хотите неожиданностей, полезно помнить и про совет [ignoring postinstall scripts](https://www.nodejs-security.com/blog/npm-ignore-scripts-best-practices-as-security-mitigation-for-malicious-packages), тем более что [pnpm v10+ делает это по умолчанию](https://pnpm.io/supply-chain-security).
+
+## ⚛️ React и фреймворки
+### GitHub показал, как тяжёлый React-интерфейс можно сделать ощутимо быстрее
+В кейсе [The Uphill Climb of Making Diff Lines Performant on GitHub](https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/) команда GitHub объясняет, как уменьшала задержки и потребление памяти в новом просмотре diff-ов для pull request. Это очень полезный текст для новичков в производительности React: на живом проекте видно, как глубина дерева, лишние обработчики событий и неосторожное использование `useEffect` постепенно съедают отзывчивость интерфейса.
+
+### MDN обновила фронтенд и заодно показала зрелый путь миграции
+Разбор [Under the Hood of MDN's New Frontend](https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/) интересен тем, что [MDN](https://developer.mozilla.org/en-US/) не просто «переписали всё заново», а постепенно ушли от старого приложения на Create React App к решению на [Lit](https://lit.dev/) и web components. Это хороший пример того, как большие фронтенды эволюционируют без лишнего драматизма.
+
+### Ink 7.0 продолжает укреплять React за пределами браузера
+[Ink 7.0](https://github.com/vadimdemedes/ink/releases/tag/v7.0.0) — это библиотека, которая позволяет писать CLI и TUI на React. Сейчас она особенно заметна на фоне AI-инструментов, потому что уже используется [во множестве реальных приложений](https://github.com/vadimdemedes/ink?tab=readme-ov-file#whos-using-ink). В новой версии обновили React-стек, добавили полезные хуки и улучшили внутреннюю эффективность.
+
+- Из соображений безопасности вышли сразу три React-релиза: [19.2.5](https://github.com/facebook/react/releases/tag/v19.2.5), [19.1.6](https://github.com/facebook/react/releases/tag/v19.1.6) и [19.0.5](https://github.com/facebook/react/releases/tag/v19.0.5), закрывающие уязвимость в React Server Components.
+- [Mantine 9.0](https://mantine.dev/changelog/9-0-0/) привёз большой пакет обновлений, включая [новый scheduling-пакет с демо](https://mantine.dev/changelog/9-0-0/#new-mantineschedule-package) и [компонент marquee](https://mantine.dev/changelog/9-0-0/#marquee-component).
+- У React Native тоже хороший апдейт: [React Native 0.85](https://reactnative.dev/blog/2026/04/07/react-native-0.85) пришёл с новым анимационным бэкендом и улучшениями devtools.
+- Если хочется посмотреть выступления, уже доступны [23 доклада с React Paris 2026](https://www.youtube.com/playlist?list=PL53Z0yyYnpWhsizNWtlnyM7XWFUSw437J).
+- Материал [Signals: The Push-Pull Based Algorithm](https://willybrauner.com/journal/signal-the-push-pull-based-algorithm) полезен тем, кто хочет понять, чем реактивность в Solid, Vue и Angular отличается от привычной React-модели.
+- Команда Railway подробно рассказала, как [перевела фронтенд с Next.js на Vite и TanStack Router](https://blog.railway.com/p/moving-railways-frontend-off-nextjs), а затем этот кейс коротко пересказали и в [Node Weekly](https://blog.railway.com/p/moving-railways-frontend-off-nextjs).
+
+## ⚙️ Node.js
+### Иногда «отмена promise» выглядит странно, но работает
+Статья [You Can't Cancel a Promise (Except Sometimes You Can)](https://www.inngest.com/blog/hanging-promises-for-control-flow) разбирает нестандартный, но практический приём: долгую асинхронную функцию можно остановить, заставив её ждать promise, который никогда не завершится. Это не классическая отмена, но хороший пример того, как особенности модели исполнения JavaScript превращаются в рабочий инженерный инструмент.
+
+### `tsdown` научился собирать самостоятельные исполняемые файлы
+В новости [tsdown Can Now Generate Executable Files for Node Apps](https://tsdown.dev/options/exe) особенно интересно то, что эта возможность опирается на [сам `tsdown`](https://tsdown.dev/) и встроенную в Node идею [Single Executable Applications](https://nodejs.org/api/single-executable-applications.html). Для небольших утилит и внутренних CLI это может сильно упростить доставку: меньше зависимостей на машине пользователя, меньше ручной упаковки.
+
+### Web Audio API всё увереннее чувствует себя и на сервере
+Проект [web-audio-api](https://github.com/audiojs/web-audio-api) переносит привычный [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) в Node.js. Это значит, что аудио-логику можно писать почти теми же абстракциями, что и в браузере, а потом проигрывать звук локально, рендерить его в файл или даже подключать [Tone.js](https://tonejs.github.io/). Если хочется быстро оценить возможности, у библиотеки уже есть [подборка примеров](https://github.com/audiojs/web-audio-api/tree/master/examples).
+
+- Для экспериментов с локальным TTS можно открыть [TinyTTS](https://github.com/tronghieuit/tiny-tts), посмотреть, [как автор использовал его на практике](https://gist.github.com/peterc/2cdb2ba30476858b5d2a9a041ddf884c), и послушать [демо в браузере](https://huggingface.co/spaces/backtracking/tiny-tts-demo).
+- Статья [Building a Runtime with QuickJS](https://healeycodes.com/building-a-runtime-with-quickjs) подойдёт тем, кто хочет глубже понять устройство JavaScript-рантаймов.
+- Фреймворк [grammY](https://grammy.dev/) для Telegram-ботов уже поддерживает [Telegram Bot API 9.6](https://core.telegram.org/bots/api#april-3-2026), а код, как обычно, доступен в [репозитории](https://github.com/grammyjs/grammY).
+- Утилита [tokenu](https://github.com/lirantal/tokenu/) считает токены в файлах и директориях, чтобы быстрее прикинуть размер кодовой базы с точки зрения LLM-контекста.
+- В экосистеме стоит помнить и о более инфраструктурных изменениях: [Azure SDK for JavaScript завершает поддержку Node 20.x](https://devblogs.microsoft.com/azure-sdk/announcing-the-end-of-support-for-node-js-20-x-in-the-azure-sdk-for-javascript/), а [npm trusted publishing теперь умеет CircleCI](https://github.blog/changelog/2026-04-06-npm-trusted-publishing-now-supports-circleci/) через OIDC.
+- Если интересует реестр npm как продукт, можно включить [50-минутный разговор](https://www.igalia.com/chats/npmxyz) с авторами [npmx](https://npmx.dev/).
+- Проект [Puru](https://github.com/dmop/puru) пробует принести в Node и Bun пул потоков с Go-подобными примитивами конкурентности.
+
+### Обновления Node-экосистемы
+- [Node.js 25.9.0](https://nodejs.org/en/blog/release/v25.9.0) добавил флаг для ограничения heap, а новый экспериментальный [`stream/iter`](https://nodejs.org/docs/latest/api/stream_iter.html#iterable-streams) продолжает развивать потоковые API.
+- [ky 2.0](https://github.com/sindresorhus/ky/releases/tag/v2.0.0) усиливает `fetch`-клиент таймаутами и `baseURL`, [npm-check-updates v20.0.0](https://github.com/raineorshine/npm-check-updates/releases/tag/v20.0.0) и [npm-check-updates 20.0](https://github.com/raineorshine/npm-check-updates/releases/tag/v20.0.0) расширяют работу с зависимостями, а [ESLint v10.2.0](https://eslint.org/blog/2026/04/eslint-v10.2.0-released/) и [ESLint 10.2](https://eslint.org/blog/2026/04/eslint-v10.2.0-released/) приносят language-aware rules и поддержку `Temporal`.
+- Для серверной разработки также вышли [content-disposition 1.1](https://github.com/jshttp/content-disposition), [Orange ORM 5.3](https://github.com/alfateam/orange-orm), [Axios 1.15.0](https://github.com/axios/axios), [RedisSMQ 10.0](https://github.com/weyoss/redis-smq), [node-ical 0.26.0](https://github.com/jens-maus/node-ical), [Undici 8.0](https://github.com/nodejs/undici/releases) и [pnpm v11.0 Beta 8](https://github.com/pnpm/pnpm).
+
+## ⚒️ Инструменты и библиотеки
+### Crashcat добавляет на сайт физику без перегруза по сложности
+[Crashcat](https://github.com/isaac-mason/crashcat) — физический движок для JavaScript, рассчитанный не только на игры, но и на более живые интерфейсы и промо-страницы. Если хочется почувствовать разницу между «обычной анимацией» и поведением объектов с массой, столкновениями и ограничениями, лучше всего начать с [демо-сайта](https://crashcat.dev/).
+
+### SSGOI обещает более нативные переходы между страницами
+Библиотека [SSGOI](https://github.com/meursyphus/ssgoi) делает page transitions для веба, ориентируясь на ощущение «почти как в нативном приложении». Особенно полезно, что она не завязана на один стек: проект заявляет поддержку React, Vue, Svelte и Angular, а посмотреть поведение вживую можно в [демо и документации](https://ssgoi.dev/en).
+
+### Fuse.js 7.3 продолжает делать клиентский поиск умнее
+[Fuse.js 7.3](https://www.fusejs.io/) полезен тем, кто хочет добавить tolerant search без отдельного бэкенда. В [v7.3](https://github.com/krisk/Fuse/releases/tag/v7.3.0) стало лучше нечеткое сопоставление по отдельным терминам, а в [v7.4 beta](https://github.com/krisk/Fuse/releases/tag/v7.4.0-beta.1) уже тестируют [распределённый поиск через workers](https://www.fusejs.io/web-workers.html). Если нужно быстро понять идею, достаточно открыть [простое демо](https://www.fusejs.io/demo.html).
+
+### Babylon.js 9.0 продолжает делать 3D-веб серьёзнее
+[Announcing Babylon.js 9.0](https://blogs.windows.com/windowsdeveloper/2026/03/26/announcing-babylon-js-9-0/) — это не просто набор мелких фиксов, а большой апдейт движка для интерактивной 3D-графики. У [рендеринга от Microsoft](https://www.babylonjs.com) появились новые инструменты вроде редактора частиц, [объёмного освещения](https://playground.babylonjs.com/?webgpu&areaLights=1&volumetricLight=1&clusteredLights=1&camera=volumetric#8BQJH7) и [продвинутого Gaussian splatting](https://playground.babylonjs.com/#J3MJSN), то есть вещей, которые ещё недавно казались вебу слишком тяжёлыми.
+
+### Ещё полезные релизы и находки
+- Для Markdown-инструментов полезен [Marked.js 18.0](https://marked.js.org/): можно быстро оценить [демо](https://marked.js.org/demo/) и при желании заглянуть в [репозиторий](https://github.com/markedjs/marked).
+- [TinyBase v8.1](https://tinybase.org/guides/releases/#v8-1) продолжает развивать local-first-подход и теперь нативно дружит со Svelte 5.
+- Тем, кто любит выразительные WebGL-сцены, пригодится разбор [Building a Dual-Scene Fluid 'X-Ray Reveal' Effect in Three.js](https://tympanus.net/codrops/2026/03/23/building-a-dual-scene-fluid-x-ray-reveal-effect-in-three-js/).
+- Веб-платформа вокруг SVG и UI тоже оживилась: [SVGInject 2.0](https://github.com/iconfu/svg-inject) и обзор [SVGInject: Inject SVG Files Inline Into the DOM](https://github.com/iconfu/svg-inject) показывают, как встраивать SVG без отдельного build step.
+- Для Astro и Tailwind есть [Bearnie](https://bearnie.dev/) с сильным упором на доступность, а в [документации проекта](https://bearnie.dev/docs/) хорошо видно, как устроены компоненты.
+- Если нужен быстрый визуальный эффект, [Dither Image](https://ditherimage.online/) превращает изображения в ретро-пиксель-арт прямо в браузере.
+- Для skeleton-экранов есть [Boneyard](https://github.com/0xGF/boneyard), а в [обзоре проекта](https://boneyard.vercel.app/overview) видно, как он снимает форму с живого UI и строит загрузочные заготовки почти пиксель в пиксель.
+- В React-экосистеме тоже много полезного: [React Color](https://uiwjs.github.io/react-color/) с [репозиторием на GitHub](https://github.com/uiwjs/react-color), [Docusaurus 3.10](https://docusaurus.io/blog/releases/3.10) с [витриной проектов](https://docusaurus.io/showcase), [Markdown Editor 4.1](https://github.com/uiwjs/react-md-editor) с [live demo](https://raw.githack.com/uiwjs/react-md-editor/2f25d39/index.html), [react-infinite-scroll-component 7.0](https://github.com/ankeetmaini/react-infinite-scroll-component) с [обновлённым релизом](https://github.com/ankeetmaini/react-infinite-scroll-component/releases/tag/v7.0.0), [react-native-haptic-feedback 3.0](https://github.com/mkuczera/react-native-haptic-feedback), [react-inlinesvg v4.3.0](https://github.com/gilbarbara/react-inlinesvg) с [демо](https://codesandbox.io/p/sandbox/github/gilbarbara/react-inlinesvg/tree/main/demo?file=%2Fsrc%2FApp.tsx), [html-react-parser 6.0](https://github.com/remarkablemark/html-react-parser), [Wasp 0.22.0](https://github.com/wasp-lang/wasp/releases/tag/v0.22.0), [React-Calendar 6.0](https://projects.wojtekmaj.pl/react-calendar/) и [React Native Skia 2.6](https://github.com/Shopify/react-native-skia).
+- Из более общих библиотек и инструментов недели ещё пригодятся [Neutralinojs 6.7](https://github.com/neutralinojs/neutralinojs), [vue-clamp 1.0](https://github.com/Justineo/vue-clamp) с [демо](https://vue-clamp.void.app/), [vue-virtual-scroller 2.0](https://vue-virtual-scroller.netlify.app/), [Verdaccio 6.4](https://github.com/verdaccio/verdaccio/releases/tag/v6.4.0), [SunEditor 3.0](https://suneditor.com/), [hucre 0.3](https://github.com/productdevbook/hucre) и [bwip-js 4.9](https://github.com/metafloor/bwip-js).
+- Cloudflare тоже зашла на чужую территорию: компания выпустила [EmDash](https://blog.cloudflare.com/emdash-wordpress/), а в JavaScript Weekly этот запуск ещё и назвали [духовным наследником WordPress](https://blog.cloudflare.com/emdash-wordpress/). За дискуссией вокруг релиза можно следить и через [реакцию Matt Mullenweg](https://ma.tt/2026/04/emdash-feedback/).
+
