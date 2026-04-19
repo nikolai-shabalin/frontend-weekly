@@ -1,0 +1,115 @@
+---
+title: "Еженедельный дайджест #42: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Apr 20 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #42! 🗞️", index: 0 },
+  { text: "MDN показала, как жить без React на большом контентном сайте. 🧱", index: 1 },
+  { text: "Google взялась за сайты, которые ломают кнопку «Назад». ⬅️", index: 2 },
+  { text: "TanStack Start пробует свой путь в React Server Components. ⚛️", index: 3 },
+  { text: "Temporal всё ближе к включению по умолчанию в Node.js. ⏰", index: 4 },
+  { text: "Phaser 4.0 приехал с ускорением, демками и миграцией с v3. 🎮", index: 5 },
+  { text: "Bun добавил встроенную автоматизацию браузера и `Bun.cron`. 🥟", index: 6 },
+  { text: "CSS-контейнеры и SVG-эффекты продолжают взрослеть. 🎨", index: 7 },
+  { text: "AI-сгенерированный UI всё ещё часто мимо доступности. ♿", index: 8 },
+  { text: "Charcuterie, og-check и delphitools пополнили список полезных мелочей. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и платформа
+### Google начнёт понижать сайты, которые перехватывают кнопку «Назад»
+[Новая политика Google против back button hijacking](https://developers.google.com/search/blog/2026/04/back-button-hijacking) показывает простую вещь: если сайт мешает пользователю нормально вернуться на предыдущую страницу, это теперь станет не только раздражающим UX-паттерном, но и поводом просесть в поиске. Хорошая практическая мысль недели проста: история браузера принадлежит пользователю, а не маркетинговому сценарию сайта.
+
+### MDN рассказала, как переписала большой фронтенд без React
+[Подробный разбор нового фронтенда MDN](https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/) показывает, как одна из самых полезных площадок для фронтендеров постепенно ушла от старого React-стека в сторону web components. Чтобы лучше понять контекст, полезно держать рядом и [сам MDN](https://developer.mozilla.org/en-US/), и заметку о том, что сайт [сильно обновили внешне ещё в прошлом году](https://developer.mozilla.org/en-US/blog/launching-new-front-end/). Это хороший пример того, что большой проект не обязан вечно держаться за один фреймворк, если платформа уже умеет закрывать часть задач нативно.
+
+- Материал про [Agentic Engine Optimization (AEO)](https://addyosmani.com/blog/agentic-engine-optimization/) объясняет, что вслед за SEO появляется отдельная практика оптимизации сайтов для AI-агентов и других машинных помощников.
+- Небольшой исторический повод оглянуться назад тоже есть: прошло десять лет с момента, как появилась идея [добавить JavaScript-модули прямо в веб-платформу](https://blog.whatwg.org/js-modules).
+
+## 🎨 CSS и интерфейсы
+### Контейнерные запросы становятся всё полезнее в реальной вёрстке
+[Name-only `@container` queries](https://webkit.org/blog/17923/name-only-container-queries-a-solution-to-the-naming-wars/) предлагают более удобный способ именовать контейнеры без лишней специфичности, а статья про [Container Query Typography Systems](https://mattwaler.com/blog/container-query-typography-systems/) показывает, как на базе контейнеров можно строить даже типографику. Это хороший сдвиг: теперь компоненты можно настраивать по их собственному окружению, а не только по ширине окна браузера.
+
+### CSS и SVG снова делают тяжёлую визуальную работу почти без JavaScript
+[SVG Filters Guide](https://frontendmasters.com/blog/svg-filters-guide-getting-started-with-the-basics/) аккуратно вводит в базовые фильтры и объясняет, как добиться предсказуемого результата в разных браузерах. Рядом отлично смотрится [Squash and Stretch](https://www.joshwcomeau.com/animation/squash-and-stretch/), где web-анимация разбирается через [классические диснеевские принципы движения](https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation), и более прикладной туториал о том, как собрать [эффект отражённого свечения на CSS](https://www.youtube.com/watch?v=IXC8GaFkFEA). В сумме это хороший сигнал: выразительные интерфейсы становятся проще без тяжёлой анимационной обвязки.
+
+- Статья про [Unicode Variation Selectors](https://cssence.com/2026/font-variant-emoji/) напоминает, что свойство `font-variant-emoji` помогает выбирать между текстовым символом и его emoji-версией.
+- Эксперимент [The Radio (Button) State Machine](https://css-tricks.com/the-radio-state-machine/) показывает, как далеко можно уехать на одном CSS с `:has()`, переменными и трансформациями, если хочется хранить логику состояний без JavaScript.
+- Если хочется красивых переходов между страницами, разбор [Astro + Barba.js + GSAP для custom page transitions](https://tympanus.net/codrops/2026/04/08/creating-custom-page-transitions-in-astro-with-barba-js-and-gsap/) даёт хороший практический старт.
+
+<TelegramCTA/>
+
+## ♿ Доступность и UX
+### AI-сгенерированные интерфейсы пока всё ещё легко узнать по плохому UX
+[Why AI Sucks at Front End](https://nerdy.dev/why-ai-sucks-at-front-end) жёстко, но по делу ругает шаблонность и вторичность AI-дизайна, а статья [AI-Generated UI is Inaccessible by Default](https://frontendmasters.com/blog/ai-generated-ui-is-inaccessible-by-default/) добавляет самое важное для продакшна: такие интерфейсы часто ломаются на базовых вещах вроде семантики, навигации с клавиатуры и читаемости. Вывод простой: генерация может ускорить черновик, но проверять доступность и здравость интерфейса всё равно нужно руками.
+
+## 📦 JavaScript
+### Bun 1.3.12 усилил историю «всё в одном» для JavaScript-разработки
+[В релизе Bun v1.3.12](https://bun.com/blog/bun-v1.3.12) появилась встроенная headless-автоматизация браузера, а [`Bun.cron`](https://bun.com/blog/bun-v1.3.12#in-process-bun-cron-scheduler) добавляет планировщик задач прямо в рантайм. Это удобно тем, что меньше поводов сразу тянуть отдельный стек инструментов: часть привычных задач теперь можно закрыть в рамках одного окружения.
+
+### Неделя снова напомнила, что асинхронность в JavaScript полна нюансов
+[Uses for Nested Promises](https://blog.jcoglan.com/2026/03/23/uses-for-nested-promises/) возвращается к старому спору про [Promises/A+](https://promisesaplus.com/) и [вложенные promise-цепочки](https://github.com/promises-aplus/promises-spec/issues/94), а материал [You Can't Cancel a Promise (Except Sometimes You Can)](https://www.inngest.com/blog/hanging-promises-for-control-flow) показывает нестандартный, но полезный приём остановки асинхронной работы через «вечное ожидание». Это непростые тексты, но оба хорошо расширяют мышление за пределы учебников про `async/await`.
+
+- Статья [The `Intl` API: The Best Browser API You’re Not Using](https://polypane.app/blog/the-intl-api-the-best-browser-api-youre-not-using/) отлично показывает, как много локализации и форматирования уже встроено в браузер и не требует сторонних библиотек.
+- История [Installing Every Firefox Extension](https://jack.cab/blog/every-firefox-extension) больше развлекательная, но хорошо передаёт, насколько странным и интересным может быть мир браузерных расширений.
+- Разбор [Building a JavaScript Runtime with QuickJS](https://healeycodes.com/building-a-runtime-with-quickjs) помогает лучше понять, что вообще скрывается за словом «рантайм».
+- Кейс [Making Our Frontend Unit Tests Much Faster with `@swc/jest`](https://tech.small-improvements.com/making-our-frontend-unit-tests-much-faster-with-swc-jest/) полезен тем, кто хочет ускорить тесты без полного отказа от Jest, а ссылка на сам [`@swc/jest`](https://swc.rs/docs/usage/jest) пригодится для практического старта.
+- В релизах недели тоже было на что посмотреть: [pnpm v11.0 RC 0](https://github.com/pnpm/pnpm/releases/tag/v11.0.0-rc.0), [Electron 41.2](https://github.com/electron/electron/releases/tag/v41.2.0) и [DOMPurify 3.4](https://github.com/cure53/DOMPurify/releases/tag/3.4.0).
+
+## 📘 TypeScript
+### TypeScript особенно полезен тогда, когда хранит знание о корректных данных
+[Статья Parse, Don't Validate](https://cekrem.github.io/posts/parse-dont-validate-typescript/) показывает простую, но важную мысль: если один раз аккуратно распарсить входные данные, дальше TypeScript может не просто «подсвечивать типы», а реально хранить доказательство, что значение уже безопасно. Рядом интересно выглядит и текст о том, [что команда узнала, пока строила Rust runtime for TypeScript](https://encore.dev/blog/rust-runtime): он помогает посмотреть на экосистему языка с более низкого уровня.
+
+- Для спокойной практики можно взять и более прикладной пример: туториал [Build a Movie Watchlist with Node.js, TypeScript, and MongoDB](https://www.thepolyglotdeveloper.com/2026/04/build-movie-watchlist-nodejs-typescript-mongodb/) подойдёт как небольшой учебный проект.
+
+## ⚛️ React и фреймворки
+### TanStack Start добавил React Server Components, но на своих условиях
+[Анонс поддержки React Server Components в TanStack Start](https://tanstack.com/blog/react-server-components) интересен тем, что команда не просто повторила подход React-экосистемы «как есть», а предложила более data-oriented модель: серверный вывод можно получать и кэшировать как обычные данные. На фоне прошлогоднего разбора [критической уязвимости в React Server Components](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components) решение избегать `use server` выглядит особенно осознанным.
+
+### Вертикальная структура проекта снова набирает очки
+[The Vertical Codebase](https://tkdodo.eu/blog/the-vertical-codebase) хорошо объясняет, почему папки `components/`, `hooks/` и `utils/` сначала кажутся аккуратными, а потом начинают мешать. Это полезная рамка: организовывать код по доменам и пользовательским сценариям часто проще, чем по техническим типам файлов.
+
+### GitHub показал, как тяжёлый React-интерфейс можно сделать заметно быстрее
+[The Uphill Climb of Making Diff Lines Performant on GitHub](https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/) стоит читать всем, кто когда-либо чувствовал, что интерфейс «тормозит без понятной причины». Это хороший инженерный разбор того, как глубина дерева, лишние обработчики и неосторожные ререндеры постепенно накапливают реальную стоимость для пользователя.
+
+- [MUI v9](https://mui.com/blog/introducing-material-ui-v9/) пропустила восьмую мажорную версию, чтобы [синхронизироваться с MUI X v9](https://mui.com/blog/introducing-mui-v9/#one-mui-ecosystem-a-synced-major-version), и привезла новые компоненты вроде `NumberField` и `Menubar`.
+- Для UI-kit экосистемы ещё важен и релиз [Mantine 9.0](https://mantine.dev/changelog/9-0-0/): библиотека продолжает расширяться в сторону сложных интерфейсов, включая календарное планирование.
+- Во внутренностях React тоже шумно: идёт работа по [переносу React Compiler на Rust](https://github.com/facebook/react/pull/36173).
+- Из важных обновлений безопасности вышли [React 19.2.5](https://github.com/facebook/react/releases/tag/v19.2.5), [19.1.6](https://github.com/facebook/react/releases/tag/v19.1.6) и [19.0.5](https://github.com/facebook/react/releases/tag/v19.0.5), а для mobile-разработки подтянулась [React Native 0.85](https://reactnative.dev/blog/2026/04/07/react-native-0.85).
+- На стыке фреймворков и экосистем можно ещё отметить, что [TanStack Router, Start и Query получили поддержку Solid 2.0 beta](https://tanstack.com/blog/tanstack-start-solid-v2).
+
+## ⚙️ Node.js
+### Temporal всё ближе к тому, чтобы стать нормой в Node.js
+[Node Moves to Enable Temporal By Default](https://github.com/nodejs/node/pull/61806) — это важная новость для всех, кто устал от путаницы с `Date`. Сам [Temporal API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal) недавно [дошёл до stage 4](https://www.igalia.com/2026/03/13/Temporal-Reaches-Stage-4.html), и теперь Node постепенно двигается к тому, чтобы включать его по умолчанию. Нормальная работа с датой и временем становится частью стандартного JavaScript, а не вечным выбором между десятком библиотек.
+
+### Node 24.15.0 LTS сделал несколько полезных вещей стабильнее
+[Релиз Node.js 24.15.0 (LTS)](https://nodejs.org/en/blog/release/v24.15.0) приносит в LTS-ветку несколько заметных улучшений из более новых версий, включая стабильный `require(esm)` и module compile cache. Это не самый громкий релиз снаружи, но он делает повседневную серверную разработку предсказуемее.
+
+- Практический must-read для Node-разработчиков на этой неделе — [OWASP NPM Security Best Practices Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html): там собран очень приземлённый чеклист по безопасности зависимостей.
+- Если хочется разобраться в WebAssembly без большого порога входа, заметка [The Simplest C-to-WebAssembly-to-Node Pipeline](https://github.com/peterc/webassembly-simplest-demo) показывает кратчайший маршрут от C-функции до запуска в Node.
+- Из утилит недели особенно полезны [Pompelmi 1.0](https://pompelmi.app/), который заворачивает [ClamAV](https://www.clamav.net/) в Node-удобную обёртку, плюс ссылки на [релиз v1.0](https://github.com/pompelmi/pompelmi/releases/tag/1.0.0) и [репозиторий проекта](https://github.com/pompelmi/pompelmi).
+
+## 🎮 Игры, графика и визуальные эксперименты
+### Phaser 4.0 вышел с упором на производительность и современную разработку
+[Phaser 4.0](https://phaser.io/) празднует 13-летие движка крупным обновлением: в [большом релизе](https://github.com/phaserjs/phaser/releases/tag/v4.0.0) разработчики сосредоточились на производительности и эффективности, добавили [skills files для AI-агентов](https://github.com/phaserjs/phaser/tree/master/skills), а ещё подготовили [сотни демо](https://labs.phaser.io/), [подборку игр](https://labs.phaser.io/?path=games) и [гайд по миграции с v3 на v4](https://github.com/phaserjs/phaser/blob/master/changelog/v4/4.0/MIGRATION-GUIDE.md). Получилась очень удобная точка входа в 2D-веб-геймдев: современный движок, куча примеров и понятный путь обновления.
+
+- Проект [FluidCAD](https://fluidcad.io/) тянет параметрический CAD в JavaScript-мир поверх [OpenCascade.js](https://ocjs.org/), который сам является JS/WASM-портом библиотеки [OpenCascade](https://dev.opencascade.org/).
+- Если хочется цифровой археологии, можно запустить [Windows 95 как Electron-приложение](https://github.com/felixrieseberg/windows95), заглянуть на движок [v86](https://github.com/copy/v86/), изучить возможности [релиза v5.0](https://github.com/felixrieseberg/windows95/releases/tag/v5.0.0) и даже попробовать воскресить [Mindmaze из Encarta](https://www.otherstrangeness.com/2024/07/02/mindmaze-was-the-original-wikipedia-rabbit-hole/).
+- Ретро-тему продолжает и новый релиз [JSPaint](https://github.com/1j01/jspaint), который можно сразу же [пощупать в браузере](https://jspaint.app/).
+
+## ⚒️ Инструменты и библиотеки
+### Неделя принесла много небольших инструментов, которые закрывают очень конкретные боли
+[Charcuterie](https://charcuterie.elastiq.ch) помогает визуально искать Unicode-символы и emoji, если вы не знаете точное имя нужного знака. CLI-утилита [og-check](https://simonhartcher.com/posts/2026-04-15-testing-opengraph-on-localhost-from-the-cli/) даёт проверить OpenGraph локально без деплоя, в отличие от [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/). А подборка [delphitools](https://tools.rmv.fyi/) просто удобна на каждый день: там есть и [background remover](https://tools.rmv.fyi/tools/background-remover), и [SVG optimizer](https://tools.rmv.fyi/tools/svg-optimiser), и [генератор оттенков Tailwind CSS](https://tools.rmv.fyi/tools/tailwind-shades).
+
+- Инструмент [Boneyard](https://boneyard.vercel.app/overview) умеет автоматически строить skeleton screens по уже существующему интерфейсу.
+- Библиотека [Micro-ML](https://github.com/AdamPerlinski/micro-ml) предлагает небольшой WASM-набор для прогнозирования, кластеризации и сглаживания без тяжёлых ML-зависимостей.
+- Если вы любите терминальные интерфейсы на React, посмотрите на [Ink 7.0](https://github.com/vadimdemedes/ink/releases/tag/v7.0.0) и список [популярных приложений, которые уже на нём работают](https://github.com/vadimdemedes/ink?tab=readme-ov-file#whos-using-ink).
+- Для monorepo-порядка пригодится [Syncpack](https://syncpack.dev/), который умеет находить и исправлять разъезжающиеся версии зависимостей.
+- Визуальным разработчикам могут понравиться [oklchanger](https://marketplace.visualstudio.com/items?itemName=starbist.oklchanger#oklchanger) для перевода цветов в OKLCH и [SLITSCANNER](https://www.slitscanner.app/), вдохновлённый [slit-scan photography](https://en.wikipedia.org/wiki/Slit-scan_photography).
+- Из свежих библиотек и расширений ещё стоит отметить [wa-sqlite 1.1](https://github.com/rhashimoto/wa-sqlite) с [демо](https://rhashimoto.github.io/wa-sqlite/demo/?build=asyncify&config=IDBBatchAtomicVFS&reset), [gridstack.js 12.6](https://gridstackjs.com/), [Formula.js 4.6](https://formulajs.info/), [Lexical 0.43](https://github.com/facebook/lexical/releases/tag/v0.43.0) и JSON viewer-расширение [JSON Alexander](https://github.com/wesbos/JSON-Alexander).
+
+## 🔐 Безопасность и supply chain
+### Фронтенд-неделя снова напомнила, что безопасность начинается с зависимостей и расширений
+[История о том, как кто-то купил 30 WordPress-плагинов и встроил во все backdoor](https://anchor.host/someone-bought-30-wordpress-plugins-and-planted-a-backdoor-in-all-of-them/) звучит как сюжет для триллера, но это уже обычная реальность supply chain-рисков. На этом фоне особенно уместно читать и [текст Cal Paterson о dependency cooldowns](https://calpaterson.com/deps.html), и уже упомянутый [OWASP-cheat sheet для npm-пакетов](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html). Практический вывод простой: обновляться нужно, но ещё важнее понимать, кому и чему вы доверяете.
