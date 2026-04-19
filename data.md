@@ -1,568 +1,515 @@
 ## Frontend
 Together with 
 
-[![Frontend Masters logo](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,w_300,h_70/e_make_transparent/co_white,e_outline:5/nk0tfdvalivacz8rw7rt.png)](https://frontendfoc.us/link/183365/web)
+[![Tiger Data logo](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,w_1280,h_282/e_make_transparent/co_white,e_outline:30/px1u7kjyvz7xnbm6ytir.png)](https://frontendfoc.us/link/183754/web)
 
 🚀 **Frontend** Focus
 
-#​736 — April 8, 2026 | [Read on the web](https://frontendfoc.us/link/183366/web)
+#​737 — April 15, 2026 | [Read on the web](https://frontendfoc.us/link/183755/web)
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1775646124/zerm4rfvfd3otsaqzd40.png)](https://frontendfoc.us/link/183367/web)
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1776260935/szoqg3otarapxnzfqzxy.png)](https://frontendfoc.us/link/183756/web)
 
-[Introducing `view-transitions-toolkit`: Utility Functions to More Easily Work with View Transitions](https://frontendfoc.us/link/183367/web "www.bram.us") — Bramus has been experimenting with View Transitions for a good while now. He's brought together his numerous code patterns into [a new dedicated npm package](https://frontendfoc.us/link/183368/web) full of view transition utilities, helpers, and functions. There’s a [bunch of demos here](https://frontendfoc.us/link/183369/web), and the [code is on GitHub](https://frontendfoc.us/link/183370/web).
+[Google's New Spam Policy for "Back Button Hijacking"](https://frontendfoc.us/link/183756/web "developers.google.com") — Starting in mid June, Google Search will begin penalizing sites that ‘hijack’ the back button. “_Ensure you are not doing anything to interfere with a user’s ability to navigate their browser history_”.
 
-Bramus Van Damme (Google)
+Chris Nelson (Google)
 
-📊 [Announcing JetStream 3.0](https://frontendfoc.us/link/183371/web "browserbench.org") — Seven years after v2 comes a big update to the popular cross-browser JS/WASM benchmark suite. It’s a group effort, with work from Mozilla, [WebKit](https://frontendfoc.us/link/183372/web), and [Chromium](https://frontendfoc.us/link/183373/web), with updates to the workloads and methodology. [The tool is here](https://frontendfoc.us/link/183374/web), as well as [more detail on the analysis performed](https://frontendfoc.us/link/183375/web).
+[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/1d36dece.png)](https://frontendfoc.us/link/183754/web)
 
-Browser Bench
+[Every Refresh Button is a Data Layer Confession](https://frontendfoc.us/link/183754/web "www.tigerdata.com") — Behind every slow dashboard is a pipeline syncing data to a second database. TimescaleDB extends Postgres so analytics runs on live data. No pipeline, no stale reads. Hypertables, 95% compression, continuous aggregates. [Start building for free](https://frontendfoc.us/link/183754/web).
 
-[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/8534bab8.jpg)](https://frontendfoc.us/link/183365/web)
+Tiger Data (creators of TimescaleDB) sponsor
 
-[Free Workshop: Claude Code Deep Dive — April 21](https://frontendfoc.us/link/183365/web "www.addevent.com") — Lydia Hallie from Anthropic teaches a full-day Claude Code workshop at Frontend Masters on April 21. Free to attend. No subscription required.
+[Under the Hood of MDN's New Frontend](https://frontendfoc.us/link/183757/web "developer.mozilla.org") — [MDN](https://frontendfoc.us/link/183758/web) is one of the most useful resources we turn to as frontend devs and it [had a major facelift](https://frontendfoc.us/link/183839/web) last year. This post digs into the architecture, why it opted to rebuild, and why React was removed in favor of a web components-based approach.
 
-Frontend Masters sponsor
+Leo McArdle (MDN)
 
-[How to Use HTML Video and Audio Lazy-Loading](https://frontendfoc.us/link/183443/web "engineering.squarespace.com") — HTML video and audio lazy loading is now a web standard. It’ll be available in Chrome 148 and Firefox and WebKit implementations are close behind. Here’s how it works.
+🤖 [Agentic Engine Optimization (AEO)](https://frontendfoc.us/link/183824/web "addyosmani.com") — You’re familiar with SEO, but the idea of optimizing sites to be discovered and used by agents and other AI-adjacent tools is rapidly catching on too. Google’s Addy Osmani shares some pointers for the basic techniques involved.
 
-Scott Jehl (Squarespace)
-
-💡 Scott also wrote about [_how_ video/audio lazy-loading entered the HTML Standard.](https://frontendfoc.us/link/183444/web)
-
-[The WebAIM Million 2026 Report](https://frontendfoc.us/link/183377/web "webaim.org") — This accessibility analysis of a million sites makes for disappointing reading: despite years of progress, we’re now seeing web accessibility in decline. Why? They say “_increased reliance on 3rd party frameworks and libraries and automated or AI-assisted coding practices_”.
-
-WebAIM
+Addy Osmani
 
 ⚡️ IN BRIEF
 
-*   🤔 _CSS or BS?_ is [a surprisingly tricky quiz](https://frontendfoc.us/link/183378/web). Can you spot the real CSS properties among the plausible-sounding fakes?
+*   😅 What do you discover when you [install every Firefox browser extension?](https://frontendfoc.us/link/183825/web) One developer found out the hard way.
 
-*   🖼️ [HTML in Canvas](https://frontendfoc.us/link/183445/web) is a proposal for using canvas elements to customize the rendering of HTML.
+*   🥞 GitHub has [a new 'stacked PRs' feature](https://frontendfoc.us/link/183762/web) in private preview, it's designed to break large changes into smaller, dependent parts.
 
-*   ⌨️ [Cloudflare has launched 'EmDash'](https://frontendfoc.us/link/183379/web), a new TypeScript-powered CMS to take on WordPress. Matt Mullenweg [shared his thoughts](https://frontendfoc.us/link/183380/web).
+*   🗓️ The [schedule for the tenth (_and final_) All Day Hey!](https://frontendfoc.us/link/183760/web), taking place in Leeds, UK next month, is now live.
 
-*   🗳️ The [second annual 'State of AI' survey is now live](https://frontendfoc.us/link/183383/web), seeking responses on AI usage within web development.
+*   💬 If you're a framework author or maintainer [the Web Frameworks Community Group Discord is seeking members](https://frontendfoc.us/link/183822/web).
 
-*   🚀 [Launch your own Artemis 2 rocket](https://frontendfoc.us/link/183385/web) with a bit of CSS and a scroll of the mouse.
-
-*   🙏 The _Chrome Web Store_ has [a new appeals process](https://frontendfoc.us/link/183381/web) for rejected extensions.
+*   🚪 Someone bought 30 WordPress plugins of varying popularity and [planted a backdoor in all of them](https://frontendfoc.us/link/183761/web).
 
 
 📙 Articles, Opinions & Tutorials
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1775649818/nfbjl0aergpqo1pffwkq.png)](https://frontendfoc.us/link/183390/web)
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1776248189/rblvf4571vkijaxmkp8v.png)](https://frontendfoc.us/link/183769/web)
 
-[Alternatives to the `!important` Keyword](https://frontendfoc.us/link/183390/web "css-tricks.com") — When looking over old CSS you may encounter `!important` and forgot why you needed it. If you’re looking to fix up such debt, this post offers some modern alternative options.
+[SVG Filters Guide: Getting Started with the Basics](https://frontendfoc.us/link/183769/web "frontendmasters.com") — Explains how to set up SVG filters, along with filter regions, color interpolation, and more, all whilst getting consistent cross-browser results.
 
-Saleh Mubashar
+Ana Tudor
 
-[CSS `subgrid` is Super Good](https://frontendfoc.us/link/183386/web "dbushell.com") — CMS-driven layouts can often get a bit tricky, particularly when trying to ‘break out’ of set container widths. Dave shows how [subgrid](https://frontendfoc.us/link/183387/web) can simplify things by way of full-width or inset components, without the need for margin hacks or wrapper bloat.
+[Squash and _Stretch_](https://frontendfoc.us/link/183764/web "www.joshwcomeau.com") — Josh shares how he’s been taking cues from a set of [classic Disney animation principles](https://frontendfoc.us/link/183826/web) to make motion effects feel more satisfying. He details how he’s applied the techniques on the web, with the end result gaining an extra level of polish.
 
-David Bushell
+Josh W. Comeau
 
-[What If Mobile Deploys Worked Like Web Deploys?](https://frontendfoc.us/link/183388/web "try.expo.dev") — With Expo’s OTA updates, they do. You can configure OTA Updates in minutes and see them working on your next pull request.
+[The Data Table That Doesn’t Get in Your Way](https://frontendfoc.us/link/183766/web "eu1.hubs.ly") — Handsontable is flexible, accessible, and built for complex use cases.
 
-Expo sponsor
+Handsontable sponsor
 
-[Email Address Obfuscation in HTML: What Works in 2026?](https://frontendfoc.us/link/183393/web "spencermortensen.com") — A test of numerous techniques to see which trip up the bots. It turns out most scrapers are very lazy, but there are a few techniques worth avoiding in 2026 (using HTML entities and URL encoding).
+🤖 [Why AI Sucks at Front End](https://frontendfoc.us/link/183772/web "nerdy.dev") — A rant on the pros and numerous cons of AI design — stuff that’s trained on “_ancient solutions, unoriginal UI patterns, and watered down junk_”.
 
-Spencer Mortensen
+Adam Argyle
 
-[What to Know in JavaScript (2026 Edition)](https://frontendfoc.us/link/183376/web "frontendmasters.com") — A high-level overview of the sprawling JavaScript landscape as it stands today, including a look at recent language additions, frameworks to keep tabs on, runtimes, build tools, etc.
+[Unicode Variation Selectors](https://frontendfoc.us/link/183765/web "cssence.com") — Did you know about the `font-variant-emoji` property? It provides a way to control whether a Unicode glyph or its emoji counterpart is displayed.
 
-Chris Coyier
+Matthias Zöchling
 
-[Name-Only Containers: The Scoping We Needed](https://frontendfoc.us/link/183391/web "frontendmasters.com") — Chris explores a novel use for name-only containers as a way to solve CSS scoping challenges in a native way. Of course, we do have `@scope` at our disposal, but this is a curious alternative approach.
+[Name-Only `@container` Queries: A Solution to the Naming Wars](https://frontendfoc.us/link/183759/web "webkit.org") — An introduction to name-only `@container` queries (in Safari only, for now). This addition makes naming much easier with a feature that improves scoping without adding specificity.
 
-Chris Coyier
+Saron Yitbarek (WebKit)
 
-[New CSS Multi-Column Layout Features in Chrome](https://frontendfoc.us/link/183392/web "css-tricks.com") — Chrome 145 introduces support for a couple of new column-wrapping features, namely `column-wrap` and `column-height`. They’re a big upgrade for multi-column layouts, so here’s a look at how you may want to use them.
+[The Radio (Button) State Machine](https://frontendfoc.us/link/183767/web "css-tricks.com") — Typically managing state with JavaScript is the right approach — but how would you go about doing it in CSS? Amit explores keeping the logic in CSS, via `:has()`, transforms, variables, etc. A curious bit of experimentation if nothing else.
 
-Abhishek Pratap Singh
+Amit Sheen
 
-👍 [Making Emojis and Icons Screen Reader Accessible](https://frontendfoc.us/link/183394/web)
-Elle Smith
+[Container Query Typography Systems](https://frontendfoc.us/link/183770/web "mattwaler.com") — Begone breakpoint-based type scales! Here’s how to use container queries and the `:has` selector to create container-based scales.
 
-[Screen Readers are Not Testing Tools](https://frontendfoc.us/link/183397/web)
-Eric Eggert
+Matt Waler
+
+[The `Intl` API: The Best Browser API You’re Not Using](https://frontendfoc.us/link/183768/web "polypane.app") — Or maybe you are. Either way, here's a neat primer to what you can do with `Intl`.
+
+Kilian Valkhof
+
+▶  [Create a Reflective Glow Effect with CSS](https://frontendfoc.us/link/183773/web)
+Kevin Powell
+
+[AI-Generated UI is Inaccessible by Default](https://frontendfoc.us/link/183774/web)
+Durgesh Rajubhai Pawar
 
 🧰 Tools, Code & Resources
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1775638740/aqu45rjk776rylvwehjr.png)](https://frontendfoc.us/link/183398/web)
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1776246600/qxm2utrszo7yfsz113cd.png)](https://frontendfoc.us/link/183785/web)
 
-[Crashcat: A Physics Engine for JavaScript, Built for Games, Simulations, And Creative Websites](https://frontendfoc.us/link/183398/web "github.com") — The [demo site](https://frontendfoc.us/link/183399/web) has lots of impressive examples and the library has an extensive feature set for doing just about anything you’d need in a game or physics simulation.
+[Charcuterie: Visually Explore Unicode Characters](https://frontendfoc.us/link/183785/web) — A browser-based smorgasbord of Unicode characters and emojis, all sorted by their ‘visual similarities’. Click around to get the idea or you can type (or draw!) your own character in the fields at the top to find the right character for your use case.
 
-Isaac Mason
+David Aerne
 
-[Add Seat-Limited Billing Plans To Your B2B App With Clerk](https://frontendfoc.us/link/183400/web "go.clerk.com") — Clerk Billing supports seat limits. Define caps per plan; Clerk enforces them and prompts upgrades automatically.
+[og-check: Test OpenGraph Locally Before You Go Public](https://frontendfoc.us/link/183827/web "simonhartcher.com") — If you’re building locally, tools like [Facebook’s Sharing Debugger](https://frontendfoc.us/link/183828/web) won’t work, but this new command line tool lets you test your OpenGraph tags locally and see what the public will see _before_ you deploy it.
+
+Simon Hartcher
+
+[Lock Down User Identifiers After Sign-Up With One Toggle](https://frontendfoc.us/link/183777/web "go.clerk.com") — Clerk now lets you prevent end users from modifying their email, phone, or username after they've signed up.
 
 Clerk sponsor
 
-[Bearnie: Accessible Components for Astro and Tailwind CSS](https://frontendfoc.us/link/183446/web "bearnie.dev") — Promoted as a way to start your own component library, with ability to fully customize these, which follow WCAG 2.1 AA guidelines, including keyboard nav, screen reader support, and focus management. [Docs site is here](https://frontendfoc.us/link/183402/web).
+🕹️ [Phaser 4.0: The 2D WebGL/Canvas-Based Game Framework](https://frontendfoc.us/link/183829/web "phaser.io") — The widely used game framework celebrates thirteen years with [a major release](https://frontendfoc.us/link/183830/web) focused on perf/efficiency improvements, as well as [skills files](https://frontendfoc.us/link/183831/web) so AI agents can build modern Phaser apps. There are [hundreds of demos](https://frontendfoc.us/link/183832/web) to show it off.
 
-Michael Andreuzza
+Phaser Studio Inc.
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1775638919/nmtc7nx2dit6cfrjhp6u.png)](https://frontendfoc.us/link/183408/web)
+[oklchanger: A VS Code Extension to Convert Colors to OKLCH](https://frontendfoc.us/link/183781/web "marketplace.visualstudio.com") — Has support for converting color keywords, hex, RGB(A), HSL(A), Lab, and LCH, done via the command palette.
 
-[Dither Image: Web Tool to Add a Retro Pixel Art Effect to Images](https://frontendfoc.us/link/183408/web "ditherimage.online") — Includes a before/after toggle along with multiple settings to define the exact effect you want. A nice, quick alternative to more complex graphics tools. _I just tried it with a shot from the Artemis II Moon mission_. →
+Silvestar Bistrović
 
-Dither Image
+[SLITSCANNER: Image and Text Distortion Art Creation Tool](https://frontendfoc.us/link/183782/web "www.slitscanner.app") — If you’re familiar with [slit-scan photography](https://frontendfoc.us/link/183833/web), this will make sense. Upload an image, set some scan settings, then move the image around while the ‘scanning’ takes place, to get the effect. A neat aesthetic for background images, perhaps.
 
-[SSGOI: Native App-Like Page Transitions for the Web](https://frontendfoc.us/link/183409/web "github.com") — Boasts better browser support than native page transitions and it’s available for React/Next, Vue/Nuxt, Svelte, and Angular, with any routing system. You can check out some neat [demos on the docs site](https://frontendfoc.us/link/183410/web).
-
-meursyphus
-
-[Boneyard: Auto Generated Skeleton Loading Framework](https://frontendfoc.us/link/183411/web) — Pixel-perfect skeleton loading screens for React and Svelte apps, extracted from your real UI.
-goodfuture
-
-[SVGInject: Inject SVG Files Inline Into the DOM](https://frontendfoc.us/link/183412/web) — Inlines SVG files into the DOM at runtime with no build step, so you can style elements with CSS.
-INCORS GmbH
+Matt Soria
 
 📰 Classifieds
 
-Most engineers can't prove they're AI-first in an interview. [Gauntlet's](https://frontendfoc.us/link/183413/web) CTO breaks down exactly what separates those who can.
+Mark Rober, ex-NASA engineer and popular science creator, joins Twilio SIGNAL May 6-7 in San Francisco. [Get your free 2026 dev ticket now!](https://frontendfoc.us/link/183783/web)
 
 * * *
 
-**Twilio SIGNAL returns to San Francisco this May**. 🎟️ Local? Claim your [free SIGNAL 2026 developer ticket](https://frontendfoc.us/link/183414/web) now (_before they run out_) and join us for workshops, coding sessions and more!
+[Gauntlet AI Night School](https://frontendfoc.us/link/183784/web) | Picking the right tool is how AI-first developers get apps into production faster. (Virtual - 4/15)
 
-* * *
+👁️ ...and finally
 
-📖 Master **Visual Studio Code**, and learn [over 150 essential tips in this screenshot-packed guide](https://frontendfoc.us/link/183415/web) from Louis Lazaris.
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1776249550/mwpbevkfastvzwvi7zrl.png)](https://frontendfoc.us/link/183776/web)
 
-🖌️ Got some diagrams to draw?
+[delphitools: 40+ Simple Online Tools](https://frontendfoc.us/link/183776/web "tools.rmv.fyi") — A charming collection of “_small, low stakes and low effort tools_”. Like a watermarker, palette generator, [background remover](https://frontendfoc.us/link/183834/web), image converter, [SVG optimizer](https://frontendfoc.us/link/183835/web), line-height calculator, [Tailwind CSS shade generator](https://frontendfoc.us/link/183836/web), and many more. All with no logins or tracking.
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/v1775040239/tx3v9tlfkajly2zm5gev.png)](https://frontendfoc.us/link/183405/web)
+Ruby morgan voigt
 
-[MonoSketch: An ASCII Sketching and Diagramming App](https://frontendfoc.us/link/183405/web "monosketch.io") — A neat, open source sketching/diagramming tool that lets you turn your ideas into ASCII designs. You can [try it here](https://frontendfoc.us/link/183406/web).
 
-Tuan Chau
+## Javascript
+#​781 — April 14, 2026
 
-[Wiretext: A Unicode Wireframe Design Tool](https://frontendfoc.us/link/183407/web "wiretext.app") — Similar to above, but works like a typical GUI tool with the end results being Unicode you can copy/paste. Includes numerous ‘components’ you can insert that we don’t normally associate with text (e.g. image, avatar, radio buttons, etc).
-
-Daniel Howells
-
-[Ipx.](https://frontendfoc.us/link/183416/web)
-
-## CSS
-
-[Sponsored by DebugBear](https://cssw.io/debugbear-fix-perf-issues)
-
-Frontend News #22: x86 CPU in CSS, pointer-box-offset Property
-==============================================================
-
-[Video](/blog?filter=videos)April 10, 2026[Zoran Jambor](/author/zoranjambor)
-
-Find out how to detect at-rule support in CSS, how the pointer-box-offset property works, and more.
-
-Find out how to detect at-rule support in CSS, how the pointer-box-offset property works, what the different and creative ways are to select the HTML element, how it’s possible to recreate the x86 CPU architecture in CSS, and more.
-
-**[Identify and fix your web performance issues with DebugBear](https://cssw.io/debugbear-fix-perf-issues)**
-
-Chapters
---------
-
-*   00:00 About this episode
-*   00:25 [Detect at-rule support in CSS](https://www.bram.us/2026/03/15/at-rule/)
-*   01:54 [Fix your web performance issues with DebugBear](https://cssw.io/debugbear-fix-perf-issues)
-*   02:29 [pointer-box-offset](https://robinrendle.com/notes/pointer-box-offset/)
-*   03:35 [Increase pointer target size on GitHub](https://github.com/w3c/csswg-drafts/issues/4708)
-*   03:58 [The Different Ways to Select HTML in CSS](https://css-tricks.com/the-different-ways-to-select-html-in-css/)
-*   06:04 [Mole](https://github.com/tw93/Mole)
-*   07:36 [x86 CPU made in CSS](https://lyra.horse/x86css/)
-
-[@supports](/blog?tag=%40supports)[feature detection](/blog?tag=feature%20detection)[pointer-box-offset](/blog?tag=pointer-box-offset)[selectors](/blog?tag=selectors)
-
-## javascript
-
-#​780 — April 7, 2026
-
-[Read on the Web](https://javascriptweekly.com/link/183301/web)
+[Read on the Web](https://javascriptweekly.com/link/183753/web)
 
 Together with 
 
-[![Frontend Masters logo](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,w_300,h_70/e_make_transparent/co_white,e_outline:5/nk0tfdvalivacz8rw7rt.png)](https://javascriptweekly.com/link/183302/web)
+[![Expo](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,e_trim,w_1024,h_289/e_make_transparent/co_white,e_outline:15/damvoyij8zrqr3lp2edx.png)](https://javascriptweekly.com/link/183679/web)
 
 JavaScript Weekly
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/clia2za7y4fbmgwelaod.jpg)](https://javascriptweekly.com/link/183303/web)
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/gm0i5twsmyfutkc1xygg.jpg)](https://javascriptweekly.com/link/183680/web)
 
-[JSIR: A High-Level IR for JavaScript from Google](https://javascriptweekly.com/link/183303/web "discourse.llvm.org") — Google has open sourced a new tool ([JSIR](https://javascriptweekly.com/link/183304/web)) and proposed an industry-standard IR ([Intermediate Representation](https://javascriptweekly.com/link/183305/web) – if an AST tells you what the code _looks like_, an IR tells you what it _does_) for JavaScript. Already used at Google for analysis and code transformation, the underlying idea could form a foundation for a new generation of tooling.
+[Under the Hood of MDN's New Frontend](https://javascriptweekly.com/link/183680/web "developer.mozilla.org") — The hugely useful [MDN](https://javascriptweekly.com/link/183681/web) has rebuilt its frontend stack from the ground up, ditching React for web components and a homegrown server component system. A great read on building a modern, content-heavy site without shipping unnecessary JavaScript on every page.
 
-Zhixun Tan (Google)
+Leo McArdle (MDN)
 
-💡 Most devs won't feel the impact for a while, but this is the kind of groundwork that can lead to better linters, smarter bundlers, better refactoring tools, and so forth.
+[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/865de20e.png)](https://javascriptweekly.com/link/183679/web)
 
-[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/8534bab8.jpg)](https://javascriptweekly.com/link/183302/web)
+[Ship Mobile Apps The Way You Ship Websites](https://javascriptweekly.com/link/183679/web "try.expo.dev") — Expo gives JavaScript developers a web-like workflow for native mobile. Hot reload on device. OTA updates that skip app store review. Cloud builds that work like Vercel. Start with npx create-expo-app.
 
-[Free Workshop: Claude Code Deep Dive — April 21](https://javascriptweekly.com/link/183302/web "www.addevent.com") — Lydia Hallie from Anthropic teaches a full-day Claude Code workshop at Frontend Masters on April 21. Free to attend. No subscription required.
+Expo sponsor
 
-Frontend Masters sponsor
+🕹️ [Phaser 4.0: The 2D WebGL and Canvas-Based Game Framework](https://javascriptweekly.com/link/183682/web "phaser.io") — The widely used game framework celebrates its 13th birthday with [a major release](https://javascriptweekly.com/link/183683/web) focused on perf/efficiency improvements, and includes [skills files](https://javascriptweekly.com/link/183684/web) so AI agents can build Phaser 4.0 apps well. There are [lots of demos](https://javascriptweekly.com/link/183685/web), including [these games](https://javascriptweekly.com/link/183686/web), and existing users get a [v3 to v4 migration guide.](https://javascriptweekly.com/link/183687/web)
 
-[What to Know in JavaScript (2026 Edition)](https://javascriptweekly.com/link/183306/web "frontendmasters.com") — An up-to-date overview of the JS landscape, including the latest ECMAScript additions, frameworks to keep tabs on, runtimes, build tools, and more. A good way to catch up.
-
-Chris Coyier
+Phaser Studio Inc.
 
 **IN BRIEF:**
 
-*   🔓 The Axios team has published [a postmortem of last week's npm supply chain compromise](https://javascriptweekly.com/link/183363/web). There's also a look into [how the social engineering part worked.](https://javascriptweekly.com/link/183364/web)
+*   Google will [penalize sites that 'hijack' the back button](https://javascriptweekly.com/link/183688/web) in its search results from June. _"Ensure you are not doing anything to interfere with a user's ability to navigate their browser history,"_ says Chris Nelson.
 
-*   📊 WebKit, Google and Mozilla have [unveiled _JetStream 3_](https://javascriptweekly.com/link/183361/web), the latest version of a suite of popular browser-oriented JS and WASM performance benchmarks.
+*   [TanStack Start](https://javascriptweekly.com/link/183689/web) now has [(experimental) React Server Components support.](https://javascriptweekly.com/link/183690/web)
 
-*   [Cloudflare has released _EmDash_](https://javascriptweekly.com/link/183309/web), a JavaScript-flavored _'spiritual successor to WordPress'_.
+*   🇫🇷 [dotJS](https://javascriptweekly.com/link/183691/web) returns to Paris, France this September 18 – [its CFP](https://javascriptweekly.com/link/183692/web) is open for two more weeks if you'd like to speak.
 
-*   [The Svelte team has published its latest monthly roundup.](https://javascriptweekly.com/link/183310/web)
+*   🇷🇴 The [_JSHeroes_ conference](https://javascriptweekly.com/link/183693/web) is back this May 14-15 in Romania.
 
 
 **RELEASES:**
 
-*   [ESLint v10.2.0](https://javascriptweekly.com/link/183311/web) – Adds support for language-aware rules through a new `meta.languages` property. `Temporal` is now also supported.
+*   [Bun v1.3.12](https://javascriptweekly.com/link/183694/web) – The JS runtime now ships with native, headless browser automation built in, and [`Bun.cron`](https://javascriptweekly.com/link/183695/web) provides an in-process task scheduler.
 
-*   [Node.js 25.9.0 (Current)](https://javascriptweekly.com/link/183312/web) – Adds `--max-heap-size` to set a max heap size for a process, and includes [`stream/iter`](https://javascriptweekly.com/link/183313/web), a new experimental iterable streams API.
+*   ⚠️ [React 19.2.5](https://javascriptweekly.com/link/183696/web), [19.1.6](https://javascriptweekly.com/link/183697/web) and [19.0.5](https://javascriptweekly.com/link/183698/web) have been released to deploy a fix for a React Server Components vulnerability.
+
+*   [React Native 0.85](https://javascriptweekly.com/link/183699/web) – New animation backend and devtools improvements.
+
+*   [pnpm v11.0 RC 0](https://javascriptweekly.com/link/183701/web), [React Three Fiber 9.6](https://javascriptweekly.com/link/183702/web), [Electron 41.2](https://javascriptweekly.com/link/183703/web), [DOMPurify 3.4](https://javascriptweekly.com/link/183704/web)
 
 
 📖  Articles and Videos
 
-[Minimum Release Age is an Underrated Supply Chain Defense](https://javascriptweekly.com/link/183315/web "daniakash.com") — An increasingly common package manager feature is being able to specify a minimum ‘package age’. The idea is that if you wait, then maintainers, security tools, etc. will tackle the most nefarious supply chain attacks. It’s no silver bullet, but may suit your use case, and here’s how to set it up.
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/ekaqzknctznkltb0sfzw.jpg)](https://javascriptweekly.com/link/183705/web)
 
-Dani Akash
+[Installing Every Firefox Extension](https://javascriptweekly.com/link/183705/web "jack.cab") — One person’s entertaining and heroic tale of wielding JavaScript to explore the Firefox extension ecosystem. And what oddities there are within! I enjoyed this a lot, it’s like _Alice in Wonderland_ for developers. More spelunking like this please.
 
-▶  [TanStack Start: A Client-First Web Framework](https://javascriptweekly.com/link/183316/web "www.youtube.com") — A 30-minute talk from TanStack’s founder showcasing [TanStack Start](https://javascriptweekly.com/link/183317/web)’s value proposition for both React and Solid developers looking for a complete SSR framework.
+Jack Cab
 
-Tanner Linsley
+[Uses for Nested Promises](https://javascriptweekly.com/link/183706/web "blog.jcoglan.com") — James revisits 2013's [Promises/A+](https://javascriptweekly.com/link/183707/web) monads [debate](https://javascriptweekly.com/link/183708/web) and has changed his mind, thanks to a real concurrency problem he ran into. Demanding but rewarding.
 
-[One Extension Replaces Your Entire Analytics Pipeline](https://javascriptweekly.com/link/183318/web "www.tigerdata.com") — TimescaleDB adds hypertables, 95% compression, and continuous aggregates to Postgres. Analytics on live data. Try for free.
+James Coglan
 
-Tiger Data (creators of TimescaleDB) sponsor
-
-[Burnout is Real for Open Source Maintainers](https://javascriptweekly.com/link/183319/web "openjsf.org") — A 40-minute audio interview (along with a nice write up) with John-David Dalton, the creator of [Lodash](https://javascriptweekly.com/link/183320/web), one of JavaScript's most popular projects.
-
-The OpenJS Foundation
-
-[The Great CSS Expansion](https://javascriptweekly.com/link/183321/web "blog.gitbutler.com") — A thorough review of Web-based tasks that were once JavaScript’s natural domain (e.g. tooltips, dialogs, scroll animations) but for which modern CSS now excels.
-
-Pavel Laptev
-
-📄 [Building a Dual-Scene Fluid 'X-Ray Reveal' Effect in Three.js](https://javascriptweekly.com/link/183322/web) Cullen Webber
-
-📄 [Quick Tip: `Intl` Can Localize Units, Too](https://javascriptweekly.com/link/183323/web) Stefan Judis
-
-📄 [Things Learned Migrating to Solid 2.0](https://javascriptweekly.com/link/183324/web) Brenley Dueck
-
-🛠 Code & Tools
-
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/qbelblco3qxogy63pwvv.jpg)](https://javascriptweekly.com/link/183325/web)
-
-[Fuse.js 7.3: Lightweight Fuzzy-Search](https://javascriptweekly.com/link/183325/web "fusejs.io") — Want a search feature tolerant to ambiguous input _without_ a dedicated backend? [v7.3](https://javascriptweekly.com/link/183326/web) adds per-term fuzzy matching and a static method for single string matching, while [v7.4 beta](https://javascriptweekly.com/link/183327/web) adds [worker-based distributed search](https://javascriptweekly.com/link/183328/web) for tackling huge datasets. [A demo](https://javascriptweekly.com/link/183329/web) shows off the basics.
-
-Kiro Risk
-
-[Your CI doesn't have to be this slow](https://javascriptweekly.com/link/183330/web "fandf.co") — Depot CI: 2-3s job starts, parallel steps, SSH debugging. Run `depot ci migrate` to move your GitHub Actions in minutes.
-
-Depot sponsor
-
-[Announcing Babylon.js 9.0](https://javascriptweekly.com/link/183331/web "blogs.windows.com") — [Microsoft's popular rendering engine](https://javascriptweekly.com/link/183332/web) for building interactive, 3D web experiences now has a node-based particle editor, [volumetric lighting](https://javascriptweekly.com/link/183333/web), [advanced Gaussian splatting](https://javascriptweekly.com/link/183334/web), and more.
-
-Carter & Lucchini (Microsoft)
-
-[Marked.js 18.0: A Fast Markdown Parser and Compiler](https://javascriptweekly.com/link/183335/web "marked.js.org") — A low-level Markdown compiler built for speed. [The demo](https://javascriptweekly.com/link/183336/web) shows off the basics. v18 is largely a bug fix release that also bumps it up to TypeScript 6. [GitHub repo.](https://javascriptweekly.com/link/183337/web)
-
-Christopher Jeffrey
-
-[TinyBase v8.1: A Reactive Data Store for Local-First Apps](https://javascriptweekly.com/link/183338/web "tinybase.org") — A reactive data store and sync engine that can be used as the entire backend for many types of app, **now with native Svelte 5 support.**
-
-James Pearce
-
-[xdk-typescript: The Official 'XDK' for the X API](https://javascriptweekly.com/link/183339/web "github.com") — The social media platform’s new official SDK for its API (good luck).
-
-X Dev Platform
-
-*   [npm-check-updates v20.0.0](https://javascriptweekly.com/link/183314/web) – Upgrade `package.json` dependencies to latest versions while preserving semantic versioning policies. Now supporting cooldowns.
-
-*   [Neutralinojs 6.7](https://javascriptweekly.com/link/183340/web) – The cross-platform desktop app framework adds an API for input device simulation and handling.
-
-*   🖼️ [SVGInject 2.0](https://javascriptweekly.com/link/183341/web) – Inlines SVG files into the DOM at runtime (no build step) so you can style them with CSS.
-
-*   [vue-clamp 1.0](https://javascriptweekly.com/link/183342/web) – Primitives for clamping multiline text, inline strings, and wrapped items in Vue 3. ([Demo.](https://javascriptweekly.com/link/183343/web))
-
-*   [vue-virtual-scroller 2.0](https://javascriptweekly.com/link/183344/web) – Fast virtual-scrolling for lists in Vue 3.
-
-*   [Verdaccio 6.4](https://javascriptweekly.com/link/183345/web) – Run your own local private npm registry.
-
-*   [React Native Skia 2.6](https://javascriptweekly.com/link/183346/web) – Fast 2D graphics library for RN.
-
-*   [SunEditor 3.0](https://javascriptweekly.com/link/183347/web) – Extensible, vanilla JS WYSIWYG editor.
-
-*   [hucre 0.3](https://javascriptweekly.com/link/183348/web) – Zero-dependency spreadsheet engine.
-
-*   [bwip-js 4.9](https://javascriptweekly.com/link/183349/web) – Pure JavaScript barcode writer.
-
-
-📰 Classifieds
-
-Most engineers can't prove they're AI-first in an interview. [Gauntlet's](https://javascriptweekly.com/link/183350/web) CTO breaks down exactly what separates those who can.
-
-* * *
-
-Flaky tests slowing down dev? [Meticulous](https://javascriptweekly.com/link/183351/web) gives engineers confidence to ship faster by autonomously testing every edge case of your web app.
-
-* * *
-
-Every app needs a bit of spreadsheet in it. [Handsontable](https://javascriptweekly.com/link/183352/web) delivers Excel-like experiences fast, without the risk and complexity.
-
-* * *
-
-Access Google Search, Maps, Shopping, and more real-time data with a simple API by [SerpApi.](https://javascriptweekly.com/link/183353/web)
-
-📢  Elsewhere in the ecosystem
-
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/l6ibojqnoesy4fogc1ju.jpg)](https://javascriptweekly.com/link/183354/web)
-
-*   In [CSS is DOOMed](https://javascriptweekly.com/link/183354/web), Niels Leenheer shows off how he implemented a version of 1993's _Doom_ using purely CSS rendering (with the game logic in JavaScript). [Play it for yourself](https://javascriptweekly.com/link/183355/web) or [check out the code.](https://javascriptweekly.com/link/183356/web)
-
-*   [QuickBEAM](https://javascriptweekly.com/link/183357/web) is a JavaScript runtime for Erlang's BEAM VM, as also used by [Elixir.](https://javascriptweekly.com/link/183358/web) It offers compatibility with core Node.js APIs.
-
-*   In [CSS or BS?](https://javascriptweekly.com/link/183359/web) find out how good you are at telling real-life CSS properties from made up ones.
-
-*   ✉️ Spencer Mortensen [put twenty-five email address obfuscation techniques to the test](https://javascriptweekly.com/link/183360/web) to see which _actually_ work in 2026.
-
-## Node.js
-#​619 — April 9, 2026
-
-[Read on the Web](https://nodeweekly.com/link/183449/web)
-
-Together with 
-
-[![Microsoft logo](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,w_280,h_60/e_make_transparent/co_white,e_outline:7/om9hjsmudy5lsvba59eb.png)](https://nodeweekly.com/link/183450/web)
-
-![Node.js Weekly](https://res.cloudinary.com/cpress/image/upload/v1653576619/lgfqinzbdqttwmhvljxb.png)
-
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/dxux2uvcy9unbbysurgu.jpg)](https://nodeweekly.com/link/183451/web)
-
-[A Post-Mortem of the Axios Compromise](https://nodeweekly.com/link/183451/web "github.com") — The Axios team has shared a detailed post-mortem of [the recent supply chain compromise](https://nodeweekly.com/link/183452/web) where a trojan was pulled in as a malicious dependency. The attack was well planned and involved [a sophisticated bit of social engineering.](https://nodeweekly.com/link/183453/web)
-
-Jason Saayman / axios
-
-⚠️ Axios isn't the only target. Sarah Gooding reports on [ongoing attempts to socially engineer 'high-impact Node.js maintainers.'](https://nodeweekly.com/link/183454/web) **It's worth being aware of these techniques if you maintain any public npm packages.**
-
-[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/3b00cadd.png)](https://nodeweekly.com/link/183450/web)
-
-[You Don’t Have To Attend All 44 Postgres Talks](https://nodeweekly.com/link/183450/web "posetteconf.com") — POSETTE: An Event for Postgres 2026 is a free & virtual developer event on 16-18 Jun. All 44 talks stream live & will be available later. Join live to take part in discussions with speakers & attendees. [Check out the schedule and mark your calendar.](https://nodeweekly.com/link/183450/web)
+[44 Postgres Talks To Choose From All in One Free, Virtual Event](https://javascriptweekly.com/link/183709/web "posetteconf.com") — Join POSETTE: An Event for Postgres 2026, a free & virtual Postgres developer event, 16–18 Jun. [Check out the schedule](https://javascriptweekly.com/link/183709/web).
 
 Microsoft | AMD sponsor
 
-[You Can't Cancel a Promise (Except Sometimes You Can)](https://nodeweekly.com/link/183455/web "www.inngest.com") — You can’t cancel a promise, but you can halt an async function by making it `await` a promise that never resolves. The function silently stops, and GC cleans up after it. It’s not just a trick; Inngest uses it in production to interrupt long-running workflow functions.
+[You Can't Cancel a Promise (Except Sometimes You Can)](https://javascriptweekly.com/link/183710/web "www.inngest.com") — You can’t cancel a promise, but you can halt an async function by making it `await` a promise that never resolves. The function silently stops, and GC cleans up after it.
 
 Aaron Harper (Inngest)
 
-**IN BRIEF:**
+[Parse, Don't Validate (In a Language That Doesn't Want You To)](https://javascriptweekly.com/link/183711/web "cekrem.github.io") — Tired of writing the same defensive `if` check in multiple files because you can’t trust that validation already happened? Branded types and discriminated unions can let TypeScript carry that proof for you.
 
-*   Google's compilers team has [proposed a high-level IR for JavaScript](https://nodeweekly.com/link/183456/web) and shared a tool ([JSIR](https://nodeweekly.com/link/183457/web)) it's already using internally to take advantage of it for analysis and source-to-source transformation.
+Christian Ekrem
 
-*   Microsoft has announced the [end of support for Node 20.x](https://nodeweekly.com/link/183458/web) in the _Azure SDK for JavaScript._
+🌐 [The `Intl` API: The Best Browser API You’re Not Using](https://javascriptweekly.com/link/183712/web "polypane.app") — A neat code-heavy primer to what you can do with `Intl`.
 
-*   [npm trusted publishing now supports CircleCI](https://nodeweekly.com/link/183459/web) as an OIDC provider.
+Kilian Valkhof
 
-*   🎤 [A 50-minute chat](https://nodeweekly.com/link/183460/web) (with transcript) from two of the developers behind the [npmx project](https://nodeweekly.com/link/183461/web) — an increasingly popular way to browse the npm registry.
+📄 [Making Our Frontend Unit Tests Much Faster with @swc/jest](https://javascriptweekly.com/link/183713/web) – From 15 seconds with Jest to 4 seconds with the compatible [@swc/jest](https://javascriptweekly.com/link/183714/web). Sebastian Herrmann
 
+📄 [Creating Custom Page Transitions in Astro with Barba.js and GSAP](https://javascriptweekly.com/link/183715/web) Iqbal Muthahhary (Codrops)
 
-[Node's Security Bug Bounty Program Paused Due to Loss of Funding](https://nodeweekly.com/link/183462/web "nodejs.org") — Since 2016, the Node.js project has offered bounties for qualifying security vulnerability reports. This was funded by the _Internet Bug Bounty_ program which is [on hiatus](https://nodeweekly.com/link/183463/web) as it figures out its role in an AI-assisted landscape. Reports can still be made, but with no monetary reward.
+📄 [The Uphill Climb of Making Diff Lines Performant on GitHub](https://javascriptweekly.com/link/183716/web) Ghenco and Shwert (GitHub)
 
-The Node.js Project
-
-[tsdown Can Now Generate Executable Files for Node Apps](https://nodeweekly.com/link/183464/web "tsdown.dev") — [tsdown](https://nodeweekly.com/link/183465/web), the library bundler from VoidZero (Evan You's company), now supports building standalone executables using Node's [Single Executable Applications (SEA)](https://nodeweekly.com/link/183466/web) feature.
-
-VoidZero
-
-📄 [Building a Runtime with QuickJS](https://nodeweekly.com/link/183467/web) Andrew Healey
+📄 [Building a JavaScript Runtime with QuickJS](https://javascriptweekly.com/link/183717/web) Andrew Healey
 
 🛠 Code & Tools
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/k2ny3ugmivzjsodk8pjo.jpg)](https://nodeweekly.com/link/183468/web)
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/afxlfwdqfincfdil92bq.jpg)](https://javascriptweekly.com/link/183718/web)
 
-[web-audio-api: Use the Web Audio API from Node](https://nodeweekly.com/link/183468/web "github.com") — Get full [Web Audio API](https://nodeweekly.com/link/183469/web) support in Node and play audio on your machine or render it to file (and, yes, [Tone.js](https://nodeweekly.com/link/183470/web) works too). There are [lots of examples](https://nodeweekly.com/link/183471/web) to enjoy. v1.0/1.3 supports all 26 audio node types and has a 100% pass rate against the WPT test suite.
-
-Sébastien Piquemal
-
-🗣️ [TinyTTS: English Text-to-Speech with a 3.4MB Model](https://nodeweekly.com/link/183472/web "github.com") — Fast text-to-speech on the CPU with a tiny 3MB model for both Node.js and Python. Has an AI-generated vibe, but it worked well when [I used it like this](https://nodeweekly.com/link/183473/web). There’s a [demo on the Web](https://nodeweekly.com/link/183474/web) to hear what it sounds like.
-
-tronghieuit
-
-[Analytics Doesn't Need Its Own Infrastructure](https://nodeweekly.com/link/183475/web "www.tigerdata.com") — TimescaleDB extends Postgres so analytics runs on live data. Same connection, no pipeline, no second database. Start for free.
-
-Tiger Data (creators of TimescaleDB) sponsor
-
-[Marked.js 18.0: Fast Markdown Parser Library](https://nodeweekly.com/link/183476/web "marked.js.org") — A low level Markdown compiler built for speed, available as both a client and server-side library. [The demo](https://nodeweekly.com/link/183477/web) shows off the basics. v18 is a bug fix release that also bumps it up to TypeScript 6. [GitHub repo.](https://nodeweekly.com/link/183478/web)
-
-Christopher Jeffrey
-
-🤖 [grammY: An Up-to-Date Telegram Bot Framework](https://nodeweekly.com/link/183479/web "grammy.dev") — _“Make creating Telegram bots so simple you already know how to do it.”_ This week’s release supports the latest [Telegram Bot API 9.6.](https://nodeweekly.com/link/183480/web) [GitHub repo.](https://nodeweekly.com/link/183481/web)
-
-KnorpelSenf
-
-[tokenu: `du`\-Like CLI Tool to Count Token Usage in Files and Directories](https://nodeweekly.com/link/183482/web "github.com") — Could be useful to see if your codebase can fit entirely into a sensible context window, say.
-
-Liran Tal
-
-*   [ky 2.0](https://nodeweekly.com/link/183502/web) – Sindre Sorhus's popular, elegant HTTP client library that wraps `fetch` gets a big upgrade including setting a `totalTimeout` across all retries, and `baseURL` for standard URL resolution to make your calls even simpler.
-
-*   [npm-check-updates 20.0](https://nodeweekly.com/link/183483/web) – Upgrade `package.json` dependencies while preserving semantic versioning policies. Now supports cooldowns.
-
-*   [ESLint 10.2](https://nodeweekly.com/link/183484/web) – Adds support for language-aware rules through a new `meta.languages` property. `Temporal` is now supported too.
-
-*   [Ink 7.0](https://nodeweekly.com/link/183485/web) – Build CLI/TUI apps using React. Now uses React 19, requires Node 22+, and adds a lot of useful hooks.
-
-*   [content-disposition 1.1](https://nodeweekly.com/link/183486/web) – Work with HTTP `Content-Disposition` headers.
-
-*   [Orange ORM 5.3](https://nodeweekly.com/link/183487/web) – The Node and TypeScript ORM adds MariaDB support.
-
-*   [Axios 1.15.0](https://nodeweekly.com/link/183488/web) – The popular HTTP client adds Bun and Deno support.
-
-*   [RedisSMQ 10.0](https://nodeweekly.com/link/183489/web) – Simple Redis-backed message queue for Node.
-
-*   [node-ical 0.26.0](https://nodeweekly.com/link/183490/web) – iCalendar/ICS (RFC 5545) parsing library.
-
-*   [Undici 8.0](https://nodeweekly.com/link/183491/web) – HTTP/1.1 client written from scratch for Node.
-
-*   [pnpm v11.0 Beta 8](https://nodeweekly.com/link/183492/web)
-
-
-📰 Classifieds
-
-⚡[Route product events to HubSpot, Salesforce, Slack & more in one API call.](https://nodeweekly.com/link/183493/web) Retries, fan-out, and delivery guarantees built in.
-
-* * *
-
-Ship production AI. Land $200K–$950K. [Gauntlet's 10-week no-cost fellowship](https://nodeweekly.com/link/183494/web) builds the AI-first engineers hiring managers actually want.
-
-📢  Elsewhere in the ecosystem
-
-*   Keen to brush up your knowledge of modern JavaScript? Chris Coyier's [What To Know in JavaScript (2026 Edition)](https://nodeweekly.com/link/183495/web) tours the latest language features, plus the state of the most popular runtimes and build tools.
-
-*   🤖 A developer discovered an npm package where the postinstall script [copied Markdown files into Claude Code's config.](https://nodeweekly.com/link/183496/web) While likely not malicious in this case, it's a vector ripe for abuse and worth knowing about. [Ignoring postinstall scripts](https://nodeweekly.com/link/183497/web) is a wise option, and something [pnpm v10+ does by default.](https://nodeweekly.com/link/183498/web)
-
-*   🇷🇴 The popular [_JSHeroes_ conference](https://nodeweekly.com/link/183499/web) is back this May 14-15 in Romania.
-
-*   Engineers at the _Railway_ cloud hosting platform shared their story of [moving their frontend off Next.js to Vite and TanStack Router.](https://nodeweekly.com/link/183500/web)
-
-*   [Puru](https://nodeweekly.com/link/183501/web) is a new project offering a channels-inspired 'Go-style concurrency' option in Node and Bun.
-
-## React
-
-#​469 — April 10, 2026
-
-[Read on the Web](https://react.statuscode.com/issues/469)
-
-🐣 **We're back** after a little Easter break, so we have two weeks of updates to catch up on – hold on tight! 😅
-\_\_
-_Peter Cooper, your editor_
-
-Together with 
-
-[![Frontend Masters logo](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,w_300,h_70/e_make_transparent/co_white,e_outline:5/nk0tfdvalivacz8rw7rt.png)](https://www.addevent.com/event/8n58y7bjwqmr)
-
- React Status
-
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/aarhoheuf4wh0qxn1wge.jpg)](https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/)
-
-[The Uphill Climb of Making Diff Lines Performant on GitHub](https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/ "github.blog") — A practical breakdown of how GitHub’s team cut memory usage and interaction latency in their new React-powered PR diff view. If you’re intrigued by how component tree depth, event handler sprawl, and `useEffect` overuse can eat away at your app’s performance, this is useful reading.
-
-Ghenco and Shwert (GitHub)
-
-[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/8534bab8.jpg)](https://www.addevent.com/event/8n58y7bjwqmr)
-
-[Free Workshop: Claude Code Deep Dive — April 21](https://www.addevent.com/event/8n58y7bjwqmr "www.addevent.com") — Lydia Hallie from Anthropic teaches a full-day Claude Code workshop at Frontend Masters on April 21. Free to attend. No subscription required.
-
-Frontend Masters sponsor
-
-[Ink 7.0: Use React to Build TUIs and Command Line Apps](https://github.com/vadimdemedes/ink/releases/tag/v7.0.0 "github.com") — A great example of _‘right place, right time’_, Ink now powers [tons of apps](https://github.com/vadimdemedes/ink?tab=readme-ov-file#whos-using-ink), especially in the agentic AI ecosystem. v7.0 now leans on React 19.2, uses `useEffectEvent` internally for added efficiency, and brings many new hooks and settings.
-
-Vadim Demedes
-
-**IN BRIEF:**
-
-*   ⚠️ [React 19.2.5](https://github.com/facebook/react/releases/tag/v19.2.5), [19.1.6](https://github.com/facebook/react/releases/tag/v19.1.6) and [19.0.5](https://github.com/facebook/react/releases/tag/v19.0.5) have been released to deploy a fix for a React Server Components vulnerability.
-
-*   [Mantine 9.0](https://mantine.dev/changelog/9-0-0/) is a major update for the popular component suite with a focus on a new calendar scheduling package ([lots of demos](https://mantine.dev/changelog/9-0-0/#new-mantineschedule-package)) along with a new [marquee component](https://mantine.dev/changelog/9-0-0/#marquee-component), and a huge variety of other enhancements.
-
-*   📺 🇫🇷 [23 talks to enjoy from _React Paris 2026_](https://www.youtube.com/playlist?list=PL53Z0yyYnpWhsizNWtlnyM7XWFUSw437J), now on YouTube.
-
-*   [React Native 0.85](https://reactnative.dev/blog/2026/04/07/react-native-0.85) has shipped with a new animation backend and devtools improvements.
-
-
-▶  [TanStack Start: A Client-First Web Framework](https://www.youtube.com/watch?v=8XGcc-FRPuo "www.youtube.com") — A 30 minute talk from TanStack’s founder showcasing [TanStack Start](https://tanstack.com/start/latest)’s value proposition for both React and Solid developers looking for a complete SSR framework.
-
-Tanner Linsley
-
-[Under the Hood of MDN's New Frontend](https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/ "developer.mozilla.org") — [MDN](https://developer.mozilla.org/en-US/) remains one of the most useful resources for frontend developers and it has a new frontend. This case study digs deep into how they replaced an ejected _Create React App_ based app with one driven by [Lit](https://lit.dev/)\-based web components.
-
-Leo McArdle (MDN)
-
-[Sentry - A Guide To Fixing Slow Checkout Flows In React Native](https://sentry.io/cookbook/track-checkout-performance-react-native/?utm_source=reactstatus&utm_medium=paid-community&utm_campaign=mobile-fy27q1-cookbook&utm_content=newsletter-link-rn-tracing-trysentry "sentry.io") — Find slow checkout requests, fix them, and set up alerts before users notice. Step-by-step guide.
-
-Sentry sponsor
-
-📄 [Signals: The Push-Pull Based Algorithm](https://willybrauner.com/journal/signal-the-push-pull-based-algorithm) – A ground-up explanation of how signals work, as seen at the core of reactivity in Solid, Vue, Preact, and Angular. A handy intro to compare against React. Willy Brauner
-
-📄 [Moving Railway's Frontend Off Next.js](https://blog.railway.com/p/moving-railways-frontend-off-nextjs) – Another Next.js to Vite + TanStack Router migration. Victor Ramirez
-
-🛠  Code, Tools & Libraries
-
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/pdwhlienrxklgkzikszi.jpg)](https://uiwjs.github.io/react-color/)
-
-🎨 [React Color: Flexible Color Picker Components](https://uiwjs.github.io/react-color/ "uiwjs.github.io") — There’s a wide array of options here for all sorts of freeform or curated color selection. [GitHub repo.](https://github.com/uiwjs/react-color)
-
-uiw and contributors
-
-[Boneyard: Auto-Generated Skeleton Screens for Your UI](https://boneyard.vercel.app/overview "boneyard.vercel.app") — Snapshots your real UI and captures a flat list of skeleton ‘bones’ which are positioned, sized rectangles that mirror the page exactly. Also supports Vue, Svelte, and Angular.
+[Boneyard: Auto-Generated Skeleton Screens for Your UI](https://javascriptweekly.com/link/183718/web "boneyard.vercel.app") — Snapshots your real UI and captures a flat list of skeleton ‘bones’ which are positioned, sized rectangles that mirror the page exactly. Supports React, Preact, React Native, Vue, Svelte, and Angular.
 
 0xGF
 
-[Docusaurus 3.10: The React-Powered Site Builder](https://docusaurus.io/blog/releases/3.10 "docusaurus.io") — The popular MDX-powered site generator lands its final 3.x release with a focus on helping you prepare for Docusaurus 4 by opting into future settings and the faster, and now stable, _Docusaurus Faster_ build tooling. [This showcase](https://docusaurus.io/showcase) shows off the potential of the long-standing framework.
+📈 [Micro-ML: A Toolkit of Forecasting and Clustering Algorithms](https://javascriptweekly.com/link/183719/web "github.com") — A ~56KB WASM-powered library with algorithms for regression and smoothing. Cluster points, classify data, or predict the next value in a series without dragging in TensorFlow.js.
 
-Sébastien Lorber / Meta
+Adam Perliński
 
-[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/mihjebeui2chdiix433d.jpg)](https://github.com/uiwjs/react-md-editor)
+[AI Writes Code. Wallaby MCP Makes Sure It Actually Works](https://javascriptweekly.com/link/183720/web "wallabyjs.com") — Give your AI agent live execution data, coverage, and real-time insights to generate tests and code with confidence.
 
-*   [Markdown Editor 4.1](https://github.com/uiwjs/react-md-editor) _(above)_ – Simple Markdown editor component with preview and syntax highlighting support. [Live demo of the latest version.](https://raw.githack.com/uiwjs/react-md-editor/2f25d39/index.html)
+Wallaby Team sponsor
 
-*   [react-infinite-scroll-component 7.0](https://github.com/ankeetmaini/react-infinite-scroll-component) – _"An infinite-scroll that actually works and super-simple to integrate!"_ The 8 year old component has [been modernized.](https://github.com/ankeetmaini/react-infinite-scroll-component/releases/tag/v7.0.0)
+[Ink 7.0: Use React to Build TUIs and Command Line Apps](https://javascriptweekly.com/link/183722/web "github.com") — Powering [many popular terminal apps](https://javascriptweekly.com/link/183723/web), v7.0 now leans on React 19.2, uses `useEffectEvent` internally for added efficiency, and brings new hooks and settings.
 
-*   📳 [react-native-haptic-feedback 3.0](https://github.com/mkuczera/react-native-haptic-feedback) – Haptic feedback integration for React Native on iOS and Android.
+Vadim Demedes
 
-*   🖼️ [react-inlinesvg v4.3.0](https://github.com/gilbarbara/react-inlinesvg) – Load inline, local, or remote SVGs in React components. ([Demo.](https://codesandbox.io/p/sandbox/github/gilbarbara/react-inlinesvg/tree/main/demo?file=%2Fsrc%2FApp.tsx))
+🔊 [web-audio-api: Use the Web Audio API from Node and Bun](https://javascriptweekly.com/link/183725/web "github.com") — Full [Web Audio API](https://javascriptweekly.com/link/183726/web) support to either play audio on your machine/server or render it to file (and, yes, [Tone.js](https://javascriptweekly.com/link/183727/web) works too). There are [many examples](https://javascriptweekly.com/link/183728/web) to enjoy.
 
-*   [html-react-parser 6.0](https://github.com/remarkablemark/html-react-parser) – HTML to React parser that converts HTML strings into React elements.
+Sébastien Piquemal
 
-*   [Wasp 0.22.0](https://github.com/wasp-lang/wasp/releases/tag/v0.22.0) – Full framework for building full-stack React + Node webapps.
+[Syncpack: Consistent Dependency Versions in Large JS Monorepos](https://javascriptweekly.com/link/183729/web "syncpack.dev") — A CLI tool (used by Electron, Cloudflare, Vercel and others) that finds version mismatches across your entire monorepo, fixes them, and can enforce version policies in CI to avoid future drift.
 
-*   🗓️ [React-Calendar 6.0](https://projects.wojtekmaj.pl/react-calendar/) – Popular date picker control. Now ESM only.
+Jamie Mason
 
-*   [React Native Skia 2.6](https://github.com/Shopify/react-native-skia) – High-performance 2D graphics library.
+*   [Mantine 9.0](https://javascriptweekly.com/link/183730/web) – The wildly popular React component suite now includes a complete set of calendar scheduling components.
+
+*   [wa-sqlite 1.1](https://javascriptweekly.com/link/183731/web) – WebAssembly build of SQLite enabling JavaScript-based virtual filesystems and browser storage extensions. ([Demo.](https://javascriptweekly.com/link/183732/web))
+
+*   [gridstack.js 12.6](https://javascriptweekly.com/link/183733/web) – Build responsive drag-and-drop multi-column dashboards.
+
+*   [Formula.js 4.6](https://javascriptweekly.com/link/183734/web) – Excel's formula functions, but for JavaScript.
+
+*   [Lexical 0.43](https://javascriptweekly.com/link/183735/web) – Facebook's extensible text editor framework.
 
 
 📰 Classifieds
 
-Flaky tests slowing down dev? [Meticulous](https://www.meticulous.ai/?utm_source=reactstatus&utm_medium=newsletter&utm_campaign=26q2&utm_content=classified%20) gives engineers confidence to ship faster by autonomously testing every edge case of your web app.
+Flaky tests slowing down dev? [Meticulous](https://javascriptweekly.com/link/183736/web) gives engineers confidence to ship faster by autonomously testing every edge case of your web app.
 
 * * *
 
-Seat-limited org plans are live in [Clerk](https://go.clerk.com/DQVaWpe) Billing. Set size caps per tier, enforce automatically.
+[Manage SAML and OIDC enterprise connections via Clerk's Backend API](https://javascriptweekly.com/link/183737/web). One unified endpoint for both protocols.
 
 * * *
 
-[Build apps with real-time search data](https://serpapi.com/playground/?utm_source=cooperpress&utm_campaign=react_classified) from Google, Maps, Shopping, and more.
+⚡[Nimbalyst](https://javascriptweekly.com/link/183738/web): Visual workspace for building with Claude Code & Codex. Integrate and manage sessions, tasks & files. Visually edit markdown, mockups, diagrams, code.
+
+* * *
+
+[Gauntlet AI Night School](https://javascriptweekly.com/link/183739/web) | Cursor, Claude Code, or agents — how AI-first engineers choose the right tool for production. (Virtual - 4/15)
 
 📢  Elsewhere in the ecosystem
 
-*   Chris Coyier's [What To Know in JavaScript (2026 Edition)](https://frontendmasters.com/blog/what-to-know-in-javascript-2026-edition/) provides a handy refresher of the latest in language features, as well as the state of various frameworks and build tools.
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/lr3xjgxnr21effijce2j.jpg)](https://javascriptweekly.com/link/183740/web)
 
-*   🔊 If you've got code that uses the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) and you'd like to generate that audio on the _server_ (with Node or Bun) too, [web-audio-api 1.x](https://github.com/audiojs/web-audio-api) makes it possible.
+[Windows 95 as an Electron App](https://javascriptweekly.com/link/183740/web "github.com") — A full Windows 95 experience as an app on macOS, Linux, and Windows, built upon the [v86](https://javascriptweekly.com/link/183741/web) JavaScript + WASM emulator. [v5.0](https://javascriptweekly.com/link/183742/web) is a big release as you can mount a folder from your machine into it as a Z: drive, mount ISOs as CD-ROMs, there’s a shared clipboard, and Internet access has been improved. I’m _so_ trying to get _Microsoft Encarta_’s [Mindmaze](https://javascriptweekly.com/link/183743/web) running on this…
 
-*   Ally Piechowski shares [the `git` commands she runs before reading any code](https://piechowski.io/post/git-commands-before-reading-code/). They provide a handy way to get a quick grasp on what's happening in larger, multi-contributor repos.
+Felix Rieseberg
 
-*   📊 WebKit, Google and Mozilla have [unveiled _JetStream 3_](https://webkit.org/blog/17899/introducing-the-jetstream-3-benchmark-suite/), the latest version of a popular browser-oriented JS and WASM performance benchmark suite.
+*   🎨 Sticking to the retro theme, a new release of [JSPaint](https://javascriptweekly.com/link/183744/web) has landed too, so you can relive the joy of using _MS Paint_. [Try it here.](https://javascriptweekly.com/link/183745/web)
 
-*   🗳️ The [second annual 'State of AI' survey is now live](https://survey.devographics.com/en-US/survey/state-of-ai/2026), seeking responses on AI usage within web development.
+*   It's ten years since Domenic Denicola [posted about adding JavaScript modules to the web platform](https://javascriptweekly.com/link/183746/web) – how far we've come since!
 
-*   🇷🇴 The popular [_JSHeroes_ conference](https://jsheroes.io/) is back this May 14-15 in Romania.
+*   GitHub has [a private preview of 'stacked PRs'](https://javascriptweekly.com/link/183747/web), a feature to break large changes into smaller, dependent parts.
+
+*   TanStack Router, Start, and Query have gained [beta support for Solid 2.0.](https://javascriptweekly.com/link/183748/web)
+
+*   🎤 [A 50-minute chat](https://javascriptweekly.com/link/183749/web) (with transcript) from two of the developers behind the [npmx project](https://javascriptweekly.com/link/183750/web) — an increasingly popular way to browse the npm registry.
+
+*   [JSON Alexander](https://javascriptweekly.com/link/183751/web) is a new JSON viewer extension for Chrome and Firefox from Wes Bos, complete with a snazzy George Costanza logo.
+
+## Node.js
+#​620 — April 16, 2026
+
+[Read on the Web](https://nodeweekly.com/link/183840/web)
+
+Together with 
+
+[![AppSignal logo](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,e_trim,w_700,h_120/e_make_transparent/co_white,e_outline:7/lme8p344dw1aodshz9px.png)](https://nodeweekly.com/link/183883/web)
+
+![Node.js Weekly](https://res.cloudinary.com/cpress/image/upload/v1653576619/lgfqinzbdqttwmhvljxb.png)
+
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/o2rklqqsv15ze9w9abj5.jpg)](https://nodeweekly.com/link/183842/web)
+
+[Node Moves to Enable Temporal By Default](https://nodeweekly.com/link/183842/web "github.com") — The [Temporal API](https://nodeweekly.com/link/183843/web), designed to modernize JavaScript’s date/time handling, [reached stage 4](https://nodeweekly.com/link/183844/web) last month. Node was waiting on V8 to make it enabled by default, which happened in V8 14.4, and the wheels are now in motion for an eventual release in Node 26.
+
+Richard Lau
+
+[Node.js 24.15.0 (LTS) Released](https://nodeweekly.com/link/183845/web "nodejs.org") — The LTS release of Node gets a few goodies from v25 including `require(esm)` and the module compile cache being marked as stable, as well as `--max-heap-size` and OpenSSL 4.0 build support.
+
+Antoine du Hamel
+
+[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/7ca95ac2.png)](https://nodeweekly.com/link/183883/web)
+
+[Stop Juggling 5 Tools to Monitor One Node App](https://nodeweekly.com/link/183883/web "www.appsignal.com") — Errors, performance, logs, uptime, host metrics — AppSignal handles all of it for your Node.js stack. Auto-instruments Express, Koa, Prisma, and BullMQ out of the box. Request-based pricing, unlimited seats. [Free 30-day trial, no credit card](https://nodeweekly.com/link/183883/web).
+
+AppSignal sponsor
+
+[The OWASP NPM Security Best Practices Cheat Sheet](https://nodeweekly.com/link/183846/web "cheatsheetseries.owasp.org") — A long-standing resource that continues to be updated and remains a useful checklist. Recent updates tackle disabling lifecycle scripts, typosquatting, trusted publishing, and dependency confusion.
+
+OWASP Cheat Sheet Series
+
+[Uses for Nested Promises](https://nodeweekly.com/link/183847/web "blog.jcoglan.com") — James revisits 2013's [Promises/A+](https://nodeweekly.com/link/183848/web) monads [debate](https://nodeweekly.com/link/183849/web) and has changed his mind, thanks to a real concurrency problem he ran into. Demanding but rewarding.
+
+James Coglan
+
+📄 [The Simplest C-to-WebAssembly-to-Node Pipeline](https://nodeweekly.com/link/183850/web) – The simplest steps to take a function written in C and compile it to run from Node with WASM. A 2018 experiment of mine updated for the modern day. Peter Cooper
+
+📄 [What We Learned Building a Rust Runtime for TypeScript](https://nodeweekly.com/link/183851/web) Ivan Cernja (Encore)
+
+📄 [Build a Movie Watchlist with Node.js, TypeScript, and MongoDB](https://nodeweekly.com/link/183852/web) Nic Raboy
+
+🛠 Code & Tools
+
+🦠 [Pompelmi 1.0: Antivirus File Scanning from Node](https://nodeweekly.com/link/183853/web "pompelmi.app") — A wrapper for [ClamAV](https://nodeweekly.com/link/183854/web), originally designed for scanning for malicious uploads in Node apps. It’s standalone and no daemons are required as it spawns ClamAV as-needed. [v1.0](https://nodeweekly.com/link/183855/web) landed a few days ago as its first stable release. [GitHub repo.](https://nodeweekly.com/link/183856/web)
+
+pompelmi contributors
+
+📄 [officeParser: A Library to Parse Common Office-Related Formats](https://nodeweekly.com/link/183857/web "officeparser.harshankur.com") — Covers formats like `docx`, `pptx`, `xlsx`, `odt` and others used by tools like Microsoft Office and LibreOffice. [GitHub repo.](https://nodeweekly.com/link/183858/web)
+
+Harsh Ankur
+
+[You Already Have Postgres. Why Not Make It Handle Analytics?](https://nodeweekly.com/link/183859/web "www.tigerdata.com") — TimescaleDB adds hypertables, 95% compression, and continuous aggregates. No second database, no pipeline. [Try for free](https://nodeweekly.com/link/183859/web).
+
+Tiger Data (creators of TimescaleDB) sponsor
+
+📈 [Micro-ML: A Toolkit of Forecasting and Clustering Algorithms](https://nodeweekly.com/link/183860/web "github.com") — A ~56KB WASM-powered library with algorithms for regression and smoothing. Cluster points, classify data, or predict the next value in a series without dragging in TensorFlow.js.
+
+Adam Perliński
+
+🔊 [Audio: High-Level Audio Manipulation in Node](https://nodeweekly.com/link/183861/web "github.com") — Take audio, trim it, normalize loudness, add fading, detect notes/chords, perform filtering, and more. No ffmpeg needed. From the same creators as the [web-audio-api](https://nodeweekly.com/link/183862/web) project featured last week.
+
+audiojs project
+
+[x-win: Inspect Open and Active Windows from Node](https://nodeweekly.com/link/183863/web "github.com") — Obtain the position, size, app icon, and title of windows open on macOS, Linux, and Windows, as well as the process info and memory usage of their underlying processes.
+
+Hocine Benkhadra
+
+*   🖼️ [terminal-image 4.3](https://nodeweekly.com/link/183864/web) – Display images in the terminal, whether by colorized ANSI blocks or full resolution (in terminals that support it).
+
+*   [Jazzer.js 4.0](https://nodeweekly.com/link/183865/web) – Coverage-guided, in-process fuzzer for Node based on LLVM's [libFuzzer](https://nodeweekly.com/link/183866/web). Now supports pure ESM code.
+
+*   📊 [Chartbrew 5.0](https://nodeweekly.com/link/183867/web) – Powerful Node and React-powered live data dashboard app.
+
+*   [Happy DOM 20.9](https://nodeweekly.com/link/183868/web) – JS implementation of a web browser without the GUI.
+
+*   🎨 [Color Thief 3.0](https://nodeweekly.com/link/183869/web) – Extract color palettes from images.
+
+*   [node-mssql 12.3](https://nodeweekly.com/link/183870/web) – Microsoft SQL Server client.
+
+*   🤖 [GramIO 0.9](https://nodeweekly.com/link/183871/web) – Telegram Bot API framework.
+
+
+📰 Classifieds
+
+💌 What is happening at Heroku?? Judoscale wrote a [letter from the dev community,](https://nodeweekly.com/link/183872/web) expressing our concerns.
+
+* * *
+
+[Gauntlet](https://nodeweekly.com/link/183873/web). A 10-week no-cost fellowship building the AI-first engineers hiring managers need. Ship production AI. Land a $200K–$950K job.
+
+📢  Elsewhere in the ecosystem
+
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/ulgnvyrw2bt4ykhbefbx.jpg)](https://nodeweekly.com/link/183874/web)
+
+*   [FluidCAD](https://nodeweekly.com/link/183874/web) _(above)_ is a new project bringing parametric CAD to the JavaScript world where you can write code to create/manipulate objects and see a live update of what you're making. It's built on top of [OpenCascade.js](https://nodeweekly.com/link/183875/web), a JS/WASM port of the open source [OpenCascade](https://nodeweekly.com/link/183876/web) 3D geometry library.
+
+*   [A full Windows 95 experience in an Electron app.](https://nodeweekly.com/link/183877/web) v5.0 lets you share a local folder as a `Z:` drive, mount ISOs, and share the clipboard.
+
+*   A quick ten year flashback to when the V8 project [blogged about Orinoco](https://nodeweekly.com/link/183878/web), its then-under-development parallel and concurrent garbage collector which is now a fundamental part of Node's performance story.
+
+*   Ally Piechowski shares [the `git` commands she runs before reading any code](https://nodeweekly.com/link/183879/web). They provide a handy way to get a quick grasp on what's happening in larger, multi-contributor repos.
+
+*   A cautionary read for anyone running Node on AWS Lambda with MySQL or MariaDB: [The AWS Lambda 'Kiss of Death'](https://nodeweekly.com/link/183880/web) walks through how connection reuse can leave transactions dangling, causing InnoDB's history list to grow unchecked until the database freezes.
+
+*   GitHub has [opened a private preview of _Stacked PRs_](https://nodeweekly.com/link/183881/web), giving native support for a workflow where one big change is split into a chain of dependent PRs.
+
+## React
+#​470 — April 17, 2026
+
+[Read on the Web](https://react.statuscode.com/issues/470)
+
+Together with 
+
+[![Amazon Developer](https://res.cloudinary.com/cpress/image/upload/c_fill,g_auto,w_1280,h_198/co_white,e_outline:14/nut1qvhsilgpbie7e91c.png)](https://fandf.co/4cArfN8)
+
+ React Status
+
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/yfbmmkgn28b10zyjypzm.jpg)](https://tanstack.com/blog/react-server-components)
+
+[_TanStack Start_ Adds React Server Components Support](https://tanstack.com/blog/react-server-components "tanstack.com") — The full-stack framework adds RSC support with an 'isomorphic-first' twist: RSCs render to streams you fetch and cache like any other data, not a server-owned tree. No `use server` directive (by design, post-[CVEs](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components)), plus Composite Components that let the client fill slots the server leaves open.
+
+Schiller, Linsley, and Herrington
+
+[![](https://res.cloudinary.com/cpress/image/upload/c_limit,w_480,h_480,q_auto/copm/dbca04b1.png)](https://fandf.co/4cArfN8)
+
+[Ship React Native Apps on Fire TV](https://fandf.co/4cArfN8 "fandf.co") — Build apps for Fire TV with ease. Get started by installing the Vega OS SDK, configure Vega Studio, and clone the React Native Hello World sample app. Explore media playback, navigation, and Fire TV APIs. 
+
+Amazon sponsor
+
+**IN BRIEF:**
+
+*   Reddit's `/r/reactjs` had a lively thread about [React patterns people adopted then realized were overkill](https://www.reddit.com/r/reactjs/comments/1shuyg4/whats_a_react_pattern_you_massused_then_realized/), including context-as-global-state, barrel files, and HOCs.
+
+*   [MUI (Material UI) v9 is out](https://mui.com/blog/introducing-material-ui-v9/), skipping v8 to [sync with MUI X v9](https://mui.com/blog/introducing-mui-v9/#one-mui-ecosystem-a-synced-major-version). Plus new `NumberField` and `Menubar` components, and `sx` and bundle size wins.
+
+*   A look behind the scenes of [porting React Compiler to Rust.](https://github.com/facebook/react/pull/36173)
+
+
+[The Vertical Codebase](https://tkdodo.eu/blog/the-vertical-codebase "tkdodo.eu") — A `components/`, `hooks/`, and `utils/` folder structure feels tidy at first, but gets harder to live with over time. Dominik makes the case for a vertical, domain-first structure, pulling examples from Sentry’s own codebase.
+
+Dominik Dorfmeister
+
+[Running React Apps on Salesforce with _Multi-Framework_](https://developer.salesforce.com/blogs/2026/04/build-with-react-run-on-salesforce-introducing-salesforce-multi-framework "developer.salesforce.com") — Building apps on Salesforce's CRM platform has required devs to use its own frameworks, but its new “Multi-Framework” runtime lets you take existing React apps and run them inside Salesforce, with the platform’s auth and data access layered in.
+
+Watkins, Oh, and Lane (Salesforce)
+
+📄 [How to Recreate the Omnichord for the iPad with React Native](https://spin.atomicobject.com/recreate-omnichord-for-ipad/) – An electronic instrument made by Suzuki in the 1980s. Georgia Martinez
+
+📄 [Building a Blog with TanStack Start](https://frontendmasters.com/blog/building-a-blog-in-tanstack-part-1-of-2/) – A good old-fashioned walkthrough tutorial, leaning on [TanStack Start](https://tanstack.com/start/latest). Adam Rackis
+
+📄 [A Guide to React Native Build Optimization](https://themythicalengineer.com/the-complete-guide-to-react-native-build-optimization.html) The Mythical Engineer
+
+🛠  Code, Tools & Libraries
+
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/fca0b4wsyll6dsi3tnxl.jpg)](https://react-photo-album.com/)
+
+🖼️ [React Photo Album: Responsive Photo Gallery Component](https://react-photo-album.com/ "react-photo-album.com") — Display a gallery of photos oriented in rows, columns, or with a masonry-style layout. Works with React 18+ and is SSR-friendly. Naturally there are [examples with code](https://react-photo-album.com/examples/masonry) and [a playground](https://react-photo-album.com/examples/playground) to let you see how different settings render.
+
+Igor Danchenko
+
+[Animata: Almost 200 Animated React Components](https://animata.design/ "animata.design") — A huge suite of animation-focused React components, built with Tailwind CSS. The docs include demos for the whole suite which includes [animated beams](https://animata.design/docs/background/animated-beam), [spreading cards](https://animata.design/docs/card/card-spread), [a Slack-style intro screen](https://animata.design/docs/hero/slack-intro), and [glitching text.](https://animata.design/docs/text/glitch-text) A novel suite of ideas you won’t find in many other collections.
+
+Codse
+
+[Mobile Development Shouldn't Feel Like 2010](https://try.expo.dev/react-status-april "try.expo.dev") — Expo brings the web DX to native. Fast Refresh on device. Cloud builds from the CLI. One command to create, build, and ship.
+
+Expo sponsor
+
+📸 [VisionCamera 5.0: An Advanced Camera for React Native Apps](https://blog.margelo.com/whats-new-in-visioncamera-v5 "blog.margelo.com") — Whether it’s for photos, videos, capturing QR codes, or object/face detection, [VisionCamera](https://visioncamera.margelo.com/) is a worthy option. [v5.0](https://github.com/mrousavy/react-native-vision-camera/releases/tag/v5.0.0) replaces JSI/C++ code with Nitro, making it faster, has a new Constraints API, adds the ability to keep photos in-memory, plus gets [a new docs site.](https://visioncamera.margelo.com/)
+
+Marc Rousavy
+
+[og-check: Test OpenGraph Locally Before You Go Public](https://simonhartcher.com/posts/2026-04-15-testing-opengraph-on-localhost-from-the-cli/ "simonhartcher.com") — If you’re building locally, tools like [Facebook’s Sharing Debugger](https://developers.facebook.com/tools/debug/) won’t work, but this new command line tool lets you test your OpenGraph tags locally and see what the public will see _before_ you deploy.
+
+Simon Hartcher
+
+*   [react-infinite-scroll-component 7.1](https://github.com/ankeetmaini/react-infinite-scroll-component) – Infinite-scroll component with optional pull-to-refresh. [v7.1](https://github.com/ankeetmaini/react-infinite-scroll-component/releases/tag/v7.1.0) adds `IntersectionObserver` based triggering.
+
+*   [React Native Awesome Button 3.0](https://github.com/rcaferati/react-native-awesome-button) – 3D, progress-enabled button component. [The live demo](https://snack.expo.dev/@rcaferati/react-native-awesome-button) shows it off well.
+
+*   [RedwoodSDK 1.1](https://github.com/redwoodjs/sdk/releases/tag/v1.1.0) – Server-first React framework for the Cloudflare platform.
+
+*   [mqtt-react-hooks 3.0](https://github.com/VictorHAS/mqtt-react-hooks) – Connect, publish, and subscribe to [MQTT](https://en.wikipedia.org/wiki/MQTT) brokers.
+
+*   🖼️ [Yet Another React Lightbox 3.31](https://yet-another-react-lightbox.com/) – Lightbox for image and video slides.
+
+*   [styled-components 6.4.0](https://github.com/styled-components/styled-components/releases/tag/styled-components%406.4.0) – Fast, expressive styling for React.
+
+*   [React Three Fiber 9.6](https://github.com/pmndrs/react-three-fiber) – The React renderer for Three.js.
+
+*   [React Email 6.0](https://github.com/resend/react-email/releases/tag/react-email%406.0.0)
+
+
+📰 Classifieds
+
+🎟️ [React Norway](https://reactnorway.com/?utm_medium=social&utm_source=ReactStatus) 350 seats. No fluff. Learn from Vercel, Auth0, Amazon, Sentry, etc developers + live concert. Don’t miss it, Jun 5th, Oslo. [(10% off with code: rs2026)](https://reactnorway.com/?utm_medium=social&utm_source=ReactStatus)
+
+* * *
+
+📸 Add robust in-browser barcode scanning to your web apps using [STRICH](https://strich.io/?ref=react-status), a lean JS library. [Free 30-day trial, try the demo app today!](https://strich.io/?ref=react-status)
+
+* * *
+
+Flaky tests slowing down dev? [Meticulous](https://www.meticulous.ai/?utm_source=reactstatus&utm_medium=newsletter&utm_campaign=26q2&utm_content=classified) gives engineers confidence to ship faster by autonomously testing every edge case of your web app.
+
+📢  Elsewhere in the ecosystem
+
+[![](https://res.cloudinary.com/cpress/image/upload/w_1280,e_sharpen:60,q_auto/edshs2jqhdzfi6jcvpez.jpg)](https://github.com/wesbos/JSON-Alexander)
+
+*   [JSON Alexander](https://github.com/wesbos/JSON-Alexander) _(above)_ is a new JSON viewer extension for Chrome and Firefox from Wes Bos, complete with a snazzy George Costanza logo.
+
+*   [Cal Paterson argues](https://calpaterson.com/deps.html) dependency cooldowns are individually rational but collectively make us _"free-riders"_ on other users who get hacked first. He suggests upload queues at package indexes as a better solution.
+
+*   From June, Google will [penalize sites that 'hijack' the back button](https://developers.google.com/search/blog/2026/04/back-button-hijacking) in search results. Don't do anything to _"interfere with a user's ability to navigate their browser history,"_ says Chris Nelson.
+
+*   [Bun v1.3.12](https://bun.com/blog/bun-v1.3.12) has been released with native, headless browser automation built in, and [`Bun.cron`](https://bun.com/blog/bun-v1.3.12#in-process-bun-cron-scheduler) provides an in-process task scheduler.
+
+*   [Node.js 24.15.0 (LTS)](https://nodejs.org/en/blog/release/v24.15.0) makes `require(esm)` and the module compile cache stable and adds `--max-heap-size`.
+
+*   TanStack Router, Start, and Query have added [support for the Solid 2.0 beta.](https://tanstack.com/blog/tanstack-start-solid-v2)
+
+*   🇫🇷 [dotJS](https://www.dotjs.io/) returns to Paris, France this September 18 – [its CFP](https://www.dotjs.io/speak) is open for two more weeks if you'd like to speak.
