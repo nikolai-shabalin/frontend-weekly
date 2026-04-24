@@ -1,0 +1,121 @@
+---
+title: "Еженедельный дайджест #43: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Apr 27 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #43! 🗞️", index: 0 },
+  { text: "Адаптивный UI всё увереннее уходит от жёстких брейкпоинтов. 📐", index: 1 },
+  { text: "Firefox 150 и Soft Navigations подталкивают платформу вперёд. 🌐", index: 2 },
+  { text: "TypeScript 7 beta снова обещает ускорить привычную разработку. ⚡", index: 3 },
+  { text: "aube ворвался в Node-мир с заявкой на быстрый и безопасный пакетный менеджер. 📦", index: 4 },
+  { text: "Playwright научился записывать скринкасты заметно гибче. 🎥", index: 5 },
+  { text: "Claude Design и сайты, понятные LLM, показывают, как AI лезет в веб всё глубже. 🤖", index: 6 },
+  { text: "История с Vercel ещё раз напомнила, что OAuth и supply chain нельзя пускать на самотёк. 🔐", index: 7 },
+  { text: "HyperFrames, HDR-картинки и WebGL-стекло добавили выпуску больше визуальных экспериментов. ✨", index: 8 },
+  { text: "Bun, Git 2.54 и свежие tooling-релизы делают неделю плотной даже без громких фреймворковых анонсов. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и платформа
+### Firefox 150 и Soft Navigations двигают браузерную платформу в более зрелую сторону
+В [релиз-нотах Firefox 150 для разработчиков](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/150) собрали сразу несколько полезных вещей: поддержку `light-dark()` для изображений, более гибкий `color-mix()` и новые media-зависимые псевдоклассы. На этом фоне запуск [финального origin trial для Soft Navigations API](https://developer.chrome.com/blog/final-soft-navigations-origin-trial?hl=en) тоже выглядит важным шагом: браузеры всё лучше понимают SPA-переходы, где навигацию перехватывает JavaScript, а значит у нас становится больше шансов нормально измерять и отлаживать такие приложения.
+
+### HTML внутри canvas перестаёт быть просто странной идеей
+[Первый обзор нового HTML-in-Canvas API](https://frontendmasters.com/blog/the-web-is-fun-again-first-experiments-with-html-in-canvas/) показывает, зачем вообще может понадобиться смешивать привычную HTML-разметку с `canvas`. Если объяснять по-простому, это попытка оставить удобный способ описывать интерфейс, но рендерить его в более управляемой графической среде. Пока всё это ещё экспериментально и прячется за флагом, но у самой [инициативы HTML-in-Canvas API](https://github.com/WICG/html-in-canvas) уже хорошо видно, куда двигается мысль.
+
+- В [разборе работы запасных шрифтов в `font-family`](https://csswizardry.com/2026/04/font-family-doesnt-fall-back-the-way-you-think/) подробно объясняют, почему резервные гарнитуры подключаются не так, как многие ожидают, и откуда берутся вспышки «не того» текста или скачки вёрстки.
+
+## 🎨 CSS и интерфейсы
+### Адаптивный интерфейс без глобальных брейкпоинтов становится всё практичнее
+[Статья про UI без breakpoints](https://frontendmasters.com/blog/building-a-ui-without-breakpoints/) хорошо показывает, почему современную адаптивность всё чаще собирают не из набора жёстких правил «до 768px» и «после 1024px», а из более гибких примитивов вроде `clamp()`, container queries и `auto-fit`. Для новичков это полезный сдвиг мышления: компонент начинает подстраиваться под своё реальное окружение, а не только под ширину всего окна.
+
+## ♿ UX и доступность
+### Красивый `box-shadow` не заменяет честный `outline`
+[Материал о том, почему `box-shadow` не стоит использовать вместо `outline`](https://www.matuzo.at/blog/2026/box-shadow-no-alternative-to-outline) напоминает базовую, но важную вещь: фокус-стили существуют не ради декора, а ради понятной навигации с клавиатуры и поддержки специальных режимов отображения. Если коротко, хороший focus state должен быть не только красивым, но и надёжным.
+
+- В [подборке мелочей, которые делают интерфейсы приятнее](https://jakub.kr/writing/details-that-make-interfaces-feel-better) много полезных маленьких наблюдений про отступы, состояния и визуальную обратную связь. Это хороший материал для тех, кто уже умеет «собрать экран», но хочет научиться делать его аккуратнее.
+- Текст о [«зелёных» компонентах и роли дизайн-системы в устойчивости продукта](https://zeroheight.com/blog/green-components-how-your-design-system-can-aid-sustainability-goals/) полезен тем, что связывает привычные фронтенд-решения с энергопотреблением, лишним весом страницы и долгосрочной поддержкой интерфейса.
+
+<TelegramCTA/>
+
+## 📦 JavaScript и архитектура
+### Вертикальная структура проекта всё убедительнее побеждает папки `components/` и `utils/`
+[Разбор вертикальной кодовой базы](https://tkdodo.eu/blog/the-vertical-codebase) хорошо объясняет, почему структура вида `components/`, `hooks/` и `utils/` поначалу кажется аккуратной, а потом начинает мешать жить. Для больших приложений часто выгоднее группировать код по предметным областям и пользовательским сценариям: так проще понимать, где именно живёт конкретная фича и что она тянет за собой.
+
+### История про 15 тысяч циклических зависимостей полезна даже тем, у кого проект в десять раз меньше
+[Разбор того, как автор распутывал 15K circular dependencies](https://stefanhaas.xyz/article/15k-circular-dependencies/) ценен не только масштабом. Это хороший инженерный кейс о том, как аккуратно убирать архитектурную проблему по шагам, не останавливая весь монорепозиторий и не превращая рефакторинг в бесконечную войну с типами и импортами.
+
+- В статье [почему автор перестал писать слишком длинные chain-выражения в JavaScript](https://allthingssmitty.com/2026/04/20/why-i-dont-chain-everything-in-javascript-anymore/) напоминают, что последовательный код часто читать проще, чем красивую, но тяжёлую для головы цепочку методов.
+- В разборе [про область действия type guards и assertion functions](https://www.stefanjudis.com/today-i-learned/the-scope-of-type-guards-and-assertion-functions/) хорошо показывают, где TypeScript действительно начинает доверять вашей проверке, а где разработчик лишь думает, что уже «доказал» тип.
+- Даже если вы не занимаетесь безопасностью отдельно, [шпаргалку OWASP по хорошим практикам безопасности npm](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html) стоит держать под рукой как короткий список базовых правил для работы с зависимостями.
+
+## ⚛️ React и фреймворки
+### Angular тоже ускоряют через AI, но без магии и громких обещаний
+В [материале о том, как команда VoidZero ускоряла Angular compiler с помощью AI](https://voidzero.dev/posts/oxc-angular-compiler) интересно не то, что «искусственный интеллект всё починил сам», а как его встроили в нормальный инженерный процесс. Получился хороший пример того, где AI полезен как инструмент поиска и проверки гипотез, а не как замена разработчику.
+
+- Для enterprise-разработки заметна новость, что [на Salesforce теперь можно собирать нативные React-приложения](https://developer.salesforce.com/blogs/2026/04/build-with-react-run-on-salesforce-introducing-salesforce-multi-framework), а не жить только в старом ограниченном наборе инструментов.
+- Экосистема фреймворков продолжает активно двигаться: [crates.io](https://crates.io/) уходит [с Ember.js на Svelte 5](https://blog.rust-lang.org/inside-rust/2026/04/17/crates-io-svelte-public-testing/), а вокруг Vue и Vite обсуждают, что [Vapor Mode](https://github.com/vuejs/core/releases/tag/v3.6.0-beta.1) уже почти готов и как дальше будут развиваться [Vite 8](https://vite.dev/blog/announcing-vite8), [Vite+](https://viteplus.dev/) и [Void](https://void.cloud/).
+
+## 📘 TypeScript
+### TypeScript 7 beta обещает новый уровень скорости, но обновляться всё равно нужно с головой
+[Первая бета TypeScript 7](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/) интересна тем, что это нативный компилятор на Go с заявкой на прирост скорости примерно в десять раз. Но практический вывод для обычной команды другой: перед этим всё равно полезно понять роль [TypeScript 6.0](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/), внимательно проверить [новые настройки по умолчанию из 6.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/#updates-since-5.x-and-new-behaviors-from-6.0) и посмотреть, [какие паттерны кода теперь лучше писать иначе](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/#javascript-differences).
+
+## ⚙️ Node.js и рантаймы
+### У Node появился ещё один пакетный менеджер, и он делает ставку на скорость и безопасность
+[Пакетный менеджер aube](https://aube.en.dev/) запустил автор [mise](https://mise.en.dev/), и проект сразу подают как почти бесшовную замену с упором на [сырую производительность](https://aube.en.dev/benchmarks.html) и более безопасные [настройки по умолчанию](https://aube.en.dev/package-manager/configuration.html). Даже если вы не собираетесь мигрировать завтра, за такими инструментами полезно следить: они показывают, что именно разработчики считают главной болью текущего npm-стека.
+
+### Нативные Node-аддоны теперь можно писать и на C#
+[Разбор Node.js addons через .NET Native AOT](https://devblogs.microsoft.com/dotnet/writing-nodejs-addons-with-dotnet-native-aot/) показывает неожиданную, но очень практичную вещь: N-API больше не означает только C и C++. Если у команды сильная экспертиза в .NET, теперь её проще принести и в Node-проекты.
+
+### Playwright научился записывать скринкасты заметно гибче
+В [релизных заметках Playwright 1.59](https://github.com/microsoft/playwright/releases/tag/v1.59.0) появилась `page.screencast`, и это хороший апдейт не только для тестов, но и для документации. Теперь можно точнее запускать и останавливать запись, добавлять визуальные аннотации и собирать более внятные продуктовые демо прямо из автоматизации.
+
+- На уровне платформы Node тоже меняется: проект [двигается к включению Temporal API по умолчанию](https://github.com/nodejs/node/pull/61806), а следующий мажорный релиз [Node v26 тогда ожидался на неделе с 27 апреля 2026 года](https://github.com/nodejs/node/pull/62526#issuecomment-4282061307).
+- В Yarn тем временем работают над [package maps для Node](https://github.com/nodejs/node/pull/62239), чтобы модули можно было резолвить через статический JSON, а не только через привычное блуждание по `node_modules`.
+- В статье [про сильные стороны `npmx`](https://nesbitt.io/2026/04/16/features-everyone-should-steal-from-npmx.html) показывают идеи, которые полезно забрать даже тем, кто использует его прежде всего как [удобный браузер npm-реестра](https://npmx.dev/).
+- В рантаймах тем временем продолжается рывок Bun: [Bun v1.3.13](https://bun.com/blog/bun-v1.3.13) развивает идеи самого [Bun](https://bun.com/), опирается на импульс после [v1.3.12](https://bun.com/blog/bun-v1.3.12) и отдельно хвастается тем, что [стал есть на 5% меньше памяти](https://bun.com/blog/bun-v1.3.13#bun-s-runtime-uses-5-less-memory).
+
+## 🤖 ИИ и агентный веб
+### Сайты начинают готовить не только для людей, но и для LLM
+[Разбор о том, как сделать сайт заметнее для LLM](https://evilmartians.com/chronicles/how-to-make-your-website-visible-to-llms) полезен тем, что разделяет рабочие и нерабочие приёмы без магических обещаний. Рядом хорошо смотрится и новый инструмент Cloudflare, который умеет [сканировать сайт и оценивать, насколько он готов к агентам](https://isitagentready.com).
+
+### Claude Design показывает, что AI-инструменты лезут и в дизайн-процесс
+[Claude Design](https://www.anthropic.com/news/claude-design-anthropic-labs) пытается стать совместным AI-инструментом для дизайна, а в [рефлексии Сэма Анри Голда](https://samhenri.gold/blog/20260418-claude-design/) хорошо разобрано, где такой продукт может занять место между привычными редакторами и AI-ассистентами.
+
+## 🖼️ Графика и медиа
+### Карта мира на SVG в 10 КБ показывает, как далеко можно упростить визуализацию
+[Разбор о гексагональной карте мира в 10 КБ](https://frontendfoc.us/link/184152/web) отлично показывает, что тяжёлая на вид графика не всегда требует тяжёлого рантайма. Внутри автор через [Turf.js](https://turfjs.org/) упрощает GeoJSON, а потом аккуратно проецирует его с помощью [d3-geo](https://github.com/d3/d3-geo).
+
+### HyperFrames делает видео из HTML и JavaScript без тяжёлого React-стека
+[Фреймворк HyperFrames](https://hyperframes.heygen.com/) подаёт себя как более простой путь по сравнению с [Remotion](https://www.remotion.dev/): описываете сцену HTML и JavaScript, а дальше рендерите видео. Для старта пригодятся [готовые блоки и компоненты](https://hyperframes.heygen.com/catalog/blocks/instagram-follow), возможность [смешивать уже существующие видео- и аудиоклипы](https://hyperframes.heygen.com/concepts/compositions) и открытый [репозиторий на GitHub](https://github.com/heygen-com/hyperframes#readme).
+
+### Почему некоторые изображения выглядят ярче самого интерфейса
+В статье [про HDR-изображения, профили цвета и gain maps](https://tn1ck.com/blog/abuse-hdr-images-for-marketing) очень наглядно объясняют, почему картинка на современных экранах иногда буквально светится сильнее, чем фон страницы. Это хороший материал, чтобы без паники разобраться в HDR и понять, какие новые эффекты уже приходят в веб-графику.
+
+
+## ⚒️ Инструменты и библиотеки
+- Из небольших, но важных обновлений языка и экосистемы стоит отметить [uuid 14.0](https://github.com/uuidjs/uuid), который продолжает линию на RFC9562-совместимые UUID.
+- Для email-вёрстки вышел [MJML 5.0](https://mjml.io/): если вы не хотите каждый раз сверяться с [CanIEmail](https://www.caniemail.com/), такой фреймворк заметно упрощает жизнь, а существующим проектам пригодится [гайд по миграции на v5](https://github.com/mjmlio/mjml/releases/tag/v5.0.0).
+- Если нужен очень маленький CSS-старт, [µCSS](https://mucss.org/) предлагает стили даже без обязательных классов, темы и набор готовых компонентов без большого фреймворка.
+- Для форм интересен [Formisch](https://github.com/open-circle/formisch): это библиотека без готового UI, но с хорошей типизацией, которую удобно сначала пощупать в [playground из документации](https://formisch.dev/playground/login/).
+- Вокруг WebGPU тоже становится веселее: [TypeGPU](https://docs.swmansion.com/TypeGPU/) позволяет писать шейдеры на TypeScript, на [живом примере](https://docs.swmansion.com/TypeGPU/examples/#example=rendering--caustics) можно посмотреть код прямо в браузере, а отдельно в JavaScript Weekly отметили и [релиз TypeGPU 0.11](https://github.com/software-mansion/TypeGPU).
+- Если нужен комментарий-блок без тяжёлого бэкенда, у [bsky-comments](https://github.com/florianschepp/bsky-comments) нет зависимостей и используется обычный CSS вместо сложного Shadow DOM.
+- Для документов и офисных форматов пригодится [officeParser](https://officeparser.harshankur.com/), который умеет читать `docx`, `pptx`, `xlsx` и другие форматы и держит исходники в [открытом репозитории](https://github.com/harshankur/officeParser).
+- В небольших, но полезных релизах этой зоны стоит отметить [TiddlyWiki 5.4](https://tiddlywiki.com/) с [репозиторием проекта](https://github.com/TiddlyWiki/TiddlyWiki5), [wasm-xlsxwriter 0.13](https://github.com/estie-inc/wasm-xlsxwriter) для генерации Excel-файлов и [Knip 6.6](https://github.com/webpro-nl/knip/releases/tag/knip%406.6.0) для уборки неиспользуемых файлов и зависимостей.
+- В библиотеке [Animata](https://animata.design/) собрали больше сотни анимированных React-компонентов, и по примерам вроде [animated beams](https://animata.design/docs/background/animated-beam), [spreading cards](https://animata.design/docs/card/card-spread) и [экрана в стиле Slack](https://animata.design/docs/hero/slack-intro) удобно смотреть, как устроены необычные motion-паттерны.
+- Для 3D-интерфейсов пригодится [React Three Fiber 9.6](https://github.com/pmndrs/react-three-fiber/releases/tag/v9.6.0), а для видеоплееров стоит помнить про [Shaka Player 5.1](https://github.com/shaka-project/shaka-player), у которого можно сразу открыть [демо](https://shaka-project.github.io/shaka-player/demo/) и посмотреть адаптивное воспроизведение вживую.
+- Для F#-команд полезен релиз [Fable 5.0](https://fable.io/): в подробностях по [v5.0](https://github.com/fable-compiler/Fable/releases/tag/5.0.0) видно, что проект уже дружит с .NET 10 и F# 10.
+- Из node-инструментов недели стоит посмотреть на [Optique 1.0](https://optique.dev/): это парсер CLI с проверкой типов, чей [стабильный релиз v1.0](https://github.com/dahlia/optique/blob/main/CHANGES.md#version-100) и [сравнение с Commander.js](https://hackers.pub/@hongminhee/2026/optique-10-discriminated-unions-for-cli) хорошо объясняют, где он выигрывает.
+- Для документации есть [DocMD](https://docmd.io/): у проекта показательные [собственные docs](https://docs.docmd.io/), а свежая команда [`deploy`](https://github.com/docmd-io/docmd/releases/tag/0.7.2) сразу готовит файлы под Docker, Nginx и Caddy.
+- Если нужен быстрый key-value storage, теперь есть [rocksdb-js](https://www.harper.fast/resources/new-rocksdb-binding-for-node-js) — современная обёртка над [RocksDB](https://github.com/facebook/rocksdb) с открытым [репозиторием на GitHub](https://github.com/HarperFast/rocksdb-js).
+- Проект [Liquid Glass](https://liquid-glass.ybouane.com/) показывает, как через WebGL добавить HTML-элементам убедительное «стеклянное» преломление и размытие в духе iOS.
+- [Git 2.54](https://github.blog/open-source/git/highlights-from-git-2-54/): теперь проще редактировать историю через `git history`, а хуки можно описывать прямо в конфиге, а не только в `.git/hooks`.
+
+## 🌐 Платформы, безопасность и экосистема
+### Главный урок недели по безопасности пришёл от Vercel
+[Разбор взлома инфраструктуры Vercel](https://vercel.com/kb/bulletin/vercel-april-2026-security-incident) неприятен, но очень поучителен: компрометация началась с вредоноса, [упакованного вместе с читом для Roblox](https://webmatrices.com/post/how-a-roblox-cheat-and-one-ai-tool-brought-down-vercel-s-entire-platform), а дальше злоумышленник добрался до части клиентских переменных окружения через сторонний OAuth-доступ. Даже если вы не на Vercel, это хороший повод пересмотреть свои доступы, выданные внешним инструментам; пострадавшим компания отдельно советует [пройти конкретный список шагов](https://vercel.com/kb/bulletin/vercel-april-2026-security-incident#recommendations).
+
+- Вокруг платформ тоже много движения: Cloudflare выкатила превью [новой `cf` CLI](https://blog.cloudflare.com/cf-cli-local-explorer/) для своих сервисов, а Netlify объявила, что [отказывается от seat-based pricing](https://www.netlify.com/blog/pricing-netlify-for-3-billion-builders/).
+- В экосистеме open source полезно помнить, что [рынок «фейковых звёзд» на GitHub](https://awesomeagents.ai/news/github-fake-stars-investigation/) никуда не делся, так что метрики репозитория по-прежнему нельзя читать наивно.

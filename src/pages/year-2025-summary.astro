@@ -442,7 +442,7 @@ function getMaxValue(data: Record<string, MonthData>): number {
             <table class="als-months-table">
               {Object.entries(stats.byMonth)
                 .sort((a, b) => a[0].localeCompare(b[0]))
-                .map(([key, data], index) => {
+                .map(([, data], index) => {
                   const maxArticles = getMaxValue(stats.byMonth);
                   const percentage = (data.articles / maxArticles) * 100;
                   const isMostActive = stats.mostActiveMonth === data.month;
