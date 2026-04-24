@@ -36,7 +36,7 @@ if (!messages.length) {
     z-index: 100;
     transition: transform 0.3s ease;
     animation: slideIn 0.5s ease-out forwards;
-    animation-timeline: scroll();
+    animation-timeline: scroll(block root);
     animation-range: 100px 300px;
     opacity: 0;
     transform: translateX(100%);
@@ -46,9 +46,6 @@ if (!messages.length) {
     position: absolute;
     bottom: 100%;
     right: 0;
-    background: #f8f9fa;
-    padding: 8px 12px;
-    border-radius: 8px;
     margin-bottom: 8px;
     font-size: 14px;
     opacity: 0;
@@ -56,20 +53,24 @@ if (!messages.length) {
     animation: speechAppear 0.3s ease-out forwards;
     animation-timeline: scroll();
     animation-range: 400px 600px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    min-width: 250px;
-    min-height: 40px;
     color: #1a1a1a;
+    display: grid;
   }
 
   .message {
-    position: absolute;
+    grid-area: 1 / 1;
     opacity: 0;
     transition: opacity 0.3s ease;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    width: max(250px, min(360px, 40vw));
+    max-width: calc(100vw - 32px);
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     color: inherit;
     animation: showMessage linear forwards;
