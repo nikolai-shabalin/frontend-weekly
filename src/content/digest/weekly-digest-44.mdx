@@ -1,0 +1,164 @@
+---
+title: "Еженедельный дайджест #44: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "May 04 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #44! 🗞️", index: 0 },
+  { text: "sizes=\"auto\" обещает сделать адаптивные картинки спокойнее. 🖼️", index: 1 },
+  { text: "Scroll-driven animations и View Transitions снова двигают CSS вперёд. 🎞️", index: 2 },
+  { text: "pnpm 11 и TypeScript 7 beta добавили неделе скорости. ⚡", index: 3 },
+  { text: "Node 26 задержался, но Temporal уже почти у двери. ⏱️", index: 4 },
+  { text: "React Compiler, out-of-order streaming и Remix 3 дают много пищи для головы. ⚛️", index: 5 },
+  { text: "React Native продолжает мерить анимации, JSI и нативные модели без гаданий. 📱", index: 6 },
+  { text: "Datatype, portless, Animata и View Transitions Mock пополнили набор полезных игрушек. 🧰", index: 7 },
+  { text: "Cloudflare, DESIGN.md и агентные навыки снова напоминают про AI-friendly веб. 🤖", index: 8 },
+  { text: "Vercel, npm-практики и GitHub-инциденты держат безопасность в фокусе. 🔐", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+### Адаптивные изображения становятся проще благодаря `sizes="auto"`
+В статье [«Конец адаптивных изображений»](https://piccalil.li/blog/the-end-of-responsive-images/) Мэт Маркис честно разбирает, почему `srcset` и `sizes` столько лет были болезненными даже для опытных фронтендеров. Главный вывод простой: раньше браузеру приходилось заранее объяснять, какого размера будет картинка в разных условиях, и синтаксис быстро становился запутанным. Теперь к этому подходит новая возможность [`sizes="auto"`](https://caniuse.com/wf-sizes-auto), которая помогает браузеру самому определить размер лениво загружаемого изображения. История особенно забавная, потому что автор когда-то возглавлял [Responsive Images Community Group](https://www.w3.org/community/respimg/), а теперь сам признаёт, что старый синтаксис был тяжёлым.
+
+### Браузерная платформа в апреле: маленькие изменения складываются в большой прогресс
+В апрельском обзоре [нового на веб-платформе](https://web.dev/blog/web-platform-04-2026?hl=en) Рэйчел Эндрю собрала свежие возможности браузеров и напомнила, как постепенно обновляется общий фундамент веба. Такие материалы хорошо показывают: платформа развивается не только через громкие API, но и через десятки небольших улучшений, которые потом становятся привычной частью HTML, CSS и JavaScript.
+
+- В Chrome DevTools появился хороший практический разбор [отладки WebAssembly](https://eli.thegreenplace.net/2026/debugging-wasm-in-chrome-devtools/): статья помогает понять, что WASM - не «чёрный ящик», а код, который можно шагать, смотреть в стеке и связывать с исходниками.
+- В статье о связке [`<dialog>` и popover](https://web.dev/articles/baseline-in-action-dialog-popover?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web) показывают, как собирать модальные окна, подсказки и всплывающие панели на стандартных возможностях браузера. Это хороший путь к интерфейсам с меньшим количеством кастомной магии и более надёжной доступностью.
+- В заметке про [Firefox Tab Notes](https://blog.mozilla.org/en/firefox/tab-notes/) рассказывают о встроенных заметках для вкладок. Это не API для разработчиков, но хороший пример того, как браузеры пытаются помогать людям жить с десятками открытых страниц.
+- В материале про [Bluetooth Low Energy и JavaScript](https://dev.to/blackscripts/making-bluetooth-low-energy-work-with-javascript-1b5n) объясняют, как веб-приложение может разговаривать с BLE-устройствами. Это полезный мостик между «сайтами» и реальным железом.
+
+## 🎨 CSS и дизайн
+### Scroll-driven animations делают анимации частью прокрутки, а не набором костылей
+Джош Комо в большом материале про [scroll-driven animations](https://www.joshwcomeau.com/animation/scroll-driven-animations/) показывает, как новая модель анимаций привязывает движение элементов к прокрутке страницы. Если раньше для таких эффектов часто писали JavaScript, слушали `scroll` и вручную считали координаты, то теперь всё больше задач можно описывать декларативно. В основе лежит [Animation Timeline API](https://caniuse.com/mdn-css_properties_animation-timeline), и в статье хорошо видны как базовые примеры, так и ограничения, о которых стоит знать до продакшена.
+
+### CSS-анимации всё чаще повторяют сложные промо-эффекты больших компаний
+В разборе [анимации Apple Vision Pro на CSS](https://css-tricks.com/recreating-apples-vision-pro-animation-in-css/) Джон Ри показывает, как воссоздать эффект с сайта Apple через возможности прокрутки и CSS-анимаций. Новичкам такой материал полезен не ради копирования конкретного эффекта, а ради понимания подхода: сложная анимация обычно раскладывается на простые состояния, таймлайн и аккуратную привязку к пользовательскому действию.
+
+### Цвет, наложение и смешивание в CSS стоит понимать до «красивых экспериментов»
+Статья [про compositing и blending](https://nik.digital/posts/compositing-blending) объясняет, что на самом деле происходит, когда вы применяете CSS blend modes. Это важная база: режимы смешивания не просто «делают красиво», они меняют способ, которым слои страницы математически взаимодействуют друг с другом. Если понимать это заранее, проще не сломать контраст, читаемость и доступность.
+
+### Ленивую загрузку нужно включать с головой, иначе она может ухудшить метрики
+В материале DebugBear о том, [как использовать lazy loading без вреда для производительности](https://www.debugbear.com/blog/lazy-loading-performance?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web), объясняют, когда отложенная загрузка картинок помогает, а когда мешает LCP, CLS и INP. Главный урок такой: `loading="lazy"` не является универсальной кнопкой ускорения. Важные изображения первого экрана часто нужно загружать сразу, а второстепенные можно спокойно откладывать.
+
+- В статье про [интерактивный cover-компонент](https://kittygiraudel.com/2026/04/09/an-interactive-cover-component/?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web) Китти Жиро показывает небольшую, но аккуратную UI-деталь с интересными CSS-приёмами.
+- В материале про несуществующий [`::nth-letter`](https://css-tricks.com/using-nonexistent-nth-letter-selector-now/) разбирают, почему в CSS до сих пор нет удобного выбора конкретной буквы, и показывают полифилл, который имитирует такую возможность уже сейчас.
+- В статье о [constructable stylesheets и `adoptedStyleSheets`](https://frontendmasters.com/blog/constructable-stylesheets-and-adoptedstylesheets-one-parse-every-shadow-root/) объясняют, как один раз создать `CSSStyleSheet` в JavaScript и подключать его к разным Shadow DOM. Это особенно полезно для Web Components, где иначе легко наплодить одинаковые `<style>`.
+- Короткий обзор [CSS-фич, недавно ставших доступными во всех браузерах](https://nerdy.dev/CSS-recently-in-all-browsers), помогает понять, какие свойства уже можно использовать увереннее, а не держать в голове как «экспериментальные».
+- В заметке про [multi-stroke text effect](https://yuanchuan.dev/multi-stroke-text-effect-in-css?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web) показывают, как сделать несколько обводок текста средствами CSS.
+- В статье о новых возможностях [CSS multi-column layout wrapping](https://css-tricks.com/css-multi-column-layout-wrapping-features/?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web) объясняют свойства `column-height` и `column-wrap`, которые помогают переносить лишний контент в новую строку колонок.
+- Разбор [fallback-поведения `font-family`](https://csswizardry.com/2026/04/font-family-doesnt-fall-back-the-way-you-think/?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web) напоминает, что запасные шрифты не наследуются так, как многие думают, и это влияет на стабильность текста.
+- Материал о том, почему [`box-shadow` не заменяет `outline`](https://matuzo.at/blog/2026/box-shadow-no-alternative-to-outline?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web), полезен всем, кто делает focus styles: визуальный эффект должен работать и в специальных режимах отображения.
+- На CodePen можно посмотреть работу [«CodePen TV - 100% Pure CSS»](https://codepen.io/ivorjetski/pen/qEaRjBw?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web), где сложная визуальная сцена собрана только на CSS.
+- В демо [чистого HTML и CSS с `clip-path`](https://github.com/Momciloo/fun-with-clip-path) показывают эффектное раскрытие меню без JavaScript.
+
+## ♿ UX, доступность и безопасность интерфейсов
+### Таймауты сессий могут быть барьером доступности, а не просто настройкой безопасности
+В статье про [session timeouts в дизайне авторизации](https://www.smashingmagazine.com/2026/04/session-timeouts-accessibility-barrier-authentication-design/) объясняют, почему автоматический выход из аккаунта может мешать людям с инвалидностью, пользователям вспомогательных технологий и всем, кто работает медленнее обычного. Это хороший пример того, что доступность не заканчивается цветовым контрастом: даже серверная логика и UX авторизации могут либо помогать, либо выбрасывать человека из сценария.
+
+- В React-мире похожую тему продолжает статья [про частые ошибки доступности в React](https://certificates.dev/blog/accessibility-in-react-common-mistakes-and-how-to-fix-them): там разбирают проблемы с семантикой, фокусом и состояниями компонентов.
+
+<TelegramCTA/>
+
+## 📦 JavaScript и язык
+### TypeScript 7 beta и pnpm 11 стали двумя главными инфраструктурными релизами недели
+[TypeScript 7.0 Beta](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/) важен тем, что это Go-версия компилятора с заявленным ускорением примерно в десять раз. Для команд это не просто «быстрее tsc»: быстрее становятся проверки, CI и локальная обратная связь. Но обновляться стоит внимательно: Microsoft отдельно объясняет роль [TypeScript 6.0](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/), новые [изменения конфигурации](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/#updates-since-5.x-and-new-behaviors-from-6.0) и отличия, которые могут потребовать [иначе писать часть кода](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/#javascript-differences).
+
+Рядом с этим вышел [pnpm 11.0](https://pnpm.io/blog/releases/11.0). В релизе включили защиту цепочки поставки через `minimumReleaseAge`, добавили SQLite-индекс хранилища для более быстрых установок, нативную публикацию пакетов и команду [`pack-app`](https://pnpm.io/11.x/cli/pack-app). Для тех, кто уже сидит на v10, есть [гайд по миграции](https://pnpm.io/11.x/migration), а рядом снова ожил Rust-порт пакетного менеджера [Pacquet](https://github.com/pnpm/pacquet). Обзор [плюсов pnpm](https://pnpm.io/motivation) помогает понять, зачем ему особая структура `node_modules`.
+
+### Новые возможности JavaScript лучше изучать одним мануалом, а не по сотне мелких постов
+Обзор [«Что реально нового в JavaScript и что будет дальше»](https://neciudan.dev/whats-new-in-javascript) собирает ES2025 и ES2026 в одном месте: iterator helpers, `Promise.try`, новые методы `Set`, `Array.fromAsync`, `using`, Temporal и многое другое. Из будущих возможностей особенно интересны [`Math.sumPrecise`](https://neciudan.dev/whats-new-in-javascript#mathsumprecise) для более точных сумм и [`Map.getOrInsert`](https://neciudan.dev/whats-new-in-javascript#mapgetorinsert-upsert), который упрощает частый паттерн «получить значение или создать новое».
+
+### TSRX предлагает посмотреть на JSX свежим взглядом
+[TSRX](https://tsrx.dev/) описывают как TypeScript-расширение для декларативных интерфейсов и духовного наследника JSX. Оно добавляет встроенный control flow, локальные переменные и scoped styles, а компилироваться может в React, Preact, Solid и [Ripple](https://www.ripple-ts.com/). React-разработчикам пригодится и прямой сайт [tsrx.dev](https://tsrx.dev/), где есть [playground](https://tsrx.dev/playground) с выводом в React-код.
+
+- Мини-гайд [C function to WebAssembly to JS](https://github.com/peterc/webassembly-simplest-demo) полезен как самый простой путь понять, как C-функция превращается в WASM и вызывается из JavaScript.
+- В заметке [про обновление Cypress до TypeScript 6.0](https://glebbahmutov.com/blog/upgrade-cypress-to-typescript-v6/) разбирают, что учитывать тестовым проектам при переходе на новую ветку TypeScript.
+- В статье Шона Гедеке [о том, как хорошие инженеры пишут плохой код в больших компаниях](https://www.seangoedecke.com/bad-code-at-big-companies/), хорошо объясняется влияние процессов, ограничений и стимулов на качество кода.
+- Иногда лучший совет недели звучит почти смешно: заметка [«просто посмотрите в стену десять минут»](https://www.alexselimov.com/posts/men_who_stare_at_walls/) напоминает, что сложные задачи иногда требуют паузы, а не ещё одной вкладки.
+
+## ⚛️ React и фреймворки
+### React Compiler проще понять через рендеринг, а не через магию оптимизаций
+Марк Эриксон собрал большой учебный доклад [о рендеринге React Compiler](https://blog.isquaredsoftware.com/presentations/2026-04-react-compiler-rendering/?slideIndex=0&stepIndex=0). Он начинает с базовой идеи рендера в React, потом переходит к оптимизациям и объясняет, что делает [React Compiler](https://react.dev/learn/react-compiler/introduction). Важная мысль: компилятор не «ускоряет всё автоматически», а пытается убрать лишнюю ручную мемоизацию там, где может безопасно доказать результат.
+
+### React streaming out of order показывает, что Suspense не магия, а протокол доставки UI
+В статье [Inside React's Out-of-Order Streaming](https://inside-react.vercel.app/blog/how-react-streams-ui-out-of-order) разбирают, как Suspense и Server Components отправляют части интерфейса не строго сверху вниз. Внутри есть boundary-маркеры, шаблоны, временные узлы и небольшие скрипты, которые вставляют готовые куски UI на место. Так проще увидеть механику SSR и RSC, а не воспринимать её как заклинание фреймворка.
+
+### Remix 3 меняет курс и отходит от роли обычного React-фреймворка
+Вышел [Remix 3 Beta Preview](https://remix.run/blog/remix-3-beta-preview), и это важная новость не только для пользователей Remix. Проект открыто описывает [новый путь](https://remix.run/blog/wake-up-remix): меньше привязки к React, больше внимания веб-платформе, full-stack runtime и собственной модели компонентов. Это хороший повод помнить, что фреймворки не стоят на месте: иногда они меняют не API, а саму философию.
+
+### Rspack 2.0 и Rsbuild 2.0 продолжают Rust-ускорение фронтенд-сборки
+[Rspack 2.0](https://rspack.rs/blog/announcing-2-0) вышел как более быстрый webpack-совместимый бандлер на Rust: релиз примерно на 10% быстрее v1.7, улучшает [статический анализ](https://rspack.rs/blog/announcing-2-0#better-tree-shaking) и добавляет экспериментальную поддержку [React Server Components](https://rspack.rs/blog/announcing-2-0#rsc-support). Параллельно вышел [Rsbuild 2.0](https://rsbuild.rs/blog/v2-0).
+
+- В статье Rubrik про [`useTransition` и `useActionState`](https://www.rubrik.com/blog/architecture/26/2/async-react-building-non-blocking-uis-with-usetransition-and-useactionstate) объясняют, как делать интерфейсы, которые не «замирают» во время асинхронных действий.
+- В кейсе [Maxima Therapy](https://tympanus.net/codrops/2026/04/06/building-the-maxima-therapy-website-react-gsap-and-dabbling-with-ai/) рассказывают, как собирали насыщенный сайт на React и GSAP, а [готовый результат](https://maximatherapy.com/) показывает, насколько далеко можно зайти с motion-дизайном.
+- В статье [про три способа хранить переменные в React](https://www.readwriterachel.com/things-i-learned/2026/04/23/back-to-basics-react-variables.html) объясняют разницу между обычными переменными, `useState` и `useRef`, а также почему `useRef` часто недооценивают.
+- В мобильной теме Callstack объясняет, [когда использовать Apple Foundation Models](https://www.callstack.com/blog/when-to-use-apple-foundation-models-on-mobile), а пакет [`@react-native-ai/apple`](https://www.npmjs.com/package/@react-native-ai/apple) открывает доступ к Apple Intelligence из React Native.
+- В React Native обсуждают [замену Cocoapods на Swift Package Manager](https://github.com/react-native-community/discussions-and-proposals/pull/994) для iOS. Это важный сигнал: нативная инфраструктура мобильной разработки напрямую влияет на удобство React Native.
+- Команда TanStack сообщила, что [TanStack Table](https://tanstack.com/table/latest) v9 после долгой alpha-стадии приближается к beta, о чём Кевин Томас Ван Котт написал в [обновлении на X](https://x.com/KevinVanCott/status/2049151097042837841).
+- У Next.js есть документация по [Adapters](https://nextjs.org/docs/app/api-reference/adapters), которые должны упростить деплой приложений на разные платформы.
+- В Rails-экосистеме полезно посмотреть на [`rails_vite`](https://evilmartians.com/chronicles/now-you-see-it-vite-on-rails-without-the-proxy): он приносит [Vite](https://vite.dev/) в Rails без привычной боли с прокси.
+- Вышел [Astro 6.2](https://astro.build/blog/astro-620/), так что в островной экосистеме тоже есть движение.
+
+## ⚙️ Node.js и рантаймы
+### Node 26 задержался до 5 мая, но Temporal всё равно почти доехал до Current
+Релиз Node 26.0 должен был выйти 28 апреля 2026 года, но новость [Node 26.0 Slips to May 5](https://github.com/nodejs/node/pull/62526) объясняет задержку: сборку сломала [macOS-проблема](https://github.com/nodejs/node/issues/58730#issuecomment-4336293111), связанная с Rosetta 2. Исправление уже [двигалось по пайплайну](https://github.com/nodejs/node/issues/58730#issuecomment-4351809373), появился [26.0 RC 2](https://nodejs.org/download/rc/v26.0.0-rc.2/), а главное изменение релиза остаётся прежним: [Temporal API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal) включают по умолчанию.
+
+### Fresh 2.3 показывает, как Deno-фреймворки уменьшают JavaScript по умолчанию
+[Fresh 2.3](https://deno.com/blog/fresh-2.3) получил WebSocket-поддержку, View Transitions и важное изменение: страницы без интерактива больше не получают лишний JavaScript. Это хороший пример принципа «не отправляй код, который не нужен пользователю». Быстро разобраться во Fresh помогает объяснение [что это за Deno full-stack framework](https://fresh.deno.dev/).
+
+## 🤖 ИИ и агентный веб
+### `DESIGN.md` предлагает описывать визуальную айдентику так, чтобы её понимали агенты
+Спецификация [`DESIGN.md`](https://github.com/google-labs-code/design.md) предлагает хранить правила визуального стиля в текстовом формате, который может читать AI-агент. Это похоже на README, но для дизайна: цвета, тон, принципы, компоненты и ограничения. Для команд это может стать способом передавать дизайн-контекст инструментам автоматизации без длинных устных объяснений.
+
+- В блоге JointJS есть материал о том, как [кастомизировать demo app с Claude Code](https://www.jointjs.com/blog/tutorial-customize-jointjs-demo-app-with-claude-code), и отдельные [5 советов по AI coding agents с JointJS](https://www.jointjs.com/blog/5-tips-on-using-ai-coding-agents-with-jointjs). Такие статьи полезны тем, что показывают рабочий процесс, а не только результат.
+
+## ⚒️ Инструменты, библиотеки и UI-компоненты
+### Datatype превращает обычный текст в маленькие графики
+[Datatype](https://franktisellano.github.io/datatype/) - это variable OpenType font, который умеет показывать inline-графики вроде bar chart, pie chart и sparkline без JavaScript и картинок.
+
+### View Transitions обрастают инструментами, чтобы ими было проще пользоваться
+[View Transitions Mock](https://github.com/GoogleChromeLabs/view-transitions-mock) даёт JavaScript-реализацию Same-Document View Transitions без визуальной части: браузеры с поддержкой покажут переход, а остальные просто сделают замену DOM, сохранив совместимый API и promises. Рядом полезен [View Transitions Toolkit](https://chrome.dev/view-transitions-toolkit/?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web), где собраны утилиты для более удобной работы с переходами. Такой подход помогает писать один путь кода вместо множества проверок «а поддерживает ли браузер этот API».
+
+### Animata собирает анимационные React-компоненты в готовую коллекцию
+[Animata](https://animata.design/) предлагает большой набор motion-компонентов для React. Внутри есть [animated beams](https://animata.design/docs/background/animated-beam), [spreading cards](https://animata.design/docs/card/card-spread), [intro screen в стиле Slack](https://animata.design/docs/hero/slack-intro) и [glitching text](https://animata.design/docs/text/glitch-text). Это полезно как библиотека примеров: можно не только взять компонент, но и посмотреть, как устроены нестандартные анимационные паттерны.
+
+### React Email 6 вырос из набора компонентов в редактор писем
+[React Email 6.0](https://resend.com/blog/react-email-6) теперь включает open-source visual editor, а не только компоненты для email-разметки на React и Tailwind. Это важно, потому что email-интерфейсы живут по своим странным правилам, и визуальный редактор может снизить порог входа. В релизе также появились [новые email templates](https://resend.com/blog/react-email-6#new-templates), которые помогают стартовать без пустого листа.
+
+- [React Arborist 3.5](https://github.com/jameskerr/react-arborist#readme) даёт готовый tree view для React со сворачиванием, drag and drop, фильтрацией и клавиатурной навигацией, а [демо React Arborist](https://react-arborist.netlify.app/) помогает быстро понять поведение компонента.
+- [React Tooltip 6.0](https://react-tooltip.com/) обновляет популярный компонент подсказок, а документация предлагает [getting started](https://react-tooltip.com/docs/getting-started), [upgrade guide](https://react-tooltip.com/docs/upgrade-guide/changelog-v5-v6) и [репозиторий React Tooltip](https://github.com/ReactTooltip/react-tooltip).
+- [Pastel 4.0](https://github.com/vadimdemedes/pastel) добавляет структуру для CLI-приложений на базе [Ink](https://github.com/vadimdemedes/ink), где терминальный интерфейс можно писать через JSX и React-компоненты.
+- [React Native Graph 1.2](https://github.com/margelo/react-native-graph) обновляет графики для React Native.
+- [React Spectrum Charts 1.42](https://github.com/adobe/react-spectrum-charts) развивает декларативные графики на React, а [демо React Spectrum Charts](https://opensource.adobe.com/react-spectrum-charts/?path=/docs/rsc-chart--docs) наглядно показывает возможности библиотеки.
+- [xstate-tree 5.4](https://github.com/koordinates/xstate-tree) строит UI вокруг дерева акторов и машин [XState](https://xstate.js.org/).
+- [Voltra 1.4](https://github.com/callstackincubator/voltra/releases/tag/v1.4.0) помогает делать iOS Live Activities, Dynamic Island и Android widgets на React Native.
+- [React Cosmos 7.3](https://reactcosmos.org/) остаётся песочницей для разработки и проверки UI-компонентов.
+- [TinyBase 8.2](https://tinybase.org/guides/releases/#v8-2) обновляет reactive store для local-first приложений.
+- [Mantine 9.1.0](https://github.com/mantinedev/mantine/releases/tag/9.1.0) развивает большой набор React-компонентов.
+- [React Native Testing Library 14.0 Beta 1](https://github.com/callstack/react-native-testing-library/releases) готовит новую ветку инструментов тестирования React Native.
+- [useHotkeys 5.3](https://react-hotkeys-hook.vercel.app/) позволяет декларативно навешивать горячие клавиши в компонентах, а код лежит в [репозитории react-hotkeys-hook](https://github.com/JohannesKlauss/react-hotkeys-hook).
+- [Nano Stores 1.3](https://github.com/nanostores/nanostores) остаётся очень маленьким менеджером состояния для разных фреймворков, включая React и vanilla JS.
+- [SSGOI 5.0](https://ssgoi.dev/en) делает page transitions в стиле нативных приложений и имеет router-agnostic React bindings, а исходники доступны в [GitHub-репозитории SSGOI](https://github.com/meursyphus/ssgoi).
+- [JailMonkey 3.0](https://github.com/GantMan/jail-monkey) помогает React Native-приложениям определять root, jailbreak и подмену геолокации.
+- [MUI OTP Input 7.0](https://github.com/viclafouch/mui-otp-input) обновляет компонент для ввода одноразовых кодов.
+- [Nuxt UI 4.7](https://ui.nuxt.com/) расширяет Vue-библиотеку компонентов, а в релизе [v4.7](https://github.com/nuxt/ui/releases/tag/v4.7.0) появились [Listbox](https://ui.nuxt.com/docs/components/listbox) и компонент [Prompt](https://ui.nuxt.com/docs/typography/prompt) для копируемых AI-промптов.
+- [Lingui 6.0](https://lingui.dev/blog/2026/04/22/announcing-lingui-6.0) обновляет фреймворк-независимую библиотеку i18n и l10n для JavaScript.
+- В коротких релизах недели: [Transformers.js 4.2.0](https://github.com/huggingface/transformers.js/releases/tag/4.2.0), [Electron 41.3.0](https://github.com/electron/electron/releases/tag/v41.3.0), [Etherpad v2.7.0](https://github.com/ether/etherpad/releases/tag/v2.7.0), [Mediabunny v1.41.0](https://github.com/Vanilagy/mediabunny), [Svelte Bricks 0.5](https://bricks.janosh.dev/), [focus-trap 8.1](https://github.com/focus-trap/focus-trap) с [демо](https://focus-trap.github.io/focus-trap/), [CheerpJ 4.3](https://labs.leaningtech.com/blog/cheerpj-4.3) и [qrcode.vue 3.9](https://github.com/scopewu/qrcode.vue).
+- [CalendarJS](https://calendarjs.com/?utm_source=CSS-Weekly&utm_campaign=Issue-639&utm_medium=web) предлагает модульный набор компонентов для календарей и интерфейсов, связанных со временем.
+- [HyperFrames](https://hyperframes.heygen.com/) превращает HTML и JavaScript-композиции в отрендеренные ролики и выглядит как более лёгкая альтернатива [Remotion](https://www.remotion.dev/) для части задач.
+- [Devicons](https://devicons.io/icons/) даёт больше тысячи иконок технологий, компаний и типов файлов, которые удобно вставлять в React-проекты.
+- [Chip Player JS](https://chiptune.app/) - JavaScript-плеер и большая коллекция MIDI, tracker и chiptune-музыки, а в качестве примера там отдельно выделили [саундтрек Chrono Trigger](https://chiptune.app/browse/Nintendo%20SNES/Chrono%20Trigger/).
+- [portless](https://github.com/vercel-labs/portless) заменяет адреса вроде `localhost:3000` на стабильные имена вроде `myapp.localhost`, а в свежем релизе появились [новые возможности для Tailscale](https://github.com/vercel-labs/portless/releases/tag/v0.12.0).
+- [Honker](https://github.com/russellromney/honker) приносит в SQLite семантику `NOTIFY`/`LISTEN` без отдельного демона, а пакет [honker-node](https://www.npmjs.com/package/@russellthehippo/honker-node) показывает, как использовать это из Node. Для старта есть короткий пример [как подключить Honker](https://github.com/russellromney/honker#nodejs).
+- [AVA 8.0](https://github.com/avajs/ava/releases/tag/v8.0.0) стала полностью ESM и добавила `test.skipIf()` и `test.runIf()` для условного запуска тестов.
+- [Hono Node.js Adapter 2.0](https://github.com/honojs/node-server/releases/tag/v2.0.0) ускоряет приложения на Node для пользователей [Hono](https://hono.dev/).
+- [BWIP-JS 4.10](https://github.com/metafloor/bwip-js) генерирует штрихкоды на чистом JavaScript и поддерживает [более 100 стандартов](https://bwip-js.metafloor.com/demo/demo.html).
+- [basic-ftp 6.0](https://github.com/patrickjuchli/basic-ftp) обновляет FTP-клиент для Node, что всё ещё бывает нужно в старых интеграциях.
+- [icc 4.0](https://github.com/lovell/icc) умеет разбирать ICC-профили, полезные при работе с цветом.
+- [Ora 9.4](https://github.com/sindresorhus/ora) обновляет популярный терминальный спиннер.
+- [Mongoose 9.6](https://github.com/Automattic/mongoose/releases/tag/9.6.0) продолжает развивать объектное моделирование для MongoDB.
+- [Vine 4.4](https://vinejs.dev/docs/introduction) предлагает быструю валидацию данных форм в Node.
+- [hyperid 4.0](https://github.com/mcollina/hyperid) обновляет быстрый генератор уникальных идентификаторов для Node и браузеров.
