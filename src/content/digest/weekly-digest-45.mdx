@@ -1,0 +1,162 @@
+---
+title: "Еженедельный дайджест #45: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "May 11 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #45! 🗞️", index: 0 },
+  { text: "Remix 3 вышел в beta и больше не выглядит как React-фреймворк. 🧭", index: 1 },
+  { text: "Node 26 принес Temporal, а Node 26.1 уже пробует FFI. ⏱️", index: 2 },
+  { text: "CSS получил поводы поговорить о range queries, safe-area и случайности. 🎨", index: 3 },
+  { text: "React и Next.js закрывают RSC-уязвимость, обновления лучше не откладывать. 🔐", index: 4 },
+  { text: "Rolldown 1.0 и Astro v7 Alpha снова ускоряют сборку вокруг Vite. ⚡", index: 5 },
+  { text: "Chrome 148, Prompt API и Gemini Nano подкинули веб-платформе вопросов про AI. 🤖", index: 6 },
+  { text: "TanStack экспериментирует с маленьким React-рантаймом и формами. ⚛️", index: 7 },
+  { text: "Anime.js, ShaderPad, Fancy Frames и StyleBop пополнили творческий ящик. 🧰", index: 8 },
+  { text: "Доступность снова звучит громко: ARIA, AI и надежные системы важнее модных обещаний. ♿", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+### Chrome 148 добавляет новые возможности, но AI API вызывают споры
+В обзоре [новинок Chrome 148](https://developer.chrome.com/blog/new-in-chrome-148?hl=en) и отдельном списке изменений [в Chrome DevTools](https://developer.chrome.com/blog/new-in-devtools-148) есть сразу несколько заметных вещей: name-only `@container` queries, ленивые `video` и `audio`, а также [Prompt API](https://developer.chrome.com/docs/ai/prompt-api) для локальных AI-возможностей в браузере. Браузер постепенно становится не только средой для HTML, CSS и JS, но и платформой для встроенных моделей и новых performance API.
+
+Но вокруг этого уже началась дискуссия. В критическом разборе [установки 4GB AI-модели в Chrome без явного согласия](https://www.thatprivacyguy.com/blog/chrome-silent-nano-install/) обсуждают Gemini Nano, который нужен для Prompt API. Mozilla отдельно [возразила против планов Google по AI API](https://www.theregister.com/software/2026/04/30/mozilla-pushes-back-against-googles-prompt-api/5223409), а Джейк Арчибальд [заметил в Bluesky](https://bsky.app/profile/jakearchibald.com/post/3ml6gf7d77s25), что похожие опасения есть и у других участников веб-платформы. Это хороший пример того, что новый API оценивают не только по удобству, но и по приватности, размеру, контролю пользователя и влиянию на открытый веб.
+
+### JavaScript в браузере хотят сделать проверяемым
+Команда Firefox Security рассказала о спецификации [Trustworthy JavaScript for the Open Web](https://hacks.mozilla.org/2026/05/trustworthy-javascript-for-the-open-web/): WAICT должна помогать браузеру криптографически проверять, что исполняемый JavaScript совпадает с тем, что сайт действительно опубликовал. В более подробном [explainer про WAICT](https://blog.cloudflare.com/improving-the-trustworthiness-of-javascript-on-the-web/) видно, зачем это нужно: если между сервером и пользователем кто-то подменил код, браузер должен иметь способ это заметить. Прототип уже доступен в Firefox Nightly за флагом, так что пока это ранняя история, но направление важное для безопасности веб-приложений.
+
+### Браузерная производительность получает новые API и старые ловушки
+Chrome запускает origin trial для [Container Timing performance API](https://developer.chrome.com/blog/container-timing-origin-trial). Идея полезна для интерфейсов с большими блоками контента: можно точнее понять, когда конкретный контейнер стал видимым и готовым, а не смотреть только на общие метрики страницы. Производительность измеряют не абстрактно, а вокруг того, что человек реально видит.
+
+В статье про [дружбу dark mode с back/forward cache](https://guilhermesimoes.github.io/blog/making-dark-mode-work-with-bfcache) объясняют другую сторону производительности. [bfcache](https://developer.mozilla.org/en-US/docs/Glossary/bfcache) ускоряет возврат назад и вперед в браузере, потому что страница может сохраняться в памяти. Но если тема меняется между переходами, интерфейс должен корректно обновиться после восстановления из кеша.
+
+- Материал [Open Web vs AI: What Can W3C Do?](https://hidde.blog/web-ai-breakout/) пересказывает обсуждение W3C Advisory Committee о рисках AI для открытого веба и о том, где стандартизация может помочь.
+- Статья [9 случаев, когда веб-платформа училась у библиотек](https://jadjoubran.io/blog/web-platform-influenced-by-libraries) напоминает, что многие нативные API сначала проходили обкатку в популярных JS-библиотеках. Библиотеки часто делают исследование в продакшене, а платформа потом забирает удачные идеи.
+- В заметке [про дизайн-QA из скриншотного пайплайна](https://frontendfoc.us/link/184795/web) показывают, как простая инфраструктурная задача может вырасти в полезный инструмент для проверки интерфейсов.
+
+## 🎨 CSS и дизайн
+### Range media queries делают брейкпоинты понятнее
+Ахмад Шадид в статье [о range syntax для media queries](https://ishadeed.com/article/range-syntax/) разбирает проблему классического `min-width` и `max-width`: на точной границе вроде `300px` могут сработать оба правила. Решение - [диапазонные media queries](https://webstatus.dev/features/media-query-range-syntax), где условие читается ближе к обычной математике: например, ширина больше или равна одному значению и меньше другого. Синтаксис уже широко поддерживается, работает и с container queries, а отладка таких условий обычно проще. [Перевод на Хабре от Igor Agapov](https://habr.com/ru/articles/1033266/)
+
+### `safe-area-inset` помогает верстать под вырезы, панели и системный UI
+В материале Polypane про [`safe-area-inset`](https://polypane.app/blog/using-safe-area-inset-to-build-mobile-safe-layouts/) объясняется, что safe area - это часть экрана, которую точно не перекроют вырезы, скругления, системные панели и другие элементы устройства. CSS-переменные вроде `env(safe-area-inset-bottom)` позволяют добавлять нужные отступы и не прятать кнопки в неудобных местах. Особенно это важно для мобильных интерфейсов, где нижняя панель или notch легко ломают красивый макет.
+
+### CSS может валидировать формы без JavaScript, но читать такие селекторы нужно внимательно
+Прити Сэм показывает, как использовать [`n of` в `:nth-child()` для условной валидации](https://frontendmasters.com/blog/css-n-of-selectors-for-conditional-validation/) вместе с `:has()`. Получается система, где CSS реагирует на количество или положение элементов и может подсвечивать состояние формы без JavaScript. Это не повод срочно выкидывать JS-валидацию, а хороший пример того, насколько мощными стали селекторы.
+
+### CSS не хватает настоящей случайности
+В статье CSS-Tricks о [нативной случайности в CSS](https://css-tricks.com/the-importance-of-native-randomness-in-css/) объясняется, почему язык по природе детерминирован: один и тот же CSS должен давать один и тот же результат. Если хочется случайных размеров, позиций или вариаций, обычно приходится подключать JavaScript, препроцессор или серверную генерацию. Автор предлагает думать о будущих нативных механизмах случайности как о способе превратить CSS не только в язык оформления, но и в инструмент генеративных раскладок.
+
+- В предупреждении [про cascade layers и specificity hell](https://dbushell.com/2026/04/15/containment-breach-in-cascade-layer/) Дэвид Бушелл показывает, как слои каскада могут неожиданно усложнить приоритеты стилей.
+- Генератор [Fancy Frames](https://css-generators.com/fancy-frame/) делает волнистые рамки на чистом CSS через `clip-path`; это полезный пример, как сложная декоративная форма может быть параметризованной, а не нарисованной вручную.
+- [StyleBop](https://bendansby.com/apps/stylebop.html) - нативный визуальный CSS-редактор для macOS, где таблицы стилей можно смотреть как node diagrams, менять переменные и свойства.
+
+<TelegramCTA/>
+
+## ♿ Доступность и UX
+- Практический гид [ARIA Roles Explained](https://www.levelaccess.com/blog/aria-roles-explained-a-practical-guide-for-web-developers/) помогает разобраться, зачем нужны ARIA-роли и почему их стоит добавлять только тогда, когда нативной семантики HTML не хватает.
+- В статье [AI Doesn't Fix Accessible Systems. It Depends on Them](https://annaecook.com/writing/2026/ai-doesnt-fix-accessible-systems-it-depends-on-them) важная мысль для всех, кто строит продукты с AI: модель не спасет плохую доступность, а будет зависеть от уже правильно размеченных, понятных и устойчивых интерфейсов.
+
+## 📦 JavaScript
+### Remix 3 вышел в beta и больше не является React-фреймворком
+[Remix 3 Beta](https://remix.run/blog/remix-3-beta-preview) - одна из главных новостей недели. Проект начинался как [альтернатива Next.js](https://bejamas.com/hub/guides/remix-vs-nextjs), затем был [куплен Shopify](https://techcrunch.com/2022/10/31/shopify-acquires-remix-to-bolster-its-storefront-design-tools/), а его ключевые идеи попали в [React Router v7](https://remix.run/blog/react-router-v7). Теперь команда делает новый поворот: full-stack фреймворк вокруг веб-стандартов, собственной модели UI-компонентов и без обязательной зависимости от React. Это важный сигнал: фреймворк может менять не только API, но и базовую философию.
+
+### Deno пробует `import defer`, а Bun экспериментирует с Rust
+Deno получил экспериментальную поддержку [`import defer`](https://github.com/denoland/deno/pull/32360), которая основана на одноименном [TC39 proposal](https://github.com/tc39/proposal-defer-import-eval). Такая возможность позволяет отложить выполнение импортированного модуля и точнее управлять стартом приложения.
+
+Вокруг Bun тоже было шумно: на Hacker News активно обсуждали [попытку портировать Bun с Zig на Rust](https://github.com/oven-sh/bun/commit/46d3bc29f270fa881dd5730ef1549e88407701a5), сама дискуссия быстро разогрелась в [большом треде Hacker News](https://news.ycombinator.com/item?id=48016880), а Джарред Самнер [пришел в обсуждение](https://news.ycombinator.com/item?id=48019226), чтобы охладить ожидания. Вывод спокойнее заголовков: Rust-порт пробуют, но долгосрочного решения полностью переходить на Rust пока нет. Отдельно вышел текст [I Am Worried About Bun](https://wwj.dev/posts/i-am-worried-about-bun/), где автор рассуждает о последствиях [покупки Bun компанией Anthropic](https://bun.com/blog/bun-joins-anthropic).
+
+### Vitest может стать менее привязанным к Vite
+Vitest исторически тесно связан с [Vite](https://vitest.dev/), но один из мейнтейнеров предложил сделать тест-раннер [более framework-agnostic](https://github.com/vitest-dev/vitest/discussions/10271). Если идея дойдет до реализации, Vitest сможет лучше работать с другими сборщиками и рантаймами. Для команд это важно: тесты живут долго, и чем меньше они завязаны на один инструмент сборки, тем проще миграции.
+
+- Джулия Эванс в статье [про тестирование Vue-компонентов прямо в браузере](https://jvns.ca/blog/2026/05/02/testing-vue-components-in-the-browser/) разбирает mounting, ожидание DOM, заполнение форм и сбор покрытия без лишней магии вокруг тестового окружения.
+- История [про счет Cloudflare D1 на $134 и снижение расходов на 95%](https://fullstacksveltekit.com/blog/cloudflare-d1-bill) полезна тем, кто использует SvelteKit, Cloudflare Workers, D1 и Drizzle ORM: облачная база может стать дорогой из-за паттернов доступа.
+- Материал [Making Bluetooth Low Energy Work with JavaScript](https://dev.to/blackscripts/making-bluetooth-low-energy-work-with-javascript-1b5n) показывает, как JS-приложение может общаться с BLE-устройствами и где начинаются практические сложности.
+- Ежемесячный обзор Svelte [собрал свежие новости команды](https://svelte.dev/blog/whats-new-in-svelte-may-2026), включая попадание Svelte в [Technology Radar от ThoughtWorks](https://www.thoughtworks.com/radar/languages-and-frameworks/summary/svelte).
+
+## ⚛️ React и фреймворки
+### TanStack сделал маленький React-совместимый рантайм и не стал превращать его в продукт
+Таннер Линсли в статье [Projecting React](https://tannerlinsley.com/posts/projecting-react) рассказал, как с помощью AI-агента за день пересобрал публичный API React в рантайм около 9KB для TanStack Start. Эксперимент уже работает на [TanStack](https://tanstack.com/) и [tanstack.com](https://tanstack.com/), а пакет [`@tanstack/redact`](https://www.npmjs.com/package/@tanstack/redact) даже лежит на npm. Самое интересное не только в цифрах 2-3x быстрее обычного React, а в причине, почему автор не выпускает это как полноценную замену React: поддерживать совместимость с огромной экосистемой намного сложнее, чем собрать быстрый рантайм под конкретные ограничения. Таннер также отдельно отметил, что [Preact](https://preactjs.com/) уже не воспринимается им как достаточно близкая drop-in замена React.
+
+### React и Next.js закрыли RSC-уязвимость
+Vercel выпустила [майские security-релизы Next.js 2026](https://vercel.com/changelog/next-js-may-2026-security-release): пользователям нужно обновиться до Next.js 15.5.18 или 16.2.6. Из-за связанной проблемы React Server Components также вышли React [19.2.6](https://github.com/facebook/react/releases/tag/v19.2.6), [19.1.7](https://github.com/facebook/react/releases/tag/v19.1.7) и [19.0.6](https://github.com/facebook/react/releases/tag/v19.0.6), закрывающие [DoS-уязвимость в RSC](https://github.com/facebook/react/security/advisories/GHSA-rv78-f8rc-xrxh). Если ранее вы включили [Cloudflare WAF rules для React и Next.js уязвимостей](https://developers.cloudflare.com/changelog/post/2026-05-06-react-nextjs-vulnerabilities/), они продолжают защищать, но обновление зависимостей все равно остается главным шагом.
+
+### TanStack Form объясняет headless-подход к формам
+В статье [Introducing TanStack Form](https://frontendmasters.com/blog/introducing-tanstack-form/) показывают простую модель: TanStack отвечает за состояние, валидацию и механику формы, а рендеринг полностью остается у вас. Headless-библиотеки не дают готовый красивый инпут, зато помогают собрать надежное поведение и не спорят с вашей дизайн-системой.
+
+### Миграция с React на Web Components сэкономила 100KB
+Evil Martians описали опыт [переезда с React на нативные Web Components](https://evilmartians.com/chronicles/from-react-to-native-web-with-nanotags-a-migration-that-saved-100kb). Автор объясняет, почему это оказалось проще, чем ожидалось, и как из практических паттернов выросла небольшая библиотека [nanotags](https://nanotags.psdcoder.dev/). Это не призыв удалять React везде, а хороший кейс про выбор меньшего инструмента для более узкой задачи.
+
+- Таннер Линсли в тексте [Who Owns the Tree?](https://tanstack.com/blog/who-owns-the-tree) предлагает смотреть на RSC как на протокол, а не готовую архитектуру приложения.
+- В статье [Untangling Dialogs in React Router](https://programmingarehard.com/2026/05/06/react-router-dialogs.html/) разбирают, как аккуратно связывать диалоги и роутинг.
+- Vercel открыла [`deepsec`](https://vercel.com/blog/introducing-deepsec-find-and-fix-vulnerabilities-in-your-code-base), security harness для LLM-сканирования больших репозиториев.
+- [React Router v7.15.0](https://reactrouter.com/changelog#v7150) получил API-правки перед React Router v8, который команда ожидает в ближайший месяц или два.
+
+## 🛰️ Сборка, Astro и экосистема фреймворков
+### Rolldown 1.0 стал стабильным быстрым бандлером
+Команда VoidZero объявила [Rolldown 1.0](https://voidzero.dev/posts/announcing-rolldown-1-0): это высокопроизводительный JS-бандлер с совместимостью с Rollup-плагинами и скоростью уровня esbuild. Его главная польза не в том, чтобы заменить все возможности современного Node.js, который уже умеет многое нативно, а в финальной сборке для продакшена: tree shaking, компактный артефакт и совместимость с существующей экосистемой Rollup. Рядом вышел [tsdown 0.22](https://github.com/rolldown/tsdown/releases/tag/v0.22.0), библиотечный бандлер на базе Rolldown.
+
+### Astro 6.2 уже вышел, а Astro v7 Alpha показывает следующий этап
+[Astro 6.2](https://astro.build/blog/astro-620/) добавил больше контроля над SVG-оптимизацией и логированием. В [Astro v7 Alpha](https://astro.build/blog/astro-620/#astro-v7-alpha), где проект готовит переход на Vite 8 и Rust-компилятор, а также связали это с релизом [Astro v6.2](https://astro.build/blog/astro-620/). Для контентных сайтов это продолжение курса: меньше лишнего JS, быстрее сборка, больше внимания статике и островам интерактива.
+
+- [Electron 42](https://github.com/electron/electron/releases/tag/v42.0.0) изменил установку бинарника: после supply chain атак он больше не скачивается через `postinstall`, а загружается при первом запуске. Ранее [Electron 41.5](https://github.com/electron/electron/releases/tag/v41.5.0) добавил поддержку Touch ID для WebAuthn на macOS.
+- [Ember 6.12](https://blog.emberjs.com/ember-released-6-12/) стал финальным релизом ветки 6.x перед Ember 7.0.
+- Среди коротких релизов недели отметились [ESLint 10.3](https://eslint.org/blog/2026/05/eslint-v10.3.0-released/), [Zod 4.4](https://github.com/colinhacks/zod/releases/tag/v4.4.0) и [Babylon.js 9.5](https://github.com/BabylonJS/Babylon.js/releases/tag/9.5.0).
+
+## 📘 TypeScript и типы
+### Valibot напоминает, что валидация схем может быть модульной
+Статья [Why Migrate to Valibot?](https://valibot.dev/blog/why-migrate-to-valibot/) объясняет, чем [Valibot](https://valibot.dev/) отличается от более привычных библиотек вроде Zod. Его идея - легкая и модульная валидация TypeScript-схем, где вы берете только нужные части. Свежий релиз [Valibot v1.4.0](https://github.com/open-circle/valibot/releases/tag/v1.4.0) делает эту тему актуальной для тех, кто хочет уменьшить вес клиентского кода и сохранить строгую проверку данных.
+
+- [Thales](https://github.com/jessealama/thales) компилирует подмножество TypeScript в [Lean](https://lean-lang.org/), чтобы код можно было дополнительно проверять и рассуждать о нем как о Lean-модуле.
+
+## ⚙️ Node.js и рантаймы
+### Node.js 26 вышел с Temporal, V8 14.6 и Undici 8
+[Node.js 26.0.0 Current](https://nodejs.org/en/blog/release/v26.0.0) официально вышел после небольшой задержки. В релизе по умолчанию включен [Temporal API](https://bloomberg.github.io/js-blog/post/temporal/), обновлен V8 до 14.6 и поставлен Undici 8. До октября это Current-релиз, потом ветка должна стать LTS.
+
+### Node.js 26.1 пробует официальный FFI
+Сразу следом вышел [Node.js 26.1.0 Current](https://nodejs.org/en/blog/release/v26.1.0) с экспериментальным модулем `node:ffi`. [Foreign Function Interface](https://en.wikipedia.org/wiki/Foreign_function_interface) позволяет напрямую вызывать библиотеки, написанные на других языках, чаще всего через C ABI. В прошлом для этого были сторонние решения вроде [node-ffi](https://github.com/node-ffi/node-ffi) и более надежного [Koffi](https://koffi.dev/), а официальный путь в Node обычно шел через [Node-API / NAPI](https://nodejs.org/api/n-api.html). Теперь работа над [core FFI](https://github.com/nodejs/node/pull/62072) доступна за флагом `--experimental-ffi`, интегрируется с [permissions model](https://nodejs.org/api/permissions.html), показывает [хорошую скорость](https://github.com/nodejs/node/pull/63140) и открывает путь к более прямой работе с нативными библиотеками. В качестве более сложного будущего примера автор упомянул [Raylib 6.0](https://github.com/raysan5/raylib/releases/tag/6.0).
+
+### Ещё про Node.js
+- Node 20 Iron ушел в [End-of-Life](https://nodejs.org/en/about/eol), и теперь все актуальные LTS-релизы Node умеют запускать TypeScript без флагов через type stripping.
+- Из-за того, что Temporal в Node 26 использует Rust-библиотеку [`temporal_rs`](https://github.com/boa-dev/temporal), сборка [Node 26+ из исходников требует Rust toolchain](https://github.com/nodejs/node/blob/main/BUILDING.md#building-nodejs-with-temporal-support).
+- [PM2 7.0](https://github.com/Unitech/pm2/releases/tag/v7.0.0) уменьшил число зависимостей и расширил поддержку Bun-приложений;
+- [pnpm v11.0.5](https://github.com/pnpm/pnpm/releases/tag/v11.0.5) получил множество исправлений после [большого релиза 11.0](https://pnpm.io/blog/releases/11.0); позднее вышел [pnpm v11.0.8](https://github.com/pnpm/pnpm/releases/tag/v11.0.8), а цепочку патчей можно посмотреть в [потоке маленьких релизов](https://github.com/pnpm/pnpm/releases).
+
+## ⚒️ Инструменты, библиотеки и UI-компоненты
+### Anime.js 4.4 развивает зрелую библиотеку анимаций
+[Anime.js 4.4](https://animejs.com/) продолжает развивать библиотеку, которой уже десять лет. В релизе появились эффект [`scrambleText`](https://animejs.com/documentation/text/scrambletext/) и [auto-grid layout mode](https://animejs.com/documentation/utilities/stagger/stagger-parameters/stagger-grid/) для stagger grids. Anime.js ценен тем, что позволяет анимировать почти что угодно из JavaScript, а [документация Anime.js](https://animejs.com/documentation/getting-started/) полна живых примеров.
+
+### ShaderPad упрощает WebGL-шейдеры на сайтах
+[ShaderPad](https://misery.co/shaderpad/) - легкая библиотека без зависимостей для добавления WebGL-шейдеров на страницу без большого boilerplate. Главная польза в низком пороге входа: можно попробовать creative coding эффекты, не собирая весь WebGL-стек с нуля. Исходники доступны в [репозитории ShaderPad](https://github.com/miseryco/shaderpad).
+
+### Formisch делает формы типобезопасными сразу для многих фреймворков
+[Formisch](https://github.com/open-circle/formisch) - schema-based и headless-библиотека форм для Preact, Qwik, React, SolidJS, Svelte и Vue. Она управляет состоянием и валидацией через Valibot, а UI вы строите сами. Быстро почувствовать подход можно в [playground с демо](https://formisch.dev/playground/login/).
+
+### opentype.js дает доступ к шрифтам из браузера и Node.js
+[opentype.js](https://opentype.js.org/) умеет читать и писать OpenType-шрифты, работать с WOFF, OTF и TTF, поддерживать лигатуры, кернинг и emoji. Свежий [v1.3.5](https://github.com/opentypejs/opentype.js/releases/tag/1.3.5) считается превью к будущей версии 2.0, а код можно изучить в [GitHub-репозитории opentype.js](https://github.com/opentypejs/opentype.js).
+
+### View Transitions Mock помогает писать один путь кода
+[View Transitions Mock](https://github.com/GoogleChromeLabs/view-transitions-mock) реализует Same-Document View Transitions без визуальной части. В браузерах с поддержкой вы получите реальные переходы, а в остальных - мгновенную замену DOM, но promises и структура кода останутся такими же. Это удобно для прогрессивного улучшения: можно использовать современный API, не превращая код в набор веток на каждую поддержку.
+
+- [AddFox](https://addfox.dev/) - фреймворк для разработки расширений браузера на базе Rsbuild; он поддерживает Firefox и Chromium, HMR, тестовые сценарии и разные UI-фреймворки, а код открыт в [GitHub-репозитории AddFox](https://github.com/addfox/addfox).
+- Демо [Virtual Scrolling](https://www.nicbarker.com/virtual-scrolling) показывает, как большие списки можно рендерить только в видимой области, не создавая тысячи DOM-элементов сразу.
+- [MapLibre React Native](https://maplibre.org/maplibre-react-native/) позволяет рендерить интерактивные vector tile карты на Android и iOS через MapLibre Native.
+- [shadcn CLI 4.7](https://ui.shadcn.com/docs/changelog/2026-05-package-imports-target-aliases) научился работать с `package.json#imports`, переписывать импорты и использовать target aliases для registry-файлов.
+- [React DayPicker 10.0](https://daypicker.dev/) обновил зрелый и доступный компонент выбора дат; исходники лежат в [репозитории React DayPicker](https://github.com/gpbl/react-day-picker).
+- [html-react-parser 6.1](https://github.com/remarkablemark/html-react-parser) добавил поддержку Content Security Policy при превращении HTML-строк в React-элементы.
+- [Jotai 2.20.0](https://github.com/pmndrs/jotai/releases/tag/v2.20.0) улучшил производительность в сценариях с большим количеством обновлений состояния.
+- [Classicy 0.9](https://classicy.ing/) предлагает коллекцию React-компонентов в ретро-стиле classic Mac OS.
+- [html-to-text 10.0](https://github.com/html-to-text/node-html-to-text/blob/master/packages/html-to-text/README.md) конвертирует сложный HTML в текст с сохранением части форматирования, например таблиц.
+- [Find My Way 9.6](https://github.com/delvedor/find-my-way) - быстрый HTTP-router на radix trees, который уже знаком пользователям Fastify.
+- [sqs-consumer 15.0](https://github.com/bbc/sqs-consumer) обновил подход BBC к приложениям на Amazon SQS без большого boilerplate.
+- [article-extractor 8.1](https://github.com/extractus/article-extractor) извлекает содержимое и метаданные статьи по URL.
+- [probe-image-size 7.3](https://github.com/nodeca/probe-image-size) узнает размер изображений без полной загрузки файла.
+- [fast-json-stringify 6.4](https://github.com/fastify/fast-json-stringify) обещает сериализацию в два раза быстрее `JSON.stringify()`.
+- [Mediabunny v1.42.0](https://github.com/Vanilagy/mediabunny/releases/tag/v1.42.0) научился читать и писать HLS, продолжая развивать работу с аудио и видеофайлами прямо в браузере.
+- [Electrobun 1.18](https://blackboard.sh/electrobun/docs/) помогает собирать маленькие кроссплатформенные desktop-приложения на Bun, а детали есть в [changelog](https://docs.electrobunny.ai/electrobun/guides/changelog/v1-18-0/).
+- [useHotkeys 5.3](https://github.com/JohannesKlauss/react-hotkeys-hook) обновил React hook для клавиатурных сокращений.
+- [RxDB 17.2.0](https://github.com/pubkey/rxdb/releases/tag/17.2.0) развивает local-first reactive database для JS-приложений.
+- [Crashcat](https://crashcat.dev/) - JavaScript-библиотека 3D rigid body physics для игр, симуляций и веб-экспериментов; посмотреть поведение проще через [набор интерактивных примеров](https://crashcat.dev/examples/).
+- Vercel [Portless](https://github.com/vercel-labs/portless) заменяет адреса вроде `localhost:3000` на удобные HTTPS-имена вида `.localhost`.
