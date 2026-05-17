@@ -1,0 +1,187 @@
+---
+title: "Еженедельный дайджест #46: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "May 18 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #46! 🗞️", index: 0 },
+  { text: "Safari 26.5 подтянул WebKit: :open, random(), SVG и Origin API. 🧭", index: 1 },
+  { text: "TanStack пережил npm-атаку и подробно разобрал цепочку supply chain. 🔐", index: 2 },
+  { text: "Rolldown 1.0 стал стабильным и готовит быстрый фундамент для Vite 8. ⚡", index: 3 },
+  { text: "GitHub ускорил Issues через local-first кеш и фоновые обновления. 🗂️", index: 4 },
+  { text: "Bun 1.3.14 добавил изображения, HTTP/3 и больше совместимости с Node. 🍱", index: 5 },
+  { text: "Node.js 26 уже можно изучать глубже: от FFI до HTTP/3 и внутренностей рантайма. ⚙️", index: 6 },
+  { text: "CSS снова богат на практику: анимации, ShadowRealm, No-Vary-Search и overflow. 🎨", index: 7 },
+  { text: "React-экосистема принесла MDXEditor 4.0, Fate 1.0, Waku beta и новые компоненты. ⚛️", index: 8 },
+  { text: "Инструменты недели: wf, Wakaru, Counterfact, Orval, Cascade и Find Font. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+
+### Safari 26.5 обновил WebKit и подтянул современные CSS-возможности
+[Safari 26.5 вышел с новыми возможностями WebKit](https://webkit.org/blog/17938/webkit-features-for-safari-26-5/): браузер получил поддержку псевдокласса `:open`, доработки CSS-функции `random()`, исправления для anchor positioning, `color-interpolation` в SVG-градиентах и поддержку Origin API. Рядом вышел и свежий [Safari Technology Preview 243](https://webkit.org/blog/17953/release-notes-for-safari-technology-preview-243/).
+
+### В браузерах тестируют встроенную установку веб-приложений
+Chrome и Edge начали экспериментировать с новым HTML-элементом [`<install>` для установки веб-приложений](https://developer.chrome.com/blog/install-element-ot). Идея простая: разработчик добавляет доверенную кнопку установки без собственного JavaScript, а браузер сам показывает понятный и безопасный UI. В статье также сравнивают этот подход с [Web Install API](https://blogs.windows.com/msedgedev/2025/11/24/the-web-install-api-is-ready-for-testing/), где установкой управляют уже через JavaScript.
+
+### Браузер может подстраивать сайт под реальные условия пользователя
+Harry Roberts показал [Obs.js как маленький скрипт для чтения сигналов браузера](https://csswizardry.com/2026/05/meet-your-users-where-they-are-with-obs-js/): задержка сети, пропускная способность, Data Saver, батарея, CPU и память превращаются в классы на `<html>` и данные в `window.obs`. В [демо Obs.js](https://csswizardry.com/Obs.js/demo/) видно, как это можно использовать: например, отключать тяжелые анимации на слабом устройстве или отдавать изображения полегче на медленной сети.
+
+### Кеширование может игнорировать неважные параметры URL
+Заголовок [`No-Vary-Search` помогает браузерам и CDN лучше кешировать страницы](https://csswizardry.com/2026/05/better-browser-caching-with-no-vary-search/). Он объясняет кешу, какие query-параметры в URL можно не учитывать при поиске уже сохраненного ответа. Например, если `?utm_source=` не меняет содержимое страницы, кеш не обязан считать такой URL полностью новым. Поддержка в браузерах пока [ограничена](https://caniuse.com/mdn-http_headers_no-vary-search), но для CDN и общих кешей это уже полезная HTTP-идея.
+
+- В заметке о [`$$$` в Firefox DevTools](https://remysharp.com/2026/05/01/devtools-how-to-query-through-the-shadow-dom) объясняется, как искать элементы внутри Shadow DOM. Обычный `querySelectorAll` туда не заглядывает, поэтому такой помощник удобен при отладке Web Components.
+- Mozilla рассказала, [как Claude Mythos помогает искать ошибки в Firefox](https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/). Это не магическая замена инженерам, а еще один способ быстрее замечать подозрительные места в большом коде браузера.
+- Материал Mozilla про [шесть миллионов выборов Firefox через DMA-экран](https://blog.mozilla.org/netpolicy/2026/05/11/six-million-selections-later-how-the-dma-is-giving-people-browser-choice/) показывает практический эффект европейского Digital Markets Act: когда пользователю явно дают выбрать браузер, конкуренция становится заметнее.
+- [Google I/O 2026](https://io.google/2026/) возвращается в мае, а [developer keynote 19 мая](https://io.google/2026/explore/developer-keynote-1) должен показать, что Google считает важным для разработчиков в ближайший год.
+
+## 🎨 CSS и дизайн
+
+### Скоростью бесконечных CSS-анимаций можно управлять через переменную
+Temani Afif разобрал [управление скоростью бесконечных CSS-анимаций](https://css-tip.com/speed-control/). Вместо того чтобы создавать несколько почти одинаковых `@keyframes`, можно вынести скорость в CSS-переменную и менять ее по событию: ускорять, замедлять, останавливать или даже разворачивать анимацию назад. Это хороший пример того, как CSS-переменные превращают статичные стили в управляемую систему.
+
+
+### Клавиатурные пользователи часто не могут прокрутить overflow-контейнеры
+Разбор [проблемы прокрутки overflow-контейнеров с клавиатуры](https://css-tricks.com/why-keyboard-users-cant-scroll-your-overflow-containers/) напоминает о простой ловушке: если блок прокручивается мышью, это еще не значит, что он доступен с клавиатуры. Интерфейсы с боковыми панелями, таблицами и внутренними скроллами стоит проверять без мыши, иначе часть пользователей не сможет добраться до контента.
+
+- В статье [о четырех разумных способах собрать сайт](https://www.jonoalderson.com/conjecture/four-ways-to-build-a-website/) предлагают смотреть на выбор архитектуры через тип проекта: статический сайт, приложение, CMS и гибридные варианты решают разные задачи.
+
+- Maxime Heckel написал красивый технический разбор [рендеринга неба, закатов и планет](https://blog.maximeheckel.com/posts/on-rendering-the-sky-sunsets-and-planets/). Материал помогает понять, как шейдеры создают атмосферу, свет и ощущение глубины.
+- [Tailwind CSS v4.3](https://tailwindcss.com/blog/tailwindcss-v4-3) добавил утилиты для scrollbar, новый `@container-size`, `zoom-*` и другие мелочи, которые закрывают частые задачи без ручного CSS.
+- [Cascade](https://designsurface.dev/cascade) - набор SVG и React-иконок для CSS-свойств. Если вы делаете дизайн-инструмент или учебный интерфейс, [репозиторий Cascade](https://github.com/andflett/cascade) дает готовые символы для `display`, `position`, `overflow` и похожих понятий.
+- [Find Font](https://www.findfont.co/) помогает смотреть, сравнивать и скачивать шрифты. В нем есть живое сравнение, подбор пар и большая подборка бесплатных шрифтов по категориям.
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+### ShadowRealm изолирует JavaScript от глобальной области
+В статье CSS-Tricks [про будущий `ShadowRealm`](https://css-tricks.com/soon-we-can-finally-banish-javascript-to-the-shadowrealm/) объясняют TC39-предложение для запуска JavaScript в отдельном окружении со своими глобальными объектами. Такой подход полезен, когда нужно выполнить сторонний код и не дать ему случайно или специально испортить глобальное состояние приложения.
+
+### TanStack и десятки других пакетов попали под npm supply chain атаку
+Главная тревожная история недели - [разбор компрометации npm-пакетов TanStack](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem). Новая версия червя [Shai-Hulud](https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem) опубликовала вредоносные версии пакетов, причем атака [затронула около 170 других пакетов](https://safedep.io/mass-npm-supply-chain-attack-tanstack-mistral/). Важная деталь: учетные данные мейнтейнеров, по словам команды, не украли. Атака шла через злоупотребление `pull_request_target`, отравление кеша и кражу OIDC-токена из памяти CI.
+
+TanStack отдельно опубликовал [постмортем npm-атаки](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem) и план [усиления защиты TanStack после инцидента](https://tanstack.com/blog/incident-followup). Похожие детали есть и в отчете о [массовой npm supply chain атаке на TanStack, Mistral и другие пакеты](https://safedep.io/mass-npm-supply-chain-attack-tanstack-mistral/).
+
+Практический вывод: свежий пакет не всегда безопаснее старого. Можно включить задержку установки новых релизов через `npm config set min-release-age=7` или настройку [`minimumReleaseAge` в pnpm](https://pnpm.io/), а GitHub Actions стоит проверять инструментами вроде [zizmor](https://docs.zizmor.sh/).
+
+### Rolldown 1.0 стал стабильным быстрым бандлером
+VoidZero объявила [Rolldown 1.0](https://voidzero.dev/posts/announcing-rolldown-1-0) - Rust-бандлер, который должен стать основой Vite 8. Его сильная сторона в сочетании скорости и совместимости с Rollup plugin API: проекты получают сборку заметно быстрее, но не обязаны сразу менять всю экосистему плагинов.
+
+Для обычного проекта это значит меньше ожидания на сборках, а для больших кодовых баз - возможность постепенно ускоряться без резкого переписывания конфигурации.
+
+### Веб-платформа часто училась у JavaScript-библиотек
+Jad Joubran в статье [о девяти случаях влияния библиотек на веб-платформу](https://jadjoubran.io/blog/web-platform-influenced-by-libraries) показывает, как jQuery, Lodash, Dojo и другие проекты фактически проверяли идеи в реальных приложениях. Потом удачные паттерны попадали в браузеры и становились стандартными API. Это хороший способ посмотреть на библиотеки не только как на зависимости, но и как на экспериментальную лабораторию веба.
+
+
+- Jarred Sumner рассказал, что экспериментальный Rust-порт Bun [проходит 99.8% существующего тестового набора Bun](https://x.com/jarredsumner/status/2053047748191232310). Это пока не означает миграцию, но показывает масштаб эксперимента.
+- В статье [о vanilla-routing без фреймворка](https://danielabaron.me/blog/a-vanilla-routing-experiment/) разбирают, где начинаются сложности, если делать клиентский роутинг вручную.
+- Заметка [I Keep Tripping Over `true, false, true`](https://allthingssmitty.com/2026/05/11/i-keep-tripping-over-true-false-true/) напоминает, почему булевые параметры в функциях быстро становятся нечитаемыми.
+- Nicolas Charpentier объясняет, почему пора [перестать использовать Yarn Classic](https://charpeni.com/blog/stop-using-yarn-classic): старый инструмент все еще работает, но вокруг него уже слишком много современных альтернатив и исправленных проблем.
+- Kitty Giraudel показала, как [сохранять изменения DOM между live reload](https://kittygiraudel.com/2026/05/01/preserving-dom-changes-across-live-reloads/). Это полезно при разработке, когда хочется не терять состояние страницы после обновления.
+
+## ⚛️ React и фреймворки
+
+### GitHub ускорил навигацию в Issues через local-first кеш
+GitHub подробно описал, как [сделал навигацию в GitHub Issues почти мгновенной](https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/). Команда использовала модель local-first: сначала страница рисуется из IndexedDB-кеша, а затем данные обновляются в фоне по принципу stale-while-revalidate.
+
+Результат заметный: около 70% React-навигаций стали мгновенными, а один из нижних перцентилей задержки упал с 600 мс до 70 мс. Это хороший пример того, что производительность интерфейса часто зависит не от одного трюка, а от аккуратного кеширования, префетча и правильного момента обновления данных.
+
+### Raycast перевел новый интерфейс на React
+В техническом разборе [нового Raycast](https://www.raycast.com/blog/a-technical-deep-dive-into-the-new-raycast) команда рассказывает, как macOS-лаунчер с React-экосистемой расширений пришел к React-фронтенду в основной версии 2.0. Если коротко, [Raycast](https://www.raycast.com/) стал хорошим примером того, как React используют не только на сайтах, но и в нативных продуктах с быстрым desktop-UX.
+
+### Миграция с React на Web Components сэкономила 100 КБ
+Evil Martians описали [переезд с React на нативные Web Components](https://evilmartians.com/chronicles/from-react-to-native-web-with-nanotags-a-migration-that-saved-100kb). Автор показывает, почему для небольшого виджета React оказался лишним, а Web Components дали меньший вес и достаточно удобную модель. Из этих паттернов выросла библиотека [nanotags](https://nanotags.psdcoder.dev/), которая помогает писать маленькие компоненты поверх веб-стандартов.
+
+### TanStack Form показывает headless-подход к формам
+Adam Rackis представил [TanStack Form](https://frontendmasters.com/blog/introducing-tanstack-form/) как библиотеку, которая берет на себя состояние, валидацию и жизненный цикл формы, но не диктует внешний вид. Такой headless-подход хорошо подходит командам с собственной дизайн-системой: логика формы общая, а поля и кнопки остаются вашими.
+
+- Aurora Scharff собрала высокоуровневые советы по [безопасности React-приложений](https://certificates.dev/blog/security-in-react-applications): проверка данных, осторожность с HTML, защита маршрутов и внимательная работа с зависимостями.
+- Long Ho объясняет, почему [RSC Server Functions не являются API-границей](https://longho.dev/posts/rsc-server-functions-are-not-an-api-boundary/). Серверная функция все равно требует проверки входных данных и прав доступа.
+- Peter Piekarczyk разбирает [скрытую стоимость `<Activity>`](https://www.peterp.me/articles/hidden-cost-of-react-activity/) и напоминает, что удобные абстракции React тоже имеют цену в памяти и жизненном цикле.
+- Mark Erikson начал серию с [личными мыслями об AI в разработке](https://blog.isquaredsoftware.com/2026/05/ai-thoughts-part-1-fears-opinions-journey/). Это взгляд мейнтейнера Redux на пользу, страхи и реальные ощущения от работы с AI-инструментами.
+- [TanStack AI](https://tanstack.com/ai/latest) теперь умеет [стримить типизированный структурированный вывод](https://tanstack.com/blog/streaming-structured-output) по Zod-схеме. Это полезно, когда UI должен получать от модели не просто текст, а проверяемые данные частями.
+
+## 🛰️ Сборка и фреймворки
+
+### Astro 6.3 экспериментирует с продвинутым роутингом
+[Astro 6.3](https://astro.build/blog/astro-630/) добавил экспериментальную поддержку advanced routing: теперь можно точнее управлять тем, как запрос проходит через приложение. Это особенно интересно для проектов, где Astro соседствует с серверной логикой и фреймворками вроде [Hono](https://hono.dev/).
+
+- [Waku 1.0 Beta](https://waku.gg/blog/waku-v1-beta) развивает минимальный React Server Components фреймворк на базе Vite и Hono.
+- [Capacitor 9.0 Alpha 1](https://ionic.io/blog/capacitor-9-starts-here) начал новую ветку фреймворка для мобильных приложений на веб-технологиях.
+- [Electron 42](https://www.electronjs.org/blog/electron-42-0) обновился до Chromium 148, Node 24.15 и V8 14.8, а еще больше не скачивает бинарник Electron в `postinstall`, что снижает риск supply chain проблем.
+- История разработчика HTTPS-debugging инструмента о [переезде с Electron на Tauri](https://fluxzy.io/resources/blogs/electron-to-tauri-migration-fluxzy-desktop) полезна тем, кто выбирает основу для desktop-приложения.
+
+## 📘 TypeScript и типы
+
+### Valibot развивает легкую модульную валидацию схем
+Fabian Hiller объяснил, [зачем мигрировать на Valibot](https://valibot.dev/blog/why-migrate-to-valibot/). [Valibot](https://valibot.dev/) похож по задаче на Zod: он проверяет данные по схеме и помогает TypeScript понимать форму этих данных. Отличие в модульности: можно брать только нужные части и уменьшать вес клиентского кода. Свежий релиз [Valibot v1.4.0](https://valibot.dev/blog/valibot-v1.4-release-notes/) делает эту тему особенно актуальной.
+
+
+
+## ⚙️ Node.js и рантаймы
+
+### NodeBook завершил первый том про внутренности Node.js
+[NodeBook](https://www.thenodebook.com/) завершил первый том продвинутого гайда по внутренностям Node.js. В нем разбираются [event loop](https://www.thenodebook.com/node-arch/event-loop-intro#what-the-nodejs-event-loop-does), работа [V8](https://www.thenodebook.com/node-arch/v8-engine-intro), [выделение буферов](https://www.thenodebook.com/buffers/allocation-patterns), [streams](https://www.thenodebook.com/streams/foundation-of-streams), [разрешение модулей](https://www.thenodebook.com/modules/resolution-algorithm), [async/await](https://www.thenodebook.com/async-patterns/async-await) и [жизненный цикл процесса](https://www.thenodebook.com/node-arch/node-process-lifecycle).
+
+Это не вводный тур по Node.js, а способ понять, почему привычный код ведет себя именно так: почему задача попадает в event loop, как модуль находится на диске, где появляются буферы и что происходит перед завершением процесса.
+
+### Node.js 26 можно изучать через практические изменения
+После релиза Node 26 вышел практический обзор [What's New in Node.js 26](https://nodejsdesignpatterns.com/blog/whats-new-in-nodejs-26/). Ветка станет LTS в октябре, поэтому фичи из обзора скоро будут не экспериментом на стороне, а обычной частью продакшен-стека.
+
+Отдельно вышел [Node 26.1 Current](https://nodejs.org/en/blog/release/v26.1.0), который продолжил [большой релиз Node 26](https://nodejs.org/en/blog/release/v26.0.0) и добавил экспериментальную официальную FFI-поддержку.
+
+### Bun 1.3.14 добавил изображения, HTTP/3 и улучшения пакетного менеджера
+[Bun v1.3.14](https://bun.com/blog/bun-v1.3.14) получился крупным релизом. Новый `Bun.Image` дает встроенную обработку изображений и в некоторых случаях может заменить [Sharp](https://sharp.pixelplumbing.com/). Пакетный менеджер получил global virtual store по духу похожий на [pnpm](https://pnpm.io/global-virtual-store), `Bun.serve` экспериментирует с HTTP/3 поверх QUIC, а `fetch` получил поддержку HTTP/2 и HTTP/3. Плюс продолжаются улучшения [совместимости с Node.js](https://bun.com/blog/bun-v1.3.14#node-js-compatibility-improvements).
+
+### Наблюдаемость JavaScript пытаются сделать без monkey patching
+Sentry рассказала, как команда [чинит JavaScript observability по одной библиотеке за раз](https://blog.sentry.io/fixing-javascript-observability/). Идея в том, чтобы меньше полагаться на monkey patching, когда APM-инструмент подменяет методы библиотек, и больше использовать подход на базе [`diagnostics_channel`](https://nodejs.org/api/diagnostics_channel.html#diagnostics-channel). Сложность в том, что популярные пакеты должны поддержать этот путь, но [первые изменения уже происходят](https://blog.sentry.io/fixing-javascript-observability/#10-merged-34-to-go-4).
+
+- [Node v22.22.3 LTS](https://nodejs.org/en/blog/release/v22.22.3) принес много обновлений зависимостей, `npm` v10.9.8 и backport исправлений V8.
+- [Socket выпустил certified patches для `vm2`](https://socket.dev/blog/free-certified-patches-for-critical-vm2-sandbox-escape), потому что старая sandbox-библиотека снова столкнулась с уязвимостью escape-класса.
+- Gabor Koos объясняет, почему [рекурсия в JavaScript может обманывать](https://blog.gaborkoos.com/posts/2026-05-09-Your-Recursion-Is-Lying-to-You/): хвостовая форма сама по себе не делает код безопасным для стека, даже если в ES2015 есть [tail call optimization](https://2ality.com/2015/06/tail-call-optimization.html). В качестве обхода показывается trampoline-паттерн.
+- James M Snell написал введение в [HTTP/3 поверх QUIC в Node.js](https://www.jasnell.me/posts/quic-part-4). Модуль `node:quic` пока экспериментальный, но материал помогает понять клиентские и серверные сценарии.
+- [pnpm 11.1](https://github.com/pnpm/pnpm/releases/tag/v11.1.0) и отдельная заметка [о новых командах pnpm 11.1](https://pnpm.io/blog/releases/11.1) описывают `gh:` для GitHub Packages, `pnpm bugs` для открытия баг-трекера пакета и `pnpm audit signatures` для проверки ECDSA-подписей.
+- В заметках [Node.js Collaboration Summit](https://nodejs.org/en/blog/events/collab-summit-2026-london) можно посмотреть, чем сейчас занята команда Node.js.
+
+## ✅ Тестирование и качество
+
+- [Jest 30.4.0](https://github.com/jestjs/jest/releases/tag/v30.4.0) улучшил поддержку ESM, Temporal и React 19. В Node-рассылке тот же релиз [отмечен отдельно](https://github.com/jestjs/jest/releases/tag/v30.4.0), включая поддержку `require(esm)` на Node 24.9+ за флагом.
+- [Playwright 1.60.0](https://github.com/microsoft/playwright/releases/tag/v1.60.0) продолжает развивать браузерное тестирование для современных приложений.
+- Julia Evans показала, как [тестировать Vue-компоненты прямо в браузере](https://jvns.ca/blog/2026/05/02/testing-vue-components-in-the-browser/), без Node и серверных инструментов. Материал полезен тем, кто хочет понять, что именно происходит при mounting, кликах и проверке DOM.
+- [React Review](https://react.review/) - GitHub App от создателя [React Doctor](https://www.react.doctor/), который сравнивает PR-ветку с base-веткой и ищет плохие React-паттерны именно в новых изменениях.
+
+## ⚒️ Инструменты и библиотеки
+
+### zero-native предлагает еще один путь к desktop-приложениям на JS
+[zero-native](https://zero-native.dev/) - эксперимент Vercel Labs в пространстве Electron, Tauri и [Neutralinojs](https://neutralino.js.org/). Он строит desktop-приложения на Zig-ядре и WebView или Chromium, а UI можно писать на HTML и JavaScript. Есть [примеры для vanilla, React, Svelte и Vue](https://github.com/vercel-labs/zero-native/tree/main/examples), а код лежит в [репозитории zero-native](https://github.com/vercel-labs/zero-native). В Node-рассылке проект тоже отмечен как [ранний, но рабочий инструмент](https://zero-native.dev/).
+
+### Wakaru разбирает минифицированные JavaScript-бандлы
+[Wakaru](https://github.com/pionxzh/wakaru) принимает минифицированный bundled-код и пытается восстановить более читаемую структуру модулей. Это может пригодиться для восстановления своего старого кода, reverse engineering или аудита безопасности. Попробовать можно в [онлайн-версии Wakaru](https://wakaru.vercel.app/), а в Node-обзоре проект описан как [Rust-инструмент для разбора бандлов](https://github.com/pionxzh/wakaru).
+
+### Anime.js 4.4 развивает зрелый движок анимаций
+[Anime.js 4.4](https://animejs.com/) продолжает развивать библиотеку для анимации HTML, SVG и JavaScript-объектов. В релизе появился эффект [`scrambleText`](https://animejs.com/documentation/text/scrambletext/) и [auto-grid режим для stagger grids](https://animejs.com/documentation/utilities/stagger/stagger-parameters/stagger-grid/). У Anime.js сильная [документация с живыми примерами](https://animejs.com/documentation/getting-started/), поэтому библиотеку удобно изучать по маленьким шагам.
+
+### MDXEditor 4.0 стал богаче как React-компонент редактора
+[MDXEditor 4.0](https://mdxeditor.dev/) - Markdown/MDX-редактор для React на базе [Lexical](https://lexical.dev/). Он поддерживает редактирование кода, ссылки, изображения, таблицы и другие элементы, а [живое демо MDXEditor](https://mdxeditor.dev/editor/demo) показывает все возможности в одном интерфейсе.
+
+### Fate 1.0 предлагает React-фреймворк для данных
+[Fate 1.0](https://fate.technology/posts/fate-1.0) - новый data framework для React от Christoph Nakazawa. Он добавляет нормализованный кеш, colocated views и сборку одного корневого запроса поверх tRPC или обычного HTTP. В версии 1.0 появились live views через SSE, сборка мусора и Vite-плагин.
+
+### Counterfact запускает API-симулятор из OpenAPI-спеки
+[Counterfact](https://counterfact.dev/) берет OpenAPI-описание и поднимает живой stateful Node-сервер с типизированными handlers, hot reload и REPL для управления поведением во время работы. Это удобно, когда фронтенду нужен реалистичный backend до того, как настоящий API готов. Код открыт в [репозитории Counterfact](https://github.com/counterfact/api-simulator).
+
+### BlueJS компилирует JavaScript в маленькие бинарники
+[BlueJS](https://bluejs.dev) - ahead-of-time компилятор JavaScript с возможностью встроить QuickJS для динамических сценариев и поддержки пакетов. Проект закрытый, но заявленные числа интересные: быстрый старт, небольшой расход памяти и компактные GUI-бинарники. В похожем направлении можно посмотреть на открытый [PerryTS](https://www.perryts.com/).
+
+- [wf](https://www.npmjs.com/package/web-features-cli) - CLI для поиска поддержки, багов и документации по возможностям веб-платформы. Его можно запускать через `npx`.
+- [visual-explainer](https://github.com/nicobailon/visual-explainer) - agent skill, который превращает сложный терминальный вывод в стилизованные HTML-страницы. Это полезно для архитектурных схем, diff review и больших объяснений, где ASCII-графика быстро становится нечитаемой.
+- [Mantine 9.2](https://github.com/mantinedev/mantine/releases/tag/9.2.0) добавил [TreeSelect](https://mantine.dev/core/tree-select/) для древовидного выбора, [InlineDateTimePicker](https://mantine.dev/dates/inline-date-time-picker/) без выпадающего меню, [RollingNumber](https://mantine.dev/core/rolling-number/) для анимации чисел, `use-drag` и другие улучшения).
+- [Ant Design 6.4.0](https://github.com/ant-design/ant-design/releases/tag/6.4.0) обновил enterprise UI-библиотеку для React.
+- [whisper.rn 0.6](https://github.com/mybigday/whisper.rn) дает React Native-привязки к `whisper.cpp` для быстрой локальной транскрибации речи.
+- [react-native-view-shot 5.1](https://github.com/gre/react-native-view-shot) сохраняет React Native view в изображение.
+- [react-qr-scanner 2.6](https://github.com/yudielcurbelo/react-qr-scanner) сканирует QR-коды в React-приложениях.
+- [styled-components v7 Alpha](https://styled-components.com/docs/v7) показывает следующий этап CSS-in-JS библиотеки.
+- Daishi Kato дал [краткое обновление по Jotai](https://newsletter.daishikato.com/p/jotai-v2-20-0-and-the-store-building-blocks): релиз [Jotai v2.20.0](https://github.com/pmndrs/jotai/releases/tag/v2.20.0) вышел, а автор уже начинает думать о Jotai v3.
+- [Orval](https://github.com/orval-labs/orval) генерирует типобезопасные клиенты из OpenAPI или Swagger: модели, запросы, хуки и моки для React, Vue, Svelte, Solid и других стеков.
