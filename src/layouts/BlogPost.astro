@@ -180,6 +180,13 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
       margin-bottom: 0;
     }
 
+    @media (prefers-color-scheme: dark) {
+      .content :global(blockquote) {
+        background: rgba(var(--accent-yellow-bg-rgb), 0.12);
+        border-left-color: var(--accent);
+      }
+    }
+
     @media (max-width: 720px) {
       .post__title {
         font-size: var(--text-4xl);

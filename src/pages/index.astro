@@ -195,6 +195,35 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
         font-family: var(--font-accent);
       }
 
+      @media (prefers-color-scheme: dark) {
+        .featured-post {
+          background:
+            radial-gradient(circle at 90% 12%, rgba(var(--accent-yellow-bg-rgb), 0.16), transparent 52%),
+            radial-gradient(circle at 4% 94%, rgba(127, 216, 169, 0.12), transparent 58%),
+            var(--paper-color);
+          border-color: rgba(var(--line), 0.58);
+        }
+
+        .featured-read-more {
+          border-color: rgba(var(--accent-rgb), 0.34);
+          box-shadow: 0 10px 20px rgba(255, 154, 106, 0.12);
+        }
+
+        .grid-post {
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+        }
+
+        .grid-post:hover {
+          box-shadow: 0 16px 28px rgba(0, 0, 0, 0.32);
+        }
+
+        .post-tag {
+          color: var(--accent-yellow);
+          background: rgba(var(--accent-yellow-bg-rgb), 0.18);
+          border-color: rgba(var(--line), 0.52);
+        }
+      }
+
       @media (max-width: 720px) {
         main {
           margin-inline: 0;
