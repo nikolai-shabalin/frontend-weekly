@@ -1,0 +1,180 @@
+---
+title: "Еженедельный дайджест #48: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "June 01 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #48! 🗞️", index: 0 },
+  { text: "Chrome пробует declarative partial updates и безопасный HTML-стриминг. 🧪", index: 1 },
+  { text: "CSS недели: центрирование, layout gaps, sibling-index и view transitions. 🎨", index: 2 },
+  { text: "npm включает staged publishing, allowScripts и новые защитные флаги. 🔐", index: 3 },
+  { text: "Deno 2.8 резко подтянул совместимость с Node.js. 🦕", index: 4 },
+  { text: "React отметил 13 лет, а TanStack Router подружился с Query. ⚛️", index: 5 },
+  { text: "Node.js 24.16 LTS принес UUIDv7, цвета в util.styleText и рандомизацию тестов. 🟢", index: 6 },
+  { text: "ИИ-подборка: Modern Web Guidance, выгорание и State of Web Dev AI. 🤖", index: 7 },
+  { text: "Инструменты недели: Tegaki, JSON4U, tinykeys, DOCX и ANSIS. 🧰", index: 8 },
+  { text: "React Native получил Reanimated 4.4 и Gesture Handler 3.0. 📱", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### Chrome экспериментирует с declarative partial updates
+Chrome 148 начал пробовать [Declarative Partial Updates](https://developer.chrome.com/blog/declarative-partial-updates) за флагом. Идея в том, чтобы часть динамического интерфейса описывать прямо в HTML: `<template for>` помогает повторять разметку без ручного JavaScript-шаблонизатора, а `setHTML()` и `streamHTML()` позволяют безопаснее вставлять и стримить HTML-блоки в DOM. Для экспериментов уже есть полифилы для [`<template for>`](https://github.com/GoogleChromeLabs/html-setters-polyfill) и [`setHTML`/`streamHTML`](https://github.com/GoogleChromeLabs/template-for-polyfill), так что можно посмотреть на подход до появления стабильной поддержки.
+
+### Доступность и Web Components снова требуют аккуратности
+Manuel Matuzovic объясняет, почему не стоит [ставить `aria-label` на обычные `div` и `span`](https://www.matuzo.at/blog/2026/aria-label-generic-elements). У таких элементов нет понятной роли для вспомогательных технологий, поэтому подпись может не сработать или сработать по-разному в разных браузерах и скринридерах.
+
+Scott Riley показывает практичный путь к [дизайн-системам на Web Components](https://piccalil.li/blog/framework-agnostic-design-systems-part-1/). Главная польза подхода в том, что компоненты можно использовать в разных фреймворках, а не переписывать кнопки, поля и карточки отдельно для React, Vue или Svelte.
+
+- Firefox 151 получил [поддержку Web Serial API](https://hacks.mozilla.org/2026/05/web-serial-support-in-firefox/), поэтому веб-приложение может подключаться к устройствам через последовательный порт: например, к микроконтроллерам, 3D-принтерам или лабораторному оборудованию.
+- Jake Archibald заметил [баг Chrome с `<input type="number">`](https://bsky.app/profile/jakearchibald.com/post/3mmt7ixfsek2v), из-за которого значение может неожиданно измениться. Исправление ожидается в Chrome 150.
+- Команда Firefox UX рассказала, какие решения стоят за [новым дизайном Firefox](https://blog.mozilla.org/en/firefox/new-firefox-design/): это хороший взгляд на то, как браузерный интерфейс проектируют для очень разных пользователей.
+- Vivaldi выпустил [крупнейшее обновление дизайна десктопного браузера](https://vivaldi.com/blog/vivaldi-on-desktop-8-0/) с заметной переработкой внешнего вида и поведения интерфейса.
+- [WordPress 7.0](https://wordpress.org/news/2026/05/armstrong/) вышел под кодовым именем Armstrong. В обзоре [новинок WordPress 7.0](https://wordpress.com/blog/2026/05/26/wordpress-7-0-armstrong/) отдельно выделяют, что AI-возможности остались необязательными.
+
+## 🎨 CSS и дизайн
+
+### Современное центрирование в CSS стало богаче, но не проще на автомате
+Temani Afif разобрал [состояние CSS-центрирования в 2026 году](https://css-tricks.com/the-state-of-css-centering-in-2026/). Сейчас уже не обязательно вспоминать старые хаки с `position` и `transform`: для многих задач хватает grid, flexbox, `place-content` и новых возможностей вроде anchor positioning. Но важная мысль прежняя: сначала нужно понять, что именно центрируется - текст, один блок, группа элементов или привязанный к другому элемент интерфейс.
+
+Patrick Brosset посмотрел на результаты прошлогоднего опроса и написал, [чего все еще не хватает CSS Layout](https://patrickbrosset.com/articles/2026-05-20-whats-missing-in-css-layout/). Статья показывает CSS не как набор отдельных свойств, а как язык для решения реальных задач: сетки, выравнивание, адаптивность и контроль сложных компоновок.
+
+### Анимации, переходы и математические раскладки получают новые приемы
+Josh Comeau сравнил [CSS и JavaScript для анимаций](https://www.joshwcomeau.com/animation/css-vs-javascript/). Простые переходы состояния часто удобнее делать на CSS, а JavaScript нужен там, где анимация зависит от данных, жестов, времени или сложной логики. Главное не выбирать инструмент по привычке, а смотреть на конкретную задачу.
+
+В CSS-Tricks вышла вторая часть про [cross-document view transitions на сотнях элементов](https://css-tricks.com/cross-document-view-transitions-part-2/). Нативные переходы между страницами выглядят магически, но на больших интерфейсах приходится продумывать имена элементов, порядок анимаций и то, какие части страницы вообще стоит связывать между собой.
+
+- Открылся опрос [State of CSS 2026](https://survey.devographics.com/en-US/survey/state-of-css/2026). В этом году он короче и сфокусирован на самых важных возможностях, поэтому его проще пройти и полезнее использовать как карту современного CSS.
+- В Smashing Magazine показали [математические раскладки через `sibling-index()` и `sibling-count()`](https://www.smashingmagazine.com/2026/05/mathematical-layouts-sibling-index-sibling-count/). Эти функции помогают стилизовать элемент с учетом его позиции среди соседей и общего количества элементов.
+- [font-size-adjust calculator](https://clagnut.com/sandbox/font-size-adjust.html) подбирает значение для CSS-свойства `font-size-adjust`: загружаете шрифт, а инструмент считает метрику, которая помогает сделать fallback-шрифты визуально ближе к основному.
+- [Tailwind CSSTree](https://github.com/humanwhocodes/tailwind-csstree) добавляет синтаксис [CSSTree](https://github.com/eslint/csstree) в Tailwind-проекты и совместим с [ESLint CSS Plugin](https://github.com/eslint/css). Это полезно, если нужно разбирать, проверять или генерировать CSS более строго.
+- [dev.css](https://tangled.org/devins.page/dev.css/) дает готовые базовые стили для обычного HTML, вдохновленные [new.css](https://newcss.net/). На [демо-странице](https://devcss.devins.page/) видно, как простой документ становится аккуратнее без полноценной дизайн-системы.
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+
+### asm.js уходит в историю Firefox
+Mozilla рассказала, что Firefox в будущем [удалит asm.js](https://spidermonkey.dev/blog/2026/05/20/saying-goodbye-to-asmjs.html). Когда-то asm.js помогал запускать производительный код в браузере до появления WebAssembly, но теперь движок SpiderMonkey уже отключил специальные оптимизации по умолчанию. Для современных проектов вывод простой: если нужен низкоуровневый быстрый код в браузере, смотреть стоит в сторону WebAssembly.
+
+### JavaScript-кроссворд проверяет знание странностей языка
+[JS Crossword](https://lyra.horse/fun/jscrossword/) - головоломка, где все ответы являются JavaScript-выражениями. Она хорошо напоминает, что в браузере есть `window`, числа можно записывать разными способами, присваивание возвращает значение, а [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) позволяют вызывать функции необычным синтаксисом.
+
+- TC39 провел [очередную встречу комитета](https://github.com/tc39/agendas/blob/main/2026/05.md). Подробный отчет еще ожидается, но это место, где предложения языка двигаются между стадиями и постепенно становятся будущим JavaScript.
+- Cassidy Williams описала [простой алгоритм кластеризации списков](https://cassidoo.co/post/clustering-tiles/). Это легкий вход в тему группировки похожих элементов без тяжелой математики.
+- [Apache ECharts 6.1](https://github.com/apache/echarts/releases/tag/6.1.0) обновил библиотеку для графиков и визуализаций; посмотреть возможности можно в [демо ECharts](https://echarts.apache.org/examples/en/index.html).
+- [Perspective 4.5](https://github.com/perspective-dev/perspective) обновляет компонент для аналитики и визуализации больших, в том числе потоковых, наборов данных.
+- [Partytown 0.14.0](https://partytown.qwik.dev/) помогает переносить тяжелые сторонние скрипты в Web Workers, чтобы они меньше мешали основному UI-потоку.
+- Пакеты [`@atproto` TypeScript SDK](https://atproto.com/blog/ts-sdk-upgrades) были пересобраны и теперь поставляются как ESM.
+
+## ⚛️ React и фреймворки
+
+### TanStack Router и TanStack Query лучше разделяют маршруты и данные
+Dominik Dorfmeister показал, как [связать TanStack Router с TanStack Query](https://tkdodo.eu/blog/tan-stack-router-and-query). У роутера кеш обычно привязан к конкретному маршруту, а Query хранит данные глобальнее, поэтому она лучше подходит для информации, которая нужна на нескольких страницах. В статье объясняется, как передать `QueryClient` в контекст роутера, отключить лишнее кеширование роутера и запускать загрузку данных в loader, чтобы компоненты потом читали результат через `useSuspenseQuery`.
+
+Если вы еще не смотрели в сторону этого роутера, начните с текста [The Beauty of TanStack Router](https://tkdodo.eu/blog/the-beauty-of-tan-stack-router), а затем уже переходите к документации [TanStack Query](https://tanstack.com/query/latest).
+
+### React исполнилось 13 лет, и споры вокруг него никуда не делись
+[React](https://en.wikipedia.org/wiki/React_%28software%29) впервые вышел 29 мая 2013 года, и к 13-летию David Bushell собрал язвительный архив жалоб в материале [Does Anybody Actually Like React?](https://jsx.lol/). Это не столько релизная новость, сколько зеркало экосистемы: React одновременно остается стандартным выбором для многих команд и продолжает раздражать тех, кто устал от его сложности. Обсуждение быстро разрослось на [Hacker News](https://news.ycombinator.com/item?id=48274077).
+
+### React Router 7.16 готовит проекты к v8
+[React Router 7.16.0](https://github.com/remix-run/react-router/blob/main/CHANGELOG.md#v7160) стабилизирует флаг [`future.v8_trailingSlashAwareDataRequests`](https://reactrouter.com/upgrading/future#futurev8_trailingslashawaredatarequests) и предупреждает о будущих флагах v8, которые вы еще не включили. Это мягкий способ заранее увидеть изменения поведения, пока проект еще не переехал на следующую мажорную версию.
+
+### React-производительность начинается с понимания кадра
+Rachel Kaufman опубликовала слайды [React at 60 FPS](https://www.readwriterachel.com/presentations/2026/05/21/react-60fps-slides.html). Там собраны приемы для интерфейсов с живыми данными и анимацией: Canvas, `requestAnimationFrame`, WebSockets и `React.memo`. Хороший материал, если хочется понять, почему "просто обновлять state чаще" быстро приводит к дерганому UI.
+
+- В документации TanStack Start появился подробный гайд по [deferred hydration](https://tanstack.com/start/latest/docs/framework/react/guide/deferred-hydration): можно откладывать гидратацию частей страницы, которые пользователь пока не видит или не трогает.
+- В статье [почему автор ушел с Next.js и RSC к обычному SPA и отдельному backend](https://dev.to/devrayat000/why-i-walked-back-from-nextjs-and-rsc-to-a-plain-spa-and-a-separate-backend-3ibo) хорошо видно, что серверные компоненты не обязаны быть правильным ответом для каждого продукта.
+- WorkOS выпустил [гайд по аутентификации в TanStack Start](https://workos.com/blog/tanstack-start-authentication-guide), где разбирается современный поток входа для приложений на этом фреймворке.
+- Matt Huggins показал, как собрать [predictive text input в React](https://matthuggins.com/blog/posts/building-a-predictive-text-input-in-react): поле ввода, которое заранее предлагает продолжение текста.
+- [Storybook 10.4](https://storybook.js.org/blog/storybook-10-4/) добавил first-class поддержку TanStack React и сценарии, где агент помогает настроить Storybook в сложном приложении. Storybook остается удобной отдельной средой для проверки компонентов без запуска всего продукта.
+- [React Data Table](https://reactdatatable.com/) - адаптивная таблица с сортировкой и пагинацией из коробки. Релиз [v8.3](https://github.com/jbetancur/react-data-table-component/releases/tag/v8.3.0) сфокусирован на локализации, а код доступен в [репозитории компонента](https://github.com/jbetancur/react-data-table-component).
+- [pip-it-up](https://pip-it-up.vercel.app/) позволяет вынести любой React-компонент в плавающее Picture-in-Picture-окно; поведение можно посмотреть в [живых примерах](https://pip-it-up-playground.vercel.app/).
+- [Spoiled 0.5](https://spoiled.vercel.app/) скрывает контент под эффектом "спойлера" из частиц, пока пользователь не решит его раскрыть. Код лежит в [репозитории Spoiled](https://github.com/molefrog/spoiled).
+
+## 📱 React Native
+
+- [React Native Reanimated 4.4](https://github.com/software-mansion/react-native-reanimated/releases/tag/4.4.0) добавил новый CSS animation engine на iOS: анимации могут исполняться через Core Animation, а не через постоянные JS-обновления.
+- [React Native Gesture Handler 3.0](https://github.com/software-mansion/react-native-gesture-handler/releases/tag/v3.0.0) переехал на New Architecture и получил новый `Touchable`-компонент для работы с нативными жестами.
+- [Hot Updater](https://hot-updater.dev/) помогает делать self-hosted over-the-air обновления React Native-приложений, чтобы доставлять часть изменений без нового релиза через магазин приложений.
+
+## 📘 TypeScript
+
+- [Kysely 0.29.0](https://github.com/kysely-org/kysely/releases/tag/v0.29.0) обновил type-safe SQL query builder. В релизе появились compile-time table scoping, типовой контроль read-only доступа и отмена запросов через `AbortSignal`; подробнее изменения описаны и в Node-подборке [Kysely 0.29.0](https://github.com/kysely-org/kysely/releases/tag/v0.29.0).
+- [TypeSQL 0.24](https://github.com/wsporto/typesql) генерирует типобезопасные TypeScript API из SQL-запросов и поддерживает MySQL, Postgres и SQLite.
+- [Svader 1.0](https://github.com/sockmaster27/svader) позволяет создавать GPU-rendered Svelte-компоненты, но пишет их в привычном TypeScript/JavaScript-стеке.
+
+## ⚙️ Node.js
+
+### Deno 2.8 резко приблизился к Node.js-экосистеме
+[Deno 2.8](https://deno.com/blog/v2.8#new-subcommands) команда называет самым большим minor-релизом проекта. Главная цифра - совместимость с Node.js выросла с 42% в Deno 2.7 до 76.4% в 2.8, а префикс `npm:` больше не нужен при добавлении и установке пакетов. В отдельной заметке релиз описан как [Deno 2.8 с 76% совместимости Node.js](https://deno.com/blog/v2.8), что важно для команд, которые хотят попробовать Deno без полного отрыва от npm-мира.
+
+Внутри релиза много практичных деталей: заметные [ускорения производительности](https://deno.com/blog/v2.8#performance), улучшения поддержки [Web API](https://deno.com/blog/v2.8#web-apis), стабильный `OffscreenCanvas`, поддержка [`module.registerHooks()`](https://deno.com/blog/v2.8#module-loader-hooks), просмотр [сетевого трафика Deno в Chrome DevTools](https://deno.com/blog/v2.8#debugging), встроенный [CPU profiler](https://deno.com/blog/v2.8#cpu-profiling), поддержка [`import defer`](https://deno.com/blog/v2.8#import-defer), V8 14.9 и TypeScript 6.0.3. Еще появились команды `audit fix`, `pack` и `why`, которые делают Deno ближе к привычному пакету инструментов вокруг Node.js.
+
+### npm усиливает публикацию и установку пакетов
+npm запустил [staged publishing](https://docs.npmjs.com/staged-publishing/): новая версия пакета получает период проверки перед публикацией в реестр. Поддержка появилась в [npm 11.15.0](https://github.com/npm/cli/releases/tag/v11.15.0), а [pnpm 11.3](https://pnpm.io/blog/releases/11.3) добавил `pnpm stage`, `trustLockfile`, команды `pkg`, `repo`, `set-script` и другие улучшения. Параллельно вышел [npm 12.0 prerelease](https://github.com/npm/cli/releases/tag/v12.0.0-pre.0.0).
+
+GitHub также описал новые npm-флаги [`--allow-*`](https://github.blog/changelog/2026-05-22-staged-publishing-and-new-install-time-controls-for-npm/), которые ограничивают, откуда npm может брать пакеты. А [npm 11.16.0](https://github.com/npm/cli/releases/tag/v11.16.0) добавил первые предупреждения для opt-in политики install scripts через `allowScripts`; подробности есть в отдельном материале про [защиту установки зависимостей](https://github.com/npm/cli/pull/9360). Это все про одну проблему: зависимость может запускать код при установке, поэтому пакетному менеджеру нужны более явные правила доверия.
+
+### Mini Shai-Hulud снова напомнил о рисках supply chain
+Microsoft опубликовала [анализ компрометации Mini Shai-Hulud](https://www.microsoft.com/en-us/security/blog/2026/05/20/mini-shai-hulud-compromised-antv-npm-packages-enable-ci-cd-credential-theft/), связанной с вредоносными npm-пакетами. Это продолжение истории про [цепочку атаки Mini Shai-Hulud](https://safedep.io/mini-shai-hulud-strikes-again-314-npm-packages-compromised/), где опасность не в одном пакете, а в том, как быстро зараженные версии могут разойтись по дереву зависимостей. Для обычного проекта это аргумент в пользу lockfile, осторожного обновления зависимостей и контроля install scripts.
+
+### Node.js 24.16 LTS принес полезные стабильные улучшения
+[Node.js 24.16.0 LTS](https://nodejs.org/en/blog/release/v24.16.0) добавил `crypto.randomUUIDv7()`, поддержку hex-цветов в [`util.styleText`](https://nodejs.org/api/util.html#utilstyletextformat-text-options) и [рандомизацию порядка тестов](https://github.com/nodejs/node/pull/61747) во встроенном test runner. Если Node 26 пока слишком свежий для продукта, LTS-ветка все равно продолжает получать новые удобные API.
+
+В release-подборке также отметили [Node.js v26.2.0 Current](https://nodejs.org/en/blog/release/v26.2.0). Current-ветка полезна для раннего знакомства с новыми возможностями, а LTS - для проектов, где важнее предсказуемость обновлений.
+
+### Streams в Node.js могут течь даже с `pipeline()`
+В разборе [production playbook для утечек Node.js streams](https://frontendmasters.com/blog/the-production-playbook-for-node-js-stream-leaks/) показано пять сценариев, где код проходит тесты, но ломается под реальным трафиком: клиент отключился, таймаут остановил ответ, а upstream-запрос продолжил жить, или backpressure не сработал так, как ожидалось. Для базы можно сначала прочитать вводный материал про [backpressure в Node.js streams](https://frontendmasters.com/blog/your-node-js-streams-arent-backpressuring-theyre-silently-eating-your-memory/).
+
+- Команда Node.js обсуждает, стоит ли [пересмотреть требование ABI-стабильности для обновлений V8](https://github.com/nodejs/TSC/issues/1852) в major-релизах после задержки Node 26 из-за V8 14.6.
+- В Node 26 macOS на Intel x64 перешел в [tier 2 платформ](https://github.com/nodejs/node/pull/63153): если бинарные сборки на этой платформе не получится выпустить, это не будет блокировать остальные релизы. У Node есть отдельное описание [уровней поддержки платформ](https://github.com/nodejs/node/blob/main/BUILDING.md#strategy).
+- Dean Hume написал, как [собрать собственный MCP-сервер на Node.js](https://deanhume.com/building-a-custom-mcp-server-with-node-js/). Это полезно, если хочется подключать свои инструменты к AI-агентам через понятный протокол.
+- [ANSIS 4.3](https://github.com/webdiscus/ansis) - библиотека для ANSI-цветов и оформления текста в Node, Bun, Deno и devtools. В [v4.3](https://github.com/webdiscus/ansis/releases/tag/v4.3.0) появилась поддержка [OSC 8 terminal hyperlinks](https://github.com/webdiscus/ansis/issues/44), которые уже понимают [многие терминалы](https://github.com/Alhadis/OSC8-Adoption/).
+- [Helmet.js 8.2](https://helmet.js.org/) обновил middleware для защиты Express-приложений через HTTP-заголовки вроде `Content-Security-Policy` и `Strict-Transport-Security`; это первый релиз [Helmet v8.2](https://github.com/helmetjs/helmet/blob/main/CHANGELOG.md#820---2026-05-21) за год.
+- Официальный [codemod Node.js для миграции с Axios на `fetch`](https://app.codemod.com/registry/@nodejs/axios-to-whatwg-fetch) помогает автоматически заменить часть старого HTTP-кода на встроенный Fetch API. Сам подход с [codemod](https://nodejs.org/learn/getting-started/userland-migrations) полезен, когда однотипные правки нужно безопасно провести по большому проекту.
+- [pnpm 11.4](https://pnpm.io/blog/releases/11.4) сфокусирован на надежности и безопасности пакетного менеджера.
+- [dns2 3.0](https://github.com/lsongdev/node-dns) обновил чистую JavaScript-реализацию DNS-сервера и клиента.
+
+## 🤖 ИИ
+
+### Modern Web Guidance уже критикуют за чрезмерное доверие к подсказкам
+Google выпустил [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance) - набор проверенных подсказок и навыков для AI-агентов, которые пишут веб-интерфейсы. На [странице Google Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance?hl=en) видно, что подсказки покрывают производительность, доступность и UX. Но Adrian Roselli в статье [Maybe Don't Rely on Google's Modern Web Guidance](https://adrianroselli.com/2026/05/maybe-dont-rely-on-googles-modern-web-guidance.html) напоминает, что такие подсказки не заменяют понимание спецификаций и проверку результата человеком.
+
+### AI-разработка может ускорять код и одновременно выжигать разработчика
+В статье [AI-Assisted Engineers are Burning Out](https://evilmartians.com/chronicles/ai-assisted-engineers-are-burning-out-is-this-fine) разбирается, почему постоянная работа с AI-инструментами может утомлять: нужно проверять больше кода, держать в голове намерения агента и быстро переключаться между задачами. Nolan Lawson смотрит на тему с другой стороны и пишет, как [использовать AI, чтобы писать код медленнее, но лучше](https://nolanlawson.com/2026/05/25/using-ai-to-write-better-code-more-slowly/): просить объяснения, сравнивать варианты и не превращать модель в генератор бесконечных патчей.
+
+### Миграция Express в Next.js показана как агентный workflow
+James O'Reilly показал [миграцию Express-приложения на Next.js с помощью AI-агентов](https://javascript.plainenglish.io/migrating-express-to-next-js-using-ai-agents-antigravity-f48b4c206a8e). В примере участвуют Next.js App Router и TypeScript, а интереснее всего то, что автор выложил reusable [agent skills для модернизации Express](https://github.com/GoogleCloudPlatform/devrel-demos/tree/main/other/modernizing-expressjs). В контексте экосистемы [Antigravity](https://antigravity.google/) это хороший пример, как агентные инструкции превращают разовую миграцию в повторяемый процесс.
+
+- Результаты [State of Web Dev AI 2026](https://2026.stateofai.dev/en-US) собрали ответы более 7000 разработчиков: какие инструменты они используют, чего боятся, где видят пользу и чем AI помогает кроме написания кода.
+- Mauro Bieg задается вопросом, не ведет ли AI к новому [lost decade фронтенда](https://mastrojs.github.io/blog/2026-05-23-is-AI-causing-a-repeat-of-frontends-lost-decade/): когда инструменты ускоряют производство, но могут ухудшить понимание базовых вещей.
+- Matthias Ott в эссе [Ad infinitum](https://matthiasott.com/notes/ad-infinitum) и заметка [Vale.Rocks](https://vale.rocks/micros/20260521-0440) продолжают разговор о том, как AI-ответы и скрейпинг меняют мотивацию делать открытые сайты.
+- [Flue](https://flueframework.com/) - TypeScript-фреймворк от Astro для программируемых AI-агентов поверх Node.js: задачи, sandboxing, навыки и headless-запуск.
+
+## ⚒️ Инструменты и библиотеки
+
+### Tegaki превращает текст в анимированное письмо от руки
+[Tegaki](https://github.com/KurtGokhan/tegaki) умеет брать любой шрифт и текст, включая неанглийские языки, и превращать их в анимацию рукописного написания. В пакет уже встроены несколько handwriting-шрифтов, а в [playground Tegaki](https://gkurt.com/tegaki/generator/) можно быстро проверить результат без настройки проекта.
+
+### JSON4U помогает смотреть на JSON как на структуру, а не стену текста
+[JSON For You](https://github.com/loggerhead/json4u#readme) показывает JSON в виде графа или таблицы, умеет парсить вложенные значения, работать с `jq` и импортировать/экспортировать CSV. Для больших ответов API это удобнее, чем прокручивать один огромный объект; попробовать можно в [онлайн-редакторе JSON4U](https://json4u.com/editor).
+
+### Rspack помог Yelp вдвое ускорить сборку
+Yelp описал [миграцию с Webpack на Rspack](https://engineeringblog.yelp.com/2026/05/optimizing-our-build-times-by-migrating-from-webpack-to-rspack.html), после которой build time сократился примерно вдвое. [Rspack](https://rspack.rs/) старается быть drop-in заменой webpack, но работает на Rust и быстрее справляется с тяжелыми проектами. Отдельно в статье полезны выводы про barrel files и re-exports: иногда медленная сборка начинается не с инструмента, а со структуры импортов.
+
+### Инструменты для документов, клавиатуры и подсветки стали свежее
+[DOCX 9.7](https://docx.js.org/) обновил зрелую библиотеку для генерации Word `.docx` из JavaScript на клиенте и сервере. Есть простой [пример на CodePen](https://codepen.io/dolanmiu/pen/RwNeObg), больше [100 example scripts](https://github.com/dolanmiu/docx/tree/master/demo), а Node-подборка отдельно показывает ту же библиотеку как [DOCX для серверного JavaScript](https://docx.js.org/) с [демо](https://codepen.io/dolanmiu/pen/RwNeObg) и [примерами](https://github.com/dolanmiu/docx/tree/master/demo).
+
+[tinykeys 4.0](https://jamiebuilds.github.io/tinykeys/) - маленькая библиотека для keyboard shortcuts. API простой: описываете сочетания клавиш и функции, которые должны сработать, а на странице есть живые демо.
+
+### Обновления
+
+- [officeParser 7.1](https://github.com/harshankur/officeParser/releases/tag/v7.1.0) разбирает office-файлы вроде `docx`, `pptx`, `xlsx` и `odt` в AST, чтобы с ними можно было работать программно.
+- [React Archer 5.0](https://github.com/pierpo/react-archer) рисует стрелки между DOM-элементами в React и теперь поддерживает React 19.
+- [Sugar High 1.2](https://sugar-high.vercel.app/) обновил сверхлегкий подсветчик синтаксиса для JavaScript и JSX размером около 1KB.
+- [React Spring 10.1](https://www.react-spring.dev/) выпустил небольшой релиз популярной библиотеки UI-анимаций.
+- [MUI X 9.3](https://github.com/mui/mui-x/releases/tag/v9.3.0) обновил набор сложных React-компонентов вроде таблиц, датапикеров и графиков.
+- Stéphanie Walter опубликовала [La Carte Blanche](https://stephaniewalter.design/blog/la-carte-blanche-a-project-definition-framework-to-avoid-chaos/) - printable-карточку для UX-стратегии, которая помогает заранее проговорить цель проекта и не утонуть в хаосе требований.
