@@ -1,0 +1,195 @@
+---
+title: "Еженедельный дайджест #49: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "June 08 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #49! 🗞️", index: 0 },
+  { text: "Chrome 149, HTML-in-Canvas и таблицы NASA попали в платформу недели. 🧪", index: 1 },
+  { text: "CSS недели: gap decorations, contrast-color(), PolyCSS и живые буквы. 🎨", index: 2 },
+  { text: "JavaScript готовится к Temporal, а рекурсия все еще умеет удивлять. 📦", index: 3 },
+  { text: "Фреймворки: Astro 6.4, Ember 7, Svelte update и VoidZero в Cloudflare. 🛰️", index: 4 },
+  { text: "React чинит Server Actions, ускоряет Compiler на Rust и разбирает RSC. ⚛️", index: 5 },
+  { text: "TypeScript: советы на каждый день и память tsgo под микроскопом. 📘", index: 6 },
+  { text: "Node.js 26.3, npm allowScripts и новые тревоги supply chain. 🟢", index: 7 },
+  { text: "ИИ-подборка: DevTools для агентов, Code Wiki, Copilot SDK и State of AI. 🤖", index: 8 },
+  { text: "Инструменты недели: VS Code browser, Plotly, Fuse, PGlite, TinyBase и Source Maps. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### HTML-in-Canvas добрался до origin trial в Chrome
+Chrome начал тестировать [HTML-in-Canvas API в origin trial](https://developer.chrome.com/blog/html-in-canvas-origin-trial). Идея в том, чтобы рисовать внутри `<canvas>` не только пиксели, но и живой HTML с CSS, текстом и доступностью. Это может быть полезно для сложных редакторов, визуализаций и интерфейсов, где canvas нужен ради скорости, но полностью терять обычные элементы страницы не хочется.
+
+[Liquid DOM](https://github.com/AndrewPrifer/liquid-dom) показывает, как такая возможность может выглядеть на практике: это эксперимент с эффектом liquid glass для веба, React-биндингами, WebGPU и тем же экспериментальным HTML-in-Canvas API. Для обычного проекта это пока не готовый базовый слой, но хороший пример того, куда движутся графические интерфейсы в браузере.
+
+### Иногда JavaScript можно намеренно сделать render-blocking
+Jay Freestone объясняет, зачем иногда нужен [намеренно блокирующий рендеринг JavaScript](https://www.jayfreestone.com/writing/intentional-render-blocking-javascript/). Обычно скрипты стараются загружать через `async` или `defer`, чтобы страница быстрее показалась. Но если компонент должен сначала измерить размеры или подготовить состояние, атрибут `blocking="render"` может убрать неприятный скачок интерфейса перед первым показом.
+
+- Rachel Andrew собрала [майский обзор веб-платформы](https://web.dev/blog/web-platform-05-2026): какие возможности попали в стабильные и бета-версии браузеров, что стало частью Baseline и за какими API стоит следить.
+- Harry Roberts предлагает смотреть не только на Total Blocking Time, но и на [TBT Window](https://csswizardry.com/2026/06/front-ends-missing-metric-the-tbt-window/) - промежуток между FCP и TTI, внутри которого этот показатель считается. Если начало или конец окна сдвигаются, метрика может измениться даже без явного ухудшения самого JavaScript.
+- Исследователи показали новый способ скрытого трекинга через JavaScript: можно [анализировать использование SSD через Origin Private File System](https://arstechnica.com/security/2026/05/websites-have-a-new-way-to-spy-on-visitors-analyzing-their-ssd-activity/). Это напоминание, что даже полезные браузерные API нужно проверять с точки зрения приватности.
+
+## 🎨 CSS и дизайн
+
+### Chrome 149 привез стилизацию промежутков в гридах и флексах
+В Chrome 149 появились CSS gap decorations для [оформления пространства между flex и grid-элементами](https://developer.chrome.com/blog/new-in-chrome-149). Раньше линии между карточками или колонками часто делали через `border`, псевдоэлементы или лишние обертки. Новый подход позволяет думать о gap как о настоящей части раскладки, которую можно стилизовать отдельно.
+
+### Текст можно раскрывать через `letter-spacing`
+Preethi Sam показала, как [делать эффект раскрывающегося текста через CSS `letter-spacing`](https://css-tricks.com/revealing-text-with-css-letter-spacing/). В CSS пока нет удобного `::nth-letter`, чтобы выбирать отдельные символы, но `letter-spacing`, `::first-letter` и `::first-line` уже позволяют собирать выразительные текстовые эффекты без тяжелого JavaScript.
+
+### `contrast-color()` помогает строить самокорректирующиеся темы
+В Smashing Magazine разобрали [алгоритмические цветовые темы на базе `contrast-color()`](https://www.smashingmagazine.com/2026/05/building-self-correcting-color-systems-contrast-color/). Смысл в том, чтобы цвет текста или элемента подбирался с учетом контраста, а не вручную для каждого состояния. Это особенно полезно в дизайн-системах, где темы, бренды и пользовательские цвета быстро размножаются.
+
+### PolyCSS рисует 3D-сетки прямо в DOM
+[PolyCSS](https://polycss.com/) рендерит текстурированные 3D-модели через обычные DOM-элементы и CSS `matrix3d()`, без WebGL и `<canvas>`. Каждый полигон остается элементом страницы, поэтому его можно стилизовать и делать интерактивным. У проекта есть [галерея примеров](https://polycss.com/gallery/), [живой конструктор](https://polycss.com/builder/) и [репозиторий PolyCSS](https://github.com/LayoutitStudio/polycss).
+
+- Josh Comeau сравнил [CSS и JavaScript для веб-анимаций](https://www.joshwcomeau.com/animation/css-vs-javascript/): простые переходы состояния чаще удобнее держать в CSS, а JavaScript нужен, когда движение зависит от данных, жестов или сложной логики.
+- [Curlwind](https://curlwind.com/) генерирует Tailwind-утилиты без сборки: вы подключаете CDN-файл с параметрами, а на страницу попадают только нужные классы, варианты и префиксы.
+- [Fontastic Space](https://fontastic.space/) помогает подбирать пары шрифтов по метрикам вроде cap height и ascender, а не только на глаз.
+- [All UtilityCSS](https://allutilitycss.com/) собирает шаблоны, компоненты и инструменты вокруг Tailwind и utility-first CSS, с фильтрами по типу ресурса, стеку и UI-kit.
+
+## ♿ Доступность и UX
+
+### Диагональные заголовки таблиц можно сделать аккуратнее
+Eric Meyer разобрал [доступные split-cell заголовки таблиц](https://meyerweb.com/eric/thoughts/2026/05/28/accessible-i-think-split-cell-table-headers/), похожие на диагонально разделенные ячейки в старых технических документах NASA. Решение опирается на обычную таблицу, `rowspan` и позиционирование, но главное там не декоративная диагональ, а то, чтобы связи между заголовками и данными оставались понятны вспомогательным технологиям.
+
+- Adam Silver объясняет, почему атрибут [`accept` может ухудшать UX загрузки файлов](https://adamsilver.io/blog/why-the-accept-attribute-degrades-file-upload-ux/). Он ограничивает выбор файлов в системном диалоге, но делает ошибки менее понятными; иногда честная проверка после отправки и ясное сообщение работают лучше.
+- В статье [о клавиатурной доступности как признаке зрелости продукта](https://www.dennisdeacon.com/accessibility/keyboard-accessibility-the-clearest-signal-of-digital-maturity/) хорошо видно, почему фокус, порядок табуляции и работа без мыши - это не полировка, а базовая проверка качества интерфейса.
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+
+### date-fns готовится к будущему с Temporal
+Популярная библиотека [date-fns](https://date-fns.org/) постепенно становится Temporal-first: команда пишет о [подготовке к будущему вокруг `Temporal`](https://date-fns.org/you-dont-need-date-fns), выпустила более легкую [версию v4.4](https://javascriptweekly.com/link/186009/web) и уже перевела [v5.0 в alpha](https://javascriptweekly.com/link/186010/web). Для разработчика это значит, что работа с датами в JavaScript медленно движется от старого `Date` к более понятной модели времени.
+
+### Хвостовая рекурсия в JavaScript все еще больше обещание, чем реальность
+В статье [о том, почему рекурсия может обманывать ожидания](https://blog.gaborkoos.com/posts/2026-05-09-Your-Recursion-Is-Lying-to-You/), разбирается tail call optimization. ES2015 описал оптимизацию хвостовых вызовов, но большинство движков в 2026 году ее не поддерживают. Поэтому рекурсивный код, который выглядит безопасным на бумаге, все равно может упереться в стек вызовов.
+
+- Kyle Simpson, автор серии [YDKJS](https://javascriptweekly.com/link/186014/web), работает над [@gql-x/Composer](https://github.com/gql-x/Composer) - JavaScript DSL для динамической сборки GraphQL-запросов.
+- [Structon](https://www.harper.fast/resources/introducing-structon-random-access-binary-encoding-for-javas) кодирует объекты в бинарный формат с произвольным доступом: можно достать отдельное поле из буфера, не распаковывая всю запись целиком.
+
+## ⚛️ React и фреймворки
+
+### React выпустил патчи для Server Actions
+Вышли [React 19.2.7](https://github.com/facebook/react/releases/tag/v19.2.7), [React 19.1.8](https://github.com/facebook/react/releases/tag/v19.1.8) и [React 19.0.7](https://github.com/facebook/react/releases/tag/v19.0.7). Эти версии исправляют регрессию в Server Actions, поэтому обновление особенно важно для проектов, где server actions уже используются в продакшене.
+
+### Rust-порт React Compiler почти готов к слиянию
+Команда React пишет, что [Rust-порт React Compiler близок к merge](https://github.com/facebook/react/pull/36173#issuecomment-4608356402). Meta уже тестирует его внутри и видит хорошие результаты. Для приложений это не означает мгновенного ускорения всего UI, но для экосистемы важно: компилятор React становится ближе к более быстрому и удобному инструменту разработки.
+
+### Разбор Conductor показывает, откуда берется React-производительность
+В материале [о переписывании Conductor ради скорости](https://performance.dev/the-conductor-rewrite) разбирают, как приложение для координации coding agents [Conductor](https://www.conductor.build/) стало примерно вдвое быстрее. Там есть конкретные темы: лишние перерендеры, выбор роутинга и виртуализация длинного чата. У автора есть и похожий [технический разбор скорости Linear](https://performance.dev/how-is-linear-so-fast-a-technical-breakdown), если хочется сравнить подходы.
+
+### React Server Components требуют другой архитектуры компонентов
+Aurora Scharff объясняет [архитектуру компонентов для React Server Components](https://aurorascharff.no/posts/component-architecture-for-react-server-components/). RSC полезны не тем, что "все внезапно стало серверным", а тем, что часть дерева можно оставить на сервере, ближе к данным, а интерактивные куски вынести в клиентские компоненты. Это меняет границы ответственности в приложении.
+
+- Lovable, AI-конструктор приложений, [перешел на TanStack Start по умолчанию](https://lovable.dev/blog/building-apps-using-tanstack-start) для создаваемых приложений и объяснил, почему ему подошли маршрутизация, серверные функции и контроль над стеком.
+- В `shadcn/ui` появились команда [`eject`](https://ui.shadcn.com/docs/cli#eject), которая переносит Tailwind-код компонентов в ваш CSS, и возможность [использовать публичные GitHub-репозитории как registries](https://ui.shadcn.com/docs/registry/github).
+- React Router v7, v6 и Remix 2 получили новые версии из-за [семи уязвимостей в React Router](https://github.com/remix-run/react-router/security/advisories). Если проект использует эти роутеры, лучше проверить диапазоны версий зависимостей.
+- [React Spectrum 1.4](https://react-spectrum.adobe.com/releases/v1-4-0) обновил дизайн-систему Adobe для React: на [главной странице Spectrum](https://react-spectrum.adobe.com/) видно, что это не только компоненты, но и подход к доступности, состояниям и поведению сложных интерфейсов.
+- [react-call 2.0](https://github.com/desko27/react-call) позволяет вызывать React-компонент как async-операцию: например, открыть диалог подтверждения и дождаться ответа через `await`.
+- [ESLint You Might Not Need An Effect 1.0](https://javascriptweekly.com/link/185994/web) и React-версия [плагина против лишних эффектов](https://github.com/nickjvandyke/eslint-plugin-react-you-might-not-need-an-effect) помогают находить ситуации, где `useEffect` только усложняет код. Базовую идею можно сверить с документацией React [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect).
+- [c15t 2.0](https://c15t.com/) делает быстрые consent banners для React-приложений, где важны и скорость первого рендера, и юридически понятное согласие пользователя.
+- [Mantine 9.3](https://mantine.dev/changelog/9-3-0/) добавил адаптивную пагинацию, управление `text-wrap`, hook для resizable split panes и новые контекстные меню.
+- [Constate 4.0](https://github.com/diegohaz/constate) обновил локальный state manager на hooks и Context и теперь распространяется только как ESM.
+- [React Gantt 2.7](https://github.com/svar-widgets/react-gantt) обновил компонент для диаграмм Ганта, а [Ink 7.0.5](https://github.com/vadimdemedes/ink) выпустил bugfix-релиз React-рендерера для терминальных интерфейсов.
+- Вышли [MUI X 9.4](https://github.com/mui/mui-x/releases/tag/v9.4.0) и [React Email 6.5](https://github.com/resend/react-email/releases/tag/react-email%406.5.0), два обновления из разных частей React-экосистемы: сложные UI-компоненты и шаблоны писем.
+
+## 🛰️ Сборка и фреймворки
+
+### VoidZero присоединяется к Cloudflare
+[VoidZero](https://voidzero.dev/), компания за Vite, Vitest, Rolldown, Oxc и Vite+, [присоединяется к Cloudflare](https://blog.cloudflare.com/voidzero-joins-cloudflare/). Для фронтенда это важный инфраструктурный сигнал: инструменты сборки, тестирования и рантайм-платформа все сильнее сходятся вокруг одной цепочки разработки и деплоя.
+
+### Astro 6.4 развивает Markdown и Cloudflare-роутинг
+[Astro 6.4](https://astro.build/blog/astro-640/) добавил pluggable Markdown pipeline, Rust-based Markdown processor и новые помощники для продвинутого роутинга на Cloudflare. Это заметно для контентных сайтов и документации, где Markdown - не вспомогательный формат, а основа проекта.
+
+### Переезд с Gatsby на Astro сократил время сборки
+Sentry рассказали, [как удаление CMS и миграция с Gatsby на Astro сократили build time на две трети](https://blog.sentry.io/cut-build-times-delete-cms/). История полезна тем, что проблема была не только в конкретном фреймворке: медленная сборка часто складывается из источника данных, количества страниц, структуры контента и того, как проект делает повторяемую работу.
+
+- [Ember 7.0](https://blog.emberjs.com/ember-released-7-0/) вышел как major-релиз старого, но все еще живого фреймворка: команда убрала deprecated-возможности и подвела итог изменениям со времен 6.0.
+- Команда Svelte опубликовала [ежемесячное обновление экосистемы](https://svelte.dev/blog/whats-new-in-svelte-june-2026), где удобно сверить, что происходит вокруг фреймворка, компилятора и связанных библиотек.
+- [Angular 22 RC3](https://javascriptweekly.com/link/185973/web) продолжает готовить следующий major Angular к стабильному релизу.
+- [Component Party](https://component-party.dev/?f=react-vue3) сравнивает UI-фреймворки на одинаковых примерах кода. Последние обновления расширили Angular и Svelte-покрытие, а еще добавили Ripple и Ember Polaris.
+
+## 📘 TypeScript
+
+### У нового компилятора TypeScript на Go есть проблема с памятью
+Zack Radisic разобрал, [почему `tsgo` может потреблять много памяти](https://zackoverflow.dev/writing/why-does-tsgo-use-so-much-memory). `tsgo` - Go-powered компилятор для TypeScript 7, и на больших проектах он может съедать гигабайты. Материал полезен не только про один инструмент: он показывает, что "быстрее" и "дешевле по памяти" не всегда приходят вместе.
+
+- В подборке [TypeScript tips, которые стоит знать всем](https://github.com/AllThingsSmitty/typescript-tips-everyone-should-know), собраны короткие советы по более безопасному коду: как думать о типах, где не переоценивать TypeScript и почему типы не заменяют хорошую архитектуру.
+
+## ⚙️ Node.js
+
+### Node.js 26.3 вышел с изменениями в Buffer, permissions и платформах
+[Node.js 26.3.0 Current](https://nodejs.org/en/blog/release/v26.3.0) увеличил значение `Buffer.poolSize` по умолчанию до [64 KB](https://nodeweekly.com/link/186136/web), чтобы уменьшить число выделений памяти при тяжелом I/O. В permissions model появился [`permission.drop()`](https://nodejs.org/api/permissions.html#permissiondropscope-reference), а сама [модель разрешений](https://nodejs.org/api/permissions.html) постепенно становится практичнее для кода, которому нужно явно ограничивать доступ.
+
+В этом же релизном цикле npm обновился до 11.16.0, macOS x64 [перешел на tier 2](https://github.com/nodejs/node/pull/63055), а QUIC получил пачку улучшений. Если коротко: Current-ветка продолжает быстро двигаться, но каждое изменение стоит проверять против своих платформ и зависимостей.
+
+### npm и supply chain снова в центре внимания
+[npm 11.16.0](https://javascriptweekly.com/link/185962/web) добавил первые предупреждения для opt-in политики install scripts через `allowScripts`; подробности есть в [обсуждении новой защиты установки](https://github.com/npm/cli/pull/9360). Это ответ на простую опасность: зависимость может выполнить код прямо во время установки, поэтому проекту нужны явные правила доверия.
+
+Параллельно появились новые атаки: в очередном [всплытии Shai-Hulud](https://socket.dev/blog/mini-shai-hulud-campaign-hits-red-hat-cloud-services-npm-packages) были [скомпрометированы десятки npm-пакетов Red Hat](https://arstechnica.com/security/2026/06/dozens-of-red-hat-packages-backdoored-through-its-offical-npm-channel/), а затем сообщили о [черве внутри `binding.gyp`](https://snyk.io/blog/node-gyp-supply-chain-compromise-self-propagating-npm-worm-binding-gyp/). Пакетный менеджер [pnpm 11.5](https://pnpm.io/blog/releases/11.5) уже начал [учитывать staged publishes](https://socket.dev/blog/pnpm-11-5-adds-support-for-recognizing-npm-staged-publishes) в trust scale, чтобы новые версии проходили более осторожный путь до установки.
+
+Если нужно выбрать зависимость, чеклист [как оценивать npm-пакет в 2026 году](https://blog.gaborkoos.com/posts/2026-05-29-How-to-Evaluate-an-npm-Package-2026-Edition/) предлагает смотреть не только на звезды: важны provenance attestation, install scripts, качество CI и реакция мейнтейнеров.
+
+### replacements.fyi предлагает заменить лишние npm-пакеты
+[replacements.fyi](https://replacements.fyi/) помогает найти более легкую замену npm-пакету или встроенный API Node.js. Например, вместо `axios` иногда хватит `fetch`, вместо `chalk` можно взять `util.styleText`, а маленькие пакеты вроде `is-number` заменяются одной строкой. Это не повод удалять все зависимости подряд, но хороший способ проверить, где проект тащит лишний код.
+
+### Codex помог Wasmer собрать Node.js runtime в WebAssembly sandbox
+OpenAI рассказал, [как Wasmer использовал Codex для сборки Node.js runtime](https://openai.com/index/wasmer/). Команда [Wasmer](https://wasmer.io/) хотела запускать Node workloads внутри WebAssembly sandbox, а результатом стал open source проект [Edge.js](https://wasmer.io/posts/edgejs-safe-nodejs-using-wasm-sandbox). Новость интересна на стыке Node, WASM и агентной разработки: AI здесь не просто пишет функцию, а помогает двигать низкоуровневую миграцию.
+
+### Hocuspocus 4 добавляет совместное редактирование в приложения
+[Hocuspocus 4](https://tiptap.dev/docs/hocuspocus/getting-started/overview) - backend для real-time collaboration на базе [Yjs](https://yjs.dev/). Он запускается на Node, Bun, Deno и Cloudflare Workers, а код доступен в [репозитории Hocuspocus](https://github.com/ueberdosis/hocuspocus). Такой слой нужен, когда несколько пользователей одновременно редактируют документ, доску или другой общий объект.
+
+- [Node.js Interactive](https://openjsf.org/blog/nodejs-interactive-at-renderatl26) возвращается как событие рядом с [RenderATL 2026](https://www.renderatl.com/) 12-13 августа в Атланте.
+- Команда Express выпустила [`multiparty 4.3.0`](https://expressjs.com/en/blog/2026-05-31-security-releases/), чтобы закрыть три DoS-уязвимости в библиотеке для multipart/form-data.
+- RepoFlow сравнил [Node.js 24, 25 и 26](https://www.repoflow.io/blog/node-js-24-vs-25-vs-26-complete-benchmark) после более широкого [бенчмарка версий Node от 16 до 25](https://www.repoflow.io/blog/node-js-16-to-25-benchmarks-how-performance-evolved-over-time). В большинстве сценариев разница оказалась небольшой, что полезно помнить перед поспешной миграцией ради скорости.
+- [zod-hoist](https://github.com/gajus/babel-plugin-zod-hoist) - Babel-плагин от автора [Slonik](https://github.com/gajus/slonik), который выносит определения Zod-схем и помогает ускорять валидацию.
+- [node-redis 6.0](https://github.com/redis/node-redis/releases/tag/redis%406.0.0) обновил официальный драйвер Redis для Node.js под [Redis 8.8](https://redis.io/blog/announcing-redis-8-8/), перешел на RESP3 по умолчанию и подготовил [гайд миграции с 5.x](https://github.com/redis/node-redis/blob/redis@6.0.0/docs/v5-to-v6.md).
+- [Axios 1.17](https://nodeweekly.com/link/186179/web) добавил zstd-декомпрессию HTTP-ответов в Node.js.
+- Вышли [node-oracledb 7.0](https://medium.com/@sharad-chandran/launching-node-oracledb-7-0-aad650374909) для Oracle Database и [node-libcurl 5.1](https://nodeweekly.com/link/186183/web) с биндингами к `libcurl`.
+
+## 🤖 ИИ
+
+### Chrome DevTools для агентов стал стабильным
+Chrome 149 получил [крупные обновления AI-помощи в DevTools](https://developer.chrome.com/blog/new-in-devtools-149). Ранее анонсированные [MCP server и CLI для Chrome DevTools](https://developer.chrome.com/blog/devtools-for-agents-v1) теперь стабильны: coding agents могут программно открывать страницы, запускать отладку, смотреть производительность и собирать факты из DevTools вместо того, чтобы угадывать поведение приложения.
+
+### AI может помогать писать код медленнее, но лучше
+Nolan Lawson пишет, как [использовать AI, чтобы писать более качественный код медленнее](https://nolanlawson.com/2026/05/25/using-ai-to-write-better-code-more-slowly/). Главная мысль: модель не обязана быть генератором бесконечных патчей. Ее можно просить объяснить подход, сравнить варианты, найти риск и помочь разобраться в незнакомом куске системы.
+
+### Code Wiki генерирует живую документацию по репозиториям
+[Code Wiki](https://codewiki.google/) от Google строит текстовые объяснения и архитектурные диаграммы по репозиторию, чтобы быстрее войти в кодовую базу. На примере [React repository в Code Wiki](https://codewiki.google/github.com/facebook/react) видно, как инструмент пытается объяснять проект не через список файлов, а через связи между частями.
+
+### GitHub Copilot SDK стал общедоступным
+[GitHub Copilot SDK](https://github.blog/changelog/2026-06-02-copilot-sdk-is-now-generally-available/) теперь доступен для нескольких платформ, включая Node.js. Он позволяет встроить агентные возможности Copilot в свои приложения и связать их с собственными инструментами. Для старта есть [пошаговый туториал](https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started) и [cookbook с примерами](https://nodeweekly.com/link/186162/web).
+
+- Microsoft Edge расширил [локальные AI-возможности браузера](https://blogs.windows.com/msedgedev/2026/06/02/expanding-on-device-ai-in-microsoft-edge-new-models-and-apis-for-the-web/) новыми моделями и API, которые работают на устройстве пользователя.
+- Результаты [State of Web Dev AI 2026](https://2026.stateofai.dev/en-US) показывают, как больше 7000 разработчиков используют AI в веб-разработке, где видят пользу и где остаются сомнения.
+- Nicholas C. Zakas показал, как создать [VS Code Agent Hook, реагирующий на изменения файлов](https://humanwhocodes.com/blog/2026/05/vscode-agent-hooks/). Такой hook помогает агенту запускать нужные действия не вручную, а при изменении проекта.
+
+## ⚒️ Инструменты и библиотеки
+
+### Source maps полезны в отладке, но могут раскрыть лишнее
+В статье [о том, что нужно знать про source maps](https://neciudan.dev/everything-you-need-to-know-about-sourcemaps), объясняется связь между исходным кодом и минифицированной или собранной версией. [Source maps](https://developer.mozilla.org/en-US/docs/Glossary/Source_map) помогают отлаживать продакшен-ошибки, но если опубликовать их без контроля, можно случайно раскрыть структуру кодовой базы.
+
+### VS Code улучшил встроенный браузер
+В свежей версии VS Code [интегрированный браузер получил закладки и новые способы делать скриншоты](https://code.visualstudio.com/updates/v1_123#_integrated-browser). Это удобно, когда нужно быстро проверить локальную страницу, не уходя из редактора, или собрать визуальное состояние для задачи.
+
+### Plotly 3.6 обновил декларативные графики
+[Plotly 3.6](https://plotly.com/javascript/) продолжает развивать библиотеку визуализаций с десятками типов графиков: от простых линий и столбцов до карт, heatmap и сложных интерактивных диаграмм. Она полезна, когда данные важнее кастомной графики с нуля.
+
+### Markdown Printer сохраняет страницы как Markdown
+[Markdown Printer](https://chromewebstore.google.com/detail/markdown-printer/pfplfifdaaaalkefgnknfgoiabegcbmf) - расширение Chrome, которое превращает страницы в Markdown. Это может пригодиться для документации, заметок или подготовки контекста для AI-инструментов, когда HTML-страница слишком шумная.
+
+### Обновления
+
+- [tsParticles 4](https://particles.js.org/) обновил движок частиц для веб-эффектов: конфетти, огоньки, снег и похожие сцены можно подключать во фреймворках или в обычном JavaScript. В примерах есть [ribbons](https://ribbons.js.org/) и [живые демо](https://particles.js.org/playground/presets).
+- [officeParser 7.1](https://github.com/harshankur/officeParser/releases/tag/v7.1.0) разбирает `docx`, `pptx`, `xlsx`, `odt` и похожие office-файлы в AST, а [браузерное демо](https://officeparser.harshankur.com/#visualizer) показывает, какие данные можно получить на выходе.
+- [Fuse.js 7.4](https://github.com/krisk/Fuse/releases/tag/v7.4.0) добавил parallel search через Web Workers. У проекта есть [главная страница Fuse.js](https://www.fusejs.io/), где проще понять, как работает fuzzy search.
+- [PGlite 0.5](https://pglite.dev/) запускает Postgres локально в WASM, поддерживает реактивность и live sync, а в новой версии переехал на Postgres 18.3.
+- [TinyBase 8.4](https://tinybase.org/guides/releases/) обновил reactive data store и sync engine для local-first приложений, теперь с полной поддержкой [SolidJS](https://www.solidjs.com/).
+- [Sugar High 1.2](https://sugar-high.vercel.app/) обновил маленький подсветчик синтаксиса для JavaScript и JSX размером около 1 KB.
+- [ESLint 10.4.1](https://eslint.org/blog/2026/05/eslint-v10.4.1-released/) вышел как небольшой релиз линтера, а для проектов на свежей конфигурации это повод проверить lockfile вместе с остальными обновлениями инструментов.
