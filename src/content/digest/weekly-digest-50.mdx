@@ -7,12 +7,12 @@ mascotMessages: [
   { text: "Safari 27 beta, HTML-first подход и контекстные заголовки задают тон платформе. 🧪", index: 1 },
   { text: "CSS недели: @function, gap decorations, view transitions и Grid Lanes. 🎨", index: 2 },
   { text: "Доступность и UX: фокус, мифы, гибридные приложения и AI-ready дизайн-системы. ♿", index: 3 },
-  { text: "Фреймворки: Angular 22, VoidZero в Cloudflare, React Compiler на Rust и TanStack Table. ⚛️", index: 4 },
+  { text: "Фреймворки: Angular 22, VoidZero в Cloudflare, React Foundation, React Compiler на Rust и TanStack Table. ⚛️", index: 4 },
   { text: "JavaScript и TypeScript: ESM в Safari, source maps, геометрия, типовые переменные и функциональный ESLint. 📦", index: 5 },
   { text: "Node.js: npm v12 ужесточает install scripts, Node меняет релизный ритм, а Node-RED 5 обновляет редактор. 🟢", index: 6 },
   { text: "Рантаймы и WASM: Deno спорит с совместимостью, Bun показывает AI-тренд, Emscripten и Electron обновляются. 🧬", index: 7 },
   { text: "ИИ-подборка: инженерные ценности, агентные hooks и Chrome AI в Zork. 🤖", index: 8 },
-  { text: "Инструменты недели: PDFSlick, Micromodal, FontSelf, NoLoJS, Mitos ASCII, tsParticles и replacements.fyi. 🧰", index: 9 }
+  { text: "Инструменты недели: visx, PDFSlick, Micromodal, FontSelf, NoLoJS, Mitos ASCII, tsParticles и replacements.fyi. 🧰", index: 9 }
 ]
 ---
 
@@ -79,7 +79,27 @@ Google выпустил [Angular v22](https://javascriptweekly.com/link/186267/w
 ### Rust-порт React Compiler готовят к тестированию
 [Rust-версия React Compiler](https://javascriptweekly.com/link/186275/web) уже готова к тестированию и близка к слиянию. Компилятор нужен, чтобы React мог лучше оптимизировать компоненты автоматически, а Rust-порт делает инструментальную часть быстрее и удобнее для больших проектов. Для разработчиков это не мгновенная магия в UI, но важный шаг к более зрелой сборке React-приложений.
 
+### React Foundation оформляет новую страницу экосистемы
+[React Foundation запустил новый сайт](https://react.foundation/ "react.foundation") после того, как в феврале [фонд принял управление React](https://react.dev/blog/2026/02/24/the-react-foundation) от Meta. Переезд виден и в GitHub: старый адрес [`facebook/react` теперь ведет на `react/react`](https://github.com/react/react). Для разработчиков это не меняет API, но показывает, что React постепенно оформляется как более независимый open source-проект с отдельной организационной базой.
+
+### Большой список React-библиотек помогает выбрать стек на 2026 год
+Robin Wieruch обновил свой [обзор React-библиотек и инструментов на 2026 год](https://www.robinwieruch.de/react-libraries/ "www.robinwieruch.de"). Внутри есть категории для старта нового приложения, UI, анимаций, форм, тестов, интернационализации и управления состоянием. Такой список полезен не как готовый рецепт для всех проектов, а как карта экосистемы: проще понять, какие задачи обычно закрывают отдельными библиотеками и где лучше не тянуть лишнюю зависимость.
+
 - [TanStack Table v9 Beta](https://javascriptweekly.com/link/186276/web) обновляет headless-движок таблиц для React, Preact, Solid, Vue, Angular, Svelte и Lit. Headless означает, что библиотека отвечает за состояние и поведение таблицы, а внешний вид вы строите сами.
+- [TanStack AI вышел в beta](https://tanstack.com/blog/tanstack-ai-beta): это набор инструментов для AI-функций без привязки к конкретному фреймворку или провайдеру моделей.
+- В React RFC предложили [возвращать disposable из `useEffect` и `useLayoutEffect`](https://github.com/reactjs/rfcs/pull/278) вместо функции очистки. Идея пока обсуждается, но она показывает, как React ищет более явный способ описывать освобождение ресурсов.
+- Aurora Scharff подробно показывает, как собрать [активный `NavLink` в Next.js](https://aurorascharff.no/posts/building-an-active-navlink-component-in-nextjs/): ссылка сама понимает текущий маршрут и подсвечивается в навигации.
+- Jenna Smith объясняет, почему [лучшие loading states иногда вообще не показываются](https://jjenzz.com/best-loading-states-are-no-loading-states/): если заранее подгрузить данные перед переходом, пользователь видит готовый экран вместо скелетона.
+- Jay Freestone разбирает случай, когда [родительскому React-компоненту нужно знать о своих детях](https://www.jayfreestone.com/writing/updating-react-parents-in-response-to-changes-in-children/). Это помогает аккуратнее передавать состояние вверх, не превращая дерево компонентов в набор случайных связей.
+
+### React Native обновляет платформу и инструменты
+[React Native 0.86.0](https://github.com/react/react-native/releases/tag/v0.86.0) вышел вместе с [React Native Windows v0.83](https://devblogs.microsoft.com/react-native/%f0%9f%9a%80react-native-windows-v0-83-is-here/). Это важно для команд, которые используют один React-подход не только в браузере, но и в мобильных или desktop-приложениях. Отдельно Nicholas Tarta показал, как [убирал рекламу с React Native-страницы Kindle](https://sighery.com/posts/patching-kindle-homepage/ "sighery.com") через разбор Hermes bytecode; история скорее исследовательская, но хорошо напоминает, что React Native уже встречается даже в интерфейсах устройств.
+
+- [react-native-network-logger 3.0](https://github.com/alexbrazier/react-native-network-logger) помогает смотреть HTTP-запросы прямо внутри React Native-приложения на iOS и Android.
+- [react-native-compressor 2.0](https://github.com/numandev1/react-native-compressor) сжимает изображения, видео и аудио перед загрузкой, чтобы приложение меньше тратило трафик и быстрее отправляло файлы.
+- [React Native Testing Library 14.0](https://github.com/callstack/react-native-testing-library/releases/tag/v14.0.0) теперь требует React 19+ и React Native 0.78+, поэтому обновление лучше планировать вместе с версиями основного стека.
+- [react-redux-firebase 4.0](https://github.com/prescottprue/react-redux-firebase) обновил Redux-биндинги для Firebase и добавил поддержку React 19.
+
 - [Taiga UI 5.10](https://javascriptweekly.com/link/186306/web) обновляет большой набор компонентов для Angular, где уже больше 50 UI-элементов.
 - [Astro Photo Grid](https://github.com/kydecker/astro-photo-grid) предлагает минимальную одностраничную фотогалерею с lightbox для Astro.
 
@@ -96,7 +116,6 @@ Google выпустил [Angular v22](https://javascriptweekly.com/link/186267/w
 
 - [RunJS 4](https://javascriptweekly.com/link/186280/web) обновляет песочницу для быстрого запуска JavaScript-фрагментов.
 - [eslint-plugin-functional 10.0](https://javascriptweekly.com/link/186301/web) добавляет правила линтера, которые запрещают мутации и подталкивают код к функциональному стилю.
-- [PDFSlick 4.0](https://javascriptweekly.com/link/186297/web "pdfslick.dev") обновляет PDF-viewer для React, Solid, Svelte и vanilla JS-приложений; в [демо](https://javascriptweekly.com/link/186298/web) можно посмотреть режимы просмотра, большие документы и аннотации.
 - [Draco.js](https://javascriptweekly.com/link/186304/web) - чистый JavaScript-загрузчик Draco mesh для three.js от mrdoob, с отдельным [демо](https://javascriptweekly.com/link/186305/web).
 - [tsParticles 4](https://particles.js.org/ "particles.js.org") обновляет движок частиц для конфетти, огня, снега и похожих эффектов; рядом есть [ribbons](https://ribbons.js.org/) и [живые демо пресетов](https://particles.js.org/playground/presets).
 
@@ -171,4 +190,9 @@ Nicholas C. Zakas показывает, как создать [VS Code Agent Hoo
 ### Obs.js адаптирует UX под возможности устройства
 [Obs.js](https://javascriptweekly.com/link/186314/web) добавляет классы на `<html>` в зависимости от доступной производительности: сети, CPU, задержки и других условий. Harry Roberts [дополнительно объясняет идею](https://javascriptweekly.com/link/186315/web): интерфейс может быть богаче на мощном устройстве и проще на слабом, не заставляя всех пользователей платить одинаковую цену.
 
+- [visx 4.0](https://visx.airbnb.tech/ "visx.airbnb.tech") обновляет набор React-примитивов для визуализаций от Airbnb с полной поддержкой React 19; в [галерее компонентов](https://visx.airbnb.tech/gallery) проще увидеть, какие графики можно собрать.
+- [PDFSlick 4.0](https://pdfslick.dev/ "pdfslick.dev") обновляет PDF-viewer на базе PDF.js для React, Solid, Svelte и обычного JavaScript; [React bindings](https://pdfslick.dev/docs/react) помогают встроить просмотрщик в приложение, а в [демо](https://pdfslick.dev/examples/pdf-viewer-app) видны аннотации и работа с большими документами.
+- [bezier-easing-editor 1.1](https://github.com/gre/bezier-easing-editor) добавляет React-компонент для визуального редактирования кривых Безье, а [живое демо](https://gre.github.io/bezier-easing-editor/) помогает сразу почувствовать, как меняется easing.
+- [MUI 9.1.0](https://github.com/mui/material-ui/releases/tag/v9.1.0) добавил поддержку `prefers-reduced-motion`, чтобы компоненты Material UI лучше уважали системную настройку уменьшения анимаций.
+- [performative-ui](https://vorpus.github.io/performativeUI/) собирает шуточные React-компоненты для типичных AI-лендингов, включая [ASCII hero art](https://vorpus.github.io/performativeUI/#/components/ascii-hero) и [node graph backgrounds](https://vorpus.github.io/performativeUI/#/components/node-graph).
 - [.MD This Page](https://github.com/Ademking/MD-This-Page "github.com") - расширение браузера, которое превращает страницу в чистый Markdown и убирает лишний интерфейс, рекламу и шумную верстку.
