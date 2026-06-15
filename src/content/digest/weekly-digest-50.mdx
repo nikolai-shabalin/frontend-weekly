@@ -1,0 +1,198 @@
+---
+title: "Еженедельный дайджест #50: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "June 15 2026"
+mascotMessages: [
+  { text: "Фронти на связи - юбилейный выпуск #50! 🗞️", index: 0 },
+  { text: "Safari 27 beta, HTML-first подход и контекстные заголовки задают тон платформе. 🧪", index: 1 },
+  { text: "CSS недели: @function, gap decorations, view transitions и Grid Lanes. 🎨", index: 2 },
+  { text: "Доступность и UX: фокус, мифы, гибридные приложения и AI-ready дизайн-системы. ♿", index: 3 },
+  { text: "Фреймворки: Angular 22, VoidZero в Cloudflare, React Foundation, React Compiler на Rust и TanStack Table. ⚛️", index: 4 },
+  { text: "JavaScript и TypeScript: ESM в Safari, source maps, геометрия, типовые переменные и функциональный ESLint. 📦", index: 5 },
+  { text: "Node.js: npm v12 ужесточает install scripts, Node меняет релизный ритм, а Node-RED 5 обновляет редактор. 🟢", index: 6 },
+  { text: "Рантаймы и WASM: Deno спорит с совместимостью, Bun показывает AI-тренд, Emscripten и Electron обновляются. 🧬", index: 7 },
+  { text: "ИИ-подборка: инженерные ценности, агентные hooks и Chrome AI в Zork. 🤖", index: 8 },
+  { text: "Инструменты недели: visx, PDFSlick, Micromodal, FontSelf, NoLoJS, Mitos ASCII, tsParticles и replacements.fyi. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### Safari 27 beta приносит много новых возможностей веб-платформы
+Apple показала [что нового появилось в WebKit и Safari 27 beta](https://webkit.org/blog/17967/news-from-wwdc26-webkit-in-safari-27-beta/ "webkit.org"). Релиз большой: кастомизируемый `<select>`, новые CSS-свойства, поддержка `sizes="auto"` для изображений и десятки других улучшений. Для разработчика это важный сигнал: привычные элементы HTML постепенно становятся гибче, а часть интерфейсов, которые раньше требовали тяжелого JavaScript, можно будет собирать ближе к нативной платформе.
+
+### HTML-first подход помог удвоить число завершенных форм
+История про [HTML-first сайт, который удвоил число пользователей за ночь](https://mohkohn.co.uk/writing/html-first/ "mohkohn.co.uk"), хорошо показывает, почему базовые формы все еще важны. После двух дорогих неудачных переработок публичный сервис вернули к обычным HTML-формам, сохранению прогресса на сервере и JavaScript только там, где он реально помогает. Чем меньше интерфейс ломается из-за состояния на клиенте, тем проще пользователю дойти до конца.
+
+### Заголовки могут учитывать контекст секции
+Manuel Matuzovic разбирает [контекстно-зависимые заголовки в HTML](https://www.matuzo.at/blog/2026/content-aware-headings "www.matuzo.at") и экспериментальный атрибут [`headingoffset`](https://groups.google.com/a/mozilla.org/g/dev-platform/c/rHK-dG4weS0/m/Xgaj7uCQAAAJ). Идея в том, чтобы компонент мог подстраивать уровень заголовка под место, куда его вставили. Это полезно для дизайн-систем: карточка, секция или виджет не должны ломать структуру страницы только потому, что переехали в другую часть макета.
+
+- Google улучшил [Baseline Checker](https://web.dev/blog/baseline-ga-checker-update): теперь проще выбрать подходящую Baseline-цель для сайта без ручного экспорта данных из Analytics.
+- В Safari 27 beta переписали [ESM loader ближе к стандартам](https://javascriptweekly.com/link/186272/web), что улучшает поддержку top-level `await`, а WebAssembly получил [поддержку JSPI](https://javascriptweekly.com/link/186273/web) для более удобной работы с промисами между JS и WASM.
+- CodePen разрешил превращать работы, созданные в [новом редакторе 2.0](https://blog.codepen.io/docs/pens/deployment/), в [живые опубликованные сайты](https://bsky.app/profile/codepen.io/post/3mnfgn4oxiy2d). Для маленьких демо это сокращает путь от идеи до публичной страницы.
+
+## 🎨 CSS и дизайн
+
+### CSS `@function` делает стили ближе к настоящим вычислениям
+В статье про [основы и developer experience CSS `@function`](https://frontendmasters.com/blog/the-fundamentals-and-dev-experience-of-css-function/ "frontendmasters.com") объясняется новая возможность объявлять функции прямо в CSS и возвращать значения, которые потом используются в свойствах. Сейчас [поддержка `@function`](https://caniuse.com/mdn-css_at-rules_function) ограничена Chromium-браузерами, а инструменты еще шероховатые, но направление понятное: часть повторяющейся логики можно будет держать в CSS, не вынося ее в препроцессор или JavaScript.
+
+### CSS gap decorations получают практические примеры
+Brecht De Ruyte подробно показывает, как [оформлять промежутки между grid и flex-элементами](https://utilitybend.com/blog/css-is-filling-the-gaps-with-rules-a-way-to-style-gaps-in-grid-and-flex "utilitybend.com"). Раньше линии между карточками часто делали через `border`, псевдоэлементы или дополнительные обертки. Новый подход позволяет стилизовать именно `gap`, поэтому сетка остается чище, а оформление не смешивается с содержимым элементов.
+
+### Переходы между страницами можно делать без JavaScript
+Материал про [CSS View Transitions между документами](https://www.rotecodefraktion.de/en/blog/css-view-transitions-zwischen-seiten/ "www.rotecodefraktion.de") показывает, как обычный сайт может получить плавные переходы между страницами всего через CSS. Это не заменяет продуманную навигацию, но помогает сделать многостраничный сайт визуально ближе к приложению без клиентского роутера.
+
+### Grid Lanes получили большой интерактивный справочник
+Команда WebKit запустила [The Field Guide to CSS Grid Lanes](https://gridlanes.webkit.org/ "gridlanes.webkit.org") и отдельно [рассказала о запуске справочника](https://webkit.org/blog/18098/introducing-the-field-guide-to-grid-lanes/). Это набор интерактивных примеров про линии и области в CSS Grid. Хороший ресурс, чтобы перестать воспринимать Grid как магическую таблицу и начать осознанно раскладывать сложные блоки.
+
+- В статье про [scrubbable staggered animation на CSS `@function`](https://master.dev/blog/scrubbable-staggered-animation-with-css-function/ "master.dev") показывают, как формулой описать повторяемую задержку для анимаций, прокрутки или других входных значений.
+- [CSS Wordle](https://css-questions.com/css-wordle) превращает изучение CSS-возможностей в игру: нужно угадать фичу по подсказкам.
+- [FontSelf](https://www.fontself.app/ "www.fontself.app") помогает настроить Google Fonts для self-hosting: выбрать шрифт, скачать пакет и получить готовый CSS.
+- В номинациях [Tiny Awards](https://tinyawards.net) собирают маленькие, творческие и handmade-проекты из веба - хороший повод посмотреть на веб не только как на продуктовую платформу.
+
+## ♿ Доступность и UX
+
+### Порядок фокуса обычно не нужно размечать вручную
+Eric Bailey объясняет, почему [не стоит отдельно аннотировать focus order](https://ericwbailey.design/published/you-probably-shouldnt-be-annotating-focus-order/ "ericwbailey.design"). Если HTML семантический, а визуальный порядок совпадает с порядком чтения, клавиатурная навигация чаще всего уже работает правильно. Когда приходится рисовать сложную схему фокуса, это может быть признаком, что структура страницы стала слишком запутанной.
+
+### Мифы о доступности лучше разбирать конкретными аргументами
+Stéphanie Walter собрала [9 мифов о доступности и ответы на них](https://stephaniewalter.design/blog/9-accessibility-myths-and-pushbacks-and-how-to-answer-them/). Такие возражения часто звучат одинаково: "это дорого", "нашим пользователям не нужно", "мы поправим потом". Статья помогает отвечать не общими лозунгами, а практическими объяснениями про качество продукта, риски и реальные сценарии пользователей.
+
+### Гибридные мобильные приложения требуют осознанного выбора стека
+В [гайде по ландшафту hybrid mobile app development](https://piccalil.li/blog/a-front-end-developers-guide-to-the-hybrid-mobile-app-development-landscape/) объясняется, чем отличаются подходы вроде WebView, Capacitor, React Native и PWA. Для фронтенд-разработчика важно понимать компромисс: где вы пишете почти обычный веб, где получаете доступ к нативным API, а где начинаете жить в отдельной мобильной архитектуре.
+
+- Smashing Magazine рассказывает, [как подготовить дизайн-систему к работе с AI](https://www.smashingmagazine.com/2026/06/how-make-design-system-ai-ready/): компонентам нужны ясные правила, токены, описания и ограничения, чтобы модели не собирали интерфейс наугад.
+- [Micromodal.js](https://javascriptweekly.com/link/186295/web "micromodal.vercel.app") помогает делать доступные модальные окна по WAI-ARIA-практикам и добавляет удобства поверх нативного [`<dialog>`](https://javascriptweekly.com/link/186296/web): hooks, блокировку прокрутки, анимации и закрытие по фону.
+
+<TelegramCTA/>
+
+## ⚛️ React и фреймворки
+
+### Angular 22 стабилизирует формы, доступность и асинхронную реактивность
+Google выпустил [Angular v22](https://javascriptweekly.com/link/186267/web "blog.angular.dev"). В стабильный или production-ready статус перешли [Signal Forms](https://javascriptweekly.com/link/186268/web), [Angular Aria](https://javascriptweekly.com/link/186269/web) и [асинхронная реактивность](https://javascriptweekly.com/link/186270/web). Роутер также получил экспериментальную работу с браузерным [Navigation API](https://javascriptweekly.com/link/186271/web). Это релиз про то, как Angular подтягивает современные идеи реактивности, не отказываясь от своего полного фреймворк-подхода.
+
+### VoidZero присоединяется к Cloudflare
+[VoidZero присоединяется к Cloudflare](https://javascriptweekly.com/link/186265/web "voidzero.dev") - это важная новость для всего мира Vite, Vitest, Rolldown и Oxc. Проекты остаются MIT-лицензированными, а команда продолжит ими руководить. В отдельном [посте команды Vite](https://javascriptweekly.com/link/186266/web) Cloudflare объявила фонд на 1 миллион долларов для мейнтейнеров и контрибьюторов Vite-экосистемы.
+
+### Rust-порт React Compiler готовят к тестированию
+[Rust-версия React Compiler](https://javascriptweekly.com/link/186275/web) уже готова к тестированию и близка к слиянию. Компилятор нужен, чтобы React мог лучше оптимизировать компоненты автоматически, а Rust-порт делает инструментальную часть быстрее и удобнее для больших проектов. Для разработчиков это не мгновенная магия в UI, но важный шаг к более зрелой сборке React-приложений.
+
+### React Foundation оформляет новую страницу экосистемы
+[React Foundation запустил новый сайт](https://react.foundation/ "react.foundation") после того, как в феврале [фонд принял управление React](https://react.dev/blog/2026/02/24/the-react-foundation) от Meta. Переезд виден и в GitHub: старый адрес [`facebook/react` теперь ведет на `react/react`](https://github.com/react/react). Для разработчиков это не меняет API, но показывает, что React постепенно оформляется как более независимый open source-проект с отдельной организационной базой.
+
+### Большой список React-библиотек помогает выбрать стек на 2026 год
+Robin Wieruch обновил свой [обзор React-библиотек и инструментов на 2026 год](https://www.robinwieruch.de/react-libraries/ "www.robinwieruch.de"). Внутри есть категории для старта нового приложения, UI, анимаций, форм, тестов, интернационализации и управления состоянием. Такой список полезен не как готовый рецепт для всех проектов, а как карта экосистемы: проще понять, какие задачи обычно закрывают отдельными библиотеками и где лучше не тянуть лишнюю зависимость.
+
+- [TanStack Table v9 Beta](https://javascriptweekly.com/link/186276/web) обновляет headless-движок таблиц для React, Preact, Solid, Vue, Angular, Svelte и Lit. Headless означает, что библиотека отвечает за состояние и поведение таблицы, а внешний вид вы строите сами.
+- [TanStack AI вышел в beta](https://tanstack.com/blog/tanstack-ai-beta): это набор инструментов для AI-функций без привязки к конкретному фреймворку или провайдеру моделей.
+- В React RFC предложили [возвращать disposable из `useEffect` и `useLayoutEffect`](https://github.com/reactjs/rfcs/pull/278) вместо функции очистки. Идея пока обсуждается, но она показывает, как React ищет более явный способ описывать освобождение ресурсов.
+- Aurora Scharff подробно показывает, как собрать [активный `NavLink` в Next.js](https://aurorascharff.no/posts/building-an-active-navlink-component-in-nextjs/): ссылка сама понимает текущий маршрут и подсвечивается в навигации.
+- Jenna Smith объясняет, почему [лучшие loading states иногда вообще не показываются](https://jjenzz.com/best-loading-states-are-no-loading-states/): если заранее подгрузить данные перед переходом, пользователь видит готовый экран вместо скелетона.
+- Jay Freestone разбирает случай, когда [родительскому React-компоненту нужно знать о своих детях](https://www.jayfreestone.com/writing/updating-react-parents-in-response-to-changes-in-children/). Это помогает аккуратнее передавать состояние вверх, не превращая дерево компонентов в набор случайных связей.
+
+### React Native обновляет платформу и инструменты
+[React Native 0.86.0](https://github.com/react/react-native/releases/tag/v0.86.0) вышел вместе с [React Native Windows v0.83](https://devblogs.microsoft.com/react-native/%f0%9f%9a%80react-native-windows-v0-83-is-here/). Это важно для команд, которые используют один React-подход не только в браузере, но и в мобильных или desktop-приложениях. Отдельно Nicholas Tarta показал, как [убирал рекламу с React Native-страницы Kindle](https://sighery.com/posts/patching-kindle-homepage/ "sighery.com") через разбор Hermes bytecode; история скорее исследовательская, но хорошо напоминает, что React Native уже встречается даже в интерфейсах устройств.
+
+- [react-native-network-logger 3.0](https://github.com/alexbrazier/react-native-network-logger) помогает смотреть HTTP-запросы прямо внутри React Native-приложения на iOS и Android.
+- [react-native-compressor 2.0](https://github.com/numandev1/react-native-compressor) сжимает изображения, видео и аудио перед загрузкой, чтобы приложение меньше тратило трафик и быстрее отправляло файлы.
+- [React Native Testing Library 14.0](https://github.com/callstack/react-native-testing-library/releases/tag/v14.0.0) теперь требует React 19+ и React Native 0.78+, поэтому обновление лучше планировать вместе с версиями основного стека.
+- [react-redux-firebase 4.0](https://github.com/prescottprue/react-redux-firebase) обновил Redux-биндинги для Firebase и добавил поддержку React 19.
+
+- [Taiga UI 5.10](https://javascriptweekly.com/link/186306/web) обновляет большой набор компонентов для Angular, где уже больше 50 UI-элементов.
+- [Astro Photo Grid](https://github.com/kydecker/astro-photo-grid) предлагает минимальную одностраничную фотогалерею с lightbox для Astro.
+
+## 📦 JavaScript
+
+### Source maps помогают отлаживать продакшен, но требуют контроля
+В статье [Everything You Need to Know About Source Maps](https://javascriptweekly.com/link/186289/web) объясняется, как source maps связывают минифицированный код с исходниками. Это удобно, когда нужно понять ошибку из продакшена, но публикация source maps без правил доступа может раскрыть структуру проекта и куски исходного кода.
+
+### Geometric.js добавляет удобную геометрию в JavaScript
+[Geometric.js](https://javascriptweekly.com/link/186291/web "www.harryjstevens.com") - библиотека для работы с полигонами, bounding boxes, отражениями, интерполяцией и вращением. В [примерах](https://javascriptweekly.com/link/186292/web) видно, как это применять в графике и визуализациях, а для проверки пересечения фигур есть [отдельная функция](https://javascriptweekly.com/link/186293/web). Это полезно, когда в интерфейсе появляется карта, редактор, диаграмма или любая сцена с координатами.
+
+### NoLoJS собирает альтернативы JavaScript-паттернам на HTML и CSS
+[NoLoJS](https://aarontgrogg.github.io/NoLoJS/ "aarontgrogg.github.io") показывает, какие привычные JS-задачи можно решить HTML, CSS или совсем небольшим скриптом. Внутри есть примеры для аккордеонов, модальных окон, ленивой загрузки и других стандартных сценариев. Это не призыв отказаться от JavaScript, а напоминание сначала проверить, не умеет ли платформа это сама.
+
+- [RunJS 4](https://javascriptweekly.com/link/186280/web) обновляет песочницу для быстрого запуска JavaScript-фрагментов.
+- [eslint-plugin-functional 10.0](https://javascriptweekly.com/link/186301/web) добавляет правила линтера, которые запрещают мутации и подталкивают код к функциональному стилю.
+- [Draco.js](https://javascriptweekly.com/link/186304/web) - чистый JavaScript-загрузчик Draco mesh для three.js от mrdoob, с отдельным [демо](https://javascriptweekly.com/link/186305/web).
+- [tsParticles 4](https://particles.js.org/ "particles.js.org") обновляет движок частиц для конфетти, огня, снега и похожих эффектов; рядом есть [ribbons](https://ribbons.js.org/) и [живые демо пресетов](https://particles.js.org/playground/presets).
+
+## 📘 TypeScript
+
+### TypeScript умеет выводить типовые переменные, но важно понимать границы
+Nicolas Laurent разбирает, [как TypeScript выводит type variables](https://javascriptweekly.com/link/186290/web). Это полезно, когда generic-функция сама понимает типы из аргументов и не требует вручную писать `<T>`. Но вывод типов не телепатия: если данные слишком общие или связей между аргументами не хватает, типы нужно помогать уточнять.
+
+- [ts-loader 9.6](https://javascriptweekly.com/link/186302/web) обновляет TypeScript-loader для webpack и [возвращает поддержку webpack 4](https://javascriptweekly.com/link/186303/web), что важно для проектов, которые еще не переехали на более свежую сборку.
+- [Kanel 4.0](https://nodeweekly.com/link/186431/web) генерирует TypeScript-типы из живой Postgres-базы, чтобы схемы данных меньше расходились с кодом приложения.
+- [`babel-plugin-zod-hoist`](https://javascriptweekly.com/link/186299/web "github.com") от автора [Slonik](https://javascriptweekly.com/link/186300/web) выносит определения Zod-схем выше по файлу и помогает ускорять валидацию.
+
+## ⚙️ Node.js
+
+### npm v12 перестанет запускать install scripts по умолчанию
+GitHub рассказал, что [npm v12 больше не будет автоматически выполнять install scripts](https://nodeweekly.com/link/186406/web "github.blog") вроде `preinstall`, `install` и `postinstall`, если проект явно не разрешил их через новый workflow. Подготовиться можно уже сейчас через [npm 11.16.0](https://nodeweekly.com/link/186407/web): он предупреждает, какие пакеты будущая версия заблокировала бы. Это важное изменение для безопасности, потому что install scripts могут запускать произвольный код при установке зависимости.
+
+### Node.js меняет график релизов и нумерацию
+Luciano Mammino подробно объясняет [новый релизный цикл и версии Node.js](https://nodeweekly.com/link/186408/web "nodejsdesignpatterns.com"). Начиная с Node 27 проект переходит к одному major-релизу в год и добавляет alpha-канал для тестирования. Для команд это означает более предсказуемое планирование обновлений: проще заранее понять, когда ждать breaking changes, а когда безопаснее оставаться на LTS.
+
+### Supply chain-проблемы в npm продолжают давить на экосистему
+На фоне продолжающихся [npm worms и supply chain атак](https://nodeweekly.com/link/186410/web) вспоминают [отчет об уязвимости еще из 2016 года](https://nodeweekly.com/link/186411/web), который предсказывал похожие проблемы. Параллельно [Drizzle ORM](https://nodeweekly.com/link/186412/web) столкнулся с тем, что команда [не может публиковать новые версии в npm](https://nodeweekly.com/link/186413/web) из-за лимита метаданных реестра: у пакета уже [1 397 опубликованных версий](https://nodeweekly.com/link/186414/web). Даже инфраструктурные лимиты внезапно становятся частью надежности зависимостей.
+
+### Node-RED 5.0 сильно обновляет редактор
+[Node-RED 5.0](https://nodeweekly.com/link/186421/web "nodered.org") получил самое большое обновление редактора за историю проекта: новые боковые панели, темную тему, паузу debug output и вызов Link nodes из Function nodes. Это low-code среда на Node.js, где логику собирают из блоков, поэтому улучшения редактора напрямую влияют на скорость работы.
+
+- Новые версии [Node.js v26.x, 24.x и 22.x](https://nodeweekly.com/link/186409/web) готовятся закрыть уязвимости, самая серьезная из которых отмечена как HIGH.
+- Исследование [ESM provision by popular npm packages](https://nodeweekly.com/link/186416/web "github.com") показывает, что 38% популярных пакетов уже публикуют ESM, а 16% стали ESM-only.
+- Из-за бага npm tooling несколько односимвольных пакетов были ошибочно [помечены как security holders](https://nodeweekly.com/link/186415/web), включая `c`, `i`, `n` и `x`; для реестра это редкий, но показательный сбой метаданных.
+- [Playwright fixtures API](https://nodeweekly.com/link/186418/web) разобрали изнутри: статья показывает, как Playwright понимает нужные фикстуры по сигнатуре тестовой функции.
+- [pnpm 11.5](https://javascriptweekly.com/link/186279/web) обновляет пакетный менеджер на фоне общей работы экосистемы над безопасностью установок.
+- [Bonsai](https://nodeweekly.com/link/186422/web "danfry1.github.io") предлагает безопасный язык выражений для пользовательских правил, фильтров и шаблонов без `eval`; для экспериментов есть [playground](https://nodeweekly.com/link/186423/web).
+- [DepsGuard](https://nodeweekly.com/link/186424/web "depsguard.com") проверяет и ужесточает настройки npm, pnpm, Yarn и Bun: отключает install scripts, включает cooldowns и следит за provenance.
+- [Commander.js 15.0](https://nodeweekly.com/link/186425/web) стал ESM-only, а версия 14 будет поддерживаться до мая 2027 года для проектов, которым нужно время на миграцию.
+- [NodeAV 6.0](https://nodeweekly.com/link/186426/web) дает прямой доступ к C API FFmpeg для работы с кодеками, фильтрами и потоками.
+- [Juice 12.1](https://github.com/Automattic/juice) встраивает CSS прямо в HTML, что часто нужно при сборке email-шаблонов; библиотеку используют и в инструментах вроде [MJML и node-email-templates](https://nodeweekly.com/link/186429/web).
+- [Cucumber.js 13.0](https://nodeweekly.com/link/186430/web) перестроил параллельный runtime тестов на worker threads.
+- [Envalid 8.2](https://nodeweekly.com/link/186432/web) обновляет библиотеку для проверки переменных окружения.
+- Интерактивный проект [Wander Around a Heap of Packages in `node_modules`](https://nodeweekly.com/link/186435/web "nesbitt.io") превращает папку `node_modules` в 3D-пространство; за ним стоит Andrew Nesbitt из [ecosyste.ms](https://nodeweekly.com/link/186436/web).
+
+## 🧬 Рантаймы, сборка и WASM
+
+### Deno спорит с направлением развития
+В статье [I Wish Deno Would Keep Doing What It Does Best](https://javascriptweekly.com/link/186284/web "hackers.pub") автор переживает, что Deno слишком много сил тратит на совместимость с Node.js и npm. Ранний Deno был интересен как zero-config runtime на веб-стандартах и в одном бинарнике. Чем сильнее он догоняет привычную Node-экосистему, тем сложнее сохранить эту ясную идентичность.
+
+### Bun показывает, как AI может менять open source-инфраструктуру
+RedMonk разбирает, [что Bun говорит нам об AI и open source](https://javascriptweekly.com/link/186286/web "redmonk.com"). Вокруг Bun интересно не только то, что это быстрый runtime, но и то, что все больше кода в такой инфраструктуре пишется с помощью AI. Это поднимает вопросы о поддерживаемости, доверии и том, как оценивать качество кода, если его автором все чаще становится связка человека и модели.
+
+- [Electron 43 beta](https://javascriptweekly.com/link/186274/web) ускоряется за счет embedded Node.js snapshot, кеширования bundle как V8 bytecode и link-time optimization основного бинарника.
+- [Rolldown 1.1](https://javascriptweekly.com/link/186278/web) обновляет быстрый bundler из экосистемы VoidZero.
+- [Emscripten 6.0](https://javascriptweekly.com/link/186281/web) обновляет инструмент, который компилирует C/C++ и похожий код в WebAssembly для запуска в браузере и других JS-средах.
+- [Neutralinojs 6.8](https://nodeweekly.com/link/186427/web) улучшает легкий фреймворк для кроссплатформенных desktop-приложений: добавлены native drag and drop файлов и новая политика окон для `target="_blank"`.
+
+## 🤖 ИИ
+
+### Инженерные ценности меняются, когда код все чаще пишут агенты
+Christoph Nakazawa в [Modern Engineering Values](https://javascriptweekly.com/link/186282/web "cpojer.net") рассуждает, какие навыки становятся важнее в эпоху coding agents. Автор Jest и [Fate](https://javascriptweekly.com/link/186283/web) делает акцент на владении продуктом, вкусе, быстрых проверках и строгой обратной связи. Когда код генерируется быстрее, ценность смещается к умению понять, что именно стоит строить и как проверить результат.
+
+### VS Code Agent Hook реагирует на изменения файлов
+Nicholas C. Zakas показывает, как создать [VS Code Agent Hook для реакции на изменения файлов](https://nodeweekly.com/link/186420/web). Такой hook может запускать действия агента автоматически, когда проект меняется: например, обновлять контекст, проверять файлы или подсказывать следующий шаг. Это маленький пример того, как IDE постепенно становится средой для совместной работы человека и агента.
+
+- Raymond Camden проверил, [может ли встроенный AI в Chrome играть в Zork 1](https://javascriptweekly.com/link/186316/web). Эксперимент игровой, но полезный: он показывает, как браузерные AI API справляются с состоянием, инструкциями и последовательными решениями.
+
+## ⚒️ Инструменты и библиотеки
+
+### Mitos ASCII Tool превращает изображения в ASCII и анимации
+[Mitos ASCII Tool](https://javascriptweekly.com/link/186311/web) от Oxide Computer Company конвертирует изображения в ASCII-иллюстрации и анимации. Внутри есть livecoding-среда на базе [play.core](https://javascriptweekly.com/link/186312/web), поэтому это не просто фильтр, а маленький творческий инструмент для визуальных экспериментов.
+
+### replacements.fyi помогает заменить лишние npm-зависимости
+[replacements.fyi](https://javascriptweekly.com/link/186313/web) подсказывает, чем заменить npm-пакет: более простым пакетом, коротким сниппетом или встроенным API платформы. Это полезно при чистке зависимостей: иногда библиотека все еще нужна, а иногда современный Node.js или браузер уже умеют то же самое без внешнего кода.
+
+### Obs.js адаптирует UX под возможности устройства
+[Obs.js](https://javascriptweekly.com/link/186314/web) добавляет классы на `<html>` в зависимости от доступной производительности: сети, CPU, задержки и других условий. Harry Roberts [дополнительно объясняет идею](https://javascriptweekly.com/link/186315/web): интерфейс может быть богаче на мощном устройстве и проще на слабом, не заставляя всех пользователей платить одинаковую цену.
+
+- [visx 4.0](https://visx.airbnb.tech/ "visx.airbnb.tech") обновляет набор React-примитивов для визуализаций от Airbnb с полной поддержкой React 19; в [галерее компонентов](https://visx.airbnb.tech/gallery) проще увидеть, какие графики можно собрать.
+- [PDFSlick 4.0](https://pdfslick.dev/ "pdfslick.dev") обновляет PDF-viewer на базе PDF.js для React, Solid, Svelte и обычного JavaScript; [React bindings](https://pdfslick.dev/docs/react) помогают встроить просмотрщик в приложение, а в [демо](https://pdfslick.dev/examples/pdf-viewer-app) видны аннотации и работа с большими документами.
+- [bezier-easing-editor 1.1](https://github.com/gre/bezier-easing-editor) добавляет React-компонент для визуального редактирования кривых Безье, а [живое демо](https://gre.github.io/bezier-easing-editor/) помогает сразу почувствовать, как меняется easing.
+- [MUI 9.1.0](https://github.com/mui/material-ui/releases/tag/v9.1.0) добавил поддержку `prefers-reduced-motion`, чтобы компоненты Material UI лучше уважали системную настройку уменьшения анимаций.
+- [performative-ui](https://vorpus.github.io/performativeUI/) собирает шуточные React-компоненты для типичных AI-лендингов, включая [ASCII hero art](https://vorpus.github.io/performativeUI/#/components/ascii-hero) и [node graph backgrounds](https://vorpus.github.io/performativeUI/#/components/node-graph).
+- [.MD This Page](https://github.com/Ademking/MD-This-Page "github.com") - расширение браузера, которое превращает страницу в чистый Markdown и убирает лишний интерфейс, рекламу и шумную верстку.
