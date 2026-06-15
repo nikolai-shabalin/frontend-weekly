@@ -1,0 +1,247 @@
+<section class="fiftieth-issue">
+  <button class="fiftieth-issue__repeat" type="button" data-fiftieth-modal-open>
+    Прочитать информацию по праздничному 50 выпуску заново
+  </button>
+
+  <dialog class="fiftieth-issue__dialog" data-fiftieth-modal>
+    <form class="fiftieth-issue__card" method="dialog">
+      <button class="fiftieth-issue__x" type="submit" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+      <p class="fiftieth-issue__eyebrow">Праздничный 50 выпуск</p>
+      <h2 class="fiftieth-issue__title">Спасибо, что читаете дайджест</h2>
+      <div class="fiftieth-issue__content">
+        <p>
+          Мне очень приятно, что он может быть полезен для вас.
+        </p>
+        <p>
+          В честь 50 выпуска можете поиграть в <a href="/css-wordle">Wordle про CSS-фичи</a>. В игре можно победить и получить ценные призы,
+          которые будут разыграны через месяц. Точную дату объявлю позже
+          <a href="https://t.me/greatAttractorCode" target="_blank" rel="noreferrer">в телеграм-канале</a>.
+        </p>
+        <p>
+          Я считаю, что игру пройти невозможно, но занять какое-то призовое место будет приятно. Всем удачи!
+        </p>
+      </div>
+      <menu class="fiftieth-issue__actions">
+        <a class="fiftieth-issue__link" href="/css-wordle">Играть в CSS Wordle</a>
+        <button class="fiftieth-issue__close" type="submit">Закрыть</button>
+      </menu>
+    </form>
+  </dialog>
+</section>
+
+<script>
+  const storageKey = 'frontend-weekly:fiftieth-issue-modal-read';
+  const dialog = document.querySelector('[data-fiftieth-modal]');
+  const openButton = document.querySelector('[data-fiftieth-modal-open]');
+
+  const openDialog = () => {
+    if (!(dialog instanceof HTMLDialogElement) || dialog.open) {
+      return;
+    }
+
+    dialog.showModal();
+  };
+
+  if (dialog instanceof HTMLDialogElement) {
+    dialog.addEventListener('close', () => {
+      localStorage.setItem(storageKey, 'true');
+    });
+
+    if (localStorage.getItem(storageKey) !== 'true') {
+      openDialog();
+    }
+  }
+
+  openButton?.addEventListener('click', openDialog);
+</script>
+
+<style>
+  .fiftieth-issue {
+    margin: 0 0 var(--space-xl);
+  }
+
+  .fiftieth-issue__repeat {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.8rem;
+    padding: 0.62rem 1rem;
+    color: #fff9ec;
+    background: linear-gradient(120deg, var(--accent-dark), var(--accent));
+    border: 2px solid rgba(110, 43, 10, 0.22);
+    border-radius: 999px;
+    font: 800 var(--text-sm) / 1.15 var(--font-body);
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .fiftieth-issue__repeat:hover,
+  .fiftieth-issue__link:hover,
+  .fiftieth-issue__close:hover {
+    transform: translateY(-1px);
+    filter: saturate(112%);
+  }
+
+  .fiftieth-issue__dialog {
+    width: min(92vw, 42rem);
+    max-height: calc(100dvh - var(--space-2xl));
+    margin: auto;
+    padding: 0;
+    color: rgb(var(--ink));
+    background: transparent;
+    border: 0;
+    overflow: auto;
+  }
+
+  .fiftieth-issue__dialog::backdrop {
+    background: rgba(48, 26, 12, 0.48);
+    backdrop-filter: blur(4px);
+  }
+
+  .fiftieth-issue__card {
+    position: relative;
+    display: grid;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: clamp(1.25rem, 0.88rem + 2vw, 2.25rem);
+    background:
+      radial-gradient(circle at 92% 8%, rgba(var(--accent-yellow-bg-rgb), 0.42), transparent 48%),
+      radial-gradient(circle at 0 100%, rgba(115, 182, 72, 0.22), transparent 52%),
+      var(--paper-color);
+    border: 2px solid rgba(var(--line), 0.64);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 64px rgba(48, 26, 12, 0.28);
+  }
+
+  .fiftieth-issue__x {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    aspect-ratio: 1;
+    padding: 0;
+    color: rgb(var(--ink));
+    background: rgba(252, 248, 237, 0.82);
+    border: 2px solid rgba(var(--line), 0.56);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .fiftieth-issue__x svg {
+    width: 1.15rem;
+    aspect-ratio: 1;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+  }
+
+  .fiftieth-issue__x:hover {
+    transform: translateY(-1px);
+    filter: saturate(112%);
+  }
+
+  .fiftieth-issue__eyebrow {
+    width: fit-content;
+    margin: 0;
+    padding: 0.26rem 0.7rem;
+    color: var(--accent-dark);
+    background: rgba(243, 191, 31, 0.32);
+    border: 1px solid rgba(var(--line), 0.48);
+    border-radius: 999px 999px 999px 0;
+    font-family: var(--font-accent);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .fiftieth-issue__title {
+    margin: 0;
+    font-size: var(--text-3xl);
+  }
+
+  .fiftieth-issue__content {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .fiftieth-issue__content p {
+    margin: 0;
+    color: rgb(var(--ink-soft));
+    font-size: var(--text-md);
+    line-height: 1.6;
+  }
+
+  .fiftieth-issue__content a {
+    font-weight: 800;
+  }
+
+  .fiftieth-issue__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin: 0;
+    padding: 0;
+  }
+
+  .fiftieth-issue__link,
+  .fiftieth-issue__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.62rem 1rem;
+    border-radius: 999px;
+    font: 800 var(--text-sm) / 1 var(--font-body);
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .fiftieth-issue__link {
+    color: #fff9ec;
+    background: var(--accent-green);
+    border: 2px solid rgba(44, 75, 24, 0.25);
+  }
+
+  .fiftieth-issue__close {
+    color: rgb(var(--ink));
+    background: rgba(252, 248, 237, 0.72);
+    border: 2px solid rgba(var(--line), 0.56);
+    cursor: pointer;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .fiftieth-issue__dialog::backdrop {
+      background: rgba(0, 0, 0, 0.62);
+    }
+
+    .fiftieth-issue__link {
+      color: #111615;
+      background: var(--accent-green);
+    }
+
+    .fiftieth-issue__close {
+      background: rgba(26, 35, 32, 0.72);
+    }
+
+    .fiftieth-issue__x {
+      background: rgba(26, 35, 32, 0.82);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .fiftieth-issue__repeat,
+    .fiftieth-issue__link,
+    .fiftieth-issue__close {
+      width: 100%;
+    }
+  }
+</style>
