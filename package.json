@@ -17,9 +17,9 @@
     "@astrojs/rss": "4.0.18",
     "@astrojs/sitemap": "3.7.3",
     "@eslint/js": "10.0.1",
-    "astro": "6.4.6",
+    "astro": "6.4.8",
     "eslint": "10.5.0",
-    "sharp": "0.35.1",
+    "sharp": "0.35.2",
     "stylelint": "17.13.0",
     "stylelint-config-expa": "1.0.0",
     "typescript": "6.0.3"
