@@ -1,4 +1,5 @@
 allowBuilds:
+  esbuild: true
   sharp: true
 minimumReleaseAgeExclude:
   - '@eslint/plugin-kit@0.7.2'
@@ -20,3 +21,5 @@ minimumReleaseAgeExclude:
   - '@img/sharp-win32-ia32@0.35.1'
   - '@img/sharp-win32-x64@0.35.1'
   - sharp@0.35.1
+  - astro@7.0.3
+  - stylelint@17.14.0
