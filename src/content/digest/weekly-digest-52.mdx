@@ -1,0 +1,238 @@
+---
+title: "Еженедельный дайджест #52: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "June 29 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #52! 🗞️", index: 0 },
+  { text: "Платформа недели: PACT, локальное время в HTML и директории из браузера. 🧪", index: 1 },
+  { text: "CSS собирает адаптивные темы, якорные карточки и даже Quake в DOM. 🎨", index: 2 },
+  { text: "Доступность: Grid Lanes, dialog, медиаплееры и AI проходят проверку вниманием. ♿", index: 3 },
+  { text: "JavaScript: Babel 8, сигналы на 33 байта и календарь FullCalendar 7. 📦", index: 4 },
+  { text: "React ускоряет Next.js, Linear переезжает на StyleX, а TanStack Table экономит память. ⚛️", index: 5 },
+  { text: "Astro 7 и Vite 8.1 ускоряют сборку, а Deno 2.9 собирает десктопные приложения. 🛰️", index: 6 },
+  { text: "TypeScript 7 RC уже близко, но старые настройки moduleResolution пора проверить. 📘", index: 7 },
+  { text: "Node.js 26.4 пробует package maps, npm 12 готовит новые правила, WebSocket-серверы меряются скоростью. 🟢", index: 8 },
+  { text: "Инструменты недели: Kage, Takumi, ForesightJS, Wely, Wirewiki и Precise Type. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### PACT предлагает бороться с ботами без слежки за пользователями
+Mozilla подробно описала [PACT - anonymous credentials for the web](https://hacks.mozilla.org/2026/06/pact-anonymous-credentials-for-the-web/). Идея в том, чтобы сайт мог ограничивать ботов и массовые запросы, но не превращал каждого посетителя в постоянный трекинговый идентификатор. Для обычного разработчика это хороший пример того, как приватность и защита от злоупотреблений могут проектироваться вместе, а не как две конфликтующие задачи.
+
+### В HTML обсуждают встроенное локализованное время
+В WHATWG появился [proposal для форматирования времени прямо в `<time>`](https://github.com/whatwg/html/issues/12591), похожий по духу на GitHub-элемент [`<relative-time>`](https://github.com/github/relative-time-element). Если идея дойдет до браузеров, простые даты вроде "сегодня", "вчера" или локального формата времени можно будет показывать без отдельной библиотеки и ручного JavaScript.
+
+### Браузерные приложения могут открывать локальные директории
+Статья про [`window.showDirectoryPicker`](https://steveharrison.dev/showdirectorypicker-opens-up-a-whole-new-world/) показывает, как веб-приложение может попросить у пользователя доступ к папке и работать с ее файлами. В основе лежит браузерный паттерн [opening a directory](https://web.dev/patterns/files/open-a-directory): доступ выдается явно, поэтому это не "сайт читает диск", а управляемый сценарий для редакторов, IDE, фотоинструментов и других локальных веб-приложений.
+
+### Сайт можно спрятать даже в favicon
+Tim Wehrle провел эксперимент и [сохранил целый сайт внутри favicon](https://www.timwehrle.de/blog/i-stored-a-website-in-a-favicon/). Практической пользы у такого трюка немного, зато он хорошо показывает, что привычные веб-форматы иногда гибче, чем кажется: маленькая картинка может оказаться контейнером для неожиданных данных.
+
+- На странице [taken](https://sinceyouarrived.world/taken) видно, какие данные браузер раскрывает сайту уже при первом заходе, без логина, форм и разрешений. Это полезная проверка ожиданий: даже "просто открыть страницу" не значит "ничего не сообщить".
+- Bramus Van Damme рассуждает, [должны ли сайты работать совершенно одинаково на всех платформах](https://www.bram.us/2026/06/21/do-websites-need-to-function-exactly-the-same-on-every-platform/). Вывод спокойный: одинаковой должна быть задача пользователя, а не каждый пиксель и каждая нативная деталь.
+- Jason Grigsby предлагает подумать о будущем картинок в статье [Ending Responsive Images](https://cloudfour.com/thinks/ending-responsive-images/): адаптивные изображения решили много проблем, но их API получился сложным, и вебу нужны более простые пути к хорошей производительности.
+
+## 🎨 CSS и дизайн
+
+### Современная CSS-тема может строиться из одного брендового цвета
+Una Kravets показала [modern CSS theming через `light-dark()`, `contrast-color()` и style queries](https://una.im/modern-css-theming/). Вместо ручного набора цветов для светлой темы, темной темы и каждого компонента можно задать основу, а браузер сам поможет выбрать читаемый контраст и локальные варианты палитры. Такой подход особенно полезен в дизайн-системах: меньше дублирования, меньше мест, где можно случайно сделать нечитаемый текст.
+
+### Grid Lanes могут сломать порядок фокуса
+Manuel Matuzovic предупреждает, что [CSS Grid Lanes легко нарушают WCAG 2.4.3](https://matuzo.at/blog/2026/grid-lanes-accessibility). Визуально элементы могут выглядеть удобно, но клавиатурная навигация начнет прыгать не туда, куда ожидает пользователь. Свойство `flow-tolerance` помогает, но не решает все автоматически, поэтому такие раскладки нужно проверять руками и клавиатурой.
+
+### `dialog` можно оживлять через View Transitions
+Rik Schennink объясняет, как [анимировать `<dialog>` с помощью View Transition API](https://pqina.nl/blog/animating-the-dialog-element-using-view-transitions/). В статье также затронут Invoker Commands API и базовые доработки поведения модального окна. Это хороший пример прогрессивного улучшения: сначала берется нативный элемент, а затем к нему аккуратно добавляются плавность и управление.
+
+### CSS anchor positioning помогает делать кликабельные карточки аккуратнее
+Emil Björklund показывает паттерн [улучшения карточек через CSS anchor positioning](https://thatemil.com/blog/clickable-surface-expansion-using-anchor-position/). Частая проблема карточек в том, что хочется сделать кликабельной большую область, но не сломать вложенные ссылки, кнопки и выделение текста. Anchor positioning дает способ расширять поверхность клика без лишней разметки и странных абсолютных слоев.
+
+### Quake запустили на CSS-геометрии без WebGL и canvas
+[cssQuake](https://cssquake.com/) - порт Quake, где мир отрисован реальными HTML-элементами и CSS 3D-трансформациями. Проект построен на [PolyCSS](https://polycss.com/), а код можно посмотреть в [репозитории cssQuake](https://github.com/LayoutitStudio/cssQuake). Это не новый стандарт для игр в браузере, но очень наглядная демонстрация того, насколько далеко можно растянуть DOM и CSS.
+
+- В заметке про [волнистый range slider](https://css-tip.com/wiggly-range-slider/) обычный ползунок превращается в живой UI-элемент на CSS. Такой прием можно разобрать как маленькую лабораторию по формам, псевдоэлементам и состояниям.
+- Terence Eden разбирает, [какая copyleft-лицензия подходит для SVG](https://shkspr.mobi/blog/2026/06/which-copyleft-licence-is-suitable-for-an-svg/). SVG похож на картинку, но внутри у него код, стили и иногда скрипты, поэтому лицензирование оказывается сложнее, чем у PNG.
+- [Precise Type](https://precise-type.com/) помогает настраивать типографическую шкалу, line-height и letter-spacing не на глаз, а через понятные модели. Результат можно экспортировать в CSS или CSV.
+- [Palette Inspiration](https://paletteinspiration.com/) собирает цветовые палитры из известных произведений искусства; можно, например, открыть подборки по [Пабло Пикассо](https://paletteinspiration.com/pablo-picasso-palettes/) и быстро увидеть, как реальные картины превращаются в набор рабочих цветов.
+
+## ♿ Доступность и UX
+
+### AI-инструменты тоже нужно проверять на доступность
+Aaron Gustafson задает прямой вопрос: [может ли ваш AI пройти тест доступности](https://www.aaron-gustafson.com/notebook/can-your-ai-pass-the-accessibility-test/). Coding agents часто умеют быстро собрать интерфейс, но без явной проверки могут пропустить подписи, фокус, семантику и работу с клавиатуры. Это не повод отказываться от AI, а повод включать доступность в задачу и ревью с самого начала.
+
+### В навигационных метках не нужно повторять слово navigation
+Martin Underhill объясняет, почему [не стоит включать `navigation` в label самой навигации](https://www.tempertemper.net/blog/theres-no-need-to-include-navigation-in-your-navigation-labels). Скринридер уже понимает роль элемента, поэтому подпись вроде "Main navigation" может звучать избыточно. Лучше называть область по смыслу: основная, пользовательская, хлебные крошки или раздел сайта.
+
+### Able Player 5 обновил доступный HTML5-плеер
+[Able Player 5.0.0](https://www.joedolson.com/2026/06/able-player-v5-0-0-released/) развивает аудио- и видеоплеер, который изначально учитывает пользователей с разными потребностями. На [главной странице Able Player](https://ableplayer.github.io/ableplayer/) видно, что речь не только о кнопке play: важны субтитры, управление с клавиатуры, совместимость с браузерами и понятные элементы управления.
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+
+### Babel 8 вышел после восьми лет ожидания
+[Babel 8.0](https://babeljs.io/blog/2026/06/16/8.0.0/) стал большим обновлением старейшего JavaScript-транспайлера. Он перешел на ESM-only, по умолчанию ориентируется примерно на ES2023 вместо ES5 и в целом отражает, что современный JavaScript уже не тот язык, для которого обязательно нужно компилировать все до очень старых браузеров. Перед миграцией стоит проверить плагины, конфиги и места, где инструменты еще ожидают CommonJS.
+
+### FullCalendar 7 обновил календарь для приложений
+[FullCalendar 7.0](https://fullcalendar.io/) - библиотека для календарных интерфейсов в стиле Google Calendar, которую можно использовать с React, Vue, Angular или обычным JavaScript. В [релизе v7.0](https://github.com/fullcalendar/fullcalendar/releases/tag/v7.0.0) появилась поддержка Angular 22, а в [демо с темами](https://themes.fullcalendar.io/) можно быстро понять, как календарь выглядит и настраивается.
+
+### ForesightJS предугадывает намерение пользователя
+[ForesightJS 4](https://foresightjs.com/) анализирует движение мыши, клавиатуру и другие сигналы, чтобы заранее подгрузить страницу или данные до клика. В [v4.0](https://github.com/spaansba/ForesightJS/releases/tag/V4.0) появились официальные пакеты для React и Vue, а в [v4.2](https://github.com/spaansba/ForesightJS/releases/tag/V4.2.0) добавили декларативный компонент `<Foresight>`. Это не магия ускорения, но полезный слой для интерфейсов, где следующий шаг пользователя часто предсказуем.
+
+### JavaScript все еще не умеет удобно поставлять full-stack модули
+Wasp пишет, почему [JavaScript still can't ship a full-stack module](https://wasp.sh/blog/2026/06/22/javascript-still-cant-ship-a-full-stack-module). В экосистемах вроде Rails один пакет может принести и серверную часть, и UI, и миграции, а в JS границы между фронтендом, сервером, сборкой и деплоем устроены сложнее. Это полезный текст, если вы пытаетесь понять, почему "просто поставить пакет" для full-stack фичи часто превращается в интеграционный проект.
+
+- [goja](https://github.com/dop251/goja) - JavaScript-движок на чистом Go, который можно встроить в Go-приложение без CGo и V8. Он нужен не для браузера, а для сценариев, где пользователю или системе нужно дать JS-скриптинг внутри Go-сервиса.
+- [Anime.js 4.5](https://github.com/juliangarnier/anime/releases/tag/v4.5.0) добавил [adapters](https://animejs.com/documentation/adapters/) для анимации не только DOM-элементов, но и объектов вроде Three.js mesh или canvas context.
+- [SunCalc 2.0](https://github.com/mourner/suncalc) считает положение и фазы Солнца и Луны. Такая библиотека пригодится для карт, погодных интерфейсов, фотоинструментов и визуализаций, завязанных на время суток.
+
+## ⚛️ React и фреймворки
+
+### Next.js 16.3 делает навигацию быстрее без полного ухода в SPA
+Команда Next.js показала, как [сделать переходы в Next.js почти мгновенными](https://nextjs.org/blog/next-16-3-instant-navigations). Новые opt-in возможности улучшают ощущение от навигации в приложениях с Server Components: страница сохраняет серверные преимущества, но переходы меньше похожи на ожидание нового документа. Для миграции уже есть [agent skill для adoption cache components](https://github.com/vercel/next.js/blob/canary/skills/next-cache-components-adoption/SKILL.md), а Dan Abramov сообщил, что [присоединяется к команде Next.js частично](https://bsky.app/profile/danabra.mov/post/3mp5b3nd3ws2k) после обсуждения в [Bluesky-треде](https://bsky.app/profile/danabra.mov/post/3mp5b3n3xgc2k).
+
+### Linear ускорил React-приложение миграцией со styled-components на StyleX
+Kenneth Skovhus рассказал, как Linear [переехал со styled-components на StyleX](https://www.skovhus.dev/blog/moving-linear-from-styled-components-to-stylex). Runtime CSS-in-JS удобен, но может добавлять работу во время рендера; переход к StyleX дал примерно 30% ускорения навигации между страницами. Большую часть механической миграции сделал agent-built codemod, но финальные решения и проверка все равно остались за людьми.
+
+### Собственный React renderer помогает понять внутренности reconciler
+После deprecation React Test Renderer мейнтейнер React Native Testing Library написал [кастомный renderer для React](https://www.callstack.com/blog/writing-custom-renderers-for-react). Статья полезна не только авторам тестовых библиотек: она объясняет, как React связывает компоненты с конкретной средой вывода, будь то DOM, native UI или что-то совсем другое.
+
+### TanStack Table v9 сэкономил 90% памяти простой переработкой объектов
+В истории про [рефакторинг TanStack Table v9](https://tanstack.com/blog/tanstack-table-v9-memory-performance) видно, что производительность не всегда требует сложного алгоритма. Команда перестала создавать одинаковые методы на каждом объекте и вынесла их в общие прототипы; на больших таблицах это резко уменьшило расход памяти. Сам [TanStack Table](https://tanstack.com/table/latest) остается библиотекой для таблиц, но урок шире: структура объектов в JavaScript тоже влияет на масштабирование.
+
+### Waku развивает идею reusable server slices
+Daishi Kato описал [уникальную возможность Waku - slices](https://newsletter.daishikato.com/p/waku-s-unique-feature-slices). Slice - это компонент со своей настройкой рендера и ленивым режимом загрузки, чем-то похожий на server islands в Astro. Такой подход помогает разделять большие React-приложения на самостоятельные части, которые не обязаны загружаться и выполняться одновременно.
+
+### Takumi 2.0 рендерит React-компоненты в изображения без браузера
+[Takumi 2.0 Beta](https://takumi.kane.tw/) - Rust-движок, который превращает JSX в изображения без headless-браузера. Новая версия добавила SVG-вывод, Google Fonts по требованию и лучшую поддержку нелатинских символов; для существующих пользователей есть [гайд обновления на v2](https://takumi.kane.tw/docs/upgrade/v2). Это полезно для OG-картинок, превью и автоматической генерации графики из компонентов.
+
+### React Native тоже двигается в сторону продакшен-инструментов
+Статья про [создание video call app with filters in React Native](https://blog.margelo.com/building-videocall-app-with-filters) показывает практический путь к мобильному интерфейсу с камерой и эффектами. А [Voltra 2](https://www.use-voltra.dev/) помогает делать Live Activities и виджеты для iOS и Android на React Native; в [релизе v2.0.0](https://github.com/callstackincubator/voltra/releases/tag/v2.0.0) больше не требуется Expo Modules.
+
+- [Rsbuild 2.1](https://rsbuild.rs/blog/v2-1) включает новую Rust-реализацию React Compiler и поддержку TanStack Start. Параллельно Rolldown и Vite временно [убрали раннюю интеграцию Rust React Compiler](https://x.com/boshen_c/status/2069449703935336846), потому что она заметно увеличивала размер бинарника.
+- Статья [TanStack Start: a mental model for Next.js devs](https://www.adarsha.dev/blog/tanstack-mental-model-for-nextjs-developers) сопоставляет роутинг, загрузку данных и серверные функции TanStack Start с привычными понятиями Next.js.
+- [cnfast](https://github.com/aidenybai/cnfast) предлагает более быструю замену `cn()` из shadcn/ui для склейки и merge Tailwind-классов.
+- [TinyBase 8.5](https://tinybase.org/guides/releases/#v8-5) добавил модуль для реактивных SVG-графиков в React-приложениях.
+- [React Admin 5.15](https://github.com/marmelab/react-admin) обновил фреймворк для админок на React и Material Design и добавил поддержку [MUI v9](https://mui.com/blog/introducing-mui-v9/).
+- [Recharts 3.9](https://github.com/recharts/recharts/releases/tag/v3.9.0) добавил [новые анимации](https://recharts.github.io/en-US/guide/animations/) и отдельный гайд по их использованию.
+- [RedwoodSDK 1.5](https://github.com/redwoodjs/sdk/releases/tag/v1.5.0) принес поддержку Vite 8 в server-first React-фреймворк для Cloudflare.
+- [React Native Reanimated 4.5](https://github.com/software-mansion/react-native-reanimated/releases/tag/4.5.0) обновил декларативные анимации для React Native.
+- [ReactUse 1.0](https://reactuse.org/) собрал больше 160 готовых hooks для React-приложений.
+- [Mantine 9.4](https://mantine.dev/changelog/9-4-0/) обновил популярный набор React-компонентов.
+- [React Flow Smart Edge 4.9](https://tisoap.github.io/react-flow-smart-edge/docs/) прокладывает связи алгоритмом A* так, чтобы они обходили узлы в диаграммах на [React Flow](https://reactflow.dev/).
+- [StyleX 0.19](https://github.com/facebook/stylex/blob/main/CHANGELOG.md#0190-jun-14-2026) добавил пакет для inline atomic styles и совместимость с ESLint 10.
+- [MUI X 9.6](https://github.com/mui/mui-x/releases/tag/v9.6.0) улучшил radial bar charts, [react-plotly.js 4](https://github.com/plotly/react-plotly.js/releases/tag/v4.0.0) обновил React-обертку над [Plotly](https://plotly.com/javascript/), [visx 4](https://visx.airbnb.tech/) развивает низкоуровневые React-примитивы визуализации, а [React Aria 1.19](https://react-aria.adobe.com/releases/v1-19-0) обновил доступные компоненты Adobe.
+
+## 🛰️ Сборка и фреймворки
+
+### Astro 7 ускоряет контентные сайты через Rust-пайплайн
+[Astro 7.0](https://astro.build/blog/astro-7/) сделал ставку на скорость: компиляция `.astro`, Markdown и MDX теперь проходят через Rust-powered pipeline, а Vite 8 и Rolldown помогают ускорить сборки. Для сайтов с большим количеством контента это заметно: меньше времени уходит на ожидание билда, а не на работу с текстами и страницами. Документационный фреймворк [Starlight](https://starlight.astro.build/) уже обновился под Astro 7.
+
+### Vite 8.1 ускоряет большие проекты и расширяет CSS-возможности
+[Vite 8.1](https://vite.dev/blog/announcing-vite8-1) добавил experimental bundled dev mode, который сильно ускоряет старт dev server и full reload в приложениях с большим количеством модулей. В релиз также вошли external CSS imports, plugin-level file dependencies в Lightning CSS и поддержка [WASM/ESM integration](https://github.com/WebAssembly/esm-integration/blob/main/proposals/esm-integration/README.md). Это один из тех релизов, которые особенно заметны в крупных кодовых базах.
+
+### Nx 23 может отдавать миграции AI-агентам
+[Nx 23.0](https://github.com/nrwl/nx/releases/tag/23.0.0) - ежегодный major-релиз монорепо-инструмента. Самая показательная новая возможность: `nx migrate` может передавать часть миграционной работы AI-агентам. Это не отменяет ревью, но хорошо показывает, куда движутся инструменты для больших репозиториев: от генерации команд к сопровождению изменений.
+
+### Wely предлагает легкий путь к Web Components
+[Wely](https://litepacks.github.io/welyjs/) - небольшой toolkit для разработки нативных Web Components. Один CLI помогает создать компонент, стилизовать, протестировать и собрать его, а рантайм остается около 13 KB и использует Lit внутри. Это вариант для команд, которым нужны переносимые компоненты без полного перехода на большой UI-фреймворк.
+
+- [Component Party](https://component-party.dev/?f=react-vue3) сравнивает UI-фреймворки на одинаковых задачах. Такой формат помогает увидеть не "какой фреймворк лучше", а как в разных экосистемах выражаются состояние, циклы, события и шаблоны.
+- [Nuxt UI 4.9](https://github.com/nuxt/ui/releases/tag/v4.9.0) улучшил calendar component, добавил единые focus styles и `useTour` для guided tours.
+- [Svelte Animations](https://github.com/SikandarJODD/animations) предлагает набор эффектов на Svelte, Motion и Tailwind, а готовые варианты можно посмотреть в [интерактивной галерее](https://sv-animations.vercel.app/).
+
+## 🦕 Deno, Bun и рантаймы
+
+### Deno 2.9 собирает JavaScript-проекты в десктопные приложения
+Документация Deno показывает новый режим [`deno desktop`](https://docs.deno.com/runtime/desktop/), который превращает JavaScript-проект в приложение для macOS, Windows и Linux. В отличие от Electron, можно выбрать системный WebView или bundled Chromium, есть cross-compilation и автоматическое распознавание приложений на Next.js, SvelteKit и других фреймворках. Сам [Deno 2.9](https://deno.com/blog/v2.9) развивает эту идею как одну из главных возможностей релиза.
+
+### Bun предлагает shared-memory threads для JavaScriptCore
+Команда Bun предложила [добавить shared-memory threads в JavaScriptCore](https://github.com/oven-sh/WebKit/pull/249). Это более традиционная модель потоков по сравнению с [worker threads в Node.js](https://nodejs.org/api/worker_threads.html#worker-threads). Предложение раннее, но важное: рантаймы ищут способы дать JavaScript больше параллелизма без полной потери безопасности и предсказуемости.
+
+## 📘 TypeScript
+
+### TypeScript 7.0 дошел до release candidate
+[TypeScript 7.0 RC](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-rc/) приближает Go-powered компилятор, который обещает примерно десятикратное ускорение сборки. Важное изменение для миграции: `moduleResolution: node` и `node10` больше не поддерживаются, а нужные `@types` пакеты должны быть перечислены явно. Это хороший момент запустить RC на отдельной ветке и посмотреть, где проект полагается на старые настройки.
+
+## ⚙️ Node.js
+
+### Node.js 26.4 добавил экспериментальные package maps
+[Node.js 26.4.0](https://nodejs.org/en/blog/release/v26.4.0) получил экспериментальную поддержку [package maps](https://nodejs.org/api/packages.html#package-maps). Вместо того чтобы искать пакеты обходом `node_modules`, Node может резолвить зависимости по статическому JSON-файлу. Это ранняя возможность, но она важна для будущего производительности, воспроизводимости и инструментов вокруг пакетной структуры.
+
+В этом же релизе начал появляться [node:vfs subsystem](https://github.com/nodejs/node/pull/63115). Параллельно вышли [Node v24.18.0 LTS](https://nodejs.org/en/blog/release/v24.18.0) и [v22.23.1 LTS](https://nodejs.org/en/blog/release/v22.23.1), а чуть раньше - [v26.3.1 Current](https://nodejs.org/en/blog/release/v26.3.1), [v24.17.0 LTS](https://nodejs.org/en/blog/release/v24.17.0) и [v22.23.0 LTS](https://nodejs.org/en/blog/release/v22.23.0).
+
+### Блокировка install scripts в npm 12 не решит supply chain сама по себе
+NodeSource разбирает, почему [blocking install scripts is not a silver bullet](https://nodesource.com/blog/npm-v12-install-scripts-not-a-silver-bullet). [npm v12](https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/) не будет запускать install scripts по умолчанию, и первый [preview npm 12](https://github.com/npm/cli/releases/tag/v12.0.0-pre.1) уже можно тестировать. Но вредоносный код может выполниться и позже, при обычном `import`, поэтому нужны дополнительные слои: [Node permissions model](https://nodejs.org/api/permissions.html), изоляция и осмысленный allow-list зависимостей.
+
+### npm на AT Protocol - пока мыслительный эксперимент
+James M Snell рассуждает, [как мог бы выглядеть npm на AT Protocol](https://www.jasnell.me/posts/what-if-npm-ran-on-atproto). Это не план миграции и не новый пакетный менеджер, а попытка представить registry, где идентичность, публикации и распространение устроены иначе. Такие тексты полезны, потому что показывают: инфраструктура пакетов - это не только tarball и semver, но и доверие, учетные записи, зеркала и социальная модель.
+
+### Бенчмарк WebSocket-серверов показал, как легко ошибиться в измерениях
+Evil Martians сравнили [пять WebSocket-серверов для Node.js](https://evilmartians.com/chronicles/choose-your-fighter-benchmarking-5-websocket-servers-for-nodejs). В процессе всплыли забаненный IP, некорректный load generator и иллюзия двадцатикратной задержки. Главный урок не только в победителях: нагрузочное тестирование нужно проверять так же тщательно, как код, иначе график красиво покажет не то.
+
+### pnpm экспериментирует с собственным registry-сервером
+Проект pnpm работает над [pnpr](https://pnpm.io/pnpr/) - совместимым с npm registry сервером на Rust. Идея интересна для команд, которым нужен приватный или локальный слой пакетов с хорошей совместимостью с привычным npm-экосистемным форматом.
+
+- [pnpm 11.7](https://pnpm.io/blog/releases/11.7) и [pnpm 11.8](https://github.com/pnpm/pnpm/releases/tag/v11.8.0) добавили `pnpm install --dry-run`, поддержку read-only store через `--frozen-store` и другие улучшения.
+- [AccessControl 3.0](https://onury.io/accesscontrol/) обновил RBAC/ABAC-библиотеку: в [описании v3](https://onury.io/accesscontrol/whats-new/) появились policy engine, условия для grant, enforced ownership, restriction gates и audit hooks; код лежит в [репозитории AccessControl](https://github.com/onury/accesscontrol).
+- [Camaro 6.5](https://github.com/tuananh/camaro) конвертирует XML в JSON через быстрый C++ парсер [pugixml](https://pugixml.org/).
+- [Tedious 20.0](https://github.com/tediousjs/tedious) обновил TDS-модуль для SQL Server, а связанный [node-mssql 12.6](https://github.com/tediousjs/node-mssql) использует Tedious или [msnodesqlv8](https://github.com/TimelordUK/node-sqlserver-v8).
+- [Chardet 2.2](https://github.com/runk/node-chardet) определяет кодировку текста статистическими методами и поддерживает [около 30 кодировок](https://github.com/runk/node-chardet#supported-encodings).
+- [cookie 2.0](https://github.com/jshttp/cookie/releases/tag/v2.0.0) обновил HTTP cookie parser/serializer, стал быстрее и перешел на ESM-only.
+- [Node Telegram Bot API 1.1](https://github.com/yagop/node-telegram-bot-api/releases) переписан на TypeScript, стал ESM-only и поддерживает [Telegram Bot API 10.1](https://core.telegram.org/bots/api).
+
+## 🧬 WebAssembly
+
+### Бенчмарк WebAssembly runtimes показывает разницу за пределами браузера
+Frank Denis сравнил [производительность WebAssembly runtimes в 2026 году](https://00f.net/2026/06/23/webassembly-runtimes-2026/). Основной фокус на специализированных рантаймах, но Node/V8 тоже попал в картину. Материал полезен тем, что WebAssembly все чаще оказывается не только в браузере: его запускают на сервере, в CLI и в песочницах для расширений.
+
+## 🤖 ИИ
+
+### MDN запустил официальный MCP Server для документации
+MDN представил [официальный MCP server](https://developer.mozilla.org/en-US/blog/introducing-mdn-mcp-server/), чтобы coding agents могли получать свежую документацию по JavaScript, CSS и веб-платформе. Это снижает риск, что агент предложит устаревший API или забудет про совместимость браузеров. Для разработчика это еще один сигнал: документация становится не только сайтом для людей, но и источником данных для инструментов.
+
+### Eve предлагает Next.js-подобную структуру для AI-агентов
+Vercel представил [Eve](https://vercel.com/blog/introducing-eve) - фреймворк для агентных приложений на TypeScript и Markdown. У него есть [страница проекта](https://vercel.com/eve), а идея знакома веб-разработчикам: дать не просто SDK, а структуру проекта, маршруты и соглашения, похожие на то, как Next.js организует веб-приложения.
+
+### GitHub усиливает безопасность и порядок вокруг PR
+GitHub выпустил [`actions/checkout` v7](https://github.blog/changelog/2026-06-18-safer-pull_request_target-defaults-for-github-actions-checkout/), который по умолчанию отказывается от распространенных опасных паттернов в `pull_request_target` и `workflow_run`. Еще одна новая возможность помогает мейнтейнерам [ограничивать количество открытых PR от одного пользователя](https://github.blog/open-source/maintainers/how-pull-request-limits-are-cutting-down-the-noise/). Обе новости особенно актуальны сейчас, когда люди и агенты могут быстро создавать много изменений.
+
+### Git worktrees стали особенно полезны в эпоху агентов
+GitHub объясняет, [что такое Git worktrees и зачем они нужны](https://github.blog/ai-and-ml/github-copilot/what-are-git-worktrees-and-why-should-i-use-them/). Эта возможность существует давно, но стала заметнее, когда разработчики начали параллельно вести несколько задач или запускать несколько агентов. Отдельное рабочее дерево позволяет держать разные ветки рядом и не тасовать файлы туда-сюда в одном checkout.
+
+## ⚒️ Инструменты и библиотеки
+
+### Billboard.js 4 ускорил большие графики Canvas-режимом
+[Billboard.js 4.0](https://netil.medium.com/billboard-js-4-0-release-canvas-rendering-mode-94-3-faster-overall-in-benchmark-894b18798ffe) добавил опциональный Canvas rendering mode, оставив SVG по умолчанию. Это важно для больших наборов данных: SVG удобен и доступен для обычных графиков, а Canvas лучше держит тяжелые сцены. В [каталоге демо](https://naver.github.io/billboard.js/demo/) есть [donut charts](https://naver.github.io/billboard.js/demo/#Chart.DonutChart), [funnel charts](https://naver.github.io/billboard.js/demo/#Chart.FunnelChart), [overlapping bar charts](https://naver.github.io/billboard.js/demo/#BarChartOptions.BarOverlap) и [radar charts](https://naver.github.io/billboard.js/demo/#RadarChartOptions.RadarAxis).
+
+### Kage сохраняет JavaScript-сайты для офлайн-просмотра
+[Kage](https://kage.tamnd.com/) клонирует сайт и поднимает его локально для офлайн-просмотра. Главное отличие от обычного "Save As" в браузере: Kage использует headless browser и сохраняет уже отрендеренный DOM, поэтому лучше справляется с JS-приложениями. Исходный код доступен в [репозитории Kage](https://github.com/tamnd/kage).
+
+### Wirewiki быстро показывает инфраструктуру домена
+[Wirewiki](https://www.wirewiki.com/) дает простой интерфейс для DNS- и инфраструктурных проверок: hosting, DNS, SPF, A, CNAME, TXT, MX records и другие данные. Это удобный инструмент, когда нужно понять, куда смотрит домен и какие базовые настройки у него уже есть.
+
+### officeParser разбирает офисные документы в AST
+[officeParser 7.1](https://github.com/harshankur/officeParser/releases/tag/v7.1.0) работает с `docx`, `pptx`, `xlsx`, `odt` и похожими форматами, превращая содержимое в структуру данных. В [браузерном visualizer](https://officeparser.harshankur.com/#visualizer) можно увидеть, какие узлы и поля получаются из документа.
+
+### Templatical встраивает редактор email-шаблонов
+[Templatical](https://templatical.com/) - open source SDK для drag-and-drop email builder. Он поддерживает свои блоки, данные из API, merge tags и темы на design tokens; сценарии можно посмотреть в [playground](https://play.templatical.com/), а реализацию - в [репозитории SDK](https://github.com/templatical/sdk).
+
+### Обновления
+
+- [ESLint 10.5](https://eslint.org/blog/2026/06/eslint-v10.5.0-released/) точнее подсвечивает проблемные места в пяти core rules, а [ESLint 10.4.1](https://eslint.org/blog/2026/05/eslint-v10.4.1-released/) был небольшим предыдущим релизом для проектов на свежей конфигурации.
+- [Biome 2.5](https://biomejs.dev/blog/biome-v2-5/) перешел отметку в 500 правил линтинга.
+- [Fuse.js 7.4](https://github.com/krisk/Fuse/releases/tag/v7.4.0) добавил parallel search через Web Workers; на [сайте Fuse.js](https://www.fusejs.io/) проще увидеть, как работает fuzzy search.
+- [PGlite 0.5](https://pglite.dev/) запускает Postgres в WASM локально, поддерживает reactive-сценарии и live sync.
+- [Tabulator 6.5](https://www.tabulator.info/) строит интерактивные таблицы из HTML, массивов JavaScript или JSON.
+- `<relative-time>` 5.2 обновил компонент для локализованных абсолютных и относительных отметок времени.
+- [Fable 5.2](https://github.com/fable-compiler/Fable/releases/tag/5.2.0) компилирует F# в JavaScript, TypeScript и теперь Erlang; обзор есть на [сайте Fable](https://fable.io/).
+- [XO 3.0](https://github.com/xojs/xo/releases/tag/v3.0.0) обновил строгую ESLint-конфигурацию без ручной настройки.
+- [node-gyp 13](https://github.com/nodejs/node-gyp) обновил сборку нативных Node.js-модулей.
+- [GraphQL.js 17](https://github.com/graphql/graphql-js) выпустил новую версию эталонной JavaScript-реализации GraphQL.
+- [Faker 10.5](https://github.com/faker-js/faker) обновил генератор реалистичных тестовых данных.
+- [BSON Parser 7.3](https://github.com/mongodb/js-bson) обновил работу с форматом BSON.
+- [Ink 7.1](https://github.com/vadimdemedes/ink/releases/tag/v7.1.0) добавил [`suspendTerminal()`](https://github.com/vadimdemedes/ink/pull/972), чтобы временно отдавать терминал дочернему процессу, например редактору.
+- Образовательная платформа Frontend Masters [переименовалась в Master.dev](https://master.dev/blog/today-frontend-masters-becomes-master-dev/), потому что ее курсы давно вышли за рамки одного фронтенда.

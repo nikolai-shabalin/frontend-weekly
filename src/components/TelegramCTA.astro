@@ -26,32 +26,33 @@
     border: 2px solid rgba(var(--line), 0.5);
     box-shadow: 0 8px 16px -6px rgba(var(--accent-rgb), 0.15);
     position: relative;
+    overflow: hidden;
   }
 
   .telegram__icon {
     position: absolute;
-    top: var(--space-md);
-    right: var(--space-md);
+    top: calc(var(--space-xl) * -1);
+    right: calc(var(--space-xl) * -1);
+    width: min(82%, 360px);
+    aspect-ratio: 1;
     color: var(--accent);
-    opacity: 0.8;
-    animation: pulse 2s ease-in-out infinite;
+    opacity: 0.08;
+    transform: rotate(-8deg);
+    pointer-events: none;
   }
 
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 0.8;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 1;
-    }
+  .telegram__icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .telegram__content {
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
+    position: relative;
+    z-index: 1;
   }
 
   .telegram__text {
@@ -93,6 +94,12 @@
   @media (max-width: 640px) {
     .telegram {
       margin: var(--space-xl) 0;
+    }
+
+    .telegram__icon {
+      width: 115%;
+      top: calc(var(--space-lg) * -1);
+      right: calc(var(--space-2xl) * -1);
     }
 
     .telegram__text {
