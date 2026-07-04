@@ -1,0 +1,270 @@
+---
+title: "Еженедельный дайджест #53: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "July 06 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #53! 🗞️", index: 0 },
+  { text: "HTML недели: новый <usermedia>, Chrome 150 и Pointer Events Level 3. 🧪", index: 1 },
+  { text: "CSS настраивает select, спорит с JavaScript и приручает темную тему. 🎨", index: 2 },
+  { text: "Deno 2.9 собирает desktop-приложения, а WASM-рантаймы снова меряются скоростью. 📦", index: 3 },
+  { text: "TypeScript 7 ускоряет VS Code, а Flow переезжает с OCaml на Rust. 📘", index: 4 },
+  { text: "React получил Astryx от Meta, чат-компоненты shadcn/ui и важные истории про гидрацию. ⚛️", index: 5 },
+  { text: "Node.js 26.4, npm 12 preview и новые правила безопасности пакетов. 🟢", index: 6 },
+  { text: "Фреймворки недели: Svelte, Gea, TanStack, Angular и Wasp. 🛰️", index: 7 },
+  { text: "ИИ-подборка: AI SDK 7, MDN MCP, DESIGN.md и инструменты для агентной разработки. 🤖", index: 8 },
+  { text: "Инструменты: Slim Select, QR-коды, Snipgrapher, VectorNest и Knock-Knock.net. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### В Chrome появится элемент `<usermedia>` для камеры и микрофона
+
+Chrome готовит новый HTML-элемент [`<usermedia>` для управления доступом к камере и микрофону](https://developer.chrome.com/blog/usermedia-html-element). Сейчас такие сценарии обычно строятся вокруг JavaScript API `getUserMedia()`: сайт вызывает метод, браузер показывает запрос разрешения, а дальше разработчик сам собирает интерфейс выбора устройств и обработки отказов.
+
+Новый элемент переносит часть этой работы ближе к HTML. Пользователь сможет понятнее видеть, что именно запрашивает страница, и легче менять решение после блокировки, не копаясь в настройках браузера. Для приложений с видеозвонками, записью звука или сканированием через камеру это может стать более простым и безопасным базовым способом начать работу с медиаустройствами.
+
+### Chrome 150 добавляет `text-fit` и нативные градиентные рамки
+
+Rachel Andrew разобрала, что появилось в [Chrome 150](https://developer.chrome.com/blog/new-in-chrome-150). Среди заметного - поддержка CSS-свойства `text-fit`, которое помогает вписывать текст в заданное пространство, и новый способ делать градиентные рамки без сложных оберток и псевдоэлементов.
+
+Это как раз тот тип обновлений платформы, который сначала кажется маленьким, а потом постепенно убирает из проектов много вспомогательного CSS.
+
+### Pointer Events Level 3 стал рекомендацией W3C
+
+[Pointer Events Level 3 получил статус W3C Recommendation](https://www.w3.org/news/2026/pointer-events-level-3-is-now-a-w3c-recommendation/). Спецификация описывает единый подход к мыши, стилусу, тачу и другим указывающим устройствам, чтобы интерфейсы не приходилось собирать из отдельных обработчиков под каждый способ ввода.
+
+- Ollie Williams показал, как в Chrome Canary работает [потоковая отправка HTML через `textStream()`](https://olliewilliams.xyz/blog/streaming-html/). Идея в том, чтобы страница могла получать и показывать разметку частями, не дожидаясь полного ответа.
+- В статье про [WebGL без GPU](https://microlink.io/blog/webgl-without-a-gpu) разбирают, как рендерить WebGL на Linux-серверах без видеокарты и почему правильная CPU-эмуляция может сильно ускорить скриншоты.
+- Eduardo Bouças собрал [настенную LED-карту с живым CDN-трафиком Netlify Edge](https://eduardoboucas.com/posts/2026-06-29-wall-map/). Это хороший пример того, как веб-данные можно превратить в физическую визуализацию.
+
+## 🎨 CSS и дизайн
+
+### Jake Archibald ищет правильную высоту для настраиваемого `<select>`
+
+Jake Archibald подробно разобрал [как подобрать высоту кастомизируемого `<select>`](https://jakearchibald.com/2026/goldilocks-select-height/), чтобы элемент не был ни слишком маленьким, ни бесконечно растущим. В центре решения - `calc-size()`, которое позволяет уважать естественный размер содержимого, но ограничивать итоговые размеры.
+
+Это полезно тем, кто делает не просто декоративный dropdown, а хочет остаться ближе к нативному поведению формы. У `<select>` много скрытых нюансов: длинные варианты, разные системные стили, доступность, клавиатура и мобильные сценарии. Статья показывает, почему "просто задать height" часто недостаточно.
+
+### CSS-состояния постепенно забирают часть работы у JavaScript
+
+Daniel Schwarz написал о [границе между CSS-состояниями и JavaScript-событиями](https://css-tricks.com/css-states-and-javascript-events/). Многие вещи, которые раньше делали через обработчики событий, уже можно описать псевдоклассами: `:hover`, `:focus-within`, `:has()`, состояниями формы и другими селекторами.
+
+Главная мысль простая: если поведение можно выразить как состояние интерфейса, сначала стоит проверить CSS. JavaScript остается нужен для данных, сложной логики и интеграций, но CSS часто дает более короткое, устойчивое и доступное решение.
+
+### Темная тема должна помнить выбор пользователя
+
+Ollie Williams собрал технический обзор [темной темы на веб-стандартах](https://olliewilliams.xyz/blog/dark-mode/): как учитывать системную настройку, как дать ручной переключатель и как не устроить мигание темы при загрузке страницы. Это хороший материал для проектов, где темная тема уже не украшение, а ожидаемая часть интерфейса.
+
+Похожую тему продолжает Stuart Robson: в статье про [режимы и темы с сохранением выбора](https://www.alwaystwisted.com/articles/modes-and-themes-that-stick-building-a-persistent-toggle-solution) он предлагает прогрессивное решение в несколько слоев. Даже если JavaScript не загрузился, базовое поведение должно оставаться понятным.
+
+### CSS-анимации и маски становятся выразительнее
+
+Cassidy Williams показала, как сделать [анимированную радиальную маску поверх текста](https://cassidoo.co/post/radial-mask-text-css/) через `mask` и повторяющийся радиальный градиент. В статье есть [демо эффекта](https://codepen.io/cassidoo/pen/QwdMQVm), которое помогает увидеть, как несколько CSS-свойств складываются в живую типографику.
+
+Silvestar Bistrović разобрал [scroll-driven animations для противоположных направлений прокрутки](https://css-tricks.com/scroll-driven-animations-opposing-scroll-directions/). Такой подход полезен, когда элементы должны двигаться по-разному в зависимости от прогресса скролла, но без ручного пересчета координат в JavaScript.
+
+- [FixCSS](https://tangled.org/vale.rocks/FixCSS) пытается исправлять исторические ошибки дизайна CSS, опираясь на [список проблем CSS Working Group](https://wiki.csswg.org/ideas/mistakes/); автор отдельно [объяснил идею библиотеки](https://vale.rocks/micros/20260701-0400).
+- В Font Awesome вышла [версия 7.3.0](https://fontawesome.com/changelog), а для Pro+ добавили набор из [200+ пиксельных ретро-иконок](https://fontawesome.com/icons/packs/pixel).
+- Ryan Moulton написал о [цветах, которые экран не может надежно показать](https://moultano.wordpress.com/2026/06/19/where-to-find-the-colors-your-screen-cant-show-you/). P3, OKLCH и `color()` расширяют возможности CSS, но реальные материалы и биологические цвета все еще сложнее дисплеев.
+- Linear рассказали, как [переезд со styled-components на StyleX](https://www.skovhus.dev/blog/moving-linear-from-styled-components-to-stylex) ускорил рендер примерно на 30% при переходах между страницами. Это хороший пример цены runtime CSS-in-JS в большом приложении.
+
+## ♿ Доступность и UX
+
+- В статье [The Web is Being Made Accessible for AI, Not People](https://www.techpolicy.press/the-web-is-being-made-accessible-for-ai-not-people/) авторы предупреждают: веб не должен становиться удобным только для агентов и краулеров. Семантика, доступность и ясная структура в первую очередь нужны людям.
+- Инструмент [Can't Maintain](https://cant-maintain.saschb2b.com/) тренирует насмотренность на API React-компонентов: он предлагает сравнивать варианты props и замечать, какой интерфейс компонента будет проще поддерживать через несколько месяцев.
+
+<TelegramCTA/>
+
+## 📦 JavaScript, Deno и WebAssembly
+
+### Deno 2.9 делает шаг к desktop-приложениям
+
+[Deno 2.9](https://deno.com/blog/v2.9) вышел крупным релизом: команда добавила `deno desktop`, который превращает скрипты и проекты на фреймворках в самодостаточные desktop-приложения. Еще улучшили миграцию с lockfile npm, pnpm, Yarn и Bun, ускорили холодный старт примерно в два раза и продолжили двигаться к совместимости с Node.js 26.
+
+Для разработчиков это показывает, что Deno все меньше выглядит как "просто другой рантайм для скриптов". Он пытается закрывать больше сценариев вокруг разработки, тестирования, пакетной совместимости и распространения приложений.
+
+### WebAssembly-рантаймы сравнили по производительности
+
+Frank Denis сравнил [производительность девяти WebAssembly-рантаймов в 2026 году](https://00f.net/2026/06/23/webassembly-runtimes-2026/), включая варианты, связанные с Bun и Node/V8. Такие тесты важны не как абсолютная таблица победителей, а как карта компромиссов: где быстрее старт, где лучше долгие вычисления, где удобнее встраивание.
+
+WASM давно вышел за рамки "запустить C++ в браузере". Его используют в серверных песочницах, edge-средах, плагинах, локальных базах и инструментах разработки, поэтому выбор рантайма начинает влиять на архитектуру.
+
+- [Chrono и веб-компонент](https://www.raymondcamden.com/2026/06/24/parsing-arbitrary-dates-in-strings-with-chrono-and-a-web-component) помогают разбирать произвольные даты из текста, например "next Friday" или "tomorrow at 5".
+- [Wakaru 1.6](https://github.com/pionxzh/wakaru/releases/tag/v1.6.0) улучшил декомпиляцию JavaScript-бандлов и теперь лучше восстанавливает код, похожий на исходники, особенно для React-приложений.
+- [TurboRes 1.0](https://github.com/Vanilagy/turbores) принес быстрый Zig/WASM-декодер Apple ProRes для JavaScript-сред; проект сделан автором [Mediabunny](https://mediabunny.dev/).
+- [GopherJS 1.21.0](https://github.com/gopherjs/gopherjs/releases/tag/v1.21.0) обновил транспиляцию Go в JavaScript до поддержки Go 1.21.13.
+- [whatwg-url 17.0](https://github.com/jsdom/whatwg-url) обновил JavaScript-реализацию стандарта WHATWG URL, а [демо whatwg-url](https://jsdom.github.io/whatwg-url/) помогает быстро проверить поведение парсинга.
+
+## ⚛️ React
+
+### Meta открыла дизайн-систему Astryx
+
+Meta выпустила [Astryx Design System](https://astryx.atmeta.com/) - большую React-дизайн-систему на базе [StyleX](https://stylexjs.com/). Внутри [больше 160 компонентов](https://astryx.atmeta.com/components), [темы](https://astryx.atmeta.com/themes), [шаблоны](https://astryx.atmeta.com/templates), инструменты и [playground](https://astryx.atmeta.com/playground), где можно посмотреть компоненты вживую. Команда пишет, что система развивалась больше восьми лет и используется в тысячах внутренних приложений.
+
+Отдельно стоит прочитать материал [How Astryx Works](https://astryx.atmeta.com/blog/how-astryx-works): там объясняют, зачем Meta строила такую систему, как она устроена и почему связка React + StyleX подходит для большого числа приложений.
+
+### Один hydration mismatch может испортить LCP
+
+Ivan Akulov разобрал [скрытую цену hydration mismatch](https://3perf.com/blog/hydration-mismatch/) в React. Проблема возникает, когда HTML с сервера и первое клиентское дерево React не совпадают. Иногда это выглядит как небольшое предупреждение в консоли, но вместе с подменой веб-шрифта может заметно ухудшить [Largest Contentful Paint](https://web.dev/articles/lcp).
+
+Для приложений с SSR это практический урок: ошибки гидрации не стоит откладывать "на потом". Даже если интерфейс визуально работает, браузер и React могут делать лишнюю работу в самый чувствительный момент загрузки.
+
+### React Compiler полезен, но не магический
+
+В LogRocket рассказали, [что сломалось после передачи мемоизации React Compiler](https://blog.logrocket.com/react-compiler-memoization-what-actually-broke/). Компилятор может убрать много ручных `useMemo` и `useCallback`, но он не отменяет необходимость понимать мутации, зависимости и границы компонентов.
+
+Это хороший трезвый взгляд на новые инструменты React: они помогают, когда код уже достаточно предсказуемый, но не спасают архитектуру, где данные меняются неявно или компоненты делают слишком много.
+
+### Обновления React-экосистемы
+
+- [Storybook добавил полноценную поддержку TanStack-проектов](https://storybook.js.org/blog/storybook-for-tanstack-react/), включая Router, Start и Query.
+- Vercel показал прогресс [Turbopack в Next.js 16.3](https://nextjs.org/blog/next-16-3-turbopack) и отдельные [AI-улучшения Next.js 16.3](https://nextjs.org/blog/next-16-3-ai-improvements).
+- [Vercel Services](https://vercel.com/blog/vercel-services-run-full-stack-on-vercel) позволяет запускать несколько фреймворков в одном проекте, например Next.js-фронтенд и backend на Go, Python или Rust.
+- В Sentry объяснили, как [экспортировать встроенные трейсы запросов Next.js через OpenTelemetry](https://blog.sentry.io/nextjs-export-traces-opentelemetry/). Это помогает видеть путь запроса не только внутри Next.js, но и во внешней системе наблюдаемости.
+- Margelo разобрали, как они [ускоряли React Native-анимации на слабых Android-устройствах](https://blog.margelo.com/profiling-skia-reanimated-low-end-android), копаясь в Skia, Reanimated и Hermes.
+
+### Компоненты и библиотеки для React
+
+- [mapcn](https://www.mapcn.dev/) предлагает готовые React-компоненты карт на базе [MapLibre GL JS](https://maplibre.org/projects/gl-js/) и Tailwind в стиле shadcn/ui.
+- В `shadcn/ui` появились [компоненты для чат-интерфейсов](https://ui.shadcn.com/docs/changelog/2026-06-chat-components): сообщения, пузырьки, вложения, скроллер и маркеры.
+- [termcn](https://www.termcn.dev/) переносит подход shadcn/ui в терминальные интерфейсы на React, используя [Ink](https://github.com/vadimdemedes/ink) и [OpenTUI](https://opentui.com/).
+- [React Icons 5.7](https://react-icons.github.io/react-icons/) обновил наборы иконок, включая Font Awesome, Typicons и [GitHub Octicons](https://octicons.github.com/).
+- [pdfme](https://pdfme.com/) - TypeScript-библиотека для генерации PDF с React-редактором шаблонов.
+- [@platformatic/flame](https://github.com/platformatic/flame/) визуализирует CPU- и heap-профили через flamegraph на базе React и WebGL.
+- [hiraki](https://hiraki.ozergklp.com/) - drawer-компонент без зависимостей с жестами, snap points и CSS-анимациями.
+- [React Source Lens](https://github.com/darula-hpp/react-source-lens) помогает открыть исходник React-компонента в редакторе по горячей клавише.
+- [Gridland](https://github.com/thoughtfulllc/gridland) позволяет собирать терминальные приложения, которые работают и в браузере, и в терминале, поверх React и OpenTUI.
+- [rari](https://github.com/rari-build/rari) экспериментирует с React Server Components на Rust-рантайме, роутингом, server actions и streaming/Suspense.
+- [Nucleux](https://github.com/martyroque/nucleux/) предлагает простой atomic state management для React без провайдеров и лишнего boilerplate.
+- [Limeplay](https://github.com/winoffrg/limeplay) собирает copy-paste компоненты медиаплеера для React в стиле shadcn/ui, поверх Shaka Player, HLS, DASH и адаптивного качества.
+
+### Релизы React-библиотек
+
+- [Ant Design 6.5](https://github.com/ant-design/ant-design/releases/tag/6.5.0) уменьшил размер бандла, добавил новые иконки и [DESIGN.md](https://ant.design/design.md) для AI-агентов.
+- [Downshift 9.4](https://www.downshift-js.com/) обновил примитивы для autocomplete, combobox и select, а [фикс v9.4](https://github.com/downshift-js/downshift/pull/1690) улучшил совместимость с React Compiler.
+- [React Router 8.1](https://github.com/remix-run/react-router/blob/main/CHANGELOG.md#v810) добавил установку agent skill через `create-react-router`, а данные [instrumentation](https://reactrouter.com/how-to/instrumentation#result-metadata) получили больше метаданных.
+- [TinyBase 9.0](https://tinybase.org/guides/releases/#v9-0) вышел как релиз стабильности для reactive data store и sync engine.
+- [Expo SDK 57](https://expo.dev/changelog/sdk-57) обновился до React Native 0.86.
+- Вышли [MUI / Material UI 9.2](https://github.com/mui/material-ui/releases/tag/v9.2.0), [MUI-X 9.8](https://github.com/mui/mui-x/releases/tag/v9.8.0) и [React Native VisionCamera 5.1](https://github.com/mrousavy/react-native-vision-camera/releases/tag/v5.1.0).
+
+## 🛰️ Фреймворки и сборка
+
+### Gea компилирует UI-фреймворк почти до нуля
+
+[Gea](https://geajs.com/) - реактивный UI-фреймворк, который делает ставку на compile-first подход: JSX превращается в строковые шаблоны, VDOM не используется, состояние построено на proxy, а обновления DOM стараются быть точечными. Авторы отдельно показывают, как Gea [компилируется в очень маленький результат](https://github.com/dashersw/gea#compile-to-almost-nothing).
+
+- Команда Svelte опубликовала [июльское обновление экосистемы](https://svelte.dev/blog/whats-new-in-svelte-july-2026): там собраны изменения вокруг фреймворка, компилятора и связанных инструментов.
+- В статье [Handling Mutations with TanStack Query for Vue](https://www.telerik.com/blogs/handling-mutations-tanstack-query-vue) объясняют, как управлять изменениями данных во Vue-приложении через [TanStack](https://tanstack.com/) Query.
+- [spartan/ui 1.0](https://spartan.ng/) приносит Angular-разработчикам UI-примитивы в стиле shadcn/ui.
+- [ngx-charts 24.0](https://github.com/swimlane/ngx-charts) обновил декларативные графики для Angular; есть [интерактивное демо](https://swimlane.github.io/ngx-charts/#/ngx-charts/bar-vertical).
+- Wasp показал, как [собрать file-based router меньше чем за 50 строк](https://wasp.sh/blog/2026/07/01/roll-your-own-file-based-router) для full-stack стека [Wasp](https://wasp.sh/) с Node.js, React и Prisma.
+- [Rspack 2.1](https://rspack.rs/blog/announcing-2-1) вышел как очередной релиз Rust-based сборщика для JavaScript-приложений.
+- [Formisch v1 RC](https://formisch.dev/blog/formisch-v1-release-candidate/) готовит schema-first, headless и type-safe библиотеку состояния форм.
+
+## 📘 TypeScript
+
+### VS Code ускорился на TypeScript 7
+
+Команда VS Code рассказала, как они [постепенно переходили на Go-based компилятор TypeScript 7](https://code.visualstudio.com/blogs/2026/06/26/iterating-faster-with-ts-7), пока тот еще разрабатывался. Проверка типов исходников ускорилась с 36 секунд до 5, а `npm run watch` - примерно с 80 секунд до 20.
+
+TypeScript 7 уже находится в [release candidate](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-rc/), и этот кейс хорошо показывает, чего ждать от новой реализации. Ускорение особенно заметно в больших проектах, где медленная проверка типов ломает ритм разработки.
+
+### Flow переписали с OCaml на Rust
+
+Meta перенесла [Flow](https://flow.org/) - статический анализатор для типизированного диалекта JavaScript - [с OCaml на Rust](https://medium.com/flow-type/flows-ocaml-to-rust-port-78b95bcf49e9). Для большинства фронтендеров Flow сейчас менее заметен, чем TypeScript, но сама история важна: крупные инструменты типизации продолжают искать более быстрые и удобные реализации.
+
+Такой порт обычно делают не ради моды на язык, а ради скорости, поддержки, интеграции с экосистемой и долгосрочной устойчивости инструмента.
+
+## ⚙️ Node.js
+
+### Node.js 26.4 добавил экспериментальные package maps
+
+[Node.js v26.4.0 Current](https://nodejs.org/en/blog/release/v26.4.0) добавил экспериментальную поддержку [package maps](https://nodejs.org/api/packages.html#package-maps). Идея в том, чтобы резолвить пакеты из статического JSON-файла, а не обходить `node_modules` по классическим правилам.
+
+Пока это эксперимент, но направление интересное: установка и поиск зависимостей в JavaScript-проектах постепенно становятся более строгими и предсказуемыми. Для больших репозиториев это может влиять и на скорость, и на безопасность.
+
+### npm усиливает безопасность и меняет поведение установки
+
+Вышел второй preview-релиз [npm 12](https://github.com/npm/cli/releases/tag/v12.0.0-pre.2), и его уже стоит тестировать: npm заранее описал [будущие breaking changes в v12](https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/), а Colin McDonnell заметил, что [npm 12 жестко падает на неизвестных ключах](https://github.com/npm/cli/issues/9699) в `.npmrc`. Такие изменения лучше ловить заранее, пока они не приехали в стабильную версию.
+
+Параллельно npm включил защиту для [high impact accounts](https://github.blog/changelog/2026-06-25-npm-adds-preventive-account-protection-for-high-impact-accounts/): мейнтейнеры популярных пакетов попадают в 72-часовой read-only режим после смены email или использования recovery code для 2FA. Это снижает риск быстрых захватов аккаунтов и вредоносных публикаций.
+
+[npm 11.18.0](https://github.com/npm/cli/releases/tag/v11.18.0) сделал stable стратегию установки `linked`, где пакеты лежат в `node_modules/.store` и подключаются ссылками. В [документации install strategy](https://docs.npmjs.com/cli/v11/using-npm/config/#install-strategy) видно, что такой режим помогает ограничить доступ к зависимостям только тем, что проект реально объявил.
+
+### Почему Drizzle месяц не мог публиковать релизы в npm
+
+Evert Pot объяснил, почему [Drizzle ORM](https://orm.drizzle.team/) столкнулся с проблемой публикации новых версий npm-пакета и как сработали [ограничения размера packument](https://www.vlt.io/blog/packument-size-limits). Packument - это метаданные пакета и его версий, которые npm-клиенты читают при установке.
+
+### Install scripts нельзя считать единственной проблемой supply chain
+
+Ulises Gascon пишет, почему [блокировка install scripts в npm v12 не является серебряной пулей](https://nodesource.com/blog/npm-v12-install-scripts-not-a-silver-bullet). Да, запрет автоматического выполнения скриптов при установке снижает риск, но атаки на цепочку поставки не ограничиваются одним механизмом.
+
+Пакеты могут вредить через postinstall, через скомпрометированные аккаунты, через подмену зависимостей, через обфусцированный код или через доверие к популярному имени. Поэтому безопасность npm-проекта - это набор практик, а не один флажок.
+
+### Node.js-инструменты и релизы
+
+- Joyee Cheung подготовила официальный гид [как сделать первый вклад в Node.js Core](https://github.com/nodejs/node/blob/main/doc/contributing/first-contributions.md): где искать задачи, как оформлять работу и что повышает шанс принятия PR.
+- Liran Tal обновил [37 best practices для Node CLI-приложений](https://github.com/lirantal/nodejs-cli-apps-best-practices), добавил таблицу [популярных CLI-фреймворков](https://github.com/lirantal/nodejs-cli-apps-best-practices#111-cli-frameworks-table) и отдельный [SKILL.md](https://github.com/lirantal/nodejs-cli-apps-best-practices/blob/main/skills/nodejs-cli-best-practices/SKILL.md) для агентных инструментов.
+- [Nub](https://nubjs.com/) от автора [Zod](https://zod.dev/) стал единым самодостаточным бинарником и добавил в Node web-standard [`Worker`](https://github.com/nubjs/nub/releases/tag/v0.2.0). Подробности о подходе есть в статье [Introducing Nub](https://nubjs.com/blog/introducing-nub).
+- NodeSource показали, как искать [утечки памяти через heap snapshot analysis в N|Solid](https://nodesource.com/blog/debug-nodejs-memory-leak-ai-heap-snapshot-analysis) прямо из VS Code.
+- Evil Martians сравнили [пять WebSocket-серверов для Node.js](https://evilmartians.com/chronicles/choose-your-fighter-benchmarking-5-websocket-servers-for-nodejs). Такие бенчмарки полезны, когда real-time часть приложения становится узким местом.
+- [Node-GTK 4.0](https://github.com/romgrk/node-gtk) обновил биндинги к [GTK](https://www.gtk.org/) для desktop-приложений на Node, добавил поддержку Node 26 и команду `npx node-gtk create app-name`.
+- [Electron 43](https://www.electronjs.org/blog/electron-43-0) обновился до Chromium 150, Node 24.17 и V8 15, ускорил старт через Node boot snapshot и bytecode-cached preloads; релиз также доступен на [GitHub](https://github.com/electron/electron/releases/tag/v43.0.0).
+- [pg-promise 12.7](https://github.com/vitaly-t/pg-promise/releases/tag/12.7.0) официально поддерживает Node 26, [Middy 7.7](https://middy.js.org/) обновил middleware engine для AWS Lambda с [release notes](https://github.com/middyjs/middy/releases/tag/7.7.0), [Fastify 5.9](https://github.com/fastify/fastify/releases/tag/v5.9.0) добавил [`request.mediaType`](https://github.com/fastify/fastify/pull/6653), [Knex 3.3](https://github.com/knex/knex/releases/tag/3.3.0) обновил SQL query builder, а [JS YAML 5.2](https://github.com/nodeca/js-yaml) продолжил развивать YAML 1.2 parser с [демо](https://nodeca.github.io/js-yaml/).
+
+## 🤖 ИИ
+
+### MDN MCP Server дает агентам доступ к документации веб-платформы
+
+[MDN MCP Server](https://github.com/mdn/mcp) - экспериментальный MCP-сервер, который открывает LLM и coding agents доступ к поиску MDN, документации и данным о совместимости браузеров. Это хороший ответ на частую проблему: модель может уверенно предложить устаревший API или перепутать поддержку браузеров.
+
+Если агент получает факты из MDN во время работы, ему проще проверять синтаксис, статусы спецификаций и совместимость. Для разработчика это означает меньше угадываний и больше проверяемого контекста прямо в рабочем процессе.
+
+### Инструменты для агентной разработки
+
+- [Mantic.sh](https://github.com/marcoaapfortes/Mantic.sh) - контекстный поиск по коду для AI-агентов, который делает ставку на релевантность результатов, а не только на скорость.
+- [pica](https://github.com/onmyway133/pica) помогает находить и устанавливать Claude Code agents, skills, commands, hooks и rules из GitHub-репозитория или локального пути.
+- [Drawbridge](https://github.com/breschio/drawbridge) добавляет к Claude Code и Cursor дизайн-редактор: можно кликать по запущенному приложению, оставлять комментарии, делать скриншоты и превращать их в локальные задачи.
+- [OneGlanse](https://oneglanse.com/) показывает, как бренд выглядит внутри ChatGPT, Gemini, Perplexity, Claude и Google AI Overview, причем работает на собственной инфраструктуре пользователя.
+- [Claude HUD](https://github.com/jarrodwatts/claude-hud) показывает под полем ввода Claude Code состояние контекста, активные инструменты, запущенных агентов и прогресс задач.
+- [Make Interfaces Feel Better](https://jakub.kr/skills/make-interfaces-feel-better) - skill для AI-ассистентов, который учит обращать внимание на мелкие детали дизайна интерфейса.
+- [DESIGN.md](https://github.com/google-labs-code/design.md) предлагает формат описания визуальной идентичности для coding agents, чтобы у них был постоянный структурированный контекст о дизайн-системе.
+- GitHub добавил возможность [ограничить создание issues только collaborators с write access](https://github.blog/changelog/2026-06-29-restrict-issue-creation-to-collaborators-only/), что особенно актуально для проектов, где задачи могут массово создавать люди и агенты.
+
+## ⚒️ Инструменты и библиотеки
+
+### Slim Select 4.0 обновил продвинутый dropdown без зависимостей
+
+[Slim Select 4.0](https://slimselectjs.com/) - компонент для расширенного `<select>` без внешних зависимостей. В свежем [релизе v4.0](https://github.com/brianvoe/slim-select/releases/tag/v4.0.0) появился modal mode, который делает выбор удобнее на мобильных устройствах.
+
+Такой инструмент пригодится, когда нативного select уже мало, но тащить большой UI-kit ради одного поля не хочется. Главное - не забывать проверять клавиатуру, фокус и доступность, потому что dropdown почти всегда сложнее, чем кажется.
+
+### `<qr-code>` 2.0 модернизировал старый веб-компонент
+
+[`<qr-code>` 2.0](https://github.com/educastellano/qr-code) - веб-компонент для генерации QR-кодов в PNG, SVG и HTML. Проекту уже больше десяти лет, но теперь он модернизирован и работает как ESM-only решение. Быстро оценить поведение можно в [демо `<qr-code>`](https://educastellano.github.io/qr-code/demo/).
+
+HTML-режим особенно интересен тем, что QR-код можно стилизовать обычным CSS. Это удобно для интерфейсов, где код должен выглядеть частью бренда, а не чужой вставкой.
+
+### Snipgrapher делает изображения из фрагментов кода
+
+[Snipgrapher](https://github.com/mcollina/snipgrapher) - CLI-инструмент для генерации картинок из кода: можно передать файл, stdin или строку прямо в команду. Подсветка построена на [Shiki](https://shiki.style/), но есть и fallback-режим.
+
+Если нужен веб-инструмент для похожей задачи, [Carbon](https://carbon.now.sh/) остается удобным вариантом для быстрых красивых скриншотов кода.
+
+### Обновления и находки
+
+- [Prettier 3.9](https://prettier.io/blog/2026/06/27/3.9.0), [ESLint 10.6](https://eslint.org/blog/2026/06/eslint-v10.6.0-released/) и [pnpm 11.9](https://pnpm.io/blog/releases/11.9) обновили базовый набор инструментов, через который проходят почти все фронтенд-проекты.
+- [Git 2.55](https://github.blog/open-source/git/highlights-from-git-2-55/) добавил `git history fixup`, ускорил `git status` на Linux и принес другие улучшения для повседневной работы с историей.
+- [pnpr](https://pnpm.io/pnpr/) - экспериментальный npm-compatible registry server от команды pnpm, написанный на Rust.
+- [Postgres 19 beta](https://www.postgresql.org/about/news/postgresql-19-beta-1-released-3313/) уже доступен, а Craig Kerstiens разобрал [интересные возможности Postgres 19](https://www.snowflake.com/en/blog/engineering/postgresql-19-features-beta/) для пользователей и разработчиков.
+- [AntV Infographic](https://github.com/antvis/Infographic) предлагает декларативный фреймворк для генерации и рендеринга инфографики с участием AI.
+- [Avnac](https://avnac.design/) - open source альтернатива Canva в браузере: файлы хранятся локально в IndexedDB, есть JSON import/export и экспорт изображений.
+- [EZTrimmer](https://eztrimmer.io/) объединяет браузерные инструменты для обрезки, поворота, склейки и подготовки медиафайлов.
+- [Glitch Art Maker](https://yuyz0112.github.io/glitch-art-maker/) работает на клиенте и добавляет glitch-эффект к загруженному медиафайлу без отправки данных на сервер.
+- [ArtPlayer.js](https://github.com/zhw2590582/ArtPlayer) - HTML5-плеер с поддержкой разных форматов субтитров и расширяемой функциональностью.
+- [Mockit](https://www.mockit.design/) генерирует 3D-мокапы устройств с настройкой типа устройства, угла, фона, позиции скролла и экспорта.
+- [VectorNest](https://github.com/ekrsulov/vectornest) - браузерный SVG-редактор с plugin-centric архитектурой и редактированием путей.
+- [Knock-Knock.net](https://knock-knock.net/) показывает, как быстро незащищенный сервер в интернете получает попытки взлома, какие логины и пароли пробуют и откуда приходят запросы.
