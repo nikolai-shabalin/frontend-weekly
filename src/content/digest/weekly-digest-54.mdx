@@ -1,0 +1,249 @@
+---
+title: "Еженедельный дайджест #54: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "July 13 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #54! 🗞️", index: 0 },
+  { text: "Веб-платформа недели: история фронтенда, Safari MCP, Baseline Alerts и Clipboard API. 🧪", index: 1 },
+  { text: "CSS учится якорям, миксинам, фигурным рамкам и аккуратным full-bleed layout. 🎨", index: 2 },
+  { text: "JavaScript получил ECMAScript 2026, Bun на Rust и PocketJS в 8 МБ памяти. 📦", index: 3 },
+  { text: "TypeScript 7 вышел, а conditional types снова требуют внимания. 📘", index: 4 },
+  { text: "React обсуждает Suspense, формы, shadcn/ui на Base UI и устройство ChatGPT Web. ⚛️", index: 5 },
+  { text: "Node.js 26.5 и npm 12 меняют правила импорта, установки и безопасности пакетов. 🟢", index: 6 },
+  { text: "Фреймворки недели: vinext, TanStack Start, SolidJS, TimberJS и React Native. 🛰️", index: 7 },
+  { text: "ИИ-подборка: agent-ready Lighthouse и практичный опыт работы с AI в htmx. 🤖", index: 8 },
+  { text: "Инструменты: Wordgard, visual-json, µJS, Commit History и GTA2 в браузере. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### Что случилось с фронтендом за последние 20 лет
+
+David Poblador i Garcia написал большой разбор [эволюции фронтенд-разработки](https://davidpoblador.com/deep-dives/what-happened-to-the-frontend/): от простых FTP-загрузок до сложных пайплайнов сборки, SPA, SSR, edge-инфраструктуры и новых попыток вернуться к HTML-first подходу.
+
+
+### Safari MCP Server подключает AI-агентов к реальному браузеру
+
+В Safari Technology Preview 247 появился [Safari MCP Server для веб-разработчиков](https://webkit.org/blog/18136/introducing-the-safari-mcp-server-for-web-developers/). Он дает AI-агенту доступ к открытому окну Safari: агент может смотреть, как страница реально отрисовалась, проверять DOM, взаимодействовать с интерфейсом и помогать в отладке не только по коду, но и по результату в браузере.
+
+В том же выпуске [Safari Technology Preview 247](https://webkit.org/blog/18133/release-notes-for-safari-technology-preview-247/) добавил поддержку `calc-mix()` и исправил много ошибок CSS и рендеринга.
+
+### Chrome улучшает Async Clipboard API
+
+Chrome предложил более аккуратное поведение для чтения буфера обмена: [Selective Format Read](https://developer.chrome.com/blog/selective-format-read?hl=en) загружает и очищает данные лениво, только когда приложение запросило конкретный MIME-тип. Это полезно, когда в буфере лежит сразу несколько форматов, например HTML, текст и изображение.
+
+- Rachel Andrew собрала [июньские обновления веб-платформы](https://web.dev/blog/web-platform-06-2026), включая переход `field-sizing` в Baseline. Это свойство помогает формам подстраиваться под содержимое без ручного JavaScript.
+- В Microsoft Edge появились [новые инструменты для разработчиков](https://blogs.windows.com/msedgedev/2026/07/07/new-in-edge-for-developers-style-layout-gaps-improve-keyboard-accessibility-and-migrate-your-pwa-to-a-new-origin/): подсветка пробелов в layout, улучшения доступности с клавиатуры и помощь при переносе PWA на новый origin.
+- [Visual Studio Code 1.127](https://code.visualstudio.com/updates/v1_127) добавил agentic browser tools, чтобы ассистенты могли работать с браузером прямо во время разработки.
+- В Codrops показали, как делать [постоянные page transitions через WebGPU и обычный JavaScript](https://tympanus.net/codrops/2026/06/30/building-persistent-page-transitions-with-webgpu-and-vanilla-javascript/). Идея в том, что одна WebGPU-сцена переживает переходы между страницами, а [демо переходов](https://page-transitions-with-webgpu-vanilla-js.crnacura.workers.dev/) помогает увидеть эффект без длинных объяснений.
+
+## 🎨 CSS и дизайн
+
+### Anchor Positioning делает привязанные элементы проще
+
+Josh W. Comeau написал подробное введение в [CSS Anchor Positioning](https://www.joshwcomeau.com/css/anchor-positioning/). Эта возможность помогает привязывать один элемент к другому: например, tooltip к кнопке, popover к полю ввода или меню к выбранному пункту.
+
+Раньше такие вещи часто требовали JavaScript: нужно было измерять координаты, следить за resize и scroll, пересчитывать позицию. Anchor Positioning переносит часть этой логики в CSS. При этом технология еще молодая: Jake Archibald отдельно [предупредил о текущих багах](https://bsky.app/profile/jakearchibald.com/post/3mq2pbeml2c24), так что использовать ее в продакшене стоит с проверками.
+
+### CSS Mixins начинают реализовывать в Chromium
+
+Patrick Brosset сообщил, что команда Edge начала реализацию [CSS Mixins в Chromium](https://bsky.app/profile/patrickbrosset.com/post/3mpxkfv25vc2k). Идея похожа на миксины в Sass: описываем переиспользуемый блок стилей, передаем аргументы и используем его в разных местах без копипасты.
+
+MDN уже описывает концепцию [кастомных функций и миксинов в CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Custom_functions_and_mixins). До повседневного применения еще далеко, но направление заметное: браузеры постепенно забирают часть возможностей, ради которых раньше почти всегда подключали препроцессор.
+
+### `border-shape` открывает новые формы рамок
+
+Temani Afif разобрал будущее CSS-свойство [`border-shape`](https://css-tricks.com/get-ready-for-the-powerful-css-border-shape-property/). Оно продолжает линию `shape()` и `corner-shape` и позволяет делать рамки сложнее обычного прямоугольника: декоративные формы, необычные углы и анимации без тяжелой графики.
+
+Пока поддержка есть только в Chromium, поэтому это скорее материал для экспериментов и понимания направления платформы. Но уже видно, что многие эффекты, которые раньше требовали SVG или нескольких оберток, постепенно становятся частью обычного CSS.
+
+### Адаптивная типографика через `progress()`
+
+Matthew Morete показал, как строить [fluid typography с CSS `progress()`](https://master.dev/blog/fluid-typography-with-progress/). Смысл в том, чтобы плавно менять размер текста между контрольными точками, но при этом не ломать пользовательские настройки масштаба шрифта.
+
+В статье полезно показано, почему просто писать размеры во `vw` опасно: такой текст может игнорировать предпочтения пользователя. Подход с `rem` и диапазонами делает типографику гибкой, но уважает доступность. Минус пока практический: Firefox еще не поддерживает эту возможность, поэтому нужен fallback.
+
+- David Bushell объяснил, как [починить full-bleed CSS](https://dbushell.com/2026/07/03/fixing-full-bleed-css/) и избежать проблемы с `100vw`, из-за которой страница получает горизонтальный скролл рядом с вертикальной полосой прокрутки.
+- Каталог [Things You No Longer Need JavaScript For](https://aarontgrogg.github.io/NoLoJS/) собирает примеры интерфейсных задач, которые теперь можно решить современными HTML и CSS без скриптов.
+- Новый шрифт [Geist Pixel](https://vercel.com/font?type=pixel) из семейства Vercel Geist теперь доступен в [Google Fonts](https://fonts.google.com/specimen/Geist+Pixel?preview.script=Latn).
+
+## ♿ Доступность и UX
+
+- Grace Snow написала о [дизайне для людей с трудностями чтения](https://tetralogical.com/blog/2026/06/25/designing-for-reading-disabilities/). Хороший интерфейс здесь начинается с простых решений: понятный язык, читаемые строки, достаточный контраст, предсказуемая структура и отсутствие лишней перегрузки.
+- [OverflowGuard](https://overflowguard.dev/) предлагает строить компоненты вокруг реального содержимого, а не только вокруг брейкпоинтов. Он доступен как React-компонент и Custom Element, а [исходный код OverflowGuard](https://github.com/arturmarc/overflow-guard) показывает, как элемент адаптируется без магических чисел.
+- [Driver.js 1.6](https://driverjs.com/) помогает делать туры по интерфейсу, подсветку элементов и контекстные подсказки. Такой инструмент полезен, когда сложный продукт нужно объяснить прямо внутри приложения, не отправляя пользователя читать отдельную документацию.
+
+<TelegramCTA/>
+
+## 📦 JavaScript, Deno, Bun и WebAssembly
+
+### ECMAScript 2026 утвержден
+
+Pawel Grzybek разобрал, [что нового в ECMAScript 2026](https://pawelgrzybek.com/whats-new-in-ecmascript-2026/). Спецификация [ECMA-262](https://ecma-international.org/publications-and-standards/standards/ecma-262/) в этом году включает несколько уже практичных возможностей: `Array.fromAsync`, преобразование `Uint8Array` в Base64 и Hex, а также другие улучшения стандартной библиотеки.
+
+Хорошая новость в том, что почти все из списка уже доступны в браузерах и рантаймах.
+
+### Bun переписывают на Rust
+
+Jarred Sumner рассказал [полную историю переписывания Bun на Rust](https://bun.com/blog/bun-in-rust). Это необычный кейс: большая часть порта была сделана с участием AI-инструментов, а будущая версия Bun 1.4 будет опираться на результат этой работы.
+
+### PocketJS запускает JavaScript в 8 МБ памяти
+
+[PocketJS](https://pocketjs.dev/) объединяет JavaScript VM, Vue Vapor и Solid UI так, чтобы уложиться примерно в 8 МБ памяти. Проект может работать в WASM, нативно на macOS и даже на Sony PSP.
+
+- [js1024 2026](https://js1024.fun/#2026) открыл прием работ: участникам нужно сделать демо на JavaScript размером до 1024 байт. Чтобы понять уровень конкурса, можно посмотреть [победителя прошлого года](https://js1024.fun/demos/2025/11/bar).
+- В TC39 появился proposal для стандартизации свойства [`code` у `Error`](https://github.com/tc39/proposal-error-code-property). В Node.js такой подход давно используется на практике, а стандарт поможет сделать поведение единым.
+- В статье про [гидрацию и стратегии рендеринга](https://neciudan.dev/hydration-and-rendering-strategies) сравнивают SSR, streaming, islands, resumability и React Server Components. Это полезная карта, если слова уже знакомы, но границы между подходами все еще размыты.
+- В материале [WebGL Without a GPU](https://microlink.io/blog/webgl-without-a-gpu) объясняют, как тестировать и делать скриншоты WebGL-сцен на серверах без видеокарты.
+- [PGlite](https://pglite.dev/) достиг [10 миллионов загрузок в неделю](https://electric.ax/blog/2026/06/25/pglite-reaches-10-million-weekly-downloads). Это WASM-сборка Postgres для JavaScript-окружений, которую можно использовать в браузере, тестах и локальных инструментах.
+- [Upyo 0.5](https://upyo.org/) дает единый type-safe API для отправки email через SMTP и HTTP-провайдеров из Node, Deno, Bun и edge functions.
+
+## ⚛️ React
+
+### Как устроен ChatGPT Web на большом масштабе
+
+Dennis Brotzky разобрал [как устроен ChatGPT Web](https://performance.dev/chatgpt) по исходникам страниц, бандлам и сетевым запросам. Внутри заметны React Router 7, TanStack Query, Radix и ProseMirror, а не самые важные скрипты откладываются до момента, когда пользователь уже может печатать.
+
+
+### `shadcn/ui` перешел на Base UI по умолчанию
+Новые проекты [`shadcn/ui` теперь используют Base UI](https://ui.shadcn.com/docs/changelog/2026-07-base-ui-default) как библиотеку компонентов по умолчанию. [Radix](https://www.radix-ui.com/) не исчезает: компоненты продолжают поставляться в обоих вариантах, но для новых проектов команда рекомендует [Base UI](https://base-ui.com/).
+
+### Документация React объяснила Suspense Boundaries
+В официальной документации React появился раздел [что активирует Suspense boundary](https://react.dev/reference/react/Suspense#what-activates-a-suspense-boundary). Там перечислены ситуации, когда React показывает fallback UI, и для каждой есть живой пример. Aurora Scharff дополнительно [пояснила обновление](https://x.com/aurorascharff/status/2075222218099876260).
+
+### React-формы от HTML до TanStack Form
+Vu Nguyen подготовил интерактивный материал [React Forms Done Right](https://upskills.dev/tutorials/react-forms-done-right). Он начинает с обычных HTML-форм без JavaScript, затем переходит к нативным form actions в React 19 и заканчивает связкой [TanStack Form](https://tanstack.com/form/latest) с Zod.
+
+Это полезный путь обучения: сначала понять, что браузер уже умеет сам, а потом добавлять React там, где появляется состояние, валидация, сложные поля и серверные действия.
+
+### Обновления React-экосистемы
+- Для Next.js появился официальный [RFC WebSocket support in Route Handlers](https://github.com/vercel/next.js/discussions/95514). Если его примут, real-time сценарии в Next.js станут проще и ближе к встроенной модели фреймворка.
+- [React Google Maps 1.9](https://visgl.github.io/react-google-maps/) предоставляет компоненты и хуки для Google Maps, а [репозиторий React Google Maps](https://github.com/visgl/react-google-maps) показывает примеры маркеров, рисования и интеграции карты в React-состояние.
+- [React Email Editor 2.0](https://github.com/unlayer/react-email-editor/releases/tag/v2.0.0) добавляет drag-and-drop редактор писем как React-компонент; поведение можно посмотреть в [демо React Email Editor](https://react-email-editor-demo.netlify.app/).
+- [react-easy-crop](https://valentinh.github.io/react-easy-crop/) помогает интерактивно обрезать изображения и видео, поддерживает перетаскивание, зум и поворот, а код лежит в [репозитории react-easy-crop](https://github.com/ValentinH/react-easy-crop).
+- [React Hook Form 7.81.0](https://github.com/react-hook-form/react-hook-form/releases/tag/v7.81.0) добавил компонент `FieldArray` для динамических массивов полей; основная документация доступна на [сайте React Hook Form](https://react-hook-form.com/).
+- Вышли [React Native 0.87 RC](https://github.com/react/react-native/releases/tag/v0.87.0-rc.0) и [React Router 8.2.0](https://github.com/remix-run/react-router/blob/main/CHANGELOG.md#v820).
+
+## 🛰️ Фреймворки и сборка
+
+### Vite+ объединяет инструменты вокруг одной команды
+
+VoidZero выпустили [Vite+ Beta](https://voidzero.dev/posts/announcing-vite-plus-beta) - unified toolchain для веб-разработки. Идея в том, чтобы запускать dev server, тесты, форматирование, lint и сборку через одну команду `vp`, а под капотом использовать [Vite](https://vite.dev/), Vitest, Oxlint и соседние инструменты.
+
+### vinext 1.0 Beta переносит Next.js API на Vite
+
+Cloudflare выпустила [vinext 1.0 Beta](https://github.com/cloudflare/vinext) - Vite-плагин, который переосмысляет API Next.js. Проект поддерживает App Router, Pages Router, React Server Components, Server Actions и ISR, но пока не является полностью drop-in заменой.
+
+Интересно, что vinext вырос из эксперимента, где Cloudflare пробовала собрать клон Next.js с помощью AI. После тысяч изменений он стал более серьезной попыткой совместить привычную модель Next.js с инфраструктурой Vite.
+
+### Medal уменьшил Electron-бандл с 40 МБ до 2.7 МБ
+
+Команда Medal рассказала, как [сократила размер Electron frontend bundle](https://medal.tv/blog/posts/w-key-in-frontend-synergizing-technology-and-product) с 40+ МБ до 2.7 МБ. В ход пошли Vite, Rolldown, code splitting и агрессивное удаление мертвого кода.
+
+Это хороший пример того, что desktop-приложение на веб-технологиях не обязано быть бесконтрольно тяжелым. Большой эффект часто дают скучные, но важные вещи: понять, что реально попадает в бандл, разделить код по сценариям и убрать зависимости, которые тянутся без пользы.
+
+- Swizec Teller рассказал, как [переписывал блог на RSC-native framework](https://swizec.com/blog/using-vibes-to-rewrite-my-blog/) под названием [TimberJS](https://timberjs.com/). Это взгляд на то, как React Server Components начинают влиять не только на Next.js.
+- Dennis Morello написал [первый взгляд React-разработчика на SolidJS 2.0](https://morello.dev/blog/solidjs-2-react-developers-first-look): сигналы, async-подход и другая модель реактивности помогают понять, чем Solid отличается от React.
+- Software Mansion сравнила [одно и то же приложение на Kotlin Multiplatform и React Native](https://swmansion.com/blog/we-built-the-same-app-in-kmp-and-react-native-here-s-what-we-found/). По их бенчмаркам KMP сильно впереди на Android, а React Native хорошо держится на iOS.
+- [webpack-dev-server 6.0](https://github.com/webpack/webpack-dev-server/releases/tag/v6.0.0) перешел на Express 5, добавил возможность использоваться как webpack-плагин, переключился на ESM и поднял требования к Node.js.
+
+## 📘 TypeScript
+
+### TypeScript 7.0 вышел с новым Go-компилятором
+
+Microsoft выпустила [TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) - версию с новым компилятором на Go, о котором команда [рассказывала заранее](https://devblogs.microsoft.com/typescript/typescript-native-port/). Главная цель - заметно ускорить проверку типов и сборку больших проектов.
+
+Переходить сразу всем не обязательно. У TypeScript 7.0 пока нет программного API, поэтому многим фреймворкам и инструментам еще подходит [TypeScript 6.0](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/) как промежуточный шаг. Но для больших кодовых баз это уже важный сигнал: типизация JavaScript становится быстрее на уровне самого инструмента.
+
+- Tejas Bubane объяснил [distributive conditional types в TypeScript](https://tejasbubane.github.io/posts/2026-07-04-typescript-distributive-union-types/). Это одна из тем, где простая запись вроде `T extends ... ? ... : ...` начинает вести себя неочевидно, если `T` является union-типом.
+
+## ⚙️ Node.js
+
+### npm 12 вышел и отключил install scripts по умолчанию
+
+npm 12 стал стабильным релизом: теперь [lifecycle scripts и неявные сборки `node-gyp` не запускаются по умолчанию](https://github.blog/changelog/2026-07-08-npm-install-time-security-and-gat-bypass2fa-deprecation/). Полный список изменений есть в [релизе npm CLI 12.0.0](https://github.com/npm/cli/releases/tag/v12.0.0), а Sarah Gooding разобрала [практические последствия npm 12](https://socket.dev/blog/npm-12).
+
+Это изменение направлено на безопасность supply chain. Пакет больше не сможет автоматически выполнить скрипт при установке так же легко, как раньше. При этом npm смягчил одно поведение из preview-версий: неизвестные ключи `.npmrc` теперь должны предупреждать, а не ломать установку, что видно в [соответствующем PR](https://github.com/npm/cli/pull/9729).
+
+### Node.js 26.5.0 добавил импорт текстовых файлов и новые perf-возможности
+
+В [Node.js 26.5.0 Current](https://nodejs.org/en/blog/release/v26.5.0) появились экспериментальные импорты текстовых файлов в ES modules через import attributes. Эта возможность связана с proposal [Import Text](https://github.com/tc39/proposal-import-text) и пока включается за флагом из [PR Node.js](https://github.com/nodejs/node/pull/62300).
+
+Еще релиз добавил `blob.textStream()` для потокового чтения больших Blob и возможность измерять задержку event loop по итерациям через `perf_hooks`, что описано в [PR про event-loop delay sampling](https://github.com/nodejs/node/pull/62935). Такие вещи особенно полезны для серверов, где маленькие задержки постепенно превращаются в видимую медлительность.
+
+### История CVE, который не должен был быть CVE
+
+Matteo Collina написал честный разбор [CVE-2026-48931 Shouldn't Have Been a CVE](https://adventures.nodeland.dev/archive/cve-2026-48931-shouldnt-have-been-a-cve/). Речь о проблеме вокруг HTTP/1.1 poisoning, исправление которой в итоге сломало node-fetch, Firebase и официальные Docker-образы.
+
+Главный урок здесь не только про одну уязвимость. В экосистеме Node.js решения безопасности быстро расходятся по тысячам проектов, поэтому ошибочная классификация или слишком резкое исправление могут причинить больше вреда, чем кажется со стороны.
+
+### Безопасность публикации пакетов остается сложной
+
+William Woodruff объяснил, почему [trusted publishing не стоит воспринимать как знак качества](https://blog.yossarian.net/2026/07/07/You-shouldnt-trust-trusted-publishing). npm действительно поддерживает [trusted publishers](https://docs.npmjs.com/trusted-publishers/), но это про аутентификацию процесса публикации, а не про гарантию, что пакет безопасен или хорошо поддерживается.
+
+Matteo Collina раньше тоже писал, [почему trusted publishing не спасает npm само по себе](https://adventures.nodeland.dev/archive/why-trusted-publishing-can-t-save-us/). Безопасность пакетов складывается из нескольких слоев: аккаунты, CI, зависимости, review, репутация и реакция на инциденты.
+
+### Node.js-инструменты и релизы
+
+- Inngest поделились опытом [использования Node.js Worker Threads в продакшене](https://www.inngest.com/blog/node-worker-threads-production). Worker Threads помогают выносить тяжелую работу из основного event loop, но требуют думать об очередях, памяти и завершении задач.
+- [eslint-node-test](https://github.com/sindresorhus/eslint-node-test) добавляет ESLint-правила для встроенного тест-раннера `node:test`, чтобы ловить ошибки и поддерживать единый стиль тестов.
+- [terminal-image 5.0](https://github.com/sindresorhus/terminal-image) умеет показывать изображения в терминале через цветные блоки или нативную поддержку inline graphics, а в новой версии улучшена работа с iTerm2.
+- [XO 4.0](https://github.com/xojs/xo) обновил opinionated ESLint-wrapper с большим набором готовых правил и плагинов.
+- [MongoDB Node.js Driver 7.5](https://github.com/mongodb/node-mongodb-native/releases/tag/v7.5.0) добавил поддержку Queryable Encryption string queries в MongoDB 9.0.
+- [node-calls-python 1.2](https://github.com/hmenyus/node-calls-python) позволяет вызывать Python из Node.js внутри процесса, без запуска отдельного процесса на каждый вызов.
+- [FoalTS 5.3](https://foalts.org/blog/2026/07/09/version-5.3-release-notes/) добавил новый формат логирования `dev-verbose`.
+- Вышли [Fastify 5.10.0](https://github.com/fastify/fastify/releases/tag/v5.10.0) и [feed 6.0](https://github.com/jpmonette/feed) для генерации RSS, JSON Feed и Atom.
+
+## 🤖 ИИ
+
+### Agent-Ready Toolkit проверяет, удобно ли сайтом пользоваться агентам
+
+Google представила [Agent-Ready Toolkit](https://developer.chrome.com/blog/agent-ready-toolkit) - набор проверок в Lighthouse, который оценивает, насколько сайт понятен AI-агентам. Он смотрит на качество accessibility tree, стабильность layout и интеграцию с WebMCP.
+
+Важно, что многие такие проверки полезны не только агентам. Если дерево доступности чистое, элементы понятны, а layout не прыгает, интерфейс обычно становится лучше и для людей: экранных читалок, клавиатурной навигации и обычного восприятия страницы.
+
+### Практический пример работы с AI от автора htmx
+
+Carson Gross написал [конкретный пример работы с AI](https://htmx.org/essays/working-with-ai/) на основе расследования баг-репорта в [htmx](https://htmx.org/). Это спокойный взгляд на AI как на помощника в исследовании, а не как на магическую замену инженерной работе.
+
+## ⚒️ Инструменты и библиотеки
+
+### Wordgard - новый редактор текста от автора ProseMirror
+
+Marijn Haverbeke представил [Wordgard](https://wordgard.net/) - современную модульную библиотеку rich text editor. У автора сильный опыт в этой области: он создал [Eloquent JavaScript](https://eloquentjavascript.net/) и [ProseMirror](https://prosemirror.net/), поэтому проект сразу привлекает внимание.
+
+Wordgard поддерживает модульную архитектуру и совместное редактирование. Его можно попробовать в [живом демо](https://wordgard.net/try/) и начать с [базового примера](https://wordgard.net/examples/basic/). Такие редакторы сложны не из-за кнопок жирного текста, а из-за выделений, undo, вставки, коллаборации и структуры документа.
+
+### visual-json дает несколько способов редактировать JSON
+
+[visual-json](https://visual-json.dev/) - визуальный JSON-редактор от Vercel Labs. Он поддерживает tree view, form view, diff view и raw editing mode, а еще умеет учитывать схему данных.
+
+Это полезно для админок, конфигураторов и внутренних инструментов, где обычное текстовое поле для JSON быстро становится опасным. [Исходный код visual-json](https://github.com/vercel-labs/visual-json) открыт, поэтому его можно изучить или встроить в свой проект.
+
+### µJS добавляет SPA-навигацию без фреймворка
+
+[µJS](https://mujs.org/) - маленькая Ajax navigation library, которую можно подключить обычным script tag. Она перехватывает ссылки и отправку форм, чтобы добавить ощущение SPA без сборки и большого фреймворка.
+
+Такой подход подходит для проектов, где сервер уже хорошо рендерит HTML, но хочется сделать переходы быстрее и мягче. Если нужно понять устройство, можно открыть [исходный код µJS](https://github.com/Digicreon/mujs).
+
+### GTA2 Web перенес классическую игру в браузер
+
+[GTA2 Web](https://gta2js.vercel.app/) - порт классической GTA 2, который запускается прямо в браузере и добавляет WebRTC peer-to-peer multiplayer. Это не типичный рабочий инструмент, но хороший пример того, насколько далеко ушли браузерные рантаймы, графика и сеть.
+
+Такие проекты полезны как витрина возможностей платформы: если в браузере можно запускать сложную игру с мультиплеером, то многие прикладные интерактивные интерфейсы уже точно не упираются в "браузер не справится".
+
+### Обновления
+
+- [Astryx](https://astryx.atmeta.com/) - открытая дизайн-система Meta с большим набором React-компонентов, темами, dark mode и CLI-инструментами.
+- [Better Auth](https://better-auth.com/) присоединяется к Vercel: об этом написали и в [анонсе Better Auth](https://better-auth.com/blog/better-auth-joins-vercel), и в [анонсе Vercel](https://vercel.com/blog/vercel-acquires-better-auth). Если библиотека незнакома, есть короткое [введение от Flavio Copes](https://flaviocopes.com/better-auth/).
+- [Bundle Size Comparison Across Frameworks](https://mlgq.github.io/frontend-framework-bundle-size/?lang=en) сравнивает размеры бандлов популярных фреймворков на одинаковом демо-приложении; детали методики лежат в [репозитории проекта](https://github.com/mlgq/frontend-framework-bundle-size/).
+- [Dependency Cruiser 18.0](https://github.com/sverweij/dependency-cruiser) помогает проверять и визуализировать зависимости внутри проекта.
+- [npm 11.18.0](https://github.com/npm/cli/releases/tag/v11.18.0) и [pnpm 11.10](https://pnpm.io/blog/releases/11.10) обновили пакетные менеджеры, хотя главное внимание недели уже забрал npm 12.
+- [ESLint Plugin Perfectionist 5.10](https://github.com/azat-io/eslint-plugin-perfectionist) следит за сортировкой импортов, объектов, типов и других структур.
+- [TinyBase 9.0](https://tinybase.org/guides/releases/#v9-0) вышел как релиз исправлений и стабильности для reactive data store и sync engine.
+- [wavesurfer.js 7.12.10](https://github.com/katspaugh/wavesurfer.js) обновил библиотеку для интерактивного отображения аудиоволн.
+- [Commit History](https://commit-history.com/) строит графики GitHub-коммитов по времени; можно использовать для profile README, о которых пишет [документация GitHub](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme), или посмотреть пример по [профилю Sindre Sorhus](https://commit-history.com/sindresorhus).
+- Ruby-сообщество подготовило [гайд по запуску meetup](https://guides.rubyevents.org/meetups/). Хотя он написан для Ruby, советы по месту, формату, докладам и регулярности легко перенести на React или JavaScript-сообщества.
