@@ -349,68 +349,6 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
         text-align: right;
       }
 
-      .leaderboard__row td {
-        padding: 0.55rem 0.5rem;
-        background: rgba(252, 248, 237, 0.72);
-        border-block: 1px solid rgba(var(--line), 0.38);
-        font-size: 0.82rem;
-      }
-
-      .leaderboard__row td:first-child {
-        width: 4.5rem;
-        padding-left: 0.6rem;
-        border-left: 1px solid rgba(var(--line), 0.38);
-        border-radius: 8px 0 0 8px;
-      }
-
-      .leaderboard__row td:last-child {
-        width: 5.8rem;
-        padding-right: 0.6rem;
-        border-right: 1px solid rgba(var(--line), 0.38);
-        border-radius: 0 8px 8px 0;
-      }
-
-      .leaderboard__row--current td {
-        background: rgba(115, 182, 72, 0.18);
-        border-color: rgba(115, 182, 72, 0.46);
-      }
-
-      .leaderboard__rank {
-        display: inline-grid;
-        place-items: center;
-        min-height: 2rem;
-        color: rgb(var(--ink));
-        background: rgba(243, 191, 31, 0.24);
-        border: 1px solid rgba(139, 98, 18, 0.2);
-        border-radius: 8px;
-        font-family: var(--font-accent);
-        font-size: 0.74rem;
-      }
-
-      .leaderboard__link {
-        overflow: hidden;
-        color: rgb(var(--ink));
-        font-weight: 800;
-        text-decoration: none;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .leaderboard__score {
-        display: inline-grid;
-        place-items: center end;
-        min-height: 2rem;
-        padding: 0 0.45rem;
-        color: var(--accent-dark);
-        background: rgba(115, 182, 72, 0.16);
-        border: 1px solid rgba(75, 132, 44, 0.22);
-        border-radius: 8px;
-        font-family: var(--font-heading);
-        font-size: 0.82rem;
-        text-align: right;
-        white-space: nowrap;
-      }
-
       .leaderboard__gap {
         padding: 0.75rem 0.6rem;
         color: rgb(var(--muted));
@@ -950,9 +888,76 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
                   <th scope="col">Баллы</th>
                 </tr>
               </thead>
-              <tbody data-leaderboard>
-                <tr>
-                  <td class="leaderboard__gap" colspan="3">Загружаю...</td>
+              <tbody>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#1</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/Frontend-Sisyphus" target="_blank" rel="noreferrer">Boris</a>
+                  </td>
+                  <td><span class="leaderboard__score">27</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#2</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/KoryakinaSvetlana" target="_blank" rel="noreferrer">KoryakinaSvetlana</a>
+                  </td>
+                  <td><span class="leaderboard__score">15</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#3</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/DarthVitalus" target="_blank" rel="noreferrer">DarthVitalus</a>
+                  </td>
+                  <td><span class="leaderboard__score">10</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#4</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/Balkanskiy" target="_blank" rel="noreferrer">Alex</a>
+                  </td>
+                  <td><span class="leaderboard__score">4</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#5</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/firefoxic" target="_blank" rel="noreferrer">firefoxic</a>
+                  </td>
+                  <td><span class="leaderboard__score">4</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#6</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/GryphM" target="_blank" rel="noreferrer">Maxim Gryph</a>
+                  </td>
+                  <td><span class="leaderboard__score">3</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#7</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/nikolai-shabalin" target="_blank" rel="noreferrer">Nikolai Shabalin</a>
+                  </td>
+                  <td><span class="leaderboard__score">3</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#8</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/TNikolay" target="_blank" rel="noreferrer">Nikolay Tiushkov</a>
+                  </td>
+                  <td><span class="leaderboard__score">2</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#9</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/valdrus" target="_blank" rel="noreferrer">valdrus</a>
+                  </td>
+                  <td><span class="leaderboard__score">1</span></td>
+                </tr>
+                <tr class="leaderboard__row">
+                  <td><span class="leaderboard__rank">#10</span></td>
+                  <td>
+                    <a class="leaderboard__link" href="https://github.com/Fostenslave" target="_blank" rel="noreferrer">Вячеслав</a>
+                  </td>
+                  <td><span class="leaderboard__score">0</span></td>
                 </tr>
               </tbody>
             </table>
@@ -1001,7 +1006,6 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
       const userName = document.querySelector('[data-user-name]');
       const userLink = document.querySelector('[data-user-link]');
       const logoutButton = document.querySelector('[data-logout]');
-      const leaderboard = document.querySelector('[data-leaderboard]');
       window.cssWordleAbortController?.abort();
 
       const controller = new AbortController();
@@ -1211,67 +1215,6 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
         }
       }
 
-      function createLeaderboardItem(row, isCurrent) {
-        const item = document.createElement('tr');
-        const rankCell = document.createElement('td');
-        const playerCell = document.createElement('td');
-        const scoreCell = document.createElement('td');
-        const rank = document.createElement('span');
-        const link = document.createElement('a');
-        const score = document.createElement('span');
-
-        item.className = `leaderboard__row${isCurrent ? ' leaderboard__row--current' : ''}`;
-        rank.className = 'leaderboard__rank';
-        link.className = 'leaderboard__link';
-        score.className = 'leaderboard__score';
-
-        rank.textContent = `#${row.rank}`;
-        link.href = row.htmlUrl || `https://github.com/${row.login}`;
-        link.target = '_blank';
-        link.rel = 'noreferrer';
-        link.textContent = row.name || row.login;
-        score.textContent = String(row.score);
-        rankCell.append(rank);
-        playerCell.append(link);
-        scoreCell.append(score);
-        item.append(rankCell, playerCell, scoreCell);
-
-        return item;
-      }
-
-      function createLeaderboardMessage(message) {
-        const row = document.createElement('tr');
-        const cell = document.createElement('td');
-
-        cell.className = 'leaderboard__gap';
-        cell.colSpan = 3;
-        cell.textContent = message;
-        row.append(cell);
-
-        return row;
-      }
-
-      function renderLeaderboard(data) {
-        const rows = [...data.top];
-        const current = data.currentUser;
-        const hasCurrentInTop = current && rows.some((row) => row.id === current.id);
-
-        leaderboard.textContent = '';
-
-        if (!rows.length && !current) {
-          leaderboard.append(createLeaderboardMessage('Пока никого нет.'));
-          return;
-        }
-
-        for (const row of rows) {
-          leaderboard.append(createLeaderboardItem(row, current?.id === row.id));
-        }
-
-        if (current && !hasCurrentInTop) {
-          leaderboard.append(createLeaderboardMessage('...'), createLeaderboardItem(current, true));
-        }
-      }
-
       function rebuildKeyStates() {
         keyStates = {};
 
@@ -1386,7 +1329,6 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
               showFinalScreen(progress);
             }
 
-            loadLeaderboard();
           } else if (game.status === 'lost') {
             gameOver = true;
             setStatus('Попытки закончились.', 'danger');
@@ -1452,27 +1394,16 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
         }
       }
 
-      async function loadLeaderboard() {
-        try {
-          renderLeaderboard(await requestJson('/leaderboard'));
-        } catch {
-          leaderboard.textContent = '';
-          leaderboard.append(createLeaderboardMessage('Не удалось загрузить рейтинг.'));
-        }
-      }
-
       async function loadMe() {
         const result = await requestJson('/me');
 
         if (!result.user) {
           showAuthPanel();
-          await loadLeaderboard();
           return false;
         }
 
         showGame(result.user);
         const progress = await loadProgress();
-        await loadLeaderboard();
 
         if (progress && progress.completed >= progress.answers) {
           showFinalScreen(progress);
@@ -1549,7 +1480,6 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
           gameOver = true;
           progressCount.textContent = '...';
           showAuthPanel();
-          loadLeaderboard();
         });
       }, { signal: controller.signal });
 
@@ -1579,7 +1509,6 @@ const apiBaseUrl = import.meta.env.PUBLIC_CSS_WORDLE_API_URL ?? 'https://api.fro
         })
         .catch(() => {
           showAuthPanel();
-          loadLeaderboard();
         });
     </script>
   </body>
