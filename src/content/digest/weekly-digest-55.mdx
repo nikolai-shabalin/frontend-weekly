@@ -1,0 +1,213 @@
+---
+title: "Еженедельный дайджест #55: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "July 20 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #55! 🗞️", index: 0 },
+  { text: "Платформа обсуждает полифилы, CSS-параметры для SVG и жизнь без сборщиков. 🧪", index: 1 },
+  { text: "CSS раскладывает стили по слоям, оживляет кнопки и осваивает новые цвета. 🎨", index: 2 },
+  { text: "Bun переезжает на Rust, npm 12 отключает install-скрипты, а TC39 готовит новые возможности. 📦", index: 3 },
+  { text: "TypeScript 7 стал быстрее, SolidJS показывает сигналы, а фреймворки ищут новые архитектуры. 📘", index: 4 },
+  { text: "Node.js проводит HTTP-запрос через весь стек и просит понятные коды ошибок для fetch. 🟢", index: 5 },
+  { text: "LiteRT.js запускает ИИ в браузере, а новые инструменты помогают управлять coding agents. 🤖", index: 6 },
+  { text: "Инструменты недели проверяют PWA, ускоряют Playwright и защищают цепочку поставок. 🧰", index: 7 },
+  { text: "Дизайн-подборка: правила интерфейсов, справочник компонентов и баг для левшей. 🧭", index: 8 },
+  { text: "Релизы недели: ESLint, Storybook, Vite DevTools, Color.js, Fuse.js и Nano ID. 🚀", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+
+### Нужны ли фронтенду сборщики в 2026 году
+
+Ollie Williams провел [аудит задач современных сборщиков](https://olliewilliams.xyz/blog/no-build/): проверил транспиляцию, префиксы, Sass, объединение модулей и минификацию. Часть прежней работы уже умеют браузеры и сам CSS, поэтому небольшой сайт действительно можно разрабатывать без сложной цепочки сборки.
+
+Но полный отказ от инструментов подходит не каждому проекту. Объединение файлов, оптимизация размера и обработка зависимостей по-прежнему важны для больших приложений.
+
+### Полифилы все еще помогают развивать веб
+
+Lea Verou [защищает полифилы](https://lea.verou.me/blog/2026/polyfills/) — JavaScript-реализации новых возможностей платформы для старых браузеров. Благодаря им разработчики могут раньше пробовать API, а авторы стандартов — получать практическую обратную связь до того, как функция появится повсюду.
+
+Полифил не может повторить любую браузерную возможность идеально, поэтому важно понимать его ограничения. Но полный отказ от такого подхода замедлил бы внедрение новых стандартов и заставил бы проекты дольше ориентироваться на самый старый браузер.
+
+- Первый черновик [CSS Linked Parameters](https://www.w3.org/TR/2026/WD-css-link-params-1-20260714/) описывает передачу значений, например цветов темы, во внешние ресурсы вроде SVG. Внутри такого файла параметры будут доступны как переменные окружения.
+- Mozilla планирует [двухнедельный цикл выпуска Firefox](https://groups.google.com/a/mozilla.org/g/dev-platform/c/qlaQ1YSlOP8?pli=1) вместо четырехнедельного. Эксперимент начнется в сентябре и должен быстрее доставлять исправления пользователям.
+- [Cloudflare Drop](https://www.cloudflare.com/drop/) публикует статический сайт после перетаскивания папки или ZIP-архива в браузер. По устройству он похож на давно работающий [Netlify Drop](https://app.netlify.com/drop) и подходит для быстрых демо без настройки CI.
+- [A-Frame 1.8](https://aframe.io/) обновил HTML-подобный фреймворк для WebXR-приложений, работающих на телефонах, компьютерах и VR-гарнитурах.
+- [HYPERBLAM](https://hyperblam.how/) позволяет собирать синтезаторы и драм-машины декларативной HTML-разметкой поверх Web Audio API. Разобраться в синтаксисе помогают [готовый музыкальный пример](https://hyperblam.how/examples/01-i-wear-many-hats/) и [интерактивная песочница](https://codepen.io/heydon/pen/RNKgMEe).
+- Инструмент [PWA-Check](https://github.com/pwa-today/pwa-check) автоматически проверяет, можно ли установить веб-приложение, работает ли оно офлайн и соблюдает ли базовые требования PWA.
+- Один из создателей базовых интернет-протоколов Винт Серф [уходит на пенсию](https://techcrunch.com/2026/06/30/the-father-of-the-internet-is-finally-retiring/), завершая карьеру, которая охватила путь от раннего TCP/IP до современного веба.
+
+## 🎨 CSS и дизайн
+
+### Как использовать `@layer` без борьбы со специфичностью
+
+Chris Coyier предлагает [раскладывать дизайн-токены компонентов по слоям](https://master.dev/blog/thinking-horizontally-in-css-layer/), а стили, которые применяют эти переменные, оставлять вне слоев. Правила в `@layer` имеют более низкий приоритет, поэтому значения легко переопределять без длинных селекторов и `!important`.
+
+Подход особенно полезен для библиотек компонентов: они дают хорошие значения по умолчанию, но не мешают приложению настроить тему. При этом обычные стили компонента остаются достаточно сильными и предсказуемыми.
+
+### Цвета в браузере становятся точнее
+
+[Color.js 0.7](https://colorjs.io/) помогает преобразовывать, сравнивать и выводить цвета в соответствии с современными спецификациями. В [релизе 0.7](https://github.com/color-js/color.js/releases/tag/v0.7.0) появились дополнительные цветовые пространства, новый способ приводить цвет к доступному диапазону экрана и более умный запасной вариант для браузеров без нужной поддержки.
+
+- Josh Comeau показывает, как [собрать объемную анимированную кнопку](https://www.joshwcomeau.com/animation/3d-button/) из нескольких визуальных слоев и сделать нажатие физически понятным.
+- В руководстве по [бесконечной прокрутке на GSAP и Lenis](https://tympanus.net/codrops/2026/05/28/the-never-ending-story-building-a-seamless-infinite-scroll-experience-with-gsap-lenis/) элементы получают глубину, параллакс и привязку к позициям. Отдельное [демо прокрутки](https://tympanus.net/Tutorials/InfiniteScrollParallax/) показывает результат в действии.
+- Короткое сравнение [`zoom` и `transform: scale()`](https://www.stefanjudis.com/today-i-learned/css-zoom-to-scale-elements/) объясняет ключевую разницу: `zoom` участвует в раскладке, а трансформация меняет внешний вид уже рассчитанного элемента.
+- Andy Clarke выяснил, почему [AVIF не всегда уменьшает изображение](https://stuffandnonsense.co.uk/blog/webp-to-avif-gotcha/). Новый формат может проиграть WebP на конкретной картинке, поэтому оптимизацию лучше подтверждать измерениями.
+- Разбор [каскадных анимаций в CSS](https://blog.logrocket.com/css-staggered-animations/) показывает, как запускать однотипные элементы с небольшой задержкой и получать последовательное движение без отдельной анимации для каждого.
+- [tailwindcss-motion](https://rombo.co/tailwind/) добавляет в Tailwind больше двадцати готовых анимаций и конструктор собственных эффектов.
+- Пиксельный шрифт [Geist Pixel](https://vercel.com/font?type=pixel) теперь можно подключить и через [Google Fonts](https://fonts.google.com/specimen/Geist+Pixel?preview.script=Latn).
+
+<TelegramCTA/>
+
+## ♿ Доступность и UX
+
+- Сборник [надежных правил визуального дизайна](https://anthonyhobday.com/sideprojects/saferules/) объясняет, как работать с контрастом, выравниванием и отступами, чтобы интерфейс оставался ясным без сложных художественных приемов.
+- История [ошибки, затронувшей только левшей](https://shkspr.mobi/blog/2026/07/a-bug-which-only-affected-left-handed-users/) напоминает, что привычный способ держать устройство и нажимать элементы нельзя считать единственно возможным.
+- [UX Components](https://www.ux-components.com/) устроен как энциклопедия элементов интерфейса: для аккордеона, поиска и других паттернов он объясняет назначение, варианты использования и подходящие иконки.
+- Проект калифорнийского закона может [ограничить бесконечную ленту и автозапуск](https://www.sfgate.com/politics/article/meta-social-media-teenagers-22337724.php) в приложениях для пользователей младше 16 лет. Это еще один повод проектировать вовлечение без механик, которые трудно остановить.
+
+## 📦 JavaScript и рантаймы
+
+### Bun переписали с Zig на Rust
+
+Создатель Bun рассказал о [переносе рантайма на Rust](https://bun.com/blog/bun-in-rust). Большую часть механической работы выполняли параллельные экземпляры Claude Code, но команде все равно пришлось проверять архитектуру, совместимость и производительность результата.
+
+Новая реализация станет основой Bun 1.4. Этот опыт интересен не только выбором языка: он показывает, что ИИ может ускорить крупную миграцию, но стоимость генерации и объем инженерного контроля остаются очень большими.
+
+### npm 12 отключил install-скрипты по умолчанию
+
+[npm 12 вышел в стабильной версии](https://github.blog/changelog/2026-07-08-npm-install-time-security-and-gat-bypass2fa-deprecation/) и больше не запускает lifecycle-скрипты пакетов автоматически. Это уменьшает риск выполнить вредоносный код сразу после установки зависимости, но может сломать пакеты, которым скрипт нужен для сборки нативного модуля или загрузки файлов.
+
+Перед обновлением стоит изучить [полный список несовместимых изменений](https://github.com/npm/cli/releases/tag/v12.0.0), [практические последствия новых правил](https://socket.dev/blog/npm-12) и при необходимости сначала перейти на [npm 11.18](https://github.com/npm/cli/releases/tag/v11.18.0).
+
+### TC39 готовит новые возможности языка
+
+В [повестке 115-й встречи TC39](https://github.com/tc39/agendas/blob/main/2026/07.md) есть сразу несколько предложений. [Await Dictionary](https://github.com/tc39/proposal-await-dictionary) упрощает ожидание набора промисов с именованными полями, [Decimal](https://github.com/tc39/proposal-decimal/) предлагает точные десятичные вычисления, а [`Map.take`](https://github.com/dcrousso/proposal-Map-take) должен получать значение и одновременно удалять его из коллекции.
+
+### Как `Proxy` и `Reflect` меняют работу объектов
+
+Mat Marquis подробно разбирает [перехват операций объекта через `Proxy` и `Reflect`](https://piccalil.li/blog/proxy-and-reflect/). Из базовых ловушек для чтения и записи свойств автор постепенно собирает маленькую реактивную систему, похожую на [механизм реактивности Vue 3](https://vuejs.org/guide/extras/reactivity-in-depth).
+
+### Как Wordgard решает совместное редактирование
+
+Автор редактора Wordgard описал [синхронизацию правок нескольких пользователей](https://marijnhaverbeke.nl/blog/collaborative-editing-wordgard.html). Он снова выбрал operational transformation: сервер упорядочивает изменения и преобразует конфликтующие операции, чтобы у участников получился одинаковый документ.
+
+Посмотреть сам [редактор Wordgard](https://wordgard.net/) и понять причины его появления помогает [история первого релиза](https://marijnhaverbeke.nl/blog/wordgard-0.1.html). Автор также объясняет, почему написал преемника ProseMirror без LLM и пока не принимает pull request.
+
+- Пакет `jscrambler` пережил [атаку на цепочку поставок npm](https://socket.dev/blog/jscrambler-supply-chain-attack). Вредоносную публикацию обнаружили за шесть минут, но случай снова показывает, почему установка пакета считается выполнением чужого кода.
+- [Ant](https://antjs.org/) — JavaScript-рантайм с собственным движком на C, без V8, JavaScriptCore и SpiderMonkey. Он помещается в бинарный файл около 9 МБ, быстро стартует и умеет запускать npm-пакеты,.
+- [Постоянные переходы между страницами на WebGPU](https://tympanus.net/codrops/2026/06/30/building-persistent-page-transitions-with-webgpu-and-vanilla-javascript/) сохраняют графическую сцену при навигации и дают плавный эффект без фреймворка.
+- [Babylon Lite](https://doc.babylonjs.com/lite/) — компактный WebGPU-only движок от создателей [Babylon.js](https://www.babylonjs.com/). Он быстрее и меньше основной библиотеки, но ради этого отказывается от части возможностей и старых браузеров.
+- [FracturedJson](https://j-brooke.github.io/FracturedJson/) форматирует JSON компактнее обычного pretty-print, сохраняя читаемость вложенных структур и поддерживая нестандартные комментарии.
+- [TanStack npm Stats](https://tanstack.com/stats/npm) строит графики загрузок любых npm-пакетов и помогает сравнивать популярность библиотек, сборщиков и UI-фреймворков во времени.
+
+## ⚛️ React и фронтенд-фреймворки
+
+### SolidJS 2 глазами React-разработчика
+
+В [знакомстве с SolidJS 2](https://morello.dev/blog/solidjs-2-react-developers-first-look) сравниваются привычные React-компоненты с сигналами и новой асинхронной моделью Solid. Сигнал хранит реактивное значение и обновляет только те места DOM, которые от него зависят, а не запускает повторный рендер всего компонента.
+
+- [Next.js запускает формальную программу релизов безопасности](https://nextjs.org/blog/next-security-release-program): объявления и плановые исправления будут выходить ежемесячно, чтобы командам было проще следить за обязательными обновлениями.
+- Анализ [веб-стека ChatGPT](https://performance.dev/chatgpt) показывает, как большое приложение сочетает React Router 7, TanStack Query, Radix и ProseMirror, а также как эти зависимости распределяются по бандлам и запросам.
+- [Mantine Vue](https://mantine-vue.dev/getting-started) переносит компоненты популярной React-библиотеки [Mantine](https://mantine.dev/) во Vue и сохраняет похожий API.
+- [Gea](https://geajs.com/) компилирует обычные классы и функции в точечные обновления DOM, обходясь без виртуального DOM, хуков и сигналов во время выполнения.
+- [Wely](https://litepacks.github.io/welyjs/) предлагает легкий набор для Web Components с единственной функцией `defineComponent()`, без обязательных классов и привязки к большой экосистеме.
+- [Ilha](https://ilha.build/) реализует островную архитектуру: сервер отдает обычный HTML, а интерактивные части гидратируются на клиенте без заметного мигания.
+- [Vinext](https://vinext.dev/) повторяет API Next.js как плагин Vite. Он понимает `app/`, `pages/` и `next.config.js`, но дает альтернативный dev-сервер и возможность развертывания на разных платформах.
+- [Shadify](https://github.com/CopilotKit/shadify) превращает текстовое описание интерфейса в интерактивную страницу на shadcn/ui и экспортирует ее как React-код.
+
+## 📘 TypeScript
+
+### TypeScript 7.0 вышел с новым компилятором на Go
+
+[TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) — первый финальный выпуск новой реализации компилятора на Go. Главный результат перехода — заметно более быстрая проверка больших проектов и более отзывчивая работа редактора.
+
+Пока новая версия предоставляет не весь программный API, от которого зависят плагины и инструменты для встроенных языков. Поэтому части пользователей рекомендуют [временно остаться на TypeScript 6](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#typescript-and-embedded-languages), пока экосистема не адаптируется.
+
+- AWS меняет [правила поддержки версий TypeScript в AWS SDK for JavaScript v3](https://aws.amazon.com/blogs/developer/updating-typescript-version-support-in-aws-sdk-for-javascript-v3/). Проектам со старым компилятором стоит проверить совместимость до обновления SDK.
+- [Perry](https://www.perryts.com/) — написанный на Rust компилятор TypeScript в нативные приложения для macOS, iOS, Android, Linux, Windows, WebAssembly и других платформ.
+- [Native SDK](https://native-sdk.dev/) позволяет описывать desktop-интерфейс нативной разметкой и TypeScript или Zig. Собственный движок создает настоящие окна ОС без браузера, WebView и JavaScript-рантайма.
+- [CrustJS](https://crustjs.com/) — Bun-native фреймворк для CLI-приложений с TypeScript, компонуемыми модулями и fluent API.
+
+## ⚙️ Node.js и серверная разработка
+
+### Что происходит за 200 миллисекунд жизни HTTP-запроса
+
+Интерактивный разбор [проводит один POST-запрос от клика до базы данных](https://200ms.thenodebook.com/#act-0-prologue). Он последовательно показывает DNS, соединение, сервер Node.js, event loop и обращение к хранилищу, поэтому абстрактное слово «запрос» превращается в понятную цепочку событий.
+
+Если нужно сначала освежить устройство рантайма, у автора есть отдельное [введение в архитектуру Node.js](https://www.thenodebook.com/node-arch/what-is-nodejs).
+
+### `fetch()` нужны стандартные коды ошибок
+
+James Snell объясняет, почему [`fetch()` должен сообщать точную причину сбоя](https://www.jasnell.me/posts/fetch-needs-error-codes). По стандарту сеть часто представлена общим `TypeError`, а Node.js прячет полезный код глубже в `cause`. Из-за этого программа не всегда понимает, безопасно ли повторить запрос после ошибки HTTP/2 или HTTP/3.
+
+### Node.js 26.5 импортирует текст как модуль
+
+[Node.js 26.5](https://nodejs.org/en/blog/release/v26.5.0) поддержал [импорт текстовых файлов через атрибуты](https://github.com/tc39/proposal-import-text) и добавил `blob.textStream()`. Теперь текстовый ресурс можно подключить декларативно, а содержимое большого `Blob` — читать частями как поток.
+
+- Vercel [прекратит поддержку Node.js 20](https://vercel.com/changelog/node-js-20-is-being-deprecated) для Builds и Functions 1 октября 2026 года. Проектам на этой версии пора проверить обновление рантайма.
+- Telegram тестирует [Serverless для ботов](https://core.telegram.org/bots/serverless), где код выполняется на инфраструктуре самого мессенджера. Для обычного размещения остаются [Bot API](https://core.telegram.org/bots/api) и библиотеки вроде [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api).
+- Руководство [от Express к Fiber](https://docs.gofiber.io/blog/express-to-fiber-guide/) сопоставляет одинаковые серверные задачи на JavaScript и Go. Сам [Fiber](https://github.com/gofiber/fiber) специально использует знакомые разработчикам Express идеи.
+- [LiteParse 2](https://github.com/run-llama/liteparse#liteparse) разбирает PDF, распознает текст и учитывает расположение элементов. Rust-ядро доступно из разных сред, а для JavaScript есть [отдельная инструкция по Node.js](https://github.com/run-llama/liteparse/blob/main/packages/node/README.md).
+- [Mediabunny](https://mediabunny.dev/) читает, записывает и преобразует [множество аудио- и видеоформатов](https://mediabunny.dev/guide/supported-formats-and-codecs). Новый [пакет `server`](https://github.com/Vanilagy/mediabunny/releases/tag/v1.45.0) упрощает обработку медиа в Node.js.
+- [Tinbase](https://www.tinbase.dev/) повторяет API Supabase для локальной разработки, используя [PGlite](https://pglite.dev/) и [pg-mem](https://github.com/oguimbal/pg-mem). Клиент `supabase-js` при этом можно не менять.
+- [`@neon/sdk`](https://neon.com/blog/neon-sdk) — TypeScript-клиент для управления проектами, ветками и базами на платформе [Neon](https://neon.com/).
+- [plx](https://github.com/commandprompt/plx) переводит хранимые функции на JavaScript, PHP, Python, Ruby и COBOL в язык PostgreSQL PL/pgSQL.
+
+## 🤖 ИИ и агентная разработка
+
+### LiteRT.js запускает модели прямо в браузере
+
+Google выпустила [LiteRT.js](https://developers.googleblog.com/litertjs-googles-high-performance-web-ai-inference/) — JavaScript-привязку к [LiteRT](https://developers.google.com/edge/litert) для локального запуска ИИ-моделей. Данные не обязательно отправлять на сервер, а приложение может продолжать работу без сети.
+
+В [демо увеличения изображений](https://codepen.io/LiteRT/pen/XJNNxZv) модель повышает разрешение картинки на устройстве пользователя. Производительность зависит от браузера и оборудования, но пример показывает, насколько доступным становится клиентский inference.
+
+- [Flue](https://flueframework.com/) — открытый TypeScript-фреймворк для долговечных AI-агентов и процессов, который не привязывает приложение к одной модели или среде размещения.
+- [eve](https://vercel.com/eve) предлагает структуру агентных приложений, похожую на Next.js: инструкции и skills хранятся в Markdown, инструменты пишутся на TypeScript, а длительные операции переживают перезапуски.
+- [Agent Field](https://www.agentfield.ai/) предоставляет open source backend, где агентов можно публиковать и контролировать как API.
+- [Conductor](https://www.conductor.build/) запускает Claude Code, Codex и Cursor в изолированных рабочих пространствах, а затем помогает просматривать и объединять их изменения.
+- [Open GSD](https://opengsd.net/) собирает процесс работы с coding agents вокруг планирования, реализации, проверки и выпуска результата.
+- [Emdash](https://github.com/generalaction/emdash) — открытая среда для параллельных агентов с расписанием задач, встроенным предпросмотром и управлением prompts, skills и MCP-инструментами.
+- [Claudoscope](https://claudoscope.com/) локально показывает сессии Claude Code и Cowork в строке меню macOS и не отправляет телеметрию.
+- [Шпаргалка Claude Code](https://cc.storyfox.cz/) помещает команды и клавиатурные сокращения на одну страницу с версиями для macOS и Windows.
+- Набор правил [ponytail](https://ponytail.dev/) просит coding agent писать минимальный объем кода, достаточный для решения задачи.
+
+## ⚒️ Инструменты и библиотеки
+
+### Playwright быстрее работает в GitHub Actions
+
+Руководство по [настройке Playwright в GitHub Actions](https://endform.dev/blog/playwright-github-actions) предлагает кэшировать браузерные бинарники и убрать ограничение шаблона на один worker. Это сокращает время CI, но число параллельных процессов нужно подбирать под ресурсы runner, иначе тесты начнут конкурировать за память и CPU.
+
+### Безопаснее работать с зависимостями
+
+- [DepsGuard](https://depsguard.com/) проверяет конфигурации npm, pnpm, Yarn, Bun, Aube, uv, pip и Poetry и предлагает настройки, снижающие риск атаки через зависимости.
+- Менеджер пакетов [Aube](https://aube.jdx.dev/) автоматически устанавливается при запуске сценария и изолирует lifecycle-скрипты в специальной песочнице.
+- Dependabot теперь выдерживает [трехдневную паузу перед обычным обновлением пакета](https://github.blog/changelog/2026-07-14-dependabot-version-updates-introduce-default-package-cooldown/). Срочные исправления безопасности ждать не будут.
+- GitHub собрал [шесть настроек безопасности для сопровождающих проектов](https://github.blog/security/6-security-settings-every-github-maintainer-should-enable-this-week/), включая защиту веток, секретов и публикации пакетов.
+
+### Обновления инструментов
+
+- [ESLint 10.7](https://eslint.org/blog/2026/07/eslint-v10.7.0-released/) обновил правила и исправил ошибки статического анализа JavaScript.
+- [Storybook 10.5](https://github.com/storybookjs/storybook/releases/tag/v10.5.0) развивает среду для изолированной разработки и проверки компонентов.
+- [Vite DevTools 0.4](https://github.com/vitejs/devtools/releases/tag/v0.4.0) улучшил инструменты диагностики проектов на Vite.
+- [Fuse.js 7.5](https://github.com/krisk/Fuse/releases/tag/v7.5.0) исправил расчет рейтинга нечеткого поиска, поэтому порядок старых результатов может измениться. Возможности библиотеки показывают [документация](https://www.fusejs.io/) и [демо поиска](https://www.fusejs.io/demo.html).
+- [Nano ID 6](https://github.com/ai/nanoid) генерирует компактные URL-безопасные идентификаторы примерно в четыре раза быстрее и больше не поддерживает Node.js 18 и 20.
+- [`actions/setup-node@v7`](https://github.com/actions/setup-node/releases/tag/v7.0.0) учитывает защиту GitHub Actions от отравления кэша. Новая [инструкция по Trusted Publisher](https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#publishing-to-npm-with-trusted-publisher-oidc) показывает публикацию в npm через OIDC без постоянного токена.
+- [c8 12](https://github.com/bcoe/c8) строит Istanbul-совместимые отчеты по данным покрытия V8; у встроенного test runner Node.js есть и [собственный экспериментальный отчет](https://nodejs.org/api/test.html#collecting-code-coverage).
+- [np 12](https://github.com/sindresorhus/np) добавил поддержку npm 12 и поэтапной публикации пакетов.
+- [HyperExpress 7](https://github.com/kartikk221/hyper-express) обновил быстрый Node.js-сервер на базе uWebSockets.js.
+- [Helmet 8.3](https://github.com/helmetjs/helmet) настраивает защитные HTTP-заголовки в Express-приложениях.
+- [node-auth0 6](https://github.com/auth0/node-auth0/releases/tag/v6.0.0) обновил официальный Node.js SDK платформы [Auth0](https://auth0.com/).
+
+### Еще полезные находки
+
+- [Введение в Git worktrees](https://humanwhocodes.com/blog/2026/07/introduction-git-worktrees/) показывает, как держать несколько веток одного репозитория в разных папках и не переключать рабочие файлы туда-сюда.
+- [eslint-node-test](https://github.com/sindresorhus/eslint-node-test) находит типичные ошибки в тестах, написанных на встроенном `node:test`, и помогает выдерживать единый стиль.
+- [Nub](https://nubjs.com/) запускает TypeScript-файлы, scripts из `package.json` и локальные CLI на обычном Node.js без нового рантайма и отдельного lockfile.
+- [Stripe Projects](https://projects.dev/) одной CLI-командой подключает сервисы, создает учетные данные и настраивает billing без ручного обхода панелей управления.
+- [web-ext 10.5](https://github.com/mozilla/web-ext) помогает собирать, запускать и тестировать расширения браузеров одинаковыми командами на разных системах.
+- [Hacker News Trends](https://hackernewstrends.com/) строит историю упоминаний слова или фразы на Hacker News и помогает увидеть, когда технология входила в моду.
+- Devographics запустила общий [опрос State of Devs 2026](https://survey.devographics.com/en-US/survey/state-of-devs/2026), расширив привычный формат исследований вроде [State of JavaScript](https://stateofjs.com/en-US) на инструменты, процессы и опыт разработчиков в целом.
