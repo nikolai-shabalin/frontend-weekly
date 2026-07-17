@@ -2,7 +2,6 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import CssWordleLink from '../components/CssWordleLink.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
@@ -256,7 +255,6 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
 		<main>
 
         <h1 class="sr-only">Статьи</h1>
-        <CssWordleLink size="large" />
         {featuredPost && (
           <section class="featured-post">
             <span class="post-tag">Дайджест</span>
