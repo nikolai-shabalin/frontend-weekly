@@ -1,0 +1,196 @@
+---
+title: "Еженедельный дайджест #56: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "July 27 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #56! 🗞️", index: 0 },
+  { text: "Firefox 153, EPUB 3.4 и Web Locks — платформа растёт! 🧪", index: 1 },
+  { text: "CSS Subgrid строит турнирные таблицы! ⚽", index: 2 },
+  { text: "Nuxt 4.5 и Vue 3.6 RC уже здесь! 💚", index: 3 },
+  { text: "ReactBench проверяет код от ИИ-агентов! ⚛️", index: 4 },
+  { text: "Figma приручила доступность в Canvas! ♿", index: 5 },
+  { text: "Yuku ускоряет разбор JavaScript! ⚡", index: 6 },
+  { text: "Babylon Lite делает WebGPU легче! 🪐", index: 7 },
+  { text: "OpenReview и rnsec ищут ошибки и уязвимости! 🛡️", index: 8 },
+  { text: "Инструменты недели: Flint, Gitdeck и mgrep! 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и платформа
+### Firefox 153 расширяет возможности Picture-in-Picture и всплывающих элементов
+
+В [Firefox 153](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/153) появилась поддержка Picture-in-Picture API на компьютерах и улучшилось поведение `popover="hint"`. В предварительном режиме браузер также получил [Native Containers](https://blog.mozilla.org/en/firefox/firefox-containers-preview/), которые разделяют сайты по изолированным окружениям и помогают не смешивать cookies и авторизацию разных задач.
+
+### Web Locks API координирует работу вкладок
+
+[Web Locks API помогает управлять параллельной работой](https://tech.olx.com/handling-concurrency-on-the-web-with-web-locks-api-163b7e07eddd) нескольких вкладок и воркеров одного сайта. Они могут по очереди получать блокировку на важную операцию, например синхронизацию локальных данных, и не перезаписывать результат друг друга. Само API и примеры его использования собраны в [документации MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API).
+
+- Стандарт электронных книг [EPUB 3.4 перешёл в статус Candidate Recommendation Draft](https://www.w3.org/TR/epub-34/). Формат основан на HTML, CSS и других веб-технологиях, поэтому многие привычные знания фронтендера применимы и к цифровым изданиям.
+- Эксперимент с [настоящим DOM внутри `<canvas>`](https://agustinbarrientos.com/writing/senior-eye/html-in-canvas/) показывает, как совместить свободный графический рендеринг Canvas с обычными HTML-элементами.
+- [Анимированный JPEG, замаскированный под обычное изображение](https://maurycyz.com/projects/bad_jpeg/), наглядно раскрывает внутреннее устройство формата и необычные способы интерпретации его данных.
+
+## 🎨 CSS и дизайн
+### Турнирная таблица FIFA на CSS Grid и Subgrid
+
+Ahmad Shadeed [воссоздал сложную адаптивную таблицу FIFA](https://ishadeed.com/article/fifa-layout/) с помощью Grid и Subgrid. Разбор показывает, как выровнять связанные данные по общим колонкам, сохранить читаемость на узком экране и не превращать разметку в набор жёстких размеров.
+
+### Новые возможности CSS для анимации и сложных раскладок
+
+[Masonry-раскладка с плавной анимацией](https://master.dev/blog/masonry-with-animation-in-css/) построена на CSS Grid и Anchor Positioning, а в перспективе ту же задачу упростит `grid-lanes`. Ещё один пример показывает, [как анимировать `<details>` только средствами CSS](https://austingil.com/animating-details-element-with-only-css/), без JavaScript-обработчиков открытия и закрытия.
+
+Для небольших декоративных эффектов тоже появляется меньше причин подключать скрипты: [конфетти можно разбросать с помощью CSS-функции `random()`](https://schalkneethling.com/posts/throwing-confetti-with-css-random/).
+
+### Цвет интерфейса меняется вместе со временем суток
+
+В примере с [Temporal API и CSS-функцией `color-mix()`](https://localghost.dev/blog/time-based-background-colour-transitions-with-temporal-and-css-color-mix/) локальное время пользователя превращается в плавно меняющуюся цветовую тему. Temporal отвечает за корректную работу со временем, а CSS смешивает оттенки без большого набора заранее рассчитанных цветов.
+
+- Обзор [Custom Highlight API, `text-indent` и `font-family: math`](https://utilitybend.com/blog/under-my-radar-highlight-text-indent-and-font-family-math) знакомит с тремя возможностями уровня Baseline: подсветкой текста без изменения DOM, типографскими отступами и подходящим шрифтом для формул.
+- Коллекция [100 способов центрировать элемент в CSS](https://css-generators.com/center/) полезна как интерактивная шпаргалка, хотя для рабочего кода лучше выбирать понятные решения на Flexbox или Grid.
+- [edge-aura](https://edge-aura.js.org/) создаёт на Canvas 2D живое свечение по краям окна браузера без CSS-фильтров.
+- [Decoy Font](https://www.mixfont.com/experiments/decoy-font) — экспериментальный TTF-шрифт, в котором один и тот же знак выглядит по-разному при разных масштабах восприятия.
+- [shadcn/typeset](https://ui.shadcn.com/docs/changelog/2026-07-typeset) оформляет HTML и Markdown одной CSS-обёрткой и несколькими переменными. Настроить стили и получить готовый код помогает [визуальный конструктор Typeset](https://ui.shadcn.com/typeset).
+- Автор Linaria объяснил, [почему создал новый инструмент](https://dx-styles.dev/blog/why-dx-styles/): [dx-styles](https://dx-styles.dev/) предлагает zero-runtime подход к CSS-in-JS и вычисляет стили при сборке, а не в браузере. Для существующих проектов подготовлено [руководство по переходу с Linaria](https://github.com/dx-styles/dx-styles/blob/main/docs/migration/from-linaria.md).
+
+## ♿ Доступность и UX
+
+### Как Figma добавила доступность в интерфейс на Canvas
+
+Canvas не создаёт привычное дерево HTML-элементов, поэтому браузер не может автоматически передать экранному диктору структуру интерфейса. Figma подробно описала, [как заново реализовала семантику, управление с клавиатуры и фокус](https://www.figma.com/blog/building-accessibility-into-a-canvas-based-product/) для своего графического редактора.
+
+### Видимая рамка фокуса снова важна
+
+Статья [о возвращении CSS-свойства `outline`](https://www.morganwebdev.org/posts/outline-back/) напоминает, почему нельзя бездумно отключать рамку у активных элементов. Она показывает пользователю клавиатуры, где он находится, а псевдокласс [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) позволяет отображать рамку именно тогда, когда она полезна.
+
+- Руководство по [`aria-expanded`](https://piccalil.li/blog/use-cases-for-aria-expanded/) объясняет, как сообщать вспомогательным технологиям, открыто или закрыто связанное меню, панель либо список.
+- [A11Y.md](https://github.com/fecarrico/A11Y.md) хранит проверяемые правила доступности для ИИ-агентов, чтобы требования WCAG учитывались во время генерации кода.
+- [AIMAC](https://aimac.ai/) сравнивает модели ИИ по тому, насколько доступные интерфейсы они создают в задачах программирования.
+- Исследование [мобильных устройств среднего и бюджетного уровня](https://csswizardry.com/2026/07/low-and-mid-tier-mobile-for-the-real-world-2026/) помогает собрать реалистичный набор телефонов для тестирования, а не ориентироваться только на новые флагманы.
+
+<TelegramCTA/>
+
+## 📦 JavaScript и WebAssembly
+
+### Быстрый JavaScript-парсер благодаря структурам данных
+
+В разборе [Yuku показано применение data-oriented design](https://www.arshad.fyi/writings/engineering-high-performance-parsers): данные хранятся в форме, удобной для последовательной обработки процессором, что уменьшает лишние обращения к памяти. Сам [парсер Yuku](https://yuku.fyi/) можно сравнить с альтернативами в [таблице производительности](https://yuku.fyi/#performance) и [онлайн-песочнице](https://playground.yuku.fyi/), а [Yuku Analyzer](https://yuku.fyi/analyzer/) добавляет статический анализ кода.
+
+### WebAssembly подключается как обычный модуль
+
+[unwasm](https://github.com/unjs/unwasm) позволяет импортировать `.wasm`-файлы почти так же, как ES-модули. Инструмент встраивается в процесс сборки и берёт на себя служебный код, который обычно нужен для загрузки и запуска WebAssembly.
+
+- [Travels](https://github.com/mutativejs/travels) реализует undo/redo через небольшие JSON-патчи вместо полных снимков состояния, поэтому подходит для редакторов и других приложений с историей действий.
+- [gridstack.js 13.0](https://gridstackjs.com/) создаёт адаптивные панели и дашборды, где блоки можно перетаскивать и менять в размере.
+- [Jelly UI](https://jelly-ui.com/) предлагает 40 веб-компонентов без внешних зависимостей и добавляет нативным контролам мягкие физические анимации.
+- [Minne](https://github.com/JimSchofield/minne) — фреймворк веб-компонентов на сигналах, которому не нужны декораторы и обязательный этап сборки.
+- [BotKit](https://botkit.fedify.dev/) помогает написать на JavaScript самостоятельного ActivityPub-бота, которого можно читать из Mastodon. Запустить его можно в Deno, Node.js или Cloudflare Workers.
+
+## ⚛️ React и Next.js
+
+### ReactBench проверяет, умеют ли ИИ-агенты писать рабочий React
+
+[ReactBench](https://www.reactbench.com/) оценивает модели на реалистичных задачах по созданию React-приложений, а не только на коротких фрагментах кода. [Описание методики](https://www.reactbench.com/blog) помогает понять, какие ошибки учитывает тест; проект создан командой, стоящей за [React Scan](https://github.com/aidenybai/react-scan) и Million.js.
+
+### Кэширование в Next.js 16
+
+Подробное объяснение [Cache Components в Next.js](https://certificates.dev/blog/cache-components-in-nextjs) разбирает модель, где страницы по умолчанию динамические, а разработчик явно кэширует подходящие части через `use cache`. В статье также показаны `cacheLife`, `cacheTag` и их связь с быстрыми переходами Instant Navigations.
+
+
+- Официальная [страница команды React](https://react.dev/community/team) теперь отражает новую структуру управления: Leadership Council и рабочие группы компилятора, React Native и документации. Изменения продолжают [переход проекта под управление React Foundation](https://react.dev/blog/2025/10/07/introducing-the-react-foundation).
+- [Pete Hunt возглавит Next.js](https://x.com/rauchg/status/2077870043833229692) после возвращения в экосистему React вместе с Ником Шроком, одним из создателей GraphQL.
+- Разработчики обсуждают, [почему React всё ещё остаётся самой заметной UI-библиотекой](https://x.com/thdxr/status/2069933148767400094) и какие преимущества потребуются возможному преемнику.
+- Руководство показывает, [как собрать React Native-чат с локальной языковой моделью и RAG](https://blog.margelo.com/building-native-llm-chat-app-with-rag), чтобы ответы учитывали документы конкретного приложения.
+- [react-dropzone 17.0](https://react-dropzone.js.org/) даёт хуки для зон загрузки файлов через drag-and-drop, а [базовый пример](https://react-dropzone.js.org/examples/basic) показывает минимальную разметку и обработку выбранных файлов.
+- Библиотека [React Mosaic](https://github.com/nomcopter/react-mosaic) в [версии 7.0](https://github.com/nomcopter/react-mosaic/releases/tag/v7.0.0) обновила движок мозаичной раскладки компонентов и поддерживает React 16–19. Оценить оконный интерфейс можно в [интерактивном демо](https://nomcopter.github.io/react-mosaic/).
+- [DSSSP](https://dsssp.io/) предлагает SVG-компоненты для частотных графиков и управления аудиофильтрами; поведение компонентов видно в [живых примерах](https://dsssp.io/demo/).
+- [brainless](https://brainless.swerdlow.dev/) переносит интерфейсы Claude Code, Codex и Grok в компоненты shadcn, включая [онбординг терминального агента](https://brainless.swerdlow.dev/blocks#pied-piper-onboarding) и [отображение diff](https://brainless.swerdlow.dev/components#claude-diff).
+- [react-fontawesome 3.4](https://github.com/FortAwesome/react-fontawesome/releases/tag/v3.4.0) поддержал новые анимации набора [Font Awesome](https://fontawesome.com/), появившиеся в [версии 7.3](https://blog.fontawesome.com/font-awesome-7-3-release/).
+- [use-local-storage-state 20.0](https://github.com/astoilkov/use-local-storage-state) сохраняет состояние React-компонента в `localStorage`.
+- [react-dropdown 2.0](https://fraserxu.github.io/react-dropdown/) предоставляет компактный и доступный выпадающий список.
+- [react-joyride 3.2](https://react-joyride.com/) помогает создавать пошаговые экскурсии по интерфейсу приложения.
+- [React Native Skia 2.9](https://github.com/Shopify/react-native-skia/releases/tag/v2.9.0) обновил высокопроизводительный графический движок для React Native.
+
+## 🛰️ Фреймворки
+
+### Nuxt 4.5 готовит переход к Nuxt 5
+
+[Nuxt 4.5](https://nuxt.com/blog/v4-5) стал одним из крупнейших обновлений ветки: внутри Vite 8 и Rspack 2, экспериментальная потоковая серверная отрисовка и новый composable `useLayout`. Параллельно команда готовит Nuxt 5, а поддержка Nuxt 3 завершается 31 июля.
+
+### Vue 3.6 приблизился к стабильному релизу
+
+[Vue 3.6 вышел в статусе Release Candidate](https://github.com/vuejs/core/releases/tag/v3.6.0-rc.1). Главная часть обновления — завершённый Vapor Mode, который сокращает объём служебной работы виртуального DOM и может сделать компоненты легче и быстрее.
+
+### Сравнение фронтенд-фреймворков на одном приложении
+
+Автор [Framework Benchmarks](https://framework-benchmarks.as93.net/) реализовала одинаковое погодное приложение на React, Angular, Solid, Alpine.js и других решениях, а затем сравнила размер бандла, скорость сборки и пользовательские метрики. Дополнительный инструмент [Stack Match](https://stack-match.as93.net/) подбирает фреймворк по заданным требованиям.
+
+- Angular [переходит на ежегодный график крупных релизов](https://github.com/angular/angular/pull/69817): версия 23 запланирована на июнь 2027 года, через год после [выхода Angular 22](https://blog.angular.dev/announcing-angular-v22-c52bb83a4664).
+- [Preact 11 Beta 2](https://github.com/preactjs/preact/releases/tag/11.0.0-beta.2) стал одной из последних тестовых версий перед релизом; основные несовместимые изменения уже собраны в [руководстве по миграции](https://preactjs.com/guide/v11/upgrade-guide/).
+- Фреймворк [Astro](https://astro.build/) в [версии 7.1](https://astro.build/blog/astro-710/) добавил более точное управление CSP для встроенных скриптов и стилей и позволил полностью настраивать URL пагинации.
+- Блог Cloudflare переехал на [EmDash — CMS на базе Astro](https://blog.cloudflare.com/emdash-wordpress/), которую компания называет современным продолжением идей WordPress; результат можно увидеть [на самом блоге](https://blog.cloudflare.com/).
+- [AngularEditor 3.1](https://github.com/kolkov/angular-editor) обновил WYSIWYG-редактор для Angular 22+, а [демо](https://angular-editor.kolkov.ru/) позволяет проверить его до установки.
+- [Pinia 4.0](https://github.com/vuejs/pinia/releases/tag/v4.0.0) стала компактнее и перешла на распространение только в формате ES-модулей.
+- [Componentry](https://componentry.dev/) собирает готовые React-компоненты для анимированного текста, hero-блоков и визуальных эффектов.
+- [shadcn-admin-kit](https://marmelab.com/shadcn-admin-kit/) предоставляет открытые блоки shadcn/ui для админок, внутренних сервисов и B2B-приложений.
+- [performative-ui](https://vorpus.github.io/performativeUI/) — сатирическая библиотека компонентов, которая пародирует интерфейсы стартапов и их гонку за впечатляющими показателями.
+- [termcn](https://www.termcn.dev/) распространяет через реестр shadcn настраиваемые React-компоненты для терминальных приложений на Ink и OpenTUI.
+- [OpenUI](https://www.openui.com/) описывает генеративный интерфейс компактным потоковым форматом и умеет отображать его разными рендерами, включая React.
+- Первая официальная [конференция Three.js](https://tympanus.net/codrops/2026/07/16/meet-the-speakers-of-the-first-three-js-conference/) пройдёт в Париже 10–11 сентября; среди участников будет создатель библиотеки [Mr.doob](https://mrdoob.com/), а познакомиться с самим 3D-движком можно [на сайте Three.js](https://threejs.org/).
+
+## 📘 TypeScript
+
+- [WebStorm 2026.2](https://blog.jetbrains.com/webstorm/2026/07/webstorm-2026-2/) добавил поддержку TypeScript 7 и улучшил работу с проектами на Svelte и Vue.
+- [Optique](https://optique.dev/) — типобезопасный конструктор CLI-парсеров для TypeScript: структура команд одновременно задаёт допустимые комбинации параметров, итоговые типы и автодополнение.
+- [Counterfact](https://counterfact.dev/) поднимает локальный stateful mock-сервер по OpenAPI-описанию и сохраняет типобезопасность TypeScript, горячую перезагрузку и общее состояние между запросами.
+
+## ⚙️ Node.js
+
+- [`actions/setup-node@v7`](https://github.com/actions/setup-node/releases/tag/v7.0.0) обновил официальный GitHub Action для установки Node.js и настройки кэша пакетных менеджеров в CI.
+- [np 12.0](https://github.com/sindresorhus/np) поддержал npm 12 и staged publishing, упрощая проверку и безопасную публикацию пакетов.
+
+## 🛡️ Безопасность
+
+### Поддельное тестовое задание крадёт данные разработчиков
+
+Исследователи разобрали [атаку через JavaScript-задание на фальшивом собеседовании](https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography). Вредоносный код прячется внутри SVG и пытается украсть учётные данные. Похожий реальный случай [описал разработчик, получивший предложение через LinkedIn](https://roman.pt/posts/linkedin-backdoor/), поэтому незнакомый проект лучше запускать только в изолированной среде и после проверки зависимостей.
+
+### Уязвимости WordPress уже используют в атаках
+
+Злоумышленники [эксплуатируют две критические уязвимости WordPress](https://techcrunch.com/2026/07/20/hackers-are-exploiting-recently-patched-wordpress-bugs-putting-millions-of-websites-at-risk/). Исправления выпущены, но сайты без обновлений остаются под угрозой, поэтому владельцам важно проверить версии ядра и затронутых компонентов.
+
+- [rnsec](https://github.com/adnxy/rnsec) без дополнительной настройки сканирует React Native и Expo-проекты, ищет секреты в коде, уязвимости и небезопасную конфигурацию.
+- [OpenReview](https://github.com/vercel-labs/openreview) — открытый бот для ревью pull request, который разворачивается самостоятельно, подключается как GitHub App и запускает проверку кода по запросу.
+
+## 🤖 ИИ
+
+### Кто из ИИ-ботов действительно читает сайты
+
+Evil Martians [два месяца измеряли трафик LLM-краулеров](https://evilmartians.com/chronicles/which-ai-actually-reads-your-site-two-months-of-llm-traffic-measured), чтобы проверить пользу «SEO для ИИ». Исследование помогает отличить реальных посетителей и агентов от предположений и понять, стоит ли специально адаптировать контент для машинного чтения.
+
+- [Flint](https://microsoft.github.io/flint-chart/) компилирует простое JSON-описание графика в Vega-Lite, ECharts или Chart.js. Единый промежуточный формат подходит и людям, и агентам, которым нужно выбрать конкретный движок уже на этапе отображения.
+- [GitHub Agentic Workflows](https://github.com/github/gh-aw) запускает coding agents в GitHub Actions и добавляет ограничения по правам и расходам.
+- [mgrep](https://github.com/mixedbread-ai/mgrep) выполняет смысловой поиск из командной строки по коду, изображениям, PDF и другим файлам.
+- [Terax](https://terax.app/) объединяет компактный терминал, редактор, ИИ-агентов и живой предпросмотр веб-приложения.
+
+## ⚒️ Инструменты и библиотеки
+
+### Babylon Lite — компактный 3D-движок только для WebGPU
+
+Команда Babylon создала [Babylon Lite](https://doc.babylonjs.com/lite/) с нуля как более маленькую и быструю альтернативу большому [Babylon.js](https://www.babylonjs.com/). За компактность приходится платить отказом от старых графических API: движок рассчитан только на WebGPU.
+
+### ESLint автоматизирует миграцию между крупными версиями
+
+Официальные [codemod-преобразования ESLint](https://eslint.org/blog/2026/07/eslint-codemod-migrations/) обновляют конфигурацию и код при переходах с v8 на v9 и с v9 на v10. Это снижает объём ручных исправлений, но результат всё равно стоит проверить тестами и линтером.
+
+- [Rslint 0.7](https://github.com/web-infra-dev/rslint/releases/tag/v0.7.0) обновил быстрый линтер, написанный на Rust.
+- [Rolldown 1.2](https://github.com/rolldown/rolldown/releases/tag/v1.2.0) продолжил развитие быстрого сборщика, совместимого с привычной экосистемой Rollup.
+- [All UtilityCSS](https://allutilitycss.com/) — каталог из более чем 180 шаблонов, компонентов и инструментов для Tailwind с поиском и фильтрами.
+- [Slim](https://slim.sh/) выдаёт локальному серверу аккуратный HTTPS-адрес и при необходимости открывает публичный туннель.
+- [fakecloud](https://github.com/faiscadev/fakecloud) локально эмулирует AWS API для разработки и интеграционных тестов без облачного аккаунта.
+- [Baguette](https://github.com/tddworks/baguette) управляет headless-симулятором iOS через Swift CLI и веб-интерфейс без запуска Simulator.app.
+- [Kvile](https://kvile.app/) — быстрый offline-first клиент для отладки HTTP с поддержкой файлов `.http`, без аккаунта и телеметрии.
+- [GitHub Copilot App](https://github.com/github/app) предлагает отдельное desktop-приложение для запуска и контроля агентных задач в репозиториях.
+- [Gitdeck](https://github.com/debba/gitdeck) собирает репозитории, issues, pull request, CI и статистику нескольких GitHub- и Forgejo-аккаунтов в локальном дашборде.
+- [shieldcn](https://shieldcn.dev/) визуально собирает значки и графики для README и `SKILL.md`, после чего выдаёт готовую разметку.
+- [TanStack npm stats](https://tanstack.com/stats/npm) строит графики популярности пакетов и сравнивает библиотеки по числу загрузок.
