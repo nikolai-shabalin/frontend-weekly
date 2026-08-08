@@ -1,0 +1,201 @@
+---
+title: "Еженедельный дайджест #58: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Aug 10 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #58! 🗞️", index: 0 },
+  { text: "Chrome 151, HTML и доступность — всё для удобного веба. 🧪", index: 1 },
+  { text: "CSS украшает gap, считает lh и ищет новый центр. 🎨", index: 2 },
+  { text: "JavaScript проверяет JSON, ловит утечки и рисует графики. ⚡", index: 3 },
+  { text: "Next.js, TanStack и React-пакеты выпускают большие обновления. ⚛️", index: 4 },
+  { text: "TypeScript и Node.js учатся работать безопаснее и быстрее. 🟢", index: 5 },
+  { text: "ИИ-агенты получают WebMCP, инструменты и правила. 🤖", index: 6 },
+  { text: "Новые библиотеки помогают с текстом, данными и интерфейсами. 🧰", index: 7 },
+  { text: "Пусть зависимости будут проверенными, а интерфейсы — понятными. ✨", index: 8 },
+  { text: "До встречи через неделю! 👋", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### Chrome 151 улучшает работу с камерой и микрофоном
+
+В [Chrome 151](https://developer.chrome.com/blog/new-in-chrome-151) появился элемент управления, который пользователь сам активирует, чтобы разрешить доступ к потоку с камеры или микрофона. Такой подход делает чувствительные разрешения заметнее и понятнее: сайт не должен неожиданно начинать захват медиа.
+
+Команда Chrome также показала, [как применяет ИИ для усиления защиты браузера](https://blog.google/security/chrome-stronger-with-every-update/). Это не новая веб-возможность, но хороший контекст: безопасность браузера зависит не только от кода сайта, но и от того, как сам браузер находит угрозы.
+
+### У изображения есть скрытое переполнение
+
+Temani Afif разбирает, почему у элемента [img по умолчанию действует overflow: clip](https://master.dev/blog/something-nobody-told-you-about-the-image-element-it-can-overflow/). Обычно это незаметно, но становится важно, когда у изображения есть тень, фильтр, скругление или элемент выходит за его границы.
+
+Статья помогает понять, почему попытка показать «обрезанную» часть картинки иногда не работает. Вместо случайных свойств можно осознанно выбрать, где снимать ограничение, и проверить, не появятся ли нежелательные полосы прокрутки.
+
+- В статье «[Кнопка или ссылка](https://unplannedobsolescence.com/blog/buttons-vs-links/)» объясняют базовое правило семантики: ссылкой переходят к другому ресурсу, а кнопкой совершают действие на текущей странице. Это влияет на ожидания пользователя, клавиатурную навигацию и доступность.
+- Интерактивный проект [Mow](https://pudding.cool/2026/06/mow/) предлагает оптимально подстричь виртуальный газон и заодно показывает, как данные, анимация и правила могут превратить статью в запоминающийся интерфейс.
+
+## 🎨 CSS и дизайн
+
+### State of CSS 2026: якорное позиционирование в фокусе
+
+Опубликованы [результаты State of CSS 2026](https://2026.stateofcss.com/en-US/). Среди новых возможностей разработчики особенно выделили anchor positioning — способ привязывать всплывающий элемент к другому элементу интерфейса. При этом его внедрение пока сдерживает поддержка браузеров. Разобраться в механике поможет [подробный гид по anchor positioning](https://www.joshwcomeau.com/css/anchor-positioning/).
+
+В опросе также высоко оказались :has(), aspect-ratio и вложенность CSS. Это полезная карта зрелости возможностей: когда язык уже позволяет убрать JavaScript или дополнительную разметку, но всё ещё нужно сверять поддержку в целевых браузерах.
+
+### В CSS предлагают учитывать маршрут навигации
+
+Bramus Van Damme рассказывает о предложении [декларативно стилизовать переходы между маршрутами](https://www.bram.us/2026/07/30/styling-the-navigation-declarative-route-and-navigation-matching-in-css/). Новые at-правила и псевдоклассы могли бы позволить View Transitions учитывать, откуда пришёл пользователь и куда он переходит, без обработчика на JavaScript.
+
+Пока это лишь проект спецификации. Но он хорошо показывает направление развития CSS: описывать поведение интерфейса через состояние и контекст, а не собирать каждый визуальный эффект вручную.
+
+### Gap между элементами теперь можно оформить отдельно
+
+Chrome и Edge 149 первыми реализовали [CSS gap decorations](https://css-tricks.com/css-gap-decorations-now-available/). Новое свойство rule позволяет рисовать линии и другие украшения именно в промежутках grid- и flex-раскладки — без псевдоэлементов, лишних обёрток и расчётов.
+
+Это особенно удобно для списков, таблицоподобных интерфейсов и навигации. Сам раскладочный контейнер остаётся семантически простым, а оформление интервалов перестаёт быть отдельным хаком.
+
+- Единица [lh](https://ishadeed.com/article/lh-unit/) равна вычисленной высоте строки текущего элемента. С ней легче задавать отступы, высоту и размеры так, чтобы они сохраняли ритм текста при смене шрифта или масштаба.
+- Обновлённая статья о [пяти правилах порядка в Tailwind CSS](https://evilmartians.com/chronicles/5-best-practices-for-preventing-chaos-in-tailwind-css) предлагает договориться о слоях, токенах и повторяемых компонентах, прежде чем длинные строки классов начнут мешать поддержке проекта.
+- В материале о [центре страницы при наличии боковых панелей](https://seg6.space/posts/center-div/) разбирают, почему математический центр окна и центр доступной области могут не совпадать. Это заметно в приложениях с выезжающими sidebar и панелями инструментов.
+- [Шпаргалки Polypane](https://polypane.app/blog/cheatsheets-for-flex-grid-anchor-positioning-and-invoker-commands/) собрали в одном месте Flexbox, Grid, anchor positioning и Invoker Commands.
+- [CSS Type Studio](https://www.csstypestudio.com/) позволяет в браузере поэкспериментировать с переносами, кернингом и возможностями OpenType, а [генератор neumorphism](https://markodenic.com/tools/neumorphism-css-generator/) помогает подобрать мягкие тени для объёмного интерфейса.
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+
+### «Худшая» реализация htmx объясняет, что делает библиотека
+
+Serge Zaitsev продолжил учебную серию и собрал [минимальную «худшую» версию htmx](https://zserge.com/posts/worst-htmx-ever/). До этого он подобным образом разбирал [React](https://zserge.com/posts/worst-react-ever/) и [Vue](https://zserge.com/posts/worst-vue-ever/). Такой подход отбрасывает почти все удобства библиотек, чтобы показать их главную идею на небольшом коде.
+
+В случае [htmx](https://htmx.org/) становится понятнее, как HTML-атрибуты описывают запросы и замену фрагментов страницы. Это не замена настоящей библиотеки для production, а полезный способ увидеть, что именно она берёт на себя.
+
+### Один JSON-обмен может незаметно изменить данные
+
+В статье [«Ваш JSON вам врёт»](https://blog.gaborkoos.com/posts/2026-08-03-Your-JSON-Is-Lying-to-You/) напоминают, что связка JSON.parse и JSON.stringify не сохраняет данные без потерь. Большие числа, undefined, Date, RegExp, Map и циклические ссылки либо меняются, либо вовсе не переживают преобразование.
+
+Это важно на границе между сервером, браузером, localStorage и API. Если тип данных важен, его стоит сериализовать явно или использовать библиотеку, которая понимает нужные структуры.
+
+### Длительный тест помогает поймать утечку памяти в SPA
+
+Den Odell показывает, как провести [soak-тест SPA через Playwright](https://denodell.com/blog/your-spa-is-leaking-memory-soak-test-it). Тест много раз проходит один пользовательский сценарий в том же контексте браузера, следит за числом DOM-узлов и обработчиков, а затем может уронить CI при росте показателей.
+
+Обычный тест доказывает, что экран работает один раз. Soak-тест отвечает на другой вопрос: не остаётся ли после каждого перехода чуть-чуть ненужной памяти, которая через час работы превратится в проблему.
+
+- Cloudflare рассказала о переезде [cdnjs](https://cdnjs.com/) на Workers и R2. Теперь популярный CDN библиотек обрабатывает около [9 млрд запросов в день](https://blog.cloudflare.com/cdnjs-dev-platform-migration/) без традиционных серверов.
+- [MicroDiff 1.6](https://github.com/AsyncBanana/microdiff) быстро находит различия между объектами и массивами, а в новой версии понимает типы Temporal. Автор отдельно объяснял, [откуда берётся скорость MicroDiff](https://byteofdev.com/posts/microdiff/).
+- [Javy 9.1](https://github.com/bytecodealliance/javy) — набор инструментов для компиляции JavaScript в WebAssembly, а [DukPy 0.6](https://github.com/amol-/dukpy/releases/tag/0.6.0) теперь использует QuickJS-NG и поддерживает современный JavaScript с Promise.
+- [Neutralinojs 6.9](https://github.com/neutralinojs/neutralinojs/releases/tag/v6.9.0) — лёгкая альтернатива Electron; новая версия добавила C++ API для HTTP-запросов, не ограниченный CORS WebView.
+- [Devalue 5.9](https://github.com/sveltejs/devalue) сериализует циклические ссылки, Map, Set и регулярные выражения, с которыми не справляется JSON.stringify; результат можно проверить в [песочнице Svelte](https://svelte.dev/playground/138d70def7a748ce9eda736ef1c71239).
+- [undent](https://github.com/okikio/undent) убирает лишние отступы из шаблонных строк, [Brownies](https://github.com/franciscop/brownies) объединяет cookies, localStorage, sessionStorage и IndexedDB под единым API, а [buffered-clone](https://github.com/WebReflection/buffered-clone) сохраняет поддерживаемые JavaScript-типы в компактном бинарном виде.
+
+## ⚛️ React и фреймворки
+
+### Next.js 16.3 ускоряет сборку, SSR и навигацию
+
+Вышел [Next.js 16.3](https://nextjs.org/blog/next-16-3). Релиз ускоряет сборки и серверный рендеринг, добавляет опциональную проверку типов через TypeScript 7 и продолжает развивать инструменты для ИИ. Важное изменение — [Instant Navigations](https://nextjs.org/blog/next-16-3-instant-navigations): фреймворк старается подготовить следующий маршрут заранее, чтобы переход ощущался мгновенным.
+
+Команда Vercel отдельно описала, [как платформа поддерживает возможности Next.js 16.3](https://vercel.com/blog/vercel-supports-next-js-16-3). Обновляться стоит после проверки в своём приложении: скорость зависит от того, насколько проект использует SSR, кэширование и маршрутизацию.
+
+### TanStack Table v9 стала модульнее
+
+[TanStack Table v9](https://tanstack.com/blog/announcing-tanstack-table-v9) вышла спустя четыре года после v8. Библиотека стала tree-shakable: приложение подключает только нужные функции таблицы, поэтому таблица с одной пагинацией не тянет фильтрацию и группировку.
+
+Состояние переезжает в [TanStack Store](https://tanstack.com/store/latest) с [более точечной реактивностью](https://tanstack.com/blog/tanstack-table-v9-reactivity). Авторы также показывают [выигрыш по памяти на больших наборах данных](https://tanstack.com/blog/tanstack-table-v9-memory-performance), что особенно важно для админок и аналитических интерфейсов.
+
+### В экосистеме React вышли новые версии библиотек
+
+[React Router v8](https://remix.run/blog/react-router-v8) уже доступен, а команда начала обсуждать [React Router v9](https://github.com/remix-run/react-router/discussions/15371). shadcn/ui добавил [компонент Questionnaire](https://ui.shadcn.com/docs/components/base/questionnaire) для пошаговых опросов в вариантах Base UI, React Aria и Radix UI.
+
+Вышли [SWR 2.5](https://swr.vercel.app/) с предзагрузкой RSC-кэша и методом unload(), [React Aria 1.20](https://react-aria.adobe.com/releases/v1-20-0) с компонентами PreviewTrigger и TokenField, [react-dropzone 20](https://react-dropzone.js.org/) для drag-and-drop файлов, [Base UI 1.7](https://base-ui.com/react/overview/releases/v1-7-0), [Astryx 0.3](https://github.com/facebook/astryx/releases/tag/v0.3.0), [Material UI 9.3](https://github.com/mui/material-ui/releases/tag/v9.3.0), [react-hcaptcha 2.1](https://github.com/hCaptcha/react-hcaptcha) и [React Three Fiber 9.7](https://github.com/pmndrs/react-three-fiber/releases/tag/v9.7.0). Base UI теперь стал [вариантом по умолчанию для shadcn/ui](https://ui.shadcn.com/docs/changelog/2026-07-base-ui-default), а Astryx остаётся открытой дизайн-системой Meta на React и StyleX с [документацией](https://astryx.atmeta.com/).
+
+- [TanStack](https://tanstack.com/blog/tanstack-has-a-new-look) обновил бренд и представил библиотеки [TanStack Markdown и Highlight](https://tanstack.com/blog/introducing-tanstack-markdown-and-highlight) для отображения Markdown и подсветки кода.
+- [MobX 7](https://github.com/mobxjs/mobx/releases/tag/mobx%407.0.0) убрал устаревшие части API, обновил [React-привязки](https://github.com/mobxjs/mobx/releases/tag/mobx-react%4010.0.0) и теперь всегда использует Proxy для observable-объектов и массивов.
+- В июльском обзоре [Astro](https://astro.build/blog/whats-new-july-2026/) и августовском обзоре [Svelte](https://svelte.dev/blog/whats-new-in-svelte-august-2026) собраны последние изменения экосистем. Для SvelteKit уже доступны первые preview-версии 3-й версии, а [Astro 7.2](https://astro.build/blog/astro-720/) экспериментально умеет не пересобирать неизменившиеся статические страницы.
+- [Remix 3](https://malstrom.me/blog/learning-remix-3) можно изучить через перенос демо с Solid 2 на server-first модель. Для альтернативного RSC-стека появился [rshono](https://www.rshono.com/): он соединяет Hono, Rspack и React Server Components и ориентируется на простоту по сравнению с [Waku](https://waku.gg/).
+- [Plate](https://platejs.org/) помогает собрать React-редактор из нужных блоков; есть [подробная документация](https://platejs.org/docs) и [исходный код](https://github.com/udecode/plate). [Morphicons](https://www.morphicons.com/) анимирует переход между контурными иконками из Lucide, Tabler, Heroicons и других наборов сменой одного свойства.
+- [Virtua](https://github.com/inokawa/virtua) даёт виртуализированные списки и сетки для React, Vue, Solid, Svelte и Angular. В [демо](https://inokawa.github.io/virtua/?path=/story/basics-vlist--default) и [таблице сравнения](https://github.com/inokawa/virtua#comparison) можно оценить её подход.
+- [Vite 8.2](https://github.com/vitejs/vite/blob/v8.2.0/packages/vite/CHANGELOG.md), [Lerna 10](https://github.com/lerna/lerna/releases/tag/v10.0.0) и [Hono 4.13](https://github.com/honojs/hono/releases/tag/v4.13.0) обновили инструменты вокруг фронтенд-проектов; Hono также получил поддержку HTTP-метода QUERY.
+
+## 📱 React Native и мобильная разработка
+
+- [react-native-docusign](https://github.com/IronTony/react-native-docusign) открывает нативный интерфейс подписания DocuSign внутри приложения, [mobile-ink](https://github.com/mathnotes-app/mobile-ink) даёт движок рисования для Apple Pencil, а [expo-paperkit](https://github.com/hryhoriiK97/expo-paperkit) переносит возможности Apple PaperKit в Expo.
+- [react-native-enriched-html](https://github.com/software-mansion/react-native-enriched-html) предлагает нативный rich-text с HTML-парсингом, [React Native NSFW Detector](https://github.com/watadarkstar/react-native-nsfw-detector) проверяет изображения на устройстве через CoreML, а [Legend Motion](https://github.com/LegendApp/legend-motion) описывает анимации декларативно.
+
+## 📘 TypeScript
+
+### Эксперимент с defer показывает, зачем нужен using
+
+Andrew Healey попробовал [добавить в компилятор TypeScript конструкцию Go defer](https://healeycodes.com/adding-defer-to-the-typescript-compiler). defer откладывает вызов функции до выхода из текущей функции. Эксперимент показывает, что форкнуть компилятор и добавить синтаксис технически возможно, но в реальном проекте проще опереться на уже существующий [using](https://www.totaltypescript.com/typescript-5-2-new-keyword-using) для освобождения ресурсов.
+
+Это хороший пример разницы между интересной идеей языка и решением, которое удобно поддерживать. Иногда нужный сценарий уже закрыт стандартным механизмом — просто под другим названием.
+
+- [better-result 3.0](https://github.com/dmmulroy/better-result) даёт лёгкий тип Result для TypeScript и композицию на генераторах.
+- [Comark](https://comark.dev/) расширяет Markdown синтаксисом компонентов, хранит его в компактной сериализуемой форме и умеет рендерить в Vue, React, Svelte, Angular, HTML или ANSI.
+- [pg-typesafe](https://github.com/n-e/pg-typesafe) генерирует TypeScript-типы для PostgreSQL-запросов без runtime-зависимостей, а [Tinqer](https://github.com/tinqerjs/tinqer) превращает типобезопасные стрелочные функции в SQL для PostgreSQL или SQLite.
+
+## ⚙️ Node.js
+
+### В npm продолжается волна supply-chain атак
+
+В начале недели стало известно о компрометации Keyv, Cacheable и сотен связанных пакетов. [Socket](https://socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-compromised-in-active-supply-chain), [JFrog](https://research.jfrog.com/post/shai-hulud-is-back-august/) и [Aikido](https://www.aikido.dev/blog/keyv-and-friends-compromised-in-npm-supply-chain-attack) описали распространение червя, который похищал учётные данные; список известных затронутых пакетов ведётся в [репозитории Wiz](https://github.com/wiz-sec-public/wiz-research-iocs/blob/main/reports/keyv-packages.csv).
+
+Это не повод бездумно менять пакетный менеджер, но хороший повод проверить lockfile, переустановить зависимости из доверенного источника, отозвать потенциально скомпрометированные токены и включить ограничения на install scripts. В практическом материале [о безопасном выпуске npm-пакетов](https://evilmartians.com/chronicles/the-secure-way-to-release-an-npm-package) разбираются trusted и staged publishing. GitHub рассказал о [защите от атак на npm и Actions](https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions/) и начал [сканировать все пакеты на вредоносный код при публикации](https://github.blog/changelog/2026-07-28-npm-publish-time-malware-scanning-and-dual-use-metadata/).
+
+### Node.js 26.7 добавляет покрытие неизменённых файлов
+
+[Node.js 26.7.0](https://nodejs.org/en/blog/release/v26.7.0) вышел через два дня после [26.6.0](https://nodejs.org/en/blog/release/v26.6.0). Новый флаг [--test-coverage-include-all](https://github.com/nodejs/node/pull/64830) позволяет включать в отчёт покрытия файлы, которых тесты вовсе не коснулись. Также исправлены падения в FFI и SQLite, а в кастомных сборках доступна трассировка Perfetto.
+
+Одновременно [Node 24.19.0 LTS](https://nodejs.org/en/blog/release/v24.19.0) получил экспериментальный import текста, возможность передать собственный буфер в fs.readFile() и дополнительные параметры TCP keep-alive. Это обновления рантайма, поэтому их стоит сначала прогнать через CI и тесты приложения.
+
+### vlt 1.0 ищет зависимости CSS-селекторами
+
+Вышел [vlt 1.0](https://www.vlt.io/blog/1-0) — совместимая с npm альтернатива с командой vlt query. Она использует более 60 селекторов, похожих на CSS, чтобы искать пакеты и связи в дереве зависимостей; около половины селекторов связаны с безопасностью. Автор ранее объяснял, [какая большая проблема долго жила в npm-экосистеме](https://www.vlt.io/blog/the-massive-hole-in-the-npm-ecosystem).
+
+Для повседневных проектов это прежде всего инструмент изучения зависимостей. Он не заменяет аудит, но помогает точнее спросить: какой пакет зависит от уязвимой версии и почему она вообще оказалась в сборке.
+
+- Express выпустил [security-релизы body-parser](https://expressjs.com/en/blog/2026-07-31-security-releases/) против DoS-уязвимости. В Node ускоряют [net.BlockList](https://nodejs.org/api/net.html#class-netblocklist) и добавляют ему новые методы, а также обсуждают перенос [Web Worker API из HTML-стандарта](https://github.com/nodejs/node/pull/64894) в рантайм.
+- В будущих версиях node:zlib появится [поддержка ZIP-архивов](https://github.com/nodejs/node/commit/5ba72ae7bc42fb3f884c860e7a4f7800794984f8). [Mongoose 9.9](https://thecodebarbarian.com/mongoose-99-perf.html) посвящён заметным оптимизациям, а статья о [зависших процессах Node.js](https://engineering.myhoai.com/posts/debugging-stuck-node-js-processes/) показывает, как находить код, блокирующий event loop.
+- [ioredis 6.0](https://github.com/redis/ioredis) добавил RESP3 и возможности Redis 8.10, [node-x11 3.8](https://sidorares.github.io/node-x11/) получил клиент X Window System без зависимостей и [браузерную песочницу](https://sidorares.github.io/node-x11/playground).
+- [pnpm 11.20](https://pnpm.io/blog/releases/11.20) усилил безопасность и добавил короткий префикс npmjs:, а [pnpm 12 RC](https://github.com/pnpm/pnpm/releases/tag/v12.0.0-rc.0) уже можно тестировать. Ещё вышли [graphql-upload 18](https://github.com/jaydenseric/graphql-upload) для multipart-запросов GraphQL и [cron-parser 5.7](https://github.com/harrisiirak/cron-parser) для работы с cron-выражениями.
+- Microsoft показала preview [динамической проекции WinRT API для Node.js](https://devblogs.microsoft.com/ifdef-windows/a-new-way-to-bring-native-windows-apis-to-javascript-introducing-dynamic-api-projections-for-node-js/). Она даёт Node и Electron доступ к нативным Windows API без C++-аддонов.
+- Спор Deno и Oracle о товарном знаке JavaScript продолжается: Deno согласилась на [пятое продление срока](https://ttabvue.uspto.gov/ttabvue/v?pno=92086835&pty=CAN&eno=26).
+
+## 🤖 ИИ
+
+### React-хук упрощает использование WebMCP
+
+[use-webmcp-tool](https://github.com/GoogleChromeLabs/use-webmcp-tool) — React-хук над предложенным стандартом [WebMCP](https://developer.chrome.com/docs/ai/webmcp). Его идея в том, чтобы сайт мог явно описать JavaScript-функции, которыми разрешено пользоваться AI-агенту: например, выполнить поиск, открыть форму или добавить товар.
+
+Сам WebMCP пока не стал стандартом. Хук интересен тем, что переводит императивный API в привычную для React декларативную модель: возможности агента описываются рядом с компонентом, а не прячутся в отдельной интеграции.
+
+- [Flue 2.0](https://flueframework.com/blog/flue-2/) — TypeScript-фреймворк для открытых AI-агентов от автора Astro. В новой версии появились Agent Hooks: аналог React-хуков для состояния и динамического поведения агента.
+- Журнал TIME, как показало [исследование Vincent Schmalbach](https://www.vincentschmalbach.com/time-serves-ai-bots-a-different-website/), отдаёт поисковому боту ChatGPT Markdown-версию страниц, блокируя ботов для обучения. Это пример того, как сайты начинают по-разному обслуживать разных автоматических посетителей.
+- В ЕС вступили в силу требования [маркировать часть контента, созданного ИИ](https://www.euronews.com/my-europe/2026/08/02/ai-generated-label-becomes-mandatory-in-the-eu-for-companies). Требования зависят от ситуации и юрисдикции, поэтому для конкретного продукта стоит сверяться с первоисточником и юристами.
+- Sean Goedecke объясняет, почему [LLM вознаграждают предметную экспертизу](https://www.seangoedecke.com/llms-reward-expertise/): качество результата во многом определяют не «волшебные» формулировки, а умение проверить ответ модели и поставить правильную задачу.
+- [DryRun PostgreSQL MCP](https://github.com/boringSQL/dryrun) даёт агентам, IDE и CI представление о схеме PostgreSQL без подключения к production. [TOON](https://github.com/toon-format/toon) предлагает компактный читаемый формат объектов для LLM-промптов и TypeScript SDK.
+
+## ⚒️ Инструменты и библиотеки
+
+### TanStack Charts предлагает язык для описания графиков
+
+[TanStack Charts](https://tanstack.com/charts/latest) — экспериментальный framework-agnostic способ декларативно описывать графики и рендерить их в SVG или Canvas. У проекта есть [сравнение с другими решениями](https://tanstack.com/charts/latest/docs/comparison), которое помогает выбрать библиотеку под задачу.
+
+Такой подход отделяет данные и правила отображения от конкретного фреймворка. Пока проект находится на ранней стадии, но он интересен для приложений, где графики должны быть гибкими и хорошо стилизоваться.
+
+### Anydoc переводит документы в Markdown
+
+[anydoc](https://firecrawl.github.io/anydoc/) — библиотека на Rust с Node.js- и WASM-привязками, которая конвертирует Word, презентации, таблицы, PDF, EPUB, CSV и другие форматы в Markdown. Исходный код доступен на [GitHub](https://github.com/firecrawl/anydoc).
+
+Для более узких задач авторы предлагают [pdf-inspector](https://github.com/firecrawl/pdf-inspector) с информацией о позициях текста и [Liteparse](https://github.com/run-llama/liteparse#liteparse) с OCR для отсканированных PDF. Эти инструменты полезны при импорте контента, поиске по документам и подготовке данных для агентов.
+
+### Интерактивные компоненты, редакторы и данные
+
+- [Perspective 5](https://perspective-dev.github.io/) — WASM-компонент для аналитики и визуализации больших либо потоковых наборов данных. Версии 5.0 и 5.1 принесли исправления, wasm64-сборки и [оконные столбцы](https://github.com/perspective-dev/perspective/pull/3207).
+- [Blossom Carousel](https://github.com/jespervos/blossom-carousel) строит карусель поверх нативного скролла и подгружает drag-движок только для мыши или трекпада; [примеры](https://www.blossom-carousel.com/) позволяют проверить поведение. [Extend UI](https://www.extend.ai/ui) предлагает открытые компоненты для document apps, включая просмотрщики PDF, DOCX и презентаций; есть и [исходный код](https://github.com/extend-hq/ui).
+- [ffmpeg webCLI](https://github.com/tejaswigowda/ffmpeg-webCLI) запускает операции ffmpeg.wasm прямо в браузере: обрезку, конвертацию и сжатие видео можно попробовать в [онлайн-версии](https://tejaswigowda.com/ffmpeg-webCLI/) без загрузки файла на сервер.
+- [isomorphic-git 1.40](https://github.com/isomorphic-git/isomorphic-git) реализует Git на JavaScript для Node и браузера, [@pierre/trees](https://trees.software/) рисует гибко настраиваемые деревья файлов, а [µJS](https://mujs.org/) добавляет Ajax-навигацию в одну строку без сборщика и фреймворка.
+- [PolicyStack](https://www.policystack.dev/) хранит правила приватности и согласий как код, [visual-json](https://visual-json.dev/) даёт встраиваемый редактор JSON с древовидным, форменным и diff-представлениями, а [SQL Studio](https://sql.studio/) — нативный кроссплатформенный клиент для SQL.
+- [Shaper](https://github.com/taleshape-com/shaper) создаёт SQL-first дашборды на DuckDB. [They Live Adblocker](https://github.com/davmlaw/they_live_adblocker) заменяет рекламу на браузерные лозунги из фильма «Чужие среди нас».
+- GitHub запустил public preview [stacked pull requests](https://github.blog/changelog/2026-07-30-stacked-pull-requests-are-now-in-public-preview/): цепочку маленьких зависимых PR теперь можно вести прямо на платформе.

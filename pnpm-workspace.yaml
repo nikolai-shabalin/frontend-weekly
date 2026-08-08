@@ -3,7 +3,7 @@ allowBuilds:
   sharp: true
 minimumReleaseAgeExclude:
   - '@eslint/plugin-kit@0.7.2'
-  - eslint@10.4.1
+  - eslint@10.4.1 || 10.8.1
   - '@img/sharp-darwin-arm64@0.35.1'
   - '@img/sharp-darwin-x64@0.35.1'
   - '@img/sharp-freebsd-wasm32@0.35.1'
