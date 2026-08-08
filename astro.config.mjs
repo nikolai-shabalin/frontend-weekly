@@ -7,6 +7,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	site: 'https://frontend-weekly.ru',
 	base: '',
+	experimental: {
+		incrementalBuild: true,
+	},
 	integrations: [
 		mdx(),
 		sitemap({
