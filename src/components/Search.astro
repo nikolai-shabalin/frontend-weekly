@@ -48,165 +48,30 @@ const resultsId = 'site-search-results';
         data-search-results
         role="listbox"
       ></ul>
+      <div class="search__more" data-search-more hidden>
+        <a class="search__more-link" data-search-more-link href="/search/">Посмотреть все</a>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  import MiniSearch from 'minisearch';
-  import { miniSearchOptions } from '../lib/search/engine';
+  import {
+    MAX_DROPDOWN_RESULTS,
+    MIN_QUERY_LENGTH,
+    allResultsHref,
+    applySearchHighlight,
+    articleHref,
+    digestLabel,
+    escapeHtml,
+    highlight,
+    loadIndex,
+    rememberSearchFragment,
+    searchArticles,
+    type SearchHit,
+  } from '../lib/search/client';
 
-  const MIN_QUERY_LENGTH = 2;
-  const MAX_RESULTS = 8;
-  const INDEX_URL = `${import.meta.env.BASE_URL}search-index.json`.replace(/\/{2,}/g, '/');
-
-  let miniSearch: MiniSearch | null = null;
-  let indexPromise: Promise<void> | null = null;
   let documentAbort: AbortController | null = null;
-
-  function loadIndex() {
-    if (!indexPromise) {
-      indexPromise = fetch(INDEX_URL)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Failed to load search index: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((index) => {
-          miniSearch = MiniSearch.loadJS(index, miniSearchOptions);
-        })
-        .catch((error) => {
-          indexPromise = null;
-          throw error;
-        });
-    }
-
-    return indexPromise;
-  }
-
-  function escapeHtml(value: string) {
-    return value
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;');
-  }
-
-  function highlight(text: string, query: string) {
-    const escaped = escapeHtml(text);
-    const terms = query
-      .trim()
-      .split(/\s+/)
-      .filter((term) => term.length > 0)
-      .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-
-    if (terms.length === 0) {
-      return escaped;
-    }
-
-    return escaped.replace(new RegExp(`(${terms.join('|')})`, 'gi'), '<mark>$1</mark>');
-  }
-
-  function digestLabel(title: string) {
-    const match = title.match(/#\d+/);
-    return match ? `Дайджест ${match[0]}` : title;
-  }
-
-  const SEARCH_FRAGMENT_KEY = 'search-text-fragment';
-
-  function encodeTextFragment(text: string) {
-    return encodeURIComponent(text.trim())
-      .replaceAll('-', '%2D')
-      .replaceAll("'", '%27');
-  }
-
-  function articleHref(href: string, title: string) {
-    const url = new URL(href, window.location.origin);
-    url.hash = `:~:text=${encodeTextFragment(title)}`;
-    return `${url.pathname}${url.hash}`;
-  }
-
-  function findTextRange(root: Element, needle: string) {
-    const query = needle.replace(/\s+/g, ' ').trim();
-    if (!query) {
-      return null;
-    }
-
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-      acceptNode(node) {
-        const parent = node.parentElement;
-        if (!parent || parent.closest('[data-search], script, style, noscript')) {
-          return NodeFilter.FILTER_REJECT;
-        }
-        return NodeFilter.FILTER_ACCEPT;
-      },
-    });
-
-    const parts: Array<{ node: Text; start: number }> = [];
-    let haystack = '';
-    let current = walker.nextNode();
-
-    while (current instanceof Text) {
-      parts.push({ node: current, start: haystack.length });
-      haystack += current.nodeValue ?? '';
-      current = walker.nextNode();
-    }
-
-    const index = haystack.toLowerCase().indexOf(query.toLowerCase());
-    if (index === -1) {
-      return null;
-    }
-
-    const endIndex = index + query.length;
-    const range = document.createRange();
-
-    for (const part of parts) {
-      const value = part.node.nodeValue ?? '';
-      const partEnd = part.start + value.length;
-
-      if (index >= part.start && index < partEnd) {
-        range.setStart(part.node, index - part.start);
-      }
-
-      if (endIndex > part.start && endIndex <= partEnd) {
-        range.setEnd(part.node, endIndex - part.start);
-        break;
-      }
-    }
-
-    return range;
-  }
-
-  function applySearchHighlight() {
-    if ('highlights' in CSS) {
-      CSS.highlights.delete('search-result');
-    }
-
-    const text = sessionStorage.getItem(SEARCH_FRAGMENT_KEY);
-    sessionStorage.removeItem(SEARCH_FRAGMENT_KEY);
-
-    if (!text || !('highlights' in CSS)) {
-      return;
-    }
-
-    const root = document.querySelector('.content') ?? document.querySelector('main');
-    if (!(root instanceof HTMLElement)) {
-      return;
-    }
-
-    const range = findTextRange(root, text);
-    if (!range) {
-      return;
-    }
-
-    CSS.highlights.set('search-result', new Highlight(range));
-
-    const target = range.startContainer instanceof Element
-      ? range.startContainer
-      : range.startContainer.parentElement;
-    target?.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
-  }
 
   function isMacPlatform() {
     return /Mac|iPhone|iPad/.test(navigator.platform);
@@ -219,6 +84,8 @@ const resultsId = 'site-search-results';
     const dropdown = document.querySelector('[data-search-dropdown]');
     const results = document.querySelector('[data-search-results]');
     const status = document.querySelector('[data-search-status]');
+    const more = document.querySelector('[data-search-more]');
+    const moreLink = document.querySelector('[data-search-more-link]');
     const hotkey = document.querySelector('[data-search-hotkey]');
 
     if (
@@ -227,7 +94,9 @@ const resultsId = 'site-search-results';
       !(toggle instanceof HTMLButtonElement) ||
       !(dropdown instanceof HTMLElement) ||
       !(results instanceof HTMLElement) ||
-      !(status instanceof HTMLElement)
+      !(status instanceof HTMLElement) ||
+      !(more instanceof HTMLElement) ||
+      !(moreLink instanceof HTMLAnchorElement)
     ) {
       return;
     }
@@ -243,6 +112,12 @@ const resultsId = 'site-search-results';
       hotkey.textContent = isMacPlatform() ? '⌘K' : 'Ctrl K';
     }
 
+    const pageQuery = new URLSearchParams(location.search).get('q')?.trim() ?? '';
+    const isSearchPage = location.pathname.replace(/\/+$/, '').endsWith('/search');
+    if (isSearchPage && pageQuery && input.value !== pageQuery) {
+      input.value = pageQuery;
+    }
+
     const setOpen = (open: boolean) => {
       root.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
@@ -252,6 +127,10 @@ const resultsId = 'site-search-results';
     const setDropdownOpen = (open: boolean) => {
       dropdown.hidden = !open;
       input.setAttribute('aria-expanded', String(open));
+    };
+
+    const hideMore = () => {
+      more.hidden = true;
     };
 
     const setActive = (index: number) => {
@@ -276,16 +155,14 @@ const resultsId = 'site-search-results';
       status.hidden = false;
       status.textContent = message;
       results.replaceChildren();
+      hideMore();
       currentHrefs = [];
       activeIndex = -1;
       input.removeAttribute('aria-activedescendant');
       setDropdownOpen(true);
     };
 
-    const renderResults = (
-      items: Array<{ title: string; category: string; digestTitle: string; href: string }>,
-      query: string,
-    ) => {
+    const renderResults = (items: SearchHit[], query: string, total: number) => {
       status.hidden = true;
       currentHrefs = items.map((item) => item.href);
       results.innerHTML = items
@@ -305,8 +182,17 @@ const resultsId = 'site-search-results';
           `;
         })
         .join('');
+
+      if (total > MAX_DROPDOWN_RESULTS) {
+        more.hidden = false;
+        moreLink.href = allResultsHref(query);
+        moreLink.textContent = `Посмотреть все (${total})`;
+      } else {
+        hideMore();
+      }
+
       setDropdownOpen(true);
-      setActive(items.length > 0 ? 0 : -1);
+      setActive(-1);
     };
 
     const runSearch = async () => {
@@ -316,36 +202,24 @@ const resultsId = 'site-search-results';
         setDropdownOpen(false);
         results.replaceChildren();
         status.hidden = true;
+        hideMore();
         currentHrefs = [];
         return;
       }
 
       try {
-        await loadIndex();
+        const hits = await searchArticles(query);
+        const items = hits.slice(0, MAX_DROPDOWN_RESULTS);
+
+        if (items.length === 0) {
+          showStatus('Ничего не найдено');
+          return;
+        }
+
+        renderResults(items, query, hits.length);
       } catch {
         showStatus('Не удалось загрузить поиск');
-        return;
       }
-
-      if (!miniSearch) {
-        showStatus('Не удалось загрузить поиск');
-        return;
-      }
-
-      const hits = miniSearch.search(query);
-      const items = hits.slice(0, MAX_RESULTS).map((hit) => ({
-        title: String(hit.title ?? ''),
-        category: String(hit.category ?? ''),
-        digestTitle: String(hit.digestTitle ?? ''),
-        href: String(hit.href ?? ''),
-      }));
-
-      if (items.length === 0) {
-        showStatus('Ничего не найдено');
-        return;
-      }
-
-      renderResults(items, query);
     };
 
     const openAndFocus = () => {
@@ -384,28 +258,43 @@ const resultsId = 'site-search-results';
         return;
       }
 
+      if (event.key === 'Enter') {
+        const query = input.value.trim();
+        if (query.length < MIN_QUERY_LENGTH) {
+          return;
+        }
+
+        event.preventDefault();
+
+        if (activeIndex >= 0) {
+          const optionLink = results.querySelector(`#site-search-option-${activeIndex} a`);
+          if (optionLink instanceof HTMLAnchorElement) {
+            optionLink.click();
+          }
+          return;
+        }
+
+        window.location.assign(allResultsHref(query));
+        return;
+      }
+
       if (dropdown.hidden || currentHrefs.length === 0) {
         return;
       }
 
       if (event.key === 'ArrowDown') {
         event.preventDefault();
-        setActive((activeIndex + 1) % currentHrefs.length);
+        setActive(activeIndex < 0 ? 0 : (activeIndex + 1) % currentHrefs.length);
         return;
       }
 
       if (event.key === 'ArrowUp') {
         event.preventDefault();
-        setActive((activeIndex - 1 + currentHrefs.length) % currentHrefs.length);
-        return;
-      }
-
-      if (event.key === 'Enter' && activeIndex >= 0) {
-        const optionLink = results.querySelector(`#site-search-option-${activeIndex} a`);
-        if (optionLink instanceof HTMLAnchorElement) {
-          event.preventDefault();
-          optionLink.click();
-        }
+        setActive(
+          activeIndex < 0
+            ? currentHrefs.length - 1
+            : (activeIndex - 1 + currentHrefs.length) % currentHrefs.length,
+        );
       }
     }, { signal });
 
@@ -419,7 +308,7 @@ const resultsId = 'site-search-results';
 
       const text = link.dataset.textFragment;
       if (text) {
-        sessionStorage.setItem(SEARCH_FRAGMENT_KEY, text);
+        rememberSearchFragment(text);
       }
     }, { signal });
 
@@ -554,6 +443,27 @@ const resultsId = 'site-search-results';
     overflow: auto;
   }
 
+  .search__more {
+    border-top: 1px solid rgba(var(--line), 0.45);
+    padding: 0.35rem;
+  }
+
+  .search__more-link {
+    display: block;
+    padding: 0.65rem 0.75rem;
+    color: var(--accent-dark);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .search__more-link:hover {
+    background: rgba(var(--accent-yellow-bg-rgb), 0.28);
+    color: var(--accent-hover);
+  }
+
   .search__dropdown :global(.search__result) {
     border-radius: var(--radius-sm);
   }
@@ -609,6 +519,10 @@ const resultsId = 'site-search-results';
 
     .search__dropdown :global(.search__result.is-active),
     .search__dropdown :global(.search__result:hover) {
+      background: rgba(var(--accent-yellow-bg-rgb), 0.16);
+    }
+
+    .search__more-link:hover {
       background: rgba(var(--accent-yellow-bg-rgb), 0.16);
     }
   }

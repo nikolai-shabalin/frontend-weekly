@@ -1,0 +1,181 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<BaseHead title={`Результаты поиска — ${SITE_TITLE}`} description="Все статьи дайджестов по поисковому запросу" />
+	</head>
+	<body>
+		<Header />
+		<main class="search-page">
+			<h1>Результаты поиска</h1>
+			<p class="search-page__summary" data-search-page-summary>Введите запрос в поле поиска в шапке.</p>
+			<ul class="search-page__results" data-search-page-results></ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script>
+	import {
+		MIN_QUERY_LENGTH,
+		articleHref,
+		digestLabel,
+		escapeHtml,
+		foundCountLabel,
+		highlight,
+		rememberSearchFragment,
+		searchArticles,
+	} from '../lib/search/client';
+
+	async function renderSearchPage() {
+		const summary = document.querySelector('[data-search-page-summary]');
+		const list = document.querySelector('[data-search-page-results]');
+
+		if (!(summary instanceof HTMLElement) || !(list instanceof HTMLElement)) {
+			return;
+		}
+
+		const query = new URLSearchParams(location.search).get('q')?.trim() ?? '';
+
+		if (query.length < MIN_QUERY_LENGTH) {
+			summary.textContent = 'Введите в шапке хотя бы два символа, чтобы увидеть все совпадения.';
+			list.replaceChildren();
+			return;
+		}
+
+		summary.textContent = 'Ищем…';
+		list.replaceChildren();
+
+		try {
+			const hits = await searchArticles(query);
+
+			if (hits.length === 0) {
+				summary.textContent = `Ничего не найдено по запросу «${query}»`;
+				return;
+			}
+
+			summary.textContent = foundCountLabel(hits.length, query);
+			list.innerHTML = hits
+				.map((item) => {
+					const category = item.category ? `${escapeHtml(item.category)} · ` : '';
+					return `
+						<li class="search-page__item">
+							<a
+								class="search-page__link"
+								href="${escapeHtml(articleHref(item.href, item.title))}"
+								data-text-fragment="${escapeHtml(item.title)}"
+							>
+								<span class="search-page__title">${highlight(item.title, query)}</span>
+								<span class="search-page__meta">${category}${escapeHtml(digestLabel(item.digestTitle))}</span>
+							</a>
+						</li>
+					`;
+				})
+				.join('');
+		} catch {
+			summary.textContent = 'Не удалось загрузить поиск';
+		}
+	}
+
+	function bindResultClicks() {
+		const list = document.querySelector('[data-search-page-results]');
+		if (!(list instanceof HTMLElement) || list.dataset.bound === 'true') {
+			return;
+		}
+
+		list.dataset.bound = 'true';
+		list.addEventListener('click', (event) => {
+			const link = event.target instanceof Element
+				? event.target.closest('a.search-page__link')
+				: null;
+			if (!(link instanceof HTMLAnchorElement)) {
+				return;
+			}
+
+			const text = link.dataset.textFragment;
+			if (text) {
+				rememberSearchFragment(text);
+			}
+		});
+	}
+
+	document.addEventListener('astro:page-load', () => {
+		bindResultClicks();
+		void renderSearchPage();
+	});
+	bindResultClicks();
+	void renderSearchPage();
+</script>
+
+<style>
+	.search-page {
+		max-width: min(100%, 880px);
+		margin-inline: auto;
+	}
+
+	.search-page h1 {
+		margin-top: 0;
+		margin-bottom: var(--space-md);
+		font-size: var(--text-4xl);
+	}
+
+	.search-page__summary {
+		margin-bottom: var(--space-xl);
+		color: rgb(var(--ink-soft));
+		font-size: var(--text-md);
+	}
+
+	.search-page__results {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+	}
+
+	.search-page__results :global(.search-page__item) {
+		background: var(--paper-color);
+		border: 2px solid rgba(var(--line), 0.5);
+		border-radius: var(--radius-md);
+		box-shadow: var(--shadow-soft);
+	}
+
+	.search-page__results :global(.search-page__link) {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		padding: var(--space-md) var(--space-lg);
+		color: inherit;
+		text-decoration: none;
+		border-radius: inherit;
+	}
+
+	.search-page__results :global(.search-page__link:hover) {
+		background: rgba(var(--accent-yellow-bg-rgb), 0.18);
+	}
+
+	.search-page__results :global(.search-page__title) {
+		font-size: var(--text-lg);
+		font-weight: 700;
+		line-height: 1.35;
+	}
+
+	.search-page__results :global(.search-page__meta) {
+		color: rgb(var(--muted));
+		font-size: var(--text-sm);
+	}
+
+	.search-page__results :global(mark) {
+		color: inherit;
+		background: rgba(var(--accent-yellow-bg-rgb), 0.7);
+		border-radius: 3px;
+		padding: 0 0.1em;
+	}
+</style>
