@@ -84,6 +84,16 @@
   border-radius: 6px;
 }
 
+:target {
+  scroll-margin-block: 42vh;
+}
+
+::target-text,
+::highlight(search-result) {
+  color: inherit;
+  background-color: rgba(var(--accent-yellow-bg-rgb), 0.55);
+}
+
 *,
 *::before,
 *::after {
