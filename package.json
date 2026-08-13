@@ -17,14 +17,24 @@
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.3",
     "@eslint/js": "10.0.1",
-    "astro": "7.2.0",
+    "@types/mdast": "4.0.4",
+    "astro": "7.2.1",
     "eslint": "10.8.1",
+    "github-slugger": "2.0.0",
+    "mdast-util-to-string": "4.0.0",
+    "remark-gfm": "4.0.1",
+    "remark-mdx": "3.1.1",
+    "remark-parse": "11.0.0",
     "sharp": "0.35.3",
     "stylelint": "17.14.1",
     "stylelint-config-expa": "1.0.0",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "unified": "11.0.5"
   },
   "engines": {
     "node": ">=24"
+  },
+  "dependencies": {
+    "minisearch": "7.2.0"
   }
 }

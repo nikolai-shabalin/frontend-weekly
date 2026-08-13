@@ -1,5 +1,6 @@
 ---
 import { SITE_TITLE } from '../consts';
+import Search from './Search.astro';
 ---
 
 <header class="header">
@@ -8,6 +9,7 @@ import { SITE_TITLE } from '../consts';
       <span class="logo-link__badge">FW</span>
       <span class="logo-link__text">{SITE_TITLE}</span>
     </a>
+    <Search />
     <a href="/support" class="support-button">
       Поддержи
     </a>
@@ -16,11 +18,14 @@ import { SITE_TITLE } from '../consts';
 
 <style>
   .header {
+    position: relative;
+    z-index: 150;
     padding: var(--space-md);
     backdrop-filter: blur(6px);
   }
 
   .header__content {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -106,8 +111,18 @@ import { SITE_TITLE } from '../consts';
       padding-inline: var(--space-sm);
     }
 
+    .header__content {
+      gap: var(--space-sm);
+    }
+
     .logo-link__text {
-      max-width: 11rem;
+      max-width: 7.5rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .logo-link__text {
+      display: none;
     }
   }
 </style>
