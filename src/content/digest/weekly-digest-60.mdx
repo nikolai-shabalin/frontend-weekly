@@ -1,0 +1,231 @@
+---
+title: "Еженедельный дайджест #60: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Aug 31 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #60! 🗞️", index: 0 },
+  { text: "HTML берет на себя еще больше интерактивности, а браузеры готовят JPEG XL. 🧪", index: 1 },
+  { text: "CSS учится балансировать flex-строки, связывать страницы и рисовать настоящее 3D. 🎨", index: 2 },
+  { text: "Bun 1.4 переехал на Rust, а Solid 2.0 заморозил новый API. 📦", index: 3 },
+  { text: "React-проекты мигрируют между фреймворками, ускоряют тесты и закрывают уязвимости. ⚛️", index: 4 },
+  { text: "React Native получил новые библиотеки для графики, фоновых вычислений и сборки. 📱", index: 5 },
+  { text: "Node.js 26 читает ZIP, pnpm 12 переписан на Rust, а Fetch Server API обсуждается. 🟢", index: 6 },
+  { text: "TypeScript прячет внутреннее состояние и даже считает числа во время компиляции. 📘", index: 7 },
+  { text: "ИИ-агенты обзаводятся памятью, IDE, браузерами и собственными бенчмарками. 🤖", index: 8 },
+  { text: "Инструменты недели работают с медиа, редакторами, тестами и терминалами. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+
+### Современный HTML берет на себя задачи, для которых раньше требовался JavaScript
+
+Manuel Matuzović обновил свой [шаблон HTML-документа для 2026 года](https://www.matuzo.at/blog/2026/html-boilerplate) и подробно объяснил назначение элементов, которые использует в `<head>`. Это не заготовка для бездумного копирования, а удобная проверка базовых настроек страницы: кодировки, viewport, метаданных и других деталей, о которых легко забыть.
+
+Chris Burnell дополняет тему восемью примерами того, [что современный HTML уже умеет без JavaScript](https://chrisburnell.com/html-can-do-that/). Среди них `popover`, команды для управления элементами и `hidden="until-found"`, позволяющий браузерному поиску раскрывать скрытый фрагмент страницы. У новых возможностей пока есть ограничения, но они помогают строить более простые и устойчивые интерфейсы.
+
+- В [Firefox 154](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/154) появились сокращенная запись `text-box`, функции `sibling-index()` и `sibling-count()`. Последняя возможность одновременно [перешла в Baseline](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/sibling-index), поэтому ее поддержка становится достаточно широкой для практического применения.
+- Mozilla рассказала о [планах добавить JPEG XL в Firefox](https://hacks.mozilla.org/2026/08/intent-to-ship-jpeg-xl/). Формат предлагает хорошее сжатие, HDR и широкую цветовую гамму; Chrome также готовит его поддержку.
+- В [Chrome 153 Beta](https://developer.chrome.com/blog/chrome-153-beta?hl=en) тестируют новые возможности платформы, включая CSS-свойство `scroll-axis-lock`, которое ограничивает прокрутку выбранной осью.
+- Официальное [расширение WordPress для браузера](https://wordpress.org/news/2026/08/browser-extension/) переносит частые действия из верхней панели администратора в интерфейс расширения.
+- Статья об [аккордеоне, содержимое которого видит браузерный поиск](https://agustinbarrientos.com/writing/senior-eye/searchable-accordions/) показывает, как не спрятать полезный текст от функции «Найти на странице».
+- Компонент [Form Saver](https://github.com/aarongustafson/form-saver) сохраняет значения формы в `localStorage`, восстанавливает их после неожиданного закрытия страницы и очищает после отправки. Поведение можно проверить в [живых примерах](https://aarongustafson.github.io/form-saver/demo/).
+- Исследование показывает, как [AliExpress пытался распознавать устройства неслышимыми звуками](https://arstechnica.com/security/2026/08/aliexpress-caught-fingerprinting-visitors-after-sending-inaudible-sounds-to-browsers/). Защита Firefox нейтрализовала прием, а Chrome изначально не выдавал нужные данные.
+- Авторы проекта 0.mk проверили 657 607 адресов и показали, [куда исчезают старые ссылки](https://0.mk/blog/link-rot). Страницы переезжают, домены закрываются, а накопленные знания постепенно становятся недоступными.
+
+## 🎨 CSS и дизайн
+
+### `flex-wrap: balance` равномерно распределяет элементы по строкам
+
+Ahmad Shadeed разобрал [балансировку элементов с `flex-wrap: balance`](https://ishadeed.com/article/flex-wrap-balance/). Обычный перенос может оставить в последней строке одинокий элемент, даже если более равномерное распределение выглядело бы лучше. Новое значение пытается подобрать число элементов в каждой строке так, чтобы композиция оставалась аккуратной при разной ширине контейнера.
+
+Вместе с ним предлагается `flex-line-count`, с помощью которого стили смогут учитывать количество получившихся строк. Пока обе возможности есть только в Chrome, поэтому в статье отдельно показаны интерактивные примеры и запасные решения.
+
+### CSS готовится анимировать переходы между конкретными страницами
+
+Предложение [CSS Navigation Matching](https://css-tricks.com/css-navigation-matching-early-days/) связывает страницы через правила `@location`, а переходы между ними описывает в `@navigation`. В перспективе это позволит оформлять разные анимации для движения вперед и назад или для конкретных маршрутов без JavaScript.
+
+Сейчас это ранний черновик без реализации в браузерах. Но он показывает, как View Transitions могут превратиться из набора общих эффектов в полноценный способ описания навигации средствами CSS.
+
+### От псевдообъема до настоящей 3D-сцены на CSS
+
+Интерактивное руководство [«3D CSS: от Super Mario Bros. 3 до Mario 64»](https://www.carmenansio.com/articles/3d-css-guide/) начинает с плоской имитации глубины и постепенно переходит к трехмерным преобразованиям. Для этого достаточно разобраться с шестью свойствами и значениями, включая `perspective`, `preserve-3d` и `translateZ`.
+
+- История [миграции с Sass на нативный CSS](https://chrissmith.xyz/blog/2026/the-process-of-migrating-from-sass-to-native-css/) объясняет, какие возможности препроцессора уже заменили переменные, вложенность и другие функции платформы.
+- Будущий [селектор по префиксу класса](https://www.bram.us/2026/08/20/the-future-of-css-target-multiple-classes-with-the-class-prefix-selector/) может дать запись наподобие `.btn-*`, выбирающую все классы, начинающиеся с `btn-`.
+- Генератор [`corner-shape` для сквирклов](https://a-dev.github.io/probes/corner-shape/) позволяет настроить форму ползунками, скопировать CSS и получить запасной вариант. У автора есть и [разбор техники с fallback](https://dev.to/a-dev/css-corner-shape-add-a-squircle-to-your-design-today-with-the-right-fallback-3ne6).
+- [CSS-in-JS Arena](https://github.com/gajus/css-in-js-arena) сравнивает StyleX, Panda CSS и новый [Bamboo CSS](https://bamboocss.com/docs/overview/getting-started/) на одном приложении с React Router 8.
+- [Dither](https://dither.neato.fun/) превращает изображения в настраиваемую векторную штриховку: можно выбрать градиент, один из девяти узоров, до восьми цветов и экспортировать результат в SVG или PNG.
+- [Dither Image Online](https://ditherimage.online/) предлагает более простой способ добавить фотографии пиксельный ретро-эффект прямо в браузере.
+- [Архив из более чем 11 000 изображений](https://pdimagearchive.org/) помогает находить вручную отобранные произведения, перешедшие в общественное достояние.
+
+<TelegramCTA/>
+
+## 📦 JavaScript, Bun и фреймворки
+
+### Bun 1.4 завершил большой переход с Zig на Rust
+
+[Bun 1.4](https://bun.com/blog/bun-v1.4) стал результатом масштабной переработки рантайма. Команда отдельно описала [переезд с Zig на Rust](https://bun.com/blog/bun-in-rust), в котором для механической части использовала ИИ, а затем вручную доводила совместимость и производительность.
+
+Релиз лучше работает с пакетами и инструментами из экосистем Node.js, а также с Next.js, Playwright, Vitest и Nuxt. Одновременно выросла пропускная способность и снизилось потребление процессора и памяти.
+
+### Solid 2.0 RC перестраивает асинхронность вокруг реактивного графа
+
+В [релиз-кандидате Solid 2.0](https://www.solidjs.com/blog/solid-2-0-rc-the-big-reveal) асинхронные данные стали обычной частью реактивного графа и могут проходить через memo-вычисления. Отдельные API `createResource`, `batch` и `startTransition` больше не нужны, а SolidStart превращается в настройку `start: true` для Vite-плагина.
+
+Публичный API уже заморожен перед финальной версией. Авторы библиотек могут начинать адаптацию, не ожидая новых крупных перестроений.
+
+- [SvelteKit 3 RC](https://svelte.dev/blog/sveltekit-3-release-candidate) позволяет заранее проверить следующий крупный релиз и подготовить приложения к несовместимым изменениям.
+- [Svelte Bits](https://sveltebits.xyz/) переносит в Svelte набор анимированных компонентов [React Bits](https://reactbits.dev/) от того же автора.
+- [Formisch 1.0](https://formisch.dev/blog/formisch-v1/) - headless-библиотека форм, в которой схема [Valibot](https://valibot.dev/) одновременно задает типы и правила проверки. Она работает с восемью фреймворками и поддерживает Angular и React Native.
+- [Ionic Framework 9](https://ionic.io/blog/announcing-ionic-framework-9) обновил мобильный UI-набор для React, Angular и Vue после двухлетнего перерыва. В релиз вошли React Router 6 и zoneless change detection, а переход с v8 описан в [руководстве](https://ionicframework.com/docs/updating/9-0).
+- [Papa Parse 5.7](https://www.papaparse.com/) развивает быстрый конвертер CSV в JSON и обратно с поддержкой больших файлов и потоковой обработки.
+- [MapLibre GL JS 6.6](https://github.com/maplibre/maplibre-gl-js) обновил библиотеку интерактивных векторных карт с GPU-рендерингом.
+- [Plotly.js 4.0](https://github.com/plotly/plotly.js) принес крупное обновление библиотеки интерактивных графиков и визуализаций.
+- [Axios 1.20](https://github.com/axios/axios/releases/tag/v1.20.0) обновил HTTP-клиент для браузера и Node.js; основной код и документация доступны в [репозитории Axios](https://github.com/axios/axios).
+- Вышли [ESLint 10.9](https://eslint.org/blog/2026/08/eslint-v10.9.0-released/) и исправляющий его ошибки [ESLint 10.9.1](https://eslint.org/blog/2026/08/eslint-v10.9.1-released/), а также [pnpm 11.23](https://pnpm.io/blog/releases/11.23).
+- [Музыкальная теория для JavaScript-разработчиков](https://runjs.app/blog/music-theory-for-programmers) выводит ноты, гаммы, аккорды и последовательности из арифметики и дает запускать примеры через Web Audio API.
+- Статья об [ESM и CommonJS](https://blog.gaborkoos.com/posts/2026-08-14-Your-Modules-Are-Lying-to-You/) показывает: `import` остается связан с экспортируемым значением, а деструктурированный `require()` получает копию. Это особенно заметно при циклических зависимостях.
+- Alex Russell объясняет, почему для производительности [удалить лишний код полезнее, чем хитрее планировать его загрузку](https://infrequently.org/2026/08/notes-on-performance-remediation-strategies/).
+- Cloudflare рассказала о [переезде блога с WordPress на EmDash](https://blog.cloudflare.com/cloudflare-blog-uses-emdash/) - собственную CMS на Astro. Команда тестировала нагрузку через k6 и постепенно переводила трафик прокси-воркером; [EmDash доступен отдельно](https://www.emdashcms.com/).
+- [TermDOM](https://termdom.org/) дает DOM и layout engine для терминальных интерфейсов, поэтому TUI можно писать на HTML, CSS и любом фреймворке, а не только на React через [Ink](https://github.com/vadimdemedes/ink). В [версии 0.1.5](https://github.com/bikeshaving/termdom/releases/tag/v0.1.5) появился CSS Grid.
+- [N64.js](https://github.com/hulkholden/n64js) - эмулятор Nintendo 64 на JavaScript, который можно [запустить в браузере](https://hulkholden.github.io/n64js/) со своим ROM-файлом.
+- Библиотека [YouTube.js 18](https://github.com/LuanRT/YouTube.js/releases/tag/v18.0.0) обновила JavaScript-клиент для внутреннего API YouTube.
+
+## ⚛️ React и Next.js
+
+### Lovable перенесла 850 тысяч строк с Next.js на TanStack Start
+
+В отчете Lovable объяснила, [как мигрировала с Next.js на TanStack Start](https://lovable.dev/blog/how-we-migrated-lovable-dev-away-from-nextjs). Проект насчитывал почти 400 маршрутов и больше 850 тысяч строк, поэтому одномоментный переход был бы слишком рискованным.
+
+Команда поставила оба фреймворка за общим прокси, переносила маршруты постепенно и держала общий код в доступной обоим приложениям папке. Подход показывает, как раскладывать большую миграцию на небольшие проверяемые шаги.
+
+### В Next.js закрыли две критические уязвимости удаленного выполнения кода
+
+Разработчики опубликовали [августовское обновление безопасности Next.js](https://nextjs.org/blog/august-2026-security-release), исправляющее две критические RCE-уязвимости без аутентификации. Проекты на актуальной ветке следует обновить минимум до 16.3.3, а приложения на старой поддерживаемой ветке - до 15.5.24.
+
+RCE означает, что злоумышленник может заставить сервер выполнить чужой код. Поэтому такое обновление нельзя откладывать до обычного цикла обновления зависимостей.
+
+### React Canary учится откладывать отдельные компоненты до браузера
+
+В Canary-канале появился API [`browser()`](https://react.dev/reference/react-dom/browser) для компонентов, которые невозможно отрисовать на сервере. Вызов `use(browser())` останавливает серверный рендер ветки, оставляет ближайший fallback от `Suspense`, а затем показывает компонент в браузере. Статус экспериментальных API объясняет [политика версионирования React](https://react.dev/community/versioning-policy#canary-channel).
+
+Параллельные transitions [включили по умолчанию](https://github.com/react/react/pull/37290) в Canary-сборках, включая React Native. Механизм позволяет нескольким независимым обновлениям выполняться одновременно; [обсуждение реализации](https://github.com/react/react/pull/35392) помогает понять его устройство.
+
+- Материал о [data grid для React, Vue и Svelte](https://svar.dev/blog/building-data-grid-in-react-vue-svelte/) показывает, что основные затраты приходятся не на фреймворк, а на виртуализацию, обновление данных и работу браузера.
+- В [Next.js 16.3](https://nextjs.org/blog/building-app-like-experiences-with-nextjs-16-3) показаны Instant Navigations, Cache Components и Partial Prefetching на четырех открытых приложениях.
+- Надежный [prefetch запросов с TanStack Router](https://tkdodo.eu/blog/reliable-query-prefetching-with-tanstack-router) выносит `queryOptions` в контекст маршрута, чтобы loader и компонент использовали одно определение.
+- Статья о [координации оптимистичных обновлений в Next.js](https://aurorascharff.no/posts/coordinating-optimistic-updates-in-nextjs/) разбирает интерфейсы, которые сразу показывают предполагаемый результат, а затем согласуют его с сервером.
+- Автор ускорил тесты [React Testing Library на 43%](https://sigh.dev/posts/making-react-testing-library-faster/), найдя и убрав лишнюю работу в тестовом окружении.
+- [Oxlint получил поддержку React Compiler](https://oxc.rs/blog/2026-08-18-react-compiler-support): 22 правила запускают те же проверки, что и компилятор, и находят нарушения [Rules of React](https://react.dev/reference/rules). Отдельный [разбор ускорения на Rust](https://blog.master.dev/react-compiler-linting-just-got-a-rust-native-speedup-in-oxlint/) объясняет выигрыш относительно Babel-плагина, а основы линтера есть в [документации Oxc](https://oxc.rs/docs/guide/usage/linter).
+- [Waku 1.0 RC](https://waku.gg/blog/waku-v1-rc) заморозил API минимального React-фреймворка на Server Components и добавил типобезопасную навигацию.
+- [Rifm 1.0](https://trysound.github.io/rifm/) предлагает небольшой компонент и hook для форматированных полей ввода, который сохраняет позицию курсора.
+- В [TanStack Query 5.102](https://github.com/TanStack/query/releases/tag/release-2026-08-22-1856) появились методы `query` и `infiniteQuery`, призванные заменить `fetchQuery` и `fetchInfiniteQuery`. Изменение обсуждается в [pull request](https://github.com/TanStack/query/pull/10658), а автор назвал его [крупнейшим релизом со времен v5](https://bsky.app/profile/tkdodo.eu/post/3mtoxwkypvs2n).
+- [GTKX 1.5](https://gtkx.dev/blog/gtkx-1-5) позволяет создавать на React настоящие GTK-приложения без WebView и подключать React Hook Form к элементам Adwaita. Предыдущий [релиз GTKX 1.3](https://gtkx.dev/blog/gtkx-1-3) показывает развитие проекта, а основы собраны на [сайте GTKX](https://gtkx.dev/).
+- [Streamdown 2.6](https://github.com/vercel/streamdown/releases/tag/streamdown%402.6.0) - замена `react-markdown` от Vercel для потокового Markdown в ИИ-интерфейсах; примеры доступны на [сайте проекта](https://streamdown.ai/).
+- [react-jsonschema-form 6.8](https://github.com/rjsf-team/react-jsonschema-form) строит формы по JSON Schema, а [playground](https://rjsf-team.github.io/react-jsonschema-form/) помогает увидеть результат схемы.
+- [nuqs 2.10](https://github.com/47ng/nuqs) управляет типобезопасным состоянием в query-параметрах URL через API, похожий на `useState`.
+- [Material UI 9.4](https://github.com/mui/material-ui/releases/tag/v9.4.0) обновил большой набор готовых React-компонентов.
+
+## 📱 React Native и мобильная разработка
+
+- [React Native 0.87](https://reactnative.dev/blog/2026/08/11/react-native-0.87) принес обновление платформы и базовых инструментов для нативных приложений на React.
+- Руководство по [созданию 3D ИИ-аватара](https://margelo.com/blog/building-a-3d-ai-avatar-in-react-native) показывает рендеринг персонажа через [React Native Filament](https://margelo.github.io/react-native-filament/).
+- [Nano Icons](https://github.com/software-mansion-labs/react-native-nano-icons) превращает папку SVG в быстрые нативные иконки для React Native и Expo.
+- [React Native Bottom Sheet](https://github.com/software-mansion-labs/react-native-bottom-sheet) добавляет встроенные и модальные нижние панели с динамическим размером и отслеживанием положения.
+- [Nitro Vision](https://github.com/sagawrr/react-native-nitro-vision-kit) выполняет на устройстве вырезание объектов, распознавание изображений и OCR через Nitro Modules.
+- [FACETPACK](https://github.com/ecrindigital/facetpack) ускоряет сборку React Native с помощью Rust, улучшает ошибки и включает Doctor CLI.
+- [react-native-data-detector](https://github.com/pablogdcr/react-native-data-detector) находит в тексте телефоны, ссылки, адреса, даты и email через системные API iOS и Android.
+- [react-native-runtimes](https://github.com/margelo/react-native-runtimes) выносит тяжелую UI- и бизнес-логику в отдельные рантаймы Hermes, чтобы основной поток не зависал.
+- [react-native-morph-view](https://github.com/blazejkustra/react-native-morph-view) плавно превращает одно изображение в другое нативным шейдером.
+- [d3-maps](https://github.com/souljorje/d3-maps) дает React 19 и Vue 3 компоненты для SVG-карт с областями, маркерами, маршрутами и масштабированием на базе D3.
+- [DSSSP](https://dsssp.io/) - React-компоненты для графиков частотной характеристики и настройки аудиофильтров.
+
+## ⚙️ Node.js
+
+### Node.js 26.8 научился работать с ZIP без сторонних пакетов
+
+В [Node.js 26.8.0](https://nodejs.org/en/blog/release/v26.8.0) появился API [`zlib.ZipBuffer`](https://nodejs.org/api/zlib.html#class-zlibzipbuffer) для чтения и записи ZIP. В REPL добавили [подсветку синтаксиса](https://github.com/nodejs/node/pull/64591). Вскоре вышла [версия 26.8.1](https://nodejs.org/en/blog/release/v26.8.1), исправившая неверную строку версии.
+
+[Node.js 24.20 LTS](https://nodejs.org/en/blog/release/v24.20.0) получил package maps, аудит разрешений, `node:stream/iter` и [WebAssembly JSPI](https://v8.dev/blog/jspi), упрощающий взаимодействие синхронного WASM-кода с асинхронным JavaScript.
+
+### Сообщество обсудило ближайшее будущее Node.js
+
+В [обзоре Node.js Interactive 2026](https://nodejs.org/en/blog/events/nodejs-interactive-2026) собраны планы по ИИ, безопасности цепочки поставок, WinterCG в Ecma TC55, QUIC и HTTP/3 и переходу Node.js на один крупный релиз в год.
+
+Проект запустил [ежегодный опрос пользователей](https://linuxfoundation.surveymonkey.com/r/nodejs-users-2026). Для контрибьюторов приняли [правила использования ИИ](https://github.com/nodejs/node/blob/main/doc/contributing/ai-guidelines.md): автор обязан понимать и проверять сгенерированный код, а автоматические PR требуют согласования.
+
+- Предложенная [реализация `fs.glob` на C++](https://github.com/nodejs/node/pull/65392) использует libuv и в тестах работает более чем вдвое быстрее текущего варианта.
+- Новый [Fetch Server API](https://github.com/nodejs/node/issues/65314) пытается дать единый обработчик для HTTP/1.1, HTTP/2 и HTTP/3; команда собирает обратную связь.
+- Query pipelining в `node-postgres` обещает [увеличить пропускную способность в два-три раза](https://blog.platformatic.dev/query-pipelining-in-node-postgres-2-3x-throughput-with-one-line-of-code).
+- [pnpm 12](https://pnpm.io/blog/releases/12.0) завершил переписывание на Rust, сохранив команды и lock-файл v11. Отличия перечислены в [руководстве по переходу](https://pnpm.io/blog/whats-different-in-pnpm-12).
+- [Better Auth 1.7](https://better-auth.com/blog/1-7) добавил OAuth-сервер, DPoP, правила токенов для API, device code flow и пакет авторизации MCP.
+- [SVGO 4.1](https://svgo.dev/) строже проверяет XML и повышает безопасность оптимизатора SVG; список изменений есть в [релизе](https://github.com/svg/svgo/releases/tag/v4.1.0).
+- [Electron 44](https://github.com/electron/electron/releases/tag/v44.0.0) отказался от 32-битных сборок и старых macOS, приблизил `clipboard` к W3C API, добавил `net.WebSocket` и прозрачность окон Linux.
+- [lz4-napi 2.10](https://github.com/antoniomuso/lz4-napi) обновил N-API биндинги LZ4 на Rust поверх [lz4_flex](https://github.com/pseitz/lz4_flex).
+- [grammY 1.46](https://github.com/grammyjs/grammY) поддержал [Telegram Bot API 10.3](https://core.telegram.org/bots/api#august-24-2026).
+- [MongoDB Driver 7.6](https://github.com/mongodb/node-mongodb-native/releases/tag/v7.6.0) прекратил поддержку MongoDB 4.2.
+- [node-x11 4.1](https://sidorares.github.io/node-x11/) обновил клиент X11-протокола для Node.js.
+
+## 📘 TypeScript
+
+- Неэкспортируемый `unique symbol` помогает [скрыть внутреннее состояние TypeScript-объекта](https://www.carlos-menezes.com/posts/hiding-properties-typescript): поле не появляется в `Object.keys` и `JSON.stringify`, но доступно внутреннему коду.
+- Эксперимент [«Я пропатчил компилятор TypeScript, чтобы сложить девять чисел»](https://bhugo.dev/blog/compile-time-crimes/1/) исследует границы вычислений при компиляции и устройство компилятора.
+- [just-bash](https://github.com/vercel-labs/just-bash) реализует на TypeScript изолированный bash-интерпретатор с файловой системой в памяти для ИИ-агентов.
+
+## 🤖 ИИ и инструменты для агентов
+
+### Как ИИ меняет фронтенд-разработку и обучение
+
+Nolan Lawson размышляет об [«астероиде», который сталкивается с фронтендом](https://nolanlawson.com/2026/08/23/the-asteroid-currently-hitting-frontend-web-development/). Готовые ответы моделей обесценивают часть накопленных рецептов и меняют путь, по которому разработчики осваивают основы.
+
+Автор предлагает проверять понимание, сохранять фундаментальные знания о платформе и не путать быстрый ответ с надежным решением. Это полезный взгляд на обучение, когда сгенерировать рабочий фрагмент проще, чем объяснить его поведение.
+
+- [TanStack AI перешел в RC](https://tanstack.com/blog/tanstack-ai-rc): API стабилизируется, а команда показывает основные возможности для потоковых ИИ-интерфейсов.
+- [CodePilot](https://github.com/op7418/CodePilot) - настольный клиент для агентов с несколькими моделями, MCP, skills и управлением с телефона.
+- [ctx-wire](https://www.ctx-wire.dev/) запускает команды, сжимает вывод фильтрами и удаляет секреты перед передачей модели.
+- [IAXT](https://iaxt.com/) записывает действия Claude Code, Cursor, Aider, Codex и Copilot на macOS: команды, файлы, пакеты и Git.
+- [Silo](https://getsilo.dev/) - нативная IDE для одновременной работы с агентами в нескольких проектах.
+- [Reasonix](https://github.com/esengine/DeepSeek-Reasonix) - терминальный coding agent для DeepSeek, оптимизированный под prefix cache.
+- [agentmemory](https://www.agent-memory.dev/) добавляет постоянную память нескольким coding agents.
+- [Dev Browser](https://github.com/SawyerHood/dev-browser) дает агенту управление браузером через изолированные JavaScript-сценарии и готовый skill.
+- [AI Agents From Scratch](https://agentsfromscratch.com/) учит собирать локальных агентов без фреймворков и понимать цикл модели, инструменты и состояние.
+- [OpenHands](https://www.openhands.dev/) - самостоятельный центр управления агентами, запускающий OpenHands, Claude Code, Codex, Gemini и ACP-совместимые решения.
+- [Verne](https://verne.build/) объединяет агента, файлы, редактор, браузер и Git в одной среде.
+- [Meterbility](https://github.com/HoneycombHairDevelopers/Meterbility) записывает шаги агента, позволяет вмешаться, ответвить прогон и сравнить траектории.
+- [ReactBench](https://www.reactbench.com/) оценивает решение реальных React-задач агентами по работоспособности, производительности, доступности и качеству.
+
+## ⚒️ Инструменты, редакторы и тестирование
+
+### MicroLighter подсвечивает код, не меняя DOM
+
+[MicroLighter](https://daverupert.com/2026/08/microlighter/) - подсветка синтаксиса размером около 2 КБ без зависимостей. Вместо оборачивания токенов в `<span>` она использует [CSS Custom Highlights API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API), поэтому разметка остается чистой. Темы и примеры есть в [демо](https://davatron5000.github.io/microlighter/).
+
+### Stryker проверяет не код, а качество тестов
+
+[Stryker Mutator 10](https://stryker-mutator.io/) намеренно меняет операторы, условия и значения, а затем запускает тесты. Если набор остается зеленым, значит он не замечает потенциальную ошибку. Преобразования есть в [каталоге мутаторов](https://stryker-mutator.io/docs/mutation-testing-elements/supported-mutators/), а настройка - в [руководстве StrykerJS](https://stryker-mutator.io/docs/stryker-js/getting-started/).
+
+- [Mobile View](https://mobileview.app/) показывает до пяти мобильных и планшетных размеров рядом и синхронизирует прокрутку.
+- [EazyStudio](https://www.eazystudio.com/) объединяет более 75 браузерных утилит: изображения, PDF, аудио, QR-коды и JWT.
+- [`@web-kits/audio`](https://github.com/raphaelsalaja/audio) описывает синтезируемые звуки JavaScript-объектами и воспроизводит их одним вызовом.
+- [Hyperblam](https://hyperblam.how/) предлагает декларативную оболочку над Web Audio API без зависимостей: инструменты и эффекты собираются HTML-разметкой.
+- [ffmpeg webCLI](https://github.com/tejaswigowda/ffmpeg-webCLI) запускает видеомонтаж на ffmpeg.wasm в браузере, не загружая файлы на сервер.
+- [T-SQL Analyzer](https://marketplace.visualstudio.com/items?itemName=ErikEJ.TSqlAnalyzer) проверяет T-SQL в VS Code по более чем 140 правилам проектирования и производительности.
+- [SuperDoc для VS Code](https://marketplace.visualstudio.com/items?itemName=superdoc-dev.superdoc-vscode-ext) открывает и редактирует `.docx` прямо в редакторе.
+- [AI Engineering Fluency](https://marketplace.visualstudio.com/items?itemName=RobBos.ai-engineering-fluency) считает расход токенов, стоимость и статистику работы с ИИ в VS Code.
+- [Save Editors Layout](https://marketplace.visualstudio.com/items?itemName=ctf0.save-editors-layout) сохраняет расположение вкладок VS Code и применяет шаблон раскладки.
+- [Claude Code Agent Monitor](https://marketplace.visualstudio.com/items?itemName=hoangsonw.claude-code-agent-monitor) добавляет в VS Code панель активности Claude Code с токенами и стоимостью.
+- [OGee](https://chromewebstore.google.com/detail/ogee-%E2%80%93-og-image-preview-d/glncpeolnemlkojegffjlaccbcdpmnfe) показывает Open Graph-карточку страницы для разных платформ и тем.
+- [shadscan](https://www.shadscan.com/) проверяет React-компоненты shadcn на регрессии доступности, состояния и композиции.
+- [pwa-check](https://github.com/pwa-today/pwa-check) проверяет HTML, manifest, скрипты и service worker приложения PWA.
+- [playwright-recorder-plus](https://github.com/MuTsunTsai/playwright-recorder-plus) улучшает запись прогонов Playwright: качество, пауза, обрезка, несколько страниц и аудио.
+- [pipenet](https://github.com/punkpeye/pipenet) - самохостинговая альтернатива localtunnel с клиентом и сервером.
+- [git-knife](https://github.com/TheRealYT/git-knife) дает GUI для изменения сообщения, автора и дат Git-коммита.
+- В Git 2.54+ команда [`git history split`](https://blog.gnoack.org/post/git-history-split) делит коммит по фрагментам; контекст есть в [обзоре Git 2.54](https://github.blog/open-source/git/highlights-from-git-2-54/#h-rewrite-history-with-git-history).
+- [Lore](https://lore.org/) экспериментирует с системой контроля версий для больших объемов данных и команд.
+- [cmux](https://cmux.com/) - терминал macOS на Ghostty с вертикальными вкладками, разделением панели, уведомлениями агентов и CLI.
+- [Instagit](https://instagit.com/) предоставляет MCP-серверу структурированный контекст о Git-репозитории.
+- [rpg](https://github.com/NikolayS/rpg) - терминал PostgreSQL на Rust, совместимый с `psql`, с диагностикой и ИИ-помощником.
+- [HonorBox](https://github.com/Honorboxx/honorbox) превращает GitHub-репозиторий в магазин цифровых товаров со Stripe.
