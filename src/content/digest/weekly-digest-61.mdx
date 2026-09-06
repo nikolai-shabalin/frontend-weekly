@@ -1,0 +1,219 @@
+---
+title: "Еженедельный дайджест #61: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Sep 07 2026"
+mascotMessages: [
+  { text: "Фронти на связи - выпуск #61! 🗞️", index: 0 },
+  { text: "htmx 4 обновляет страницы прямо из HTML, а браузеры пробуют новые API. 🧪", index: 1 },
+  { text: "CSS получает random(), умный @supports и физически правдоподобный свет. 🎨", index: 2 },
+  { text: "JavaScript уместил «Сапера» в 247 байт и ускоряет переходы между страницами. 📦", index: 3 },
+  { text: "Remix отделился от React, а Svelte, Astro и Vue готовят крупные релизы. 🛰️", index: 4 },
+  { text: "React осваивает StyleX, нативный GPU-рендеринг и более стабильные тесты. ⚛️", index: 5 },
+  { text: "Node.js открывает путь к C-библиотекам, а Bun догоняет его по совместимости. 🟢", index: 6 },
+  { text: "TypeScript понимает атрибуты импорта, а Zod экономит память. 📘", index: 7 },
+  { text: "ИИ-агенты получают стандарты поведения, общие интерфейсы и наборы правил. 🤖", index: 8 },
+  { text: "Инструменты недели ускоряют сборку, тесты, публикацию пакетов и мониторинг сайтов. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+### Firefox 155 и августовские обновления платформы
+
+В [Firefox 155](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/155) функция `attr()` заработала в любых CSS-свойствах, появились математические функции `progress()` и `alpha()`, а `font-stretch` получил новое имя `font-width`. Mozilla теперь выпускает крупную версию браузера каждые две недели, поэтому новые возможности будут доходить до пользователей быстрее.
+
+В общем [обзоре веб-платформы за август](https://web.dev/blog/web-platform-08-2026) собраны изменения разных браузеров и статусы Baseline; среди главных новинок — свойства семейства `text-box` для точного управления вертикальными границами текста.
+
+- Google [удалила оставшиеся расширения Manifest V2](https://webiterate.dev/google-removed-extensions-ublock-origin-108/) из Chrome Web Store, включая старую версию uBlock Origin. Разработчикам расширений теперь нужно ориентироваться на Manifest V3.
+- В Firefox для iOS появился [встроенный блокировщик рекламы](https://blog.mozilla.org/en/firefox/ad-blocker-on-ios/). Он включается по желанию и использует системный Content Blocker API вместе со списком EasyList.
+- David Bushell сравнил [три способа сделать текстовый редактор в браузере](https://dbushell.com/2026/09/01/text-editor/): `<canvas>`, `contenteditable` и обычный `<textarea>`. Интерактивные примеры показывают ограничения каждого подхода.
+- Предложенный [Spell Check Custom Dictionary API](https://github.com/Igalia/explainers/blob/main/spell-check-dictionary/README.md) позволит сайту добавлять профессиональные термины и названия в словарь браузера. В [объяснении улучшенной проверки орфографии](https://bkardell.com/blog/EnhancedSpellchecking.html) также разобрано, почему разные браузеры на одном компьютере подчеркивают разные слова.
+- Новый [API подтверждения электронной почты](https://resend.com/blog/email-verification-api) пытается заменить привычный переход по ссылке из письма. Браузер и почтовый сервис передают токен, который сервер проверяет при отправке формы; пока эксперимент ограничен Chrome и Gmail.
+- Harry Roberts показал, как [ускорение цикла релизов браузеров влияет на RUM](https://csswizardry.com/2026/08/web-perf-wednesday-006-faster-browser-releases-change-your-rum-population/): данные реальных пользователей начинают быстрее отражать новую версию, и сравнивать периоды нужно осторожнее.
+
+## 🎨 CSS и дизайн
+
+### Как использовать CSS-функцию `random()` за пределами Safari
+
+Пока только Safari умеет выполнять [`random()` непосредственно в CSS](https://css-tricks.com/css-random-function-polyfill/). Полифил сохраняет вызовы функции в custom properties: браузер без поддержки оставляет их как текст, а небольшой JavaScript находит и вычисляет значения.
+
+Так можно случайно распределять размеры, позиции или задержки анимаций уже сегодня, не лишая Safari нативной реализации. При этом важно помнить, что полифил добавляет выполнение JavaScript и не превращает функцию в полноценно поддерживаемую возможность платформы.
+
+### `@supports named-feature()` проверяет составные возможности браузера
+
+Обычный `@supports` проверяет конкретное свойство, значение, селектор или at-rule, но иногда функция браузера складывается сразу из нескольких частей. Предложение [`@supports named-feature()`](https://www.bram.us/2026/08/27/feature-detecting-undetectable-css-features-with-supports-named-feature/) дает таким наборам общее имя и позволяет надежно узнать, готов ли браузер использовать всю возможность целиком.
+
+Механизм уже есть в Chrome 150 и тестовых сборках Firefox и Safari. Он пригодится для прогрессивного улучшения: базовая версия интерфейса работает везде, а новый вариант включается только там, где реализованы все необходимые детали.
+
+### Ambient CSS строит свет и объем из набора параметров
+
+[Ambient CSS](https://ambientcss.vercel.app/) описывает направление света, глубину и форму элемента, а затем автоматически согласует тени, градиенты и фаски. Автор сверял результат с [рендерами Blender](https://kikkupico.github.io/ambientcss/ambient-css/grounded/), поэтому система стремится не просто украсить блок, а сохранить понятную модель освещения.
+
+- [CSSUnits.com](https://cssunits.com/) объясняет каждую единицу CSS и помогает понять разницу между абсолютными, относительными, экранными и контейнерными величинами.
+- В руководстве по [узорам из плиток на CSS Grid](https://www.carmenansio.com/articles/modernist-tiles-css-grid/) шесть орнаментов собраны из градиентов, `border-radius` и сетки. Те же приемы подходят для фонов, карточек и декоративных иллюстраций.
+- В споре о переключателе темы Bramus Van Damme защищает [три состояния: светлое, темное и системное](https://www.bram.us/2026/08/18/the-case-for-tri-state-dark-mode-toggles/), а Lea Verou объясняет, [почему считает достаточными два](https://lea.verou.me/blog/2026/dark-mode-toggles/). Оба варианта помогают продумать, что именно должен запоминать интерфейс.
+- Jake Archibald разобрал, [когда вычисляются CSS custom properties](https://jakearchibald.com/2026/css-custom-property-compute-time/). Значение переменной подставляется не обязательно там, где это интуитивно ожидается, и это влияет на наследование и запасные значения.
+- Эссе [«Профессор доктор Стиль»](https://contemporary-home-computing.org/prof-dr-style/) возвращает к десяти направлениям веб-дизайна 1993 года, когда даже цвет фона был новой возможностью. Продолжить путешествие можно в [Музее веб-дизайна](https://www.webdesignmuseum.org/all-websites), сохраняющем скриншоты сайтов первых десятилетий веба.
+- Чистая CSS-игра [The Mine](https://codepen.io/jcoulterdesign/pen/NOMeEb) показывает, насколько сложное интерактивное приключение можно построить на селекторах, состояниях формы и анимациях без JavaScript.
+
+<TelegramCTA/>
+
+## 📦 JavaScript и библиотеки
+
+### «Сапер» на JavaScript уместился в 247 байт
+
+Разбор [игры «Сапер» размером 247 байт](https://yui.dev/blog/minesweeper-in-247-bytes) показывает приемы экстремального code golf: короткие выражения одновременно создают поле 8×8, расставляют флаги и раскрывают цепочки пустых клеток.
+
+Такой код не стоит переносить в рабочий проект — краткость здесь важнее читаемости. Зато статья наглядно демонстрирует приведение типов, работу операторов, строки как структуры данных и другие особенности языка.
+
+- [Quicklink](https://github.com/GoogleChromeLabs/quicklink) во время простоя браузера заранее загружает страницы по видимым ссылкам, чтобы следующий переход ощущался быстрее.
+- [Particle Charts](https://particlecharts.com/) рисует диаграммы облаками частиц. Это необычный вариант для презентационной визуализации, где движение и форма важнее плотности данных.
+- [Cropper.js 2.2](https://fengyuanchen.github.io/cropperjs/) предоставляет готовый контрол для обрезки изображений. Его можно испытать в [playground](https://fengyuanchen.github.io/cropperjs/playground.html), а исходный код и API доступны в [репозитории](https://github.com/fengyuanchen/cropperjs).
+- [Uppy 6.0](https://uppy.io/blog/uppy-6.0/) обновил модульную загрузку файлов с возобновлением после обрыва и источниками вроде Dropbox и Google Drive. В релизе переписан S3-плагин и сокращено число пакетов; есть интеграции с [React](https://uppy.io/docs/react/), [React Router](https://uppy.io/docs/reactrouter/) и [Next.js](https://uppy.io/docs/nextjs/).
+- [Schedule-X 4.7](https://schedule-x.dev/) добавляет большой календарь и расписание в приложения на React, Vue, Angular, Svelte и Preact.
+- [noble-curves 2.4](https://github.com/paulmillr/noble-curves) — компактная и прошедшая аудит реализация криптографии на эллиптических кривых без нативных зависимостей.
+
+## 🛰️ Фреймворки
+
+### htmx 4 управляет запросами и DOM прямо из разметки
+
+[htmx 4.0](https://four.htmx.org/announcements/2026-08-28-htmx-4.0.0-is-released) позволяет отправлять серверные запросы и заменять части страницы с помощью HTML-атрибутов, почти не прибегая к собственному JavaScript. В новом крупном релизе библиотека перешла с `XMLHttpRequest` на `fetch`, сделала наследование атрибутов явным и привела названия событий к более последовательному виду.
+
+Встроенные [morphing swaps](https://four.htmx.org/docs/morphing-swaps-guide) аккуратно обновляют существующее DOM-дерево вместо полной замены фрагмента, а элемент [`<hx-partial>`](https://four.htmx.org/announcements/2026-08-28-htmx-4.0.0-is-released#hx-partial) умеет раскладывать один ответ сервера по нескольким местам страницы. Полный список изменений собран в [руководстве по htmx 4](https://four.htmx.org/docs/whats-new-in-htmx-4). Познакомиться с подходом можно на [сайте проекта](https://four.htmx.org/), в [документации](https://four.htmx.org/docs) и на странице с [готовыми паттернами](https://four.htmx.org/patterns).
+
+
+### Remix 3 больше не требует React
+
+[Релиз-кандидат Remix 3](https://remix.run/blog/remix-3-release-candidate) завершает превращение проекта из React-фреймворка в самостоятельный полнофункциональный набор для веб-приложений. Маршрутизация, серверная логика и работа с данными теперь собраны вокруг собственных примитивов Remix, а не компонентов React.
+
+Обновленный [сайт Remix](https://remix.run/) показывает, как собрать приложение в одном пакете. Финальный релиз запланирован на 2 октября, но RC уже подходит для знакомства и ранней миграции.
+
+- В [сентябрьском обзоре Svelte](https://svelte.dev/blog/whats-new-in-svelte-september-2026) собраны новые методы `SvelteMap` из Svelte 5.57, релиз-кандидат SvelteKit 3 и дополнение `ai-tools` для CLI `sv`.
+- [Svelte Bits](https://sveltebits.xyz/) переносит на Svelte набор анимированных компонентов [React Bits](https://reactbits.dev/) от того же автора.
+- [Августовский обзор Astro](https://astro.build/blog/whats-new-august-2026/) рассказывает о новом руководителе проекта и других изменениях экосистемы, а примеры теперь можно запускать в [Astro Playground](https://play.astro.build/).
+- Lovable описала [миграцию приложения на 850 тысяч строк с Next.js на TanStack Start](https://lovable.dev/blog/how-we-migrated-lovable-dev-away-from-nextjs). Оба приложения работали параллельно за прокси и использовали общую папку, поэтому маршруты переносили постепенно.
+- Создатели одной сетки данных сравнили [реализации для React, Vue и Svelte](https://svar.dev/blog/building-data-grid-in-react-vue-svelte/). Главный вывод: виртуализация, обновление ячеек и другие дорогие операции требуют одинакового внимания независимо от синтаксиса фреймворка.
+- [Vue 3.6 RC6](https://github.com/vuejs/core/blob/minor/CHANGELOG.md#360-rc6-2026-08-28) дает возможность заранее проверить совместимость проекта с будущим релизом.
+
+## ⚛️ React и React Native
+
+### React-компоненты выходят за пределы браузерного DOM
+
+[GPUIX](https://gpuix.dev/) соединяет React с нативным GPU-интерфейсом редактора [Zed](https://zed.dev/). Компоненты превращаются в элементы GPUI, поэтому настольное приложение собирается в один бинарный файл и обходится без Electron и WebView.
+
+[Blender React](https://github.com/roman01la/blender-react) применяет похожую идею к 3D-сценам: аддон запускает QuickJS внутри Blender, а собственный reconciler сопоставляет React-компоненты с объектами сцены.
+
+- Статья [о разбиении JavaScript в Turbopack](https://nextjs.org/blog/turbopack-chunking) объясняет, как Next.js формирует чанки и какими экспериментальными настройками версии 16.3 можно уменьшить клиентский бандл.
+- TanStack и Vercel [объявили о партнерстве](https://x.com/tan_stack/status/2094888852607652280), чтобы [TanStack Start](https://tanstack.com/start/latest) получил полноценную поддержку на платформе. Первый практический шаг — [руководство по развертыванию](https://vercel.com/kb/guide/deploy-a-tanstack-start-app-to-vercel).
+- Черновое [обновление `@types/react` для React 19.3](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/75429) показывает будущие типы для [`browser()`](https://react.dev/reference/react-dom/browser), View Transition и ref у Fragment; точные изменения видны в [diff](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/75429/files).
+- Команда Margelo, создавшая Nitro Modules и VisionCamera, [присоединяется к Callstack](https://margelo.com/blog/margelo-joins-callstack).
+- Инженер Anthropic рассказал, как [заменил Next.js на небольшой фреймворк, сгенерированный Claude](https://maxleiter.com/blog/thank-u-next). В материале есть сравнение производительности, стоимость работы, ограничения и обнаруженные особенности браузеров.
+- Shopify подняла стабильность мобильных end-to-end тестов до 98%, [заменив основную часть `testID` компьютерным зрением](https://shopify.engineering/mobile-e2e-testing). Подход проверяет экран ближе к тому, как его видит пользователь.
+- [Mantine 9.6](https://mantine.dev/changelog/9-6-0/) добавил [lightbox](https://mantine.dev/x/lightbox/), панель массовых действий [`ActionBar`](https://mantine.dev/core/action-bar/) и четыре вида диаграмм: [waffle](https://mantine.dev/charts/waffle-chart/), [matrix](https://mantine.dev/charts/matrix-chart/), [gauge](https://mantine.dev/charts/gauge-chart/) и [candlestick](https://mantine.dev/charts/candlestick-chart/).
+- [`cn`](https://github.com/shadcn-ui/cn) заменяет связку `tailwind-merge` и `clsx`: заранее компилирует правила конфликтов Tailwind в таблицы и может оставить в бандле только нужные правила. Устройство оптимизации объяснено в [отдельном документе](https://github.com/shadcn-ui/cn/blob/main/docs/how-it-works.md).
+- [React Aria 1.21.0](https://react-aria.adobe.com/releases/v1-21-0) принес компонент `NavigationTree` и большое обновление меню с готовой поддержкой доступности.
+- [React Countdown Clock 3.0](https://github.com/pughpugh/react-countdown-clock/releases/tag/v3.0.0) переписан для React 18 и 19 и использует `requestAnimationFrame` для плавного отсчета на Canvas; результат можно увидеть в [демо](https://pughpugh.github.io/react-countdown-clock/).
+- [React Native WebGPU 0.9](https://github.com/wcandillon/react-native-webgpu) реализует WebGPU для мобильных React-приложений, а [шаблон Expo](https://github.com/wcandillon/react-native-webgpu/tree/main/apps/expo-webgpu) ускоряет настройку проекта.
+- [Catalyst](https://github.com/tata1mg/catalyst-core) — React-фреймворк для универсальных Android- и iOS-приложений с серверным рендерингом, загрузкой данных на уровне маршрутов и упаковкой в нативный WebView.
+- [Dot Matrix](https://dotmatrix.zzzzshawn.cloud/) предлагает больше 55 настраиваемых индикаторов загрузки в точечном стиле на React, TypeScript, Tailwind и shadcn.
+- [Warper](https://warper.tech/) использует Rust и WebAssembly для виртуализации списков на миллионы элементов, включая строки с динамической высотой.
+- [FormEngine](https://formengine.io/) строит React-формы по JSON-описанию, чтобы структуру и правила можно было менять без ручной сборки каждого поля.
+- [microcharts](https://microcharts.dev/) рисует миниатюрные React-графики, которые помещаются в строку таблицы, KPI-карточку или даже предложение текста.
+- [mapcn](https://www.mapcn.dev/) дает готовые компоненты карт на MapLibre, оформленные Tailwind и пригодные для копирования и настройки.
+- [Extend UI](https://www.extend.ai/ui) собирает React-компоненты для просмотра PDF, DOCX, XLSX и CSV, выделения областей-источников, загрузки файлов и электронной подписи.
+
+## 🟢 Node.js, Deno и Bun
+
+### NestJS 12 перешел на ESM, Rspack и Vitest
+
+[NestJS 12](https://trilon.io/blog/nestjs-12-is-now-available) стал крупнейшим обновлением серверного фреймворка за несколько лет. Пакеты теперь в первую очередь ориентированы на ESM, хотя CommonJS все еще поддерживается; Rspack заменил webpack, а Vitest стал основным вариантом для тестов.
+
+Поддержка [Standard Schema](https://standardschema.dev/) упрощает подключение Zod, Valibot и других библиотек валидации, а структурированные логи удобнее отправлять в системы наблюдаемости. Вместе с релизом появился новый [сайт NestJS](https://nestjs.com/).
+
+### Bun 1.4 проходит 80% тестов Node.js
+
+Интерактивная [таблица совместимости Bun с Node.js](https://bun.com/node-test-suite) показывает, какие части стандартного API уже работают, а где остаются пробелы. В [Bun 1.4](https://bun.com/blog/bun-v1.4) доля пройденных тестов достигла 80%; подробности собраны в разделе о [совместимости с Node.js](https://bun.com/blog/bun-v1.4#node-js-compatibility).
+
+Встроенный `build` теперь умеет запускать [React Compiler](https://bun.com/blog/bun-v1.4#built-in-react-compiler), а [`Bun.markdown.react()`](https://bun.com/blog/bun-v1.4#bun-markdown) преобразует Markdown сразу в React-элементы.
+
+### Новые возможности и релизы Node.js
+
+В ветку Node.js добавили [`node:ffi`, включенный по умолчанию](https://github.com/nodejs/node/pull/65475). Экспериментальный модуль позволяет вызывать функции нативных C-библиотек без отдельного аддона и `node-gyp`, но пока еще не вошел в официальный релиз.
+
+Single Executable Applications смогут [монтировать вложенные ресурсы как виртуальную файловую систему](https://github.com/nodejs/node/pull/65675). Это дает упакованному в один файл приложению обычный путь для чтения шаблонов, сертификатов и других ресурсов.
+
+- Вышли [Node.js 26.8.0 Current](https://nodejs.org/en/blog/release/v26.8.0) и [Node.js 24.20.0 LTS](https://nodejs.org/en/blog/release/v24.20.0).
+- AWS Lambda открыла предварительный доступ к [рантайму Node.js 26](https://aws.amazon.com/blogs/compute/introducing-public-preview-runtimes-on-aws-lambda-starting-with-node-js-26-and-python-3-15/).
+- Express закрыл [шесть уязвимостей в `hbs`, `multer` и `morgan`](https://expressjs.com/en/blog/2026-08-31-security-releases/), поэтому проекты с этими зависимостями стоит обновить.
+- В документации Node.js предложено [убрать параллельные примеры ESM и CommonJS](https://github.com/nodejs/node/issues/65536), чтобы API-страницы были короче и проще в сопровождении.
+- Checkly рассказала о [переписывании Node.js-сервиса на Go с помощью ИИ-агентов](https://www.checklyhq.com/blog/agentic-rewrite-nodejs-to-go/). Команда сначала построила тестовый стенд, затем выполнила перенос и раскатывала замену под контролем метрик.
+- Статья о [поиске полных сканирований SQLite в Node.js](https://codesilva.com/programacao/2026/08/13/detecting-sqlite-full-table-scans-in-nodejs) показывает, как после запроса прочитать счетчик просмотренных строк и заметить отсутствующий индекс.
+- Сравнение [worker threads и отдельных процессов](https://www.thenodebook.com/worker-threads/workers-vs-processes) помогает выбрать между общей памятью и более сильной изоляцией при параллельных задачах.
+- [srvx 1.0](https://srvx.h3.dev/) запускает один обработчик `Request → Response` без изменений в Node, Deno и Bun. CLI умеет следить за файлами, раздавать статику и вызывать обработчик без запуска сервера.
+- [NVM for Windows 2.0](https://docs.nvm-windows.com/features/newv2/) переписан вокруг легких shim-файлов, закрепляет версию Node для проекта и больше не требует прав администратора; код доступен в [репозитории](https://github.com/nvm-windows/nvm).
+- [Got 16](https://github.com/sindresorhus/got/releases/tag/v16.0.0) получил встроенный HTTP/2-клиент, DNS-кеш и поддержку стандартизированного метода [`QUERY`](https://www.rfc-editor.org/info/rfc10008/).
+- [SimpleWebAuthn 14](https://github.com/MasterKale/SimpleWebAuthn/releases/tag/v14.0.0) умеет проверять постквантовые passkey на ML-DSA, а на Node 24.7+ предпочитает ML-DSA-44 при регистрации.
+- [Restify 12](https://github.com/restify/node-restify) вернулся после двух с половиной лет, добавил Node 26 и перешел с `url.parse()` на WHATWG URL; несовместимые изменения перечислены в [описании релиза](https://github.com/restify/node-restify/releases/tag/v12.0.0).
+- [np 12.1](https://github.com/sindresorhus/np) ускорил удобный сценарий публикации npm-пакетов, а [express-rate-limit 8.7](https://github.com/express-rate-limit/express-rate-limit) обновил ограничение частоты запросов для Express.
+- [Deno 2.9.6](https://github.com/denoland/deno/releases/tag/v2.9.6) выпустил очередное исправление альтернативного JavaScript- и TypeScript-рантайма.
+- Открыт [опрос пользователей Node.js 2026](https://linuxfoundation.surveymonkey.com/r/nodejs-users-2026), результаты которого помогают команде выбирать приоритеты проекта.
+
+## 📘 TypeScript
+
+### Zod 4.5 ускорил проверку и сократил память схем в девять раз
+
+[Zod 4.5](https://zod.dev/blog/zod-4-5) добавил `z.compile()` для предварительной компиляции схем и быстрый путь, когда нужно только узнать, валидны ли данные, без построения полного результата разбора.
+
+Схемы теперь занимают примерно в девять раз меньше памяти. В [техническом разборе оптимизации](https://zod.dev/blog/reducing-memory-footprint) показано, как мемоизация методов уменьшила размер простого `z.string()` в куче с 7,5 КБ до 784 байт.
+
+- TypeScript получил [ambient modules с учетом import attributes](https://github.com/microsoft/TypeScript/pull/63931). Объявление вроде `declare module "*" with { type: "css" }` теперь может описывать только импорты с нужным атрибутом.
+- Язык доказательств [Lean](https://lean-lang.org/) использует проверку типов как основу верификации математических утверждений, а [реализация идеи на TypeScript](https://gruhn.me/blog/2026-08-29/) помогает увидеть механизм на знакомом синтаксисе.
+- [unbash](https://github.com/webpro-nl/unbash) — быстрый TypeScript-парсер Bash без зависимостей. Он разбирает структуру команды или скрипта, не выполняя потенциально опасный ввод.
+- [tsbro](https://github.com/stagas/tsbro) запускает TypeScript прямо в браузере без отдельной сборки и цепочки инструментов.
+
+## 🤖 ИИ и инструменты для агентов
+
+### Разработка с агентами возвращает внимание к базовым примитивам
+
+Robin Wieruch объясняет, почему при [агентной разработке выгодно опираться на простые примитивы](https://www.robinwieruch.de/agentic-coding-bet-on-primitives/). Агент может быстро собрать небольшой слой поверх D3 или браузерного API, поэтому большая универсальная библиотека не всегда остается самым дешевым выбором.
+
+Addy Osmani напоминает, что [мастерство по-прежнему требует повторения практики](https://addyo.substack.com/p/agentic-skill-decay). Если агент постоянно выполняет упражнение вместо разработчика, скорость растет, но понимание приходится поддерживать отдельной осознанной работой.
+
+- Ahmad Alfy [проверил Google Modern Web Guidance](https://alfy.blog/2026/07/25/modern-web-guidance.html) на настоящем React-приложении и показал, насколько рекомендации skill совпадают с реальными проблемами проекта.
+- [Agent Behavior](https://www.agentbehavior.dev/) предлагает стандартный человекочитаемый формат ожидаемого поведения агента, чтобы сценарии можно было сравнивать по трассировкам и проверять в eval-тестах.
+- [Paseo](https://paseo.sh/) дает единый самохостинговый интерфейс для Claude Code, Codex, Copilot, OpenCode и других coding agents на компьютере и телефоне.
+- CLI [asm](https://github.com/luongnv89/asm) устанавливает, ищет, проверяет и упорядочивает skills для разных агентных инструментов.
+- [Awesome Claude Code Plugins](https://github.com/composio-community/awesome-claude-plugins) собирает плагины с командами, агентами, hooks и MCP-серверами для Claude Code.
+- [Ponytail](https://github.com/DietrichGebert/ponytail) — набор правил, который просит агента выбирать минимальное решение и писать как можно меньше кода, достаточного для задачи.
+- [MiMoCode](https://github.com/XiaomiMiMo/MiMo-Code) работает в терминале, меняет файлы, запускает команды и сохраняет долговременную память о проекте.
+- [Oh My OpenAgent](https://github.com/code-yeongyu/oh-my-openagent) координирует несколько моделей и специализированных агентов при работе с большой кодовой базой.
+- [Галерея примеров Apps SDK](https://github.com/openai/openai-apps-sdk-examples) содержит UI-компоненты и образцы MCP-серверов для приложений внутри ChatGPT.
+- Обсуждение [ограничений терминала как интерфейса для coding agents](https://x.com/darrenjr/status/2085214022568124763) поднимает вопрос, достаточно ли последовательного текстового потока для наблюдения и управления параллельной работой.
+
+## 🧰 Сборка, тестирование и инструменты
+
+### pnpm 12 переписан на Rust без смены привычного workflow
+
+Стабильный [pnpm 12](https://pnpm.io/blog/releases/12.0) сохранил почти все команды, флаги и формат lock-файла версии 11, но его внутренности теперь написаны на Rust. Это позволяет обновить пакетный менеджер без полной перестройки CI и правил репозитория.
+
+Небольшой список несовместимостей вынесен в [руководство по отличиям pnpm 12](https://pnpm.io/blog/whats-different-in-pnpm-12).
+### Сборщики и тесты ускоряются и становятся наблюдаемее
+
+[Rspack 2.2, Rsbuild 2.2 и Rslint 0.9](https://rspack.rs/blog/announcing-2-2) ускорили сборку и HMR, сократили идентификаторы модулей и включили разбиение Node.js-чанков по умолчанию в Rsbuild. Rslint теперь реализует все правила и пресеты `@typescript-eslint`.
+
+[Vitest 5](https://vitest.dev/blog/vitest-5.html) примерно на 15% быстрее в тесте React SPA и получил [просмотр трассировки браузерного теста](https://vitest.dev/guide/browser/trace-view), по которой можно пошагово восстановить произошедшее. Несовместимые изменения собраны в [руководстве по миграции](https://vitest.dev/guide/migration/).
+
+- [Cypress 16](https://www.cypress.io/blog/cypress-16-faster-tests-starting-with-http2-support) ускоряет тесты благодаря поддержке HTTP/2.
+- [Mocha 12](https://github.com/mochajs/mocha/releases/tag/v12.0.0) выпустил новый крупный релиз тестового фреймворка.
+- [Electron 44](https://www.electronjs.org/blog/electron-44-0) получил официальный обзор изменений платформы для настольных приложений.
+- В статье о [конкурирующих автоисправлениях линтера](https://jfmengels.net/concurrent-linter-fixes/) показано, почему одновременное применение нескольких fixes может сломать код и чем безопаснее цикл «исправить — заново проанализировать».
+- James Healy объясняет, почему [частое повышение major-версии JavaScript-библиотеки вредит пользователям](https://yob.id.au/2026/09/01/major-version-bumps.html): в одном проекте накапливаются несовместимые копии одной зависимости.
+- [Drydock](https://drydock.org/) сравнивает подготовленный npm-архив с предыдущей опубликованной версией и отмечает новые install-скрипты, сетевой доступ и бинарные файлы. Быстро проверить две версии можно в [веб-интерфейсе diff](https://drydock.org/diff).
+- [Storybook 10.6](https://github.com/storybookjs/storybook/releases/tag/v10.6.0) добавил CLI-команды, через которые агенты могут запускать инструменты и skills среды компонентов.
+- [Speedlify 2](https://www.zachleat.com/web/speedlify2/) регулярно измеряет Lighthouse, Core Web Vitals и доступность Axe через GitHub Actions и Pages. Это бесплатный самохостинговый проект автора [Eleventy](https://www.11ty.dev/).
+- [svelteesp32](https://github.com/BCsabaEngine/svelteesp32) превращает сборку Svelte, React, Angular или Vue в один C++ header с gzip, ETag и OTA-обновлениями для ESP32 и ESP8266.
+- [eslint-markdown](https://github.com/lumirlumir/npm-eslint-markdown) добавляет правила проверки Markdown поверх `@eslint/markdown`.
+- [pnpr](https://pnpm.io/pnpr/) — совместимый с npm-протоколом реестр пакетов на Rust, к которому могут подключаться pnpm, npm и Yarn.
+- [crust](https://github.com/moumen-soliman/crust) сравнивает две production-сборки Next.js App Router и показывает, что изменилось перед публикацией.
+- [pack](https://pack.sh/) одной командой публикует локальное приложение по постоянному HTTPS-адресу для самостоятельного хостинга.
