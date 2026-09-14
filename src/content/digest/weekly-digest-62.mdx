@@ -1,0 +1,184 @@
+---
+title: "Еженедельный дайджест #62: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Sep 14 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #62! 🗞️", index: 0 },
+  { text: "HTML избавляется от старых костылей. 🧪", index: 1 },
+  { text: "CSS всё чаще управляет компонентами сам. 🎨", index: 2 },
+  { text: "Safari наконец приручил top-level await. 📦", index: 3 },
+  { text: "React 19.3: Fragment Refs и View Transitions! ⚛️", index: 4 },
+  { text: "Shopify возвращается к Swift и Kotlin. 📱", index: 5 },
+  { text: "Node готовит встроенные бенчмарки. ⚙️", index: 6 },
+  { text: "Vitest 5 ускоряет тесты и показывает трассировку. 🧪", index: 7 },
+  { text: "Tailwind Labs присоединяется к Shopify. 🌬️", index: 8 },
+  { text: "ИИ помогает разбирать тысячи GitHub-задач. 🤖", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+
+### Что нового появилось в HTML в 2026 году
+
+HTML развивается спокойнее JavaScript и CSS, но платформа продолжает получать новые возможности. В [большом обзоре современного HTML](https://blog.master.dev/new-things-you-should-know-about-html-here-in-mid-2026/) собраны экспериментальные элементы для геолокации, камеры и микрофона, 3D-моделей и рисования HTML-содержимого внутри Canvas.
+
+Эти API пока нельзя без проверки поддержки переносить в рабочие проекты. Зато обзор хорошо показывает направление развития платформы: типовые возможности постепенно становятся частью браузера, а разработчику требуется меньше собственного JavaScript.
+
+### Какие старые фрагменты HTML уже не нужны
+
+В разборе [устаревших HTML-конструкций](https://vale.rocks/posts/html-relics) объясняется происхождение условных комментариев, `X-UA-Compatible`, настроек ClearType и других строк, которые до сих пор копируют из старых шаблонов. Большая часть таких инструкций решала проблемы давно исчезнувших браузеров и теперь лишь усложняет документ.
+
+- W3C проводит [опрос сообщества о будущем веб-стандартов](https://www.w3.org/news/2026/w3c-opens-2026-community-wide-survey/) и работе самой организации.
+- Идеи для Interop 2027 можно отправить через [форму, о которой рассказала команда Edge](https://blogs.windows.com/msedgedev/2026/09/03/calling-for-interop-2027-proposals/), или изучить [объявление WebKit](https://webkit.org/blog/18283/submit-your-ideas-for-interop-2027/). Проект выбирает несовместимости браузеров, которые команды будут исправлять вместе.
+- Chrome [перешёл на двухнедельный цикл релизов](https://techcrunch.com/2026/09/08/chrome-is-now-shipping-updates-every-2-weeks-as-ai-changes-the-security-landscape/); похожий темп планируют Firefox, Edge и Brave.
+- Исследователь заметил, что Chrome 152 снова может [не удалять данные сайтов Google при очистке данных на выходе](https://lapcatsoftware.com/articles/2026/9/1.html), хотя похожее исключение уже исправляли раньше.
+- Для адаптивной страницы больше не обязательно указывать [`initial-scale=1.0` в метатеге viewport](https://vale.rocks/micros/20260902-1350): параметр был обходным путём для старых версий iOS.
+- Владельцам адресов третьего уровня в зоне `.name` стоит учесть [предстоящее отключение этого формата доменов](https://neil.fraser.name/news/2026/09/03/).
+
+## 🎨 CSS и дизайн
+
+### Нужен ли сайту переключатель тёмной темы
+
+Lea Verou после обсуждения [вариантов переключателя темы](https://lea.verou.me/blog/2026/dark-mode-toggles/) и [аргументов в пользу трёх состояний](https://www.bram.us/2026/08/18/the-case-for-tri-state-dark-mode-toggles/) пришла к более радикальному выводу: [постоянная кнопка может быть вообще не нужна](https://lea.verou.me/blog/2026/dark-mode-toggles-2/). Если сайт корректно следует системной теме, отдельный контрол полезен только там, где посетителю действительно важно менять оформление независимо от системы.
+
+### Компоненты связываются через CSS без JavaScript
+
+Typed `attr()` позволяет брать типизированное значение из HTML-атрибута и использовать его в CSS, например для числа колонок или размера отступа. В статье про [связку `attr()` и container style queries](https://utilitybend.com/blog/container-style-queries-and-advanced-attr-rethinking-how-to-wire-up-my-components-in-css) показано, как передавать такое состояние дочерним элементам без дополнительных классов и JavaScript.
+
+Подход пока требует внимания к поддержке браузерами, но делает границу между разметкой и стилями яснее: HTML задаёт данные компонента, а CSS решает, как их представить.
+
+- Современные свойства CSS помогают [создать собственный scrollbar](https://blog.master.dev/custom-scrollbar-component-in-2026/) без тяжёлых вычислений размеров и видимости в JavaScript.
+- CSS Anchor Positioning можно использовать, чтобы [анимировать перестроение Grid](https://www.bram.us/2026/09/07/animating-css-grid-layouts-with-css-anchor-positioning/) и связывать движение элементов с их новыми позициями.
+- [Roux](https://github.com/thoughtbot/roux) предлагает стартовый набор нативных стилей, переменных и HTML-компонентов; результат можно посмотреть [в документации проекта](https://roux.thoughtbot.dev/).
+- В [Drawably](https://www.drawably.dev/) собраны рисованные элементы интерфейса с анимациями и повторяемой случайностью. Библиотека занимает около 7 КБ JavaScript в сжатом виде, не имеет зависимостей, а [исходный код открыт на GitHub](https://github.com/Danilaa1/drawably).
+
+## 🔐 Безопасность и доступность
+
+### CSS может стать оружием внутри почтового клиента
+
+Исследование [атак через CSS в веб-почте](https://portswigger.net/research/css-the-bomb-inside-your-inbox) показывает, что таблицы стилей способны не только менять внешний вид письма. Ошибки фильтрации позволяют подменять части интерфейса, обходить прокси изображений и даже собирать введённые пользователем данные.
+
+- Dropbox рассказала о [внутреннем аудиторе cookie](https://dropbox.tech/security/how-our-inhouse-auditor-tests-cookie-behavior-across-hundreds-of-web-surfaces), который автоматически проверяет поведение файлов cookie на сотнях страниц и сервисов компании.
+- [WCAG Radar](https://wcagtoolkit.com/wcag-radar) запускается как расширение или bookmarklet, проверяет открытую страницу по WCAG 2.1 и 2.2 AA и отмечает найденные проблемы прямо в интерфейсе.
+- [SimpleWebAuthn 14.0](https://github.com/MasterKale/SimpleWebAuthn/releases/tag/v14.0.0) научился проверять постквантовые passkey на основе ML-DSA, а на Node.js 24.7 и новее предпочитает ML-DSA-44 при регистрации.
+
+<TelegramCTA/>
+
+## 📦 JavaScript и браузеры
+
+### Почему Safari пришлось переписать загрузчик модулей
+
+Поддержка top-level `await` годами вызывала в Safari ошибки вида «нельзя обратиться до инициализации». Команда WebKit объяснила, [как старую реализацию модулей заменили на соответствующую спецификации](https://webkit.org/blog/18227/fixing-top-level-await-in-safari/). Полностью исправленное поведение войдёт в Safari 27.
+
+Проблема была глубже отдельного оператора: загрузчик строился по раннему варианту стандарта, который затем отменили. Асинхронное выполнение модулей потребовало заново согласовать порядок загрузки, связывания и вычисления зависимостей.
+
+### `await fetch()` ждёт не весь ответ
+
+Вызов `await fetch(url)` завершается, когда браузер получил заголовки, а не всё тело ответа. Разбор [реального поведения `fetch()`](https://blog.gaborkoos.com/posts/2026-09-08-Half-Past-Fetch/) объясняет, почему это важно для таймаутов, отмены запросов, `clone()` и повторного использования соединений.
+
+- Большой материал о [стоимости главного потока браузера](https://kciter.so/posts/the-expensive-main-thread/en/) показывает, как разбивать, группировать, откладывать и переносить тяжёлые задачи, чтобы интерфейс не зависал.
+- Разработчик Moonshine объяснил, зачем [перенёс распознавание речи в JavaScript](https://petewarden.com/2026/08/15/why-i-ported-moonshine-to-javascript/): модель работает прямо в браузере с низкой задержкой и без постоянных запросов к серверу.
+- Руководство по [бесконечной сетке с эффектом жидкого стекла](https://tympanus.net/codrops/2026/09/08/building-an-infinite-liquid-glass-grid-with-three-js-webgpu-and-tsl/) объединяет Three.js, WebGPU и TSL в одном практическом эффекте.
+- Экскурсия по исходникам Chromium объясняет, [как устроена игра с динозавром](https://www.freecodecamp.org/news/how-the-chrome-dino-game-works/): от игрового цикла и физики прыжка до роста скорости.
+- [Fixi Project](https://fixiproject.org/) собрал пять маленьких автономных библиотек от создателей htmx. Они повторяют отдельные идеи htmx, Hyperscript и Idiomorph без подключения всего набора; доступен и [общий репозиторий с исходниками](https://github.com/bigskysoftware/the-fixi-project).
+- [Dropzone.js 6](https://www.dropzone.dev/) завершил пятилетнюю бету: загрузчик файлов через drag-and-drop избавился от зависимостей, уменьшил сборку и исправил повреждение файлов при загрузке частями.
+- [vgpu](https://vgpu.sh/) позволяет запускать один WGSL-шейдер в браузере или без окна в Node.js, а модули шейдеров импортируются и экспортируются по модели TypeScript.
+- [deck.gl 9.4](https://deck.gl/docs/whats-new#deckgl-v94) расширил экспериментальную поддержку WebGPU в библиотеке для визуализации больших наборов данных.
+- 20-летие jQuery 1.0 стало поводом [вспомнить роль библиотеки в эпоху несовместимых браузеров](https://www.infoq.com/news/2026/09/jquery-20-years/). Ещё раньше Microsoft добавила в Internet Explorer собственный [JScript](https://en.wikipedia.org/wiki/JScript), название которого [помогало обойти ограничения торговой марки](https://bsky.app/profile/webdesignmuseum.org/post/3muu3c4wy222g).
+
+## ⚛️ React и React Native
+
+### React 19.3 стабилизировал Fragment Refs и View Transitions
+
+В [React 19.3](https://react.dev/blog/2026/09/09/react-19-3) два ожидаемых API вышли из экспериментального статуса. Fragment Refs дают управлять фокусом, событиями и измерениями группы DOM-узлов без лишней обёртки. Компонент `<ViewTransition>` анимирует появление, исчезновение и перемещение элементов, включая раскрытие Suspense; познакомиться с базовым API помогает [практический обзор View Transitions](https://blog.master.dev/reacts-viewtransition-element/).
+
+Релиз также расширил [возможности Server Components](https://react.dev/blog/2026/09/09/react-19-3#new-react-server-components-features), научился сохранять объекты [Trusted Types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) при передаче в DOM и добавил [`use(browser())`](https://react.dev/reference/react-dom/browser) для компонентов, которым нужны только браузерные API. Остальные исправления и изменения перечислены в [полных примечаниях к версии 19.3](https://github.com/react/react/releases/tag/v19.3.0).
+
+### Shopify отказывается от React Native в основных приложениях
+
+После шести лет активного использования React Native Shopify решила [вернуться к нативной разработке на Swift и Kotlin](https://shopify.engineering/back-to-native). Компания считает, что ИИ-инструменты снизили цену параллельной разработки под две платформы, а нативный стек даёт прямой доступ к новым возможностям iOS и Android. Отдельный отчёт описывает [12-недельный перенос приложения Shop](https://shopify.engineering/shop-app-migration) и сравнивает запуск, стабильность и размер сборки.
+
+### React Compiler на Rust ускорил большую сборку в 17 раз
+
+Команда перевела приложение из тысячи с лишним файлов на Rust-версию React Compiler из проекта oxc. В [отчёте о миграции](https://blog.master.dev/react-now-rusted-all-the-way-out/) компиляция сократилась с 14,3 до 0,81 секунды, а новый порт смог оптимизировать некоторые шаблоны, которые пропускает реализация на Babel.
+
+- [React DevTools 8.0](https://github.com/react/react/blob/main/packages/react-devtools/CHANGELOG.md#800) включает вкладку Suspense по умолчанию и убирает Timeline в пользу панели Performance браузера. Экспериментальный пакет [открывает данные DevTools ИИ-агентам через MCP](https://github.com/react/react/tree/main/packages/react-devtools-cdt-mcp).
+- При переносе Discord на новую архитектуру React Native только 14% задач относились к самой миграции. В разборе [длинного хвоста работ](https://swmansion.com/blog/what-it-actually-takes-to-migrate-discord-to-react-native-s-new-architecture/) перечислены обновления библиотек, инфраструктуры и собственного нативного кода.
+- Включение перевода страницы в Chrome может размонтировать React-приложение. Статья про [ошибку `removeChild` при работе Chrome Translate](https://dev.to/davlat_aliev_392c20ec5c92/your-react-app-unmounts-when-a-reader-turns-on-chrome-translate-2hn3) объясняет, почему популярный monkey patch скрывает падение, но не чинит интерфейс.
+- Evil Martians описали [переезд с Gatsby на Astro меньше чем за десять дней](https://evilmartians.com/chronicles/golden-switch-or-migrating-from-gatsby-to-astro-in-under-9-days), сохранив существующие React-компоненты после предварительной подготовки.
+- [Jotai 3.0](https://github.com/pmndrs/jotai/blob/main/docs/guides/migrating-to-v3.mdx) стал ESM-only, требует React 18 и TypeScript 5.5, переносит `atomFamily` в отдельный пакет и заменяет `loadable` на `unwrap`. Автор отдельно разобрал [единственное изменение поведения](https://newsletter.daishikato.com/p/jotai-v3-is-mostly-a-migration-release).
+- Полностью переписанный [React Native ExecuTorch 0.10](https://github.com/software-mansion/react-native-executorch/releases/tag/v0.10.0) запускает ИИ-модели на устройстве через настраиваемые TypeScript-конвейеры; [сайт проекта](https://executorch.swmansion.com/) показывает доступные модели и платформы.
+- [Vidact](https://www.vidact.dev/) компилирует React-подобные функциональные компоненты и хуки в прямые операции с DOM без Virtual DOM и React runtime. Неподдерживаемые шаблоны останавливают сборку с ошибкой.
+- [React Google Maps 1.10](https://visgl.github.io/react-google-maps/) добавил декларативные 3D-модели и маркеры для Google Maps JavaScript API, которые можно изучить [в интерактивном примере](https://visgl.github.io/react-google-maps/examples/map-3d-markers).
+- [Lexical 0.50](https://github.com/facebook/lexical/releases/tag/v0.50.0) получил HMR и пакет `@lexical/compiler` для более эффективного удаления неиспользуемого кода во время сборки.
+- [Base UI 1.8](https://base-ui.com/react/overview/releases/v1-8-0) обновил библиотеку компонентов без готового оформления, которая стала стандартной основой для shadcn/ui.
+- [wouter 3.11](https://github.com/molefrog/wouter/releases/tag/v3.11.0) продолжает предлагать маршрутизацию примерно в 2 КБ для React и имеет отдельную [поддержку Preact](https://github.com/molefrog/wouter#preact-support).
+- Доступен [релиз-кандидат React Native 0.88](https://github.com/react/react-native/releases/tag/v0.88.0-rc.0) для ранней проверки совместимости приложений и библиотек.
+
+## 🛰️ Фреймворки и рантаймы
+
+### Как Turbopack делит JavaScript на части
+
+На примере официального сайта Next.js команда объяснила [стратегию разбиения кода в Turbopack](https://nextjs.org/blog/turbopack-chunking). Сборщику приходится выбирать между количеством сетевых запросов и объёмом лишнего кода: иногда восемь крупных чанков весят больше, чем 355 маленьких.
+
+- [Bun 1.4.1](https://bun.com/blog/bun-v1.4.1) и [Bun 1.4.2](https://bun.com/blog/bun-v1.4.2) снизили потребление памяти в простое, уменьшили результат `bun build` и добавили одновременную работу HTTP/1.1 и HTTP/2 на одном порту `Bun.serve`.
+- Вышли [Astro 7.3](https://astro.build/blog/astro-730/), [Vuetify 4.2](https://github.com/vuetifyjs/vuetify/releases/tag/v4.2.0) и компонент [vue-echarts 8.3](https://vue-echarts.dev/) для графиков Apache ECharts во Vue.
+- [Astro LilyPond](https://lilypond.ky.fyi/) превращает текстовую запись музыки в нотную графику во время сборки Astro-сайта.
+- TanStack описала [партнёрство с Vercel](https://tanstack.com/blog/vercel-partnership) и выпустила адаптеры TanStack AI для AI Gateway и Sandbox.
+
+## ⚙️ Node.js
+
+### В Node.js появится встроенный запуск бенчмарков
+
+Экспериментальный модуль [`node:bench`](https://www.jasnell.me/posts/a-node-bench-module) строится по образцу `node:test`: тесты производительности можно будет запускать через `node --bench` и получать JSON-отчёт. Реализация уже [попала в основную ветку Node.js](https://github.com/nodejs/node/pull/65606), но API ещё может измениться до релиза.
+
+### Критическая уязвимость показала ограничения `vm2`
+
+Исследователи GitLab нашли [выход из песочницы `vm2` с оценкой CVSS 10.0](https://about.gitlab.com/blog/critical-remote-code-execution-in-vm2/). Ошибка исправлена начиная с 3.11.7, однако авторы рекомендуют не доверять библиотеке выполнение действительно враждебного кода. Сама документация `vm2` также описывает [фундаментальную сложность безопасной изоляции JavaScript](https://github.com/patriksimek/vm2#the-fundamental-challenge).
+
+- Вышли [Node.js 26.8.2 Current](https://nodejs.org/en/blog/release/v26.8.2) и [Node.js 24.21.0 LTS](https://nodejs.org/en/blog/release/v24.21.0). В них вошло обновление Undici, закрывающее [несколько уязвимостей](https://github.com/nodejs/undici/releases/tag/v8.10.2), а также OpenSSL 3.5.8.
+- Небольшое [изменение инициализации энтропии V8](https://github.com/nodejs/node/pull/65796) ускоряет запуск Node.js примерно на миллисекунду, используя операционную систему вместо OpenSSL.
+- Практика [фаззинга конечных автоматов HTTP-клиента](https://blog.gaborkoos.com/posts/2026-09-05-Fuzzing-the-State-Machines-Inside-My-HTTP-Client/) добавила свойства из [fast-check](https://github.com/dubzzz/fast-check) к 206 тестам [ffetch](https://github.com/fetch-kit/ffetch) и нашла ещё 11 реальных ошибок.
+- Команда Prisma ответила на опасения вокруг новой модели миграций и объяснила, [готова ли Prisma 8 к долгоживущим production-приложениям](https://www.prisma.io/blog/is-prisma-8-ready-for-long-lived-production-apps).
+- Руководство Paketo показывает, как [упаковать Node.js-приложение в контейнер и уменьшить образ](https://blog.paketo.io/posts/containerizing-nodejs-apps) с помощью Buildpacks.
+- [MikroORM 7.2](https://mikro-orm.io/blog/mikro-orm-7-2-released) добавил политики Row Level Security PostgreSQL в метаданные сущностей, связи `through` и WASM-драйвер sql.js, благодаря которому ORM [может работать прямо в браузере](https://mikro-orm.io/docs/guide/first-entity#-checkpoint-1).
+- [Javet 6.0](https://www.caoccao.com/Javet/) позволяет встроить Node.js 26 и V8 в JVM, вызывать npm-пакеты из Java и запускать несколько экземпляров рантайма; [исходники доступны на GitHub](https://github.com/caoccao/Javet).
+- [parse-xml 5.0](https://rgrove.github.io/parse-xml/) перешёл только на ESM без изменения API; на Node.js 22+ старый `require()` продолжает работать. Подробности есть [в описании релиза](https://github.com/rgrove/parse-xml/releases/tag/v5.0.0).
+- [dhcp.js 1.0](https://github.com/rawify/dhcp.js) предоставляет DHCPv4-клиент, сервер и инструменты для Node.js; архитектура библиотеки описана в [отдельном материале](https://raw.org/software/libraries/dhcp-js/).
+- [pnpm 12.4](https://github.com/pnpm/pnpm/releases/tag/v12.4.0) умеет управлять зависимостями npm, Python и Cargo в одном workspace.
+- [Nodemailer 10.0](https://github.com/nodemailer/nodemailer/releases/tag/v10.0.0) переписан на TypeScript и поставляется в форматах ESM и CommonJS.
+- [Fastify 5.12.2](https://github.com/fastify/fastify/releases/tag/v5.12.2) исправил четыре опасные уязвимости, включая обходы проверки данных и авторизации.
+- [tinybench 6.2](https://github.com/tinylibs/tinybench) обновил компактную библиотеку точных бенчмарков для Node.js.
+- [supercluster 9.1](https://github.com/mapbox/supercluster) группирует большие наборы географических точек для быстрого отображения на карте в Node.js-приложениях.
+
+## 🤖 ИИ и разработка
+
+- Evil Martians предлагают [десять способов сдерживать некачественный ИИ-код](https://evilmartians.com/chronicles/ten-anti-ai-slop-moves-for-frontend-projects-going-faster-than-humans-can-review): генерацию клиентов из OpenAPI, архитектурные границы, мутационное тестирование и обязательные проверки в CI.
+- Robin Wieruch объясняет, почему при агентной разработке иногда выгоднее [строить на низкоуровневых примитивах](https://www.robinwieruch.de/agentic-coding-bet-on-primitives/), сравнивая D3 с более высокоуровневым Recharts.
+
+## ⚒️ Инструменты и библиотеки
+
+### Vitest 5 ускорил тесты и добавил пошаговую отладку
+
+[Vitest 5](https://vitest.dev/blog/vitest-5) сосредоточился на скорости и поиске причин падения тестов. В проектах с большим количеством зависимостей команда измерила ускорение до 53%, а новый [Trace View](https://vitest.dev/guide/browser/trace-view) позволяет пошагово воспроизвести браузерный тест.
+
+Команда [`vitest doctor`](https://vitest.dev/guide/cli#vitest-doctor) анализирует конфигурацию и предлагает настройки для ускорения набора тестов. Это особенно удобно, когда отдельные тесты быстрые, но общий запуск замедляют изоляция, зависимости или неоптимальный пул процессов.
+
+### Rslib 1.0 собирает библиотеки и CLI
+
+[Rslib 1.0](https://rslib.rs/blog/v1-0) предлагает единый конвейер публикации JavaScript-библиотек: параллельные ESM- и CJS-сборки, CSS компонентов React, Vue, Svelte и Solid, а также Module Federation. Для Node.js он умеет [выводить целевую версию синтаксиса из `engines.node`](https://rslib.rs/guide/upgrade/v0-to-v1#default-syntax-target-update), [быстрее создавать декларации на TypeScript 7](https://rslib.rs/blog/v1-0#declaration-generation) и экспериментально [собирать исполняемые Node SEA-файлы](https://rslib.rs/config/lib/experiments#experimentsexe).
+
+### Атака на цепочку поставки npm привела к арестам
+
+Двух подозреваемых [арестовали по делу об атаках TeamPCP](https://www.aikido.dev/blog/teampcp-arrested-supply-chain). Группу связывают с копированием механики червя Shai-Hulud и последующими волнами заражений, получившими название [Mini Shai-Hulud](https://www.stepsecurity.io/blog/a-mini-shai-hulud-has-appeared). История напоминает, что обновление пакета может принести в проект не только исправления, но и код, опубликованный через захваченный аккаунт.
+
+### Обновления
+
+- Вышли [ESLint 10.10](https://eslint.org/blog/2026/09/eslint-v10.10.0-released/) и [Storybook 10.6](https://github.com/storybookjs/storybook/releases/tag/v10.6.0).
+- [ESLint Config Inspector 3.4](https://github.com/eslint/config-inspector) добавил измерение времени правил, чтобы находить причины медленного линтинга.
+- [eslint-plugin-regexp 3.3](https://github.com/ota-meshi/eslint-plugin-regexp) находит ошибки и неоднозначности в регулярных выражениях; набор проверок можно увидеть [в онлайн-песочнице](https://ota-meshi.github.io/eslint-plugin-regexp/playground/).
+- [GPUIX 0.7](https://gpuix.dev/) строит нативные GPU-ускоренные desktop-приложения на React и TypeScript поверх технологии редактора [Zed](https://zed.dev/).
+- [memlab 2.0.5](https://facebook.github.io/memlab/) ищет утечки памяти в браузерных и Node.js-приложениях.
+- [Confectionery](https://confectioneryapp.com/) — минималистичный браузер для macOS, который убирает лишние панели со скриншотов и занимает около 2,9 МБ.
