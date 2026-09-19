@@ -1,0 +1,254 @@
+---
+title: "Еженедельный дайджест #63: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Sep 21 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #63! 🗞️", index: 0 },
+  { text: "Safari 27, Chrome 153 и новые возможности HTML уже здесь. 🧪", index: 1 },
+  { text: "CSS вспоминает старые хаки и осваивает якоря, анимации и StyleX. 🎨", index: 2 },
+  { text: "JavaScript разбирается с async/await, reduce и функциональными терминами. 📦", index: 3 },
+  { text: "React 19.3 стабилизирует переходы, а экосистема ускоряет интерфейсы. ⚛️", index: 4 },
+  { text: "TypeScript получает типы для самых свежих браузерных API. 📘", index: 5 },
+  { text: "Node.js 26.9 ускоряет воркеры и открывает доступ к нативным библиотекам. 🟢", index: 6 },
+  { text: "Vite закрывает опасную дыру, а Tailwind присоединяется к Shopify. 🛰️", index: 7 },
+  { text: "WebMCP учит сайты разговаривать с агентами. 🤖", index: 8 },
+  { text: "Инструменты недели помогают проверять код, рисовать схемы и собирать сайты. 🧰", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML, браузеры и доступность
+
+### Safari 27 обновил формы, CSS и загрузку модулей
+
+В [Safari 27](https://developer.apple.com/documentation/safari-release-notes/safari-27-release-notes) появились настраиваемые элементы `<select>`, автоматический расчет размера изображений через `sizes="auto"`, псевдокласс `:heading`, функции работы с цветом `alpha()` и многоцветный `color-mix()`. Кроме того, после [переработки загрузчика модулей](https://webkit.org/blog/18227/fixing-top-level-await-in-safari/) конструкция `await` на верхнем уровне модулей надежно работает во всех основных браузерах.
+
+Это заметный релиз для обычной разработки: меньше обходных решений понадобится и для элементов форм, и для адаптивных изображений, и для современного JavaScript. В Safari также появился официальный способ [подключить ИИ-агента к инструментам разработчика](https://developer.apple.com/documentation/safari-developer-tools/connecting-an-ai-agent-to-safari), чтобы автоматизировать тестирование и отладку страниц.
+
+### Chrome 153 добавил элементы `<camera>` и `<microphone>`
+
+[Chrome 153](https://developer.chrome.com/blog/new-in-chrome-153) получил HTML-элементы `<camera>` и `<microphone>`, которые делают запрос доступа к соответствующим устройствам более понятной частью интерфейса. В нестабильных каналах также тестируются контейнеры прокрутки только по одной оси.
+
+Следом вышла [бета Chrome 154](https://developer.chrome.com/blog/chrome-154-beta). Разработчикам стоит заранее проверять в ней сайты: так проще заметить изменение поведения браузера до того, как новая версия попадет ко всем пользователям.
+
+### Современные возможности HTML, которые стоит знать
+
+Chris Coyier собрал [обзор новых возможностей HTML](https://blog.master.dev/new-things-you-should-know-about-html-here-in-mid-2026/): элементов `<geolocation>` и `<install>`, рисования HTML внутри Canvas и улучшенной настройки `<select>`. Обзор помогает понять, какие задачи браузер вскоре сможет решать без сторонних компонентов.
+
+Веб-компонент [`<rich-input>`](https://rich-input.netlify.app/) показывает другой путь развития форм. Внешне это обычное текстовое поле, но оно умеет подсвечивать фрагменты и предлагать дополнения по ключевым словам благодаря [`OpaqueRange`](https://chromestatus.com/feature/6297362687066112) и [CSS Custom Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API).
+
+- [Front-End Checklist](https://frontendchecklist.io/) вырос почти до [400 правил качества](https://frontendchecklist.io/rules) по доступности, производительности, безопасности и SEO. Чек-лист можно подключать к ИИ-инструментам через MCP, чтобы они проверяли проект по тем же критериям.
+- Автор разбора [JPEG XL в браузере](https://giannirosato.com/blog/post/case-against-jxl/) объясняет, почему формат, по его мнению, дает вебу мало преимуществ перед AVIF, несмотря на появление декодирования в Chrome и Firefox.
+- WebKit начал поддерживать директиву [`interactive-widget`](https://www.bram.us/2026/09/11/webkit-supports-interactive-widget-and-hopefully-safari-will-too/), которая определяет, как страница меняет размер при открытии экранной клавиатуры. В статье наглядно сравнены три доступных режима.
+- Тесты показывают, что скринридеры часто [игнорируют атрибут `headers` у ячеек таблиц](https://adrianroselli.com/2026/09/support-for-headers-attribute.html). Это важно учитывать при разметке сложных таблиц и обязательно проверять их реальными средствами доступности.
+- Eric Eggert разобрал [спорные дополнительные требования в черновике WCAG 3](https://yatil.net/blog/wcag-3-road-to-hell-paved-with-supplemental-requirements) и предложил заменить необязательные правила понятными именованными модулями, которые команды смогут принимать отдельно.
+- [Charcuterie](https://charcuterie.elastiq.ch/) помогает исследовать Unicode: находить символы, связанные глифы, системы письма и визуально похожие знаки.
+
+## 🎨 CSS и дизайн
+
+### Экскурсия по старым CSS-хакам
+
+В материале [«CSS-диковинки прошлого»](https://vale.rocks/posts/css-relics) собраны приемы, которыми разработчики когда-то заставляли браузеры показывать страницы одинаково. Среди них звездочный хак, JavaScript-выражения прямо в CSS, фильтры DirectX и знаменитый [хак блочной модели](https://tantek.com/CSS/Examples/boxmodelhack.html).
+
+### StyleX превращает JavaScript-стили в обычный CSS
+
+Практический [разбор StyleX](https://flaviocopes.com/stylex/) объясняет устройство [библиотеки Meta](https://stylexjs.com/). Разработчик описывает стили объектами JavaScript, а во время сборки они превращаются в небольшие атомарные CSS-классы, которые можно переиспользовать между компонентами.
+
+### Якоря, границы и аккуратное выравнивание
+
+- Ahmad Shadeed показывает, как [выровнять иконку относительно первой строки подписи](https://ishadeed.com/article/aligning-list-icons/) с помощью единицы `lh`. Обычное центрирование выглядит хорошо только с одной строкой, а на длинном тексте иконка съезжает к середине всего блока.
+- [Боковые примечания на CSS Anchor Positioning](https://vincent.bernat.ch/en/blog/2026-css-sidenotes) размещаются на полях рядом с нужным фрагментом, не требуют JavaScript и превращаются в обычный поток на узких экранах или в старых браузерах.
+- Руководство по [анимации `border-image`](https://css-tricks.com/animating-css-border-image/) показывает, как оживлять рамки из изображений и градиентов для выразительных состояний интерфейса.
+- У проекта [CSS-Tricks](https://css-tricks.com/) стало меньше публикаций; редактор Geoff Graham [объяснил причины паузы](https://geoffgraham.me/why-css-tricks-has-been-quiet/) и текущее положение издания.
+
+### CSS-инструменты и готовые эффекты
+
+- [Neat Annotations](https://neat-annotations.syabro.com/) добавляет к тексту нарисованные от руки стрелки и подписи с помощью CSS; исходный код доступен в [репозитории проекта](https://github.com/syabro/neat-annotations).
+- [ds.css](https://github.com/spiritov/ds.css) воспроизводит пиксельную эстетику Nintendo DS, а готовые компоненты можно посмотреть в [интерактивной демонстрации](https://css.ds.dreamyard.xyz/).
+- [EaseMotion CSS](https://github.com/SAPTARSHI-coder/EaseMotion-css) — фреймворк без зависимостей с кнопками, карточками, раскладками и более чем двадцатью анимациями. Быстро оценить классы можно на [демо-странице](https://saptarshi-coder.github.io/EaseMotion-css/).
+- [`@codepen/slidevars`](https://github.com/codepen/slideVars) создает ползунки и палитры для интерактивного изменения CSS-переменных внутри Shadow DOM.
+- [`prop-for-that`](https://github.com/argyleink/prop-for-that) переносит положение указателя, размер окна, видимость элемента и другие значения в CSS custom properties, чтобы интерфейс мог реагировать на них через `calc()` и `var()`.
+- [FontSelf](https://www.fontself.app/) помогает скачать Google Fonts для самостоятельного размещения, чтобы не отправлять запросы к чужому серверу и лучше контролировать загрузку шрифтов.
+- [CSS Type Studio](https://www.csstypestudio.com/) позволяет визуально подобрать гарнитуру, размер, интервалы и другие параметры типографики, а затем перенести результат в HTML и CSS.
+- [category-colors](https://mattstromawn.com/writing/the-least-wrong-colors-version-2/) превращает [алгоритм выбора различимых цветов для диаграмм](https://mattstromawn.com/writing/how-to-pick-the-least-wrong-colors/) в готовый [npm-пакет](https://github.com/ilikescience/category-colors). Палитры можно сразу проверить в [браузерном инструменте](https://categorycolors.com/).
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+
+### Карта терминов функционального программирования
+
+[Интерактивная карта функционального программирования](https://hemanth.github.io/functional-programming-jargon/) связывает каррирование, чистые функции, функторы, монады и другие термины в одну систему. Для каждого понятия есть короткое определение и пример на JavaScript, а полный справочник доступен в [открытом репозитории](https://github.com/hemanth/functional-programming-jargon).
+
+### Почему `async`/`await` ведет себя по-разному в разных языках
+
+Исследование [вариантов дизайна `async`/`await`](https://cel.cs.brown.edu/blog/design-space-async-await/) начинается с короткой задачи, которая дает разные результаты в JavaScript, Rust, Python и Swift. Небольшой тест проверяет интуицию, а затем автор объясняет, когда запускается асинхронная работа и что именно означает ожидание в каждом языке.
+
+### Предложения TC39 и практика JavaScript
+
+- В [повестке ближайшей встречи TC39](https://github.com/tc39/agendas/blob/main/2026/09.md) есть три дополнения к Iterator Helpers: [`join`](https://github.com/tc39/proposal-iterator-join), [`includes`](https://github.com/tc39/proposal-iterator-includes) и [разбиение на части](https://github.com/tc39/proposal-iterator-chunking). Все три предложения претендуют на Stage 4, после которого возможность считается готовой к включению в стандарт.
+- Evan Hahn разбирается, [почему программисты часто не любят `reduce`](https://evanhahn.com/posts/2026-09-13-programmers-dislike-reduce/), хотя `map` и `filter` обычно проходят ревью без споров.
+- Статья о [внутреннем устройстве V8](https://www.audreydoyen.com/blog/en/js-engines-and-v8-en) объясняет, как движок исполняет и оптимизирует код и какие привычки мешают ему делать это эффективно.
+- Laurie Voss предлагает использовать реестры пакетов как механизм, который поможет [добиться финансирования open source](https://seldo.com/posts/nobody-pays-for-open-source-we-can-force-them-to/) от компаний, получающих пользу от библиотек.
+
+### Игры, графика и небольшие библиотеки
+
+- На [js13kGames 2026](https://js13kgames.com/2026/) поступило рекордное количество работ: [317 игр размером не больше 13 КБ](https://js13kgames.com/2026/blog/voting-open). Начать знакомство можно с гонки [SP13KTRA](https://js13kgames.com/2026/games/sp13ktra) и roguelike-игры [Hornbound](https://js13kgames.com/2026/games/hornbound).
+- [Zod 4.6](https://zod.dev/blog/zod-4-6) добавил метод `.validate()`: он возвращает только `true` или `false` и не тратит время на построение подробной ошибки, поэтому на невалидных данных может быть значительно быстрее `.safeParse()`.
+- [parse-xml 5.0](https://rgrove.github.io/parse-xml/) — быстрый XML-парсер, который теперь распространяется только как ES-модуль; детали перехода перечислены в [заметках к релизу](https://github.com/rgrove/parse-xml/releases/tag/v5.0.0).
+- [n64js 1.0](https://github.com/hulkholden/n64js) эмулирует Nintendo 64 целиком на JavaScript и показывает, насколько сложные системы можно перенести в браузер.
+
+## ⚛️ React и React Native
+
+### React 19.3 стабилизировал View Transitions и ссылки на фрагменты
+
+[React 19.3](https://react.dev/blog/2026/09/09/react-19-3) сделал стабильными View Transitions и Fragment Refs, а также добавил поддержку Trusted Types. View Transitions позволяют анимировать переход между состояниями интерфейса средствами браузера, а ссылка на фрагмент дает доступ сразу к группе соседних DOM-узлов без лишней обертки.
+
+[Motion 13.4](https://motion.dev/) уже использует новые возможности: компонент [`AnimateView`](https://motion.dev/docs/react-animate-view) строит переходы между представлениями поверх браузерного API и React-компонента [`ViewTransition`](https://react.dev/blog/2026/09/09/react-19-3#view-transition).
+
+### Нужны ли фреймворки в эпоху coding agents
+
+Автор статьи [«Важны ли еще фреймворки?»](https://brookslybrand.com/posts/do-frameworks-matter-anymore/) спорит с идеей, что агенту достаточно отдать React и разрешить импровизировать. Без готовых ограничений агент все равно создает собственный неформальный фреймворк, но он получается менее последовательным.
+
+Слишком много абстракций тоже мешает: в [эксперименте с React-приложением](https://ondrejvelisek.github.io/the-cost-of-abstraction-for-humans-and-ai-agents/) работа агента с переусложненным кодом обходилась до пяти раз дороже. Практический вывод — полезна ясная структура, а не максимальное количество слоев.
+
+### Производительность и состояние React-приложений
+
+- [React Router 8.4](https://reactrouter.com/changelog#v840) сократил лишние рендеры при навигации и добавил экспериментальный сопоставитель маршрутов, который может значительно ускорить большие приложения.
+- Компонент [`<Activity>`](https://react.dev/reference/react/Activity) умеет отрисовать скрытое дерево без запуска его эффектов. Разбор [утечки в старом хуке](https://hackernoon.com/react-activity-when-a-render-no-longer-guarantees-an-effect) показывает, почему подписки нельзя создавать прямо во время рендера.
+- Статья [«Real-time и offline — одна задача»](https://marmelab.com/blog/2026/09/09/real-time-and-offline-are-the-same-problem.html) описывает подключение TanStack DB к [React Admin](https://marmelab.com/react-admin/) и общий подход к синхронизации локальных данных с сервером.
+- Оптимизация большого выпадающего списка [снизила INP с 1256 до 96 мс](https://dev.to/subito/from-1256ms-to-96ms-fixing-inp-in-a-massive-react-dropdown-16l7). Это практический пример поиска долгих обработчиков, из-за которых интерфейс медленно отвечает на действия пользователя.
+- Elastic описала [миграцию 1100 файлов на Redux Toolkit v2](https://www.elastic.co/search-labs/blog/redux-toolkit-v2-migration-kibana-monorepo) без остановки работы над монорепозиторием.
+- [React DevTools 8.0](https://github.com/react/react/blob/main/packages/react-devtools/CHANGELOG.md#800) включил вкладку Suspense по умолчанию, убрал отдельный Timeline и научился показывать React-компонент для выбранного DOM-узла. Расширение доступно в [Chrome Web Store](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi).
+
+### Компоненты и библиотеки React
+
+- Линтер [`@shadcn/lint`](https://github.com/shadcn-ui/lint) позволяет описать, какие Tailwind-классы разрешены каждому компоненту, и подсказывает человеку или агенту правильный токен либо вариант.
+- [React Konva](https://konvajs.org/docs/react/index.html) дает React-компоненты для сцены [Konva](https://konvajs.org/) и подходит для досок, диаграмм и графических редакторов. Новая версия требует React 19.3, а исходники находятся в [репозитории](https://github.com/konvajs/react-konva).
+- [React Simple Maps 5.0](https://www.react-simple-maps.io/) строит SVG-карты декларативными компонентами поверх [d3-geo](https://github.com/d3/d3-geo) и [TopoJSON](https://github.com/topojson/topojson); начать работу помогает [руководство проекта](https://www.react-simple-maps.io/docs/getting-started).
+- [Astryx 0.6](https://astryx.atmeta.com/blog/astryx-v0-6-0) научил [дизайн-систему Meta](https://astryx.atmeta.com/) менять тему по ширине экрана, типу указателя и предпочтениям контрастности средствами CSS.
+- [ilamy Calendar 3.0](https://ilamy.dev/) точнее трактует конец события по RFC 5545 и Google Calendar API. Изменения описаны в [релизе 3.0](https://github.com/kcsujeet/ilamy-calendar/releases/tag/v3.0.0), а поведение видно в [демо календаря](https://ilamy.dev/demo/).
+- [billboard.js 4.1](https://netil.medium.com/billboard-js-4-1-0-live-resizing-configurable-subchart-react-subpath-csp-safe-worker-e1a6fd0ece88) перенес React-компонент библиотеки графиков в основной пакет.
+- [React Native Skia 2.12](https://github.com/Shopify/react-native-skia) обновил высокопроизводительную 2D-графику на движке Skia, а [react-native-nitro-sqlite 9.8](https://github.com/margelo/react-native-nitro-sqlite) — быстрый доступ React Native к SQLite через JSI.
+- [SSGOI 7.1](https://ssgoi.dev/) создает похожие на нативное приложение переходы между страницами с помощью Web Animations API.
+
+## 📘 TypeScript
+
+### Типы для новых браузерных API
+
+Стандартные DOM-типы TypeScript обычно включают API только после их появления в нескольких браузерных движках. Поэтому уже работающие возможности вроде `fetchLater` или `startViewTransition` на отдельном элементе могут неожиданно вызывать ошибку типов.
+
+Philip Walton подробно [объяснил происхождение этой задержки](https://philipwalton.com/articles/modern-web-types/) и выпустил [`modern-web-types`](https://github.com/philipwalton/modern-web-types) — замену `lib.dom`, которая добавляет интерфейсы, доступные хотя бы в одном браузере. Пакет полезен для экспериментов, но поддержку нужных браузеров все равно следует проверять отдельно.
+
+- [Fallow](https://docs.fallow.tools/) — быстрый Rust-инструмент без настройки, который находит в JavaScript- и TypeScript-проектах мертвый код, дубли, циклические зависимости и слишком сложные участки. Исходники опубликованы на [GitHub](https://github.com/fallow-rs/fallow).
+- [`tshtmlwriter`](https://github.com/NickHodges/tshtmlwriter) собирает корректный HTML цепочками типобезопасных TypeScript-методов, без конкатенации строк, шаблонных литералов и JSX.
+
+## 🟢 Node.js и серверный JavaScript
+
+### Node.js 26.9 ускорил воркеры и включил экспериментальный FFI
+
+[Node.js 26.9](https://nodejs.org/en/blog/release/v26.9.0) включил экспериментальный [`node:ffi`](https://nodejs.org/api/ffi.html#ffi) по умолчанию. FFI позволяет вызывать функции нативных библиотек напрямую, без отдельного addon-модуля на C++.
+
+В релиз также вошел модуль [`node:bench`](https://www.jasnell.me/posts/a-node-bench-module) для бенчмарков, устроенный похоже на `node:test`, и экспериментальные браузерные [Web Workers](https://nodejs.org/api/globals.html#class-worker). Обычные worker threads теперь [запускаются до двух раз быстрее](https://github.com/nodejs/node/pull/65336) и требуют меньше памяти благодаря [встроенному снимку Node](https://joyeecheung.github.io/blog/2024/09/28/reproducible-nodejs-builtin-snapshots-1/).
+
+### GitHub перенес среду выполнения Copilot с Node.js на Rust
+
+GitHub рассказал, [как и зачем переписал runtime Copilot на Rust](https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/). Причинами стали скорость старта и расход памяти. Переезд выполняли небольшими частями через совместимые прослойки [`napi-rs`](https://napi.rs/), поэтому продукт продолжал выпускаться каждый день.
+
+Особенно полезны описания найденных расхождений: числа в двух языках устроены по-разному, оператор `||` имеет разную семантику, а случайная блокировка event loop проявляется не так, как в JavaScript.
+
+### Что готовят для следующих версий Node.js
+
+- В ядро уже добавлены будущие [`util.debounce()` и `util.throttle()`](https://github.com/nodejs/node/pull/65899), поэтому для двух распространенных операций со временем не всегда понадобится отдельная библиотека.
+- [Новая версия документации Node.js](https://beta.docs.nodejs.org/) уже [объединена с основным репозиторием](https://github.com/nodejs/node/pull/62045#issuecomment-5689768930) и должна вскоре заменить текущий раздел API.
+- Начиная с Node 27, HTTP-клиент будет [отклонять ответы со слишком большим количеством заголовков](https://github.com/nodejs/node/pull/65010), а не молча обрезать лишние значения.
+- Релизы [Node.js 26.8.2](https://nodejs.org/en/blog/release/v26.8.2) и [Node.js 24.21 LTS](https://nodejs.org/en/blog/release/v24.21.0) обновили Undici и закрыли несколько уязвимостей сетевого клиента.
+
+### Серверная практика и безопасность пакетов
+
+- Статья о [повторном использовании соединений](https://thelazyweb.dev/connection-reuse-is-the-money) показывает, как один Undici [`Agent`](https://undici.nodejs.org/api/Agent) на адрес назначения избавил сервис вебхуков от лишних TLS-рукопожатий.
+- [Upyo](https://hackers.pub/@hongminhee/2026/upyo-email-decoupled-from-where-and-how) отделяет создание письма от конкретного транспорта и провайдера. [Библиотека](https://upyo.org/) опирается на веб-стандарты и работает в Node, Deno, Bun и edge-средах.
+- Практическое руководство объясняет, [как реализовать распределенный circuit breaker](https://blog.gaborkoos.com/posts/2026-09-14-How-to-Implement-a-Distributed-Circuit-Breaker/), чтобы множество экземпляров сервиса согласованно переставали обращаться к неисправной зависимости.
+- [Moment.js 2.31](https://github.com/moment/moment/releases/tag/2.31.0) исправил опасный [обход каталогов](https://github.com/moment/moment/security/advisories/GHSA-4p3w-j4w9-5jqw). Хотя библиотека находится в режиме поддержки, она все еще используется во множестве проектов.
+- Команда OpenJS, которая регистрирует CVE для JavaScript-проектов, объявила [скоординированную паузу](https://openjsf.org/blog/the-openjs-foundation-cna-is-taking-a-coordinated-break) из-за выгорания после наплыва ИИ-сгенерированных отчетов. На активно эксплуатируемые проблемы команда продолжит реагировать.
+- npm ввел [72-часовую блокировку чувствительных действий](https://github.blog/changelog/2026-09-09-npm-extends-recovery-code-security-holds-to-all-accounts/) после входа с recovery code, чтобы украденный аккаунт нельзя было сразу использовать для публикации вредоносной версии.
+
+### Node.js-библиотеки и инструменты
+
+- [Javet 6.0](https://www.caoccao.com/Javet/) встраивает runtime Node.js 26 в JVM и дает двустороннее взаимодействие Java с JavaScript.
+- [`@platformatic/memcached`](https://blog.platformatic.dev/introducing-platformatic-memcached) — клиент без зависимостей для [memcached](https://memcached.org/), который использует современный meta protocol и конвейер запросов по одному соединению.
+- [jsdom 30.1](https://github.com/jsdom/jsdom/releases/tag/v30.1.0) ускорил построение и изменение DOM, `getComputedStyle()` и отправку событий, одновременно снизив потребление памяти.
+- [XO 5.0](https://github.com/xojs/xo/releases/tag/v5.0.0) теперь проверяет `package.json` и требует расширения файлов в TypeScript-импортах.
+- [officeParser 8.0](https://github.com/harshankur/officeParser) превращает DOCX, PPTX, XLSX и PDF в абстрактное синтаксическое дерево и получил переписанный PDF-парсер.
+- [oclif 6.0](https://github.com/oclif/oclif) обновил фреймворк Salesforce для Node CLI и отказался от установки устаревших плагинов.
+- [pg-boss 12.33](https://github.com/timgit/pg-boss/releases/tag/12.33.0) добавил `TestClock`, чтобы тесты очереди заданий PostgreSQL не ждали настоящие таймеры.
+- [Aedes 1.2](https://github.com/moscajs/aedes) — компактный MQTT-брокер, который работает поверх любого потокового сервера.
+- [Express 4.22.3](https://github.com/expressjs/express/releases/tag/v4.22.3) закрыл уязвимость в четвертой основной версии фреймворка.
+
+### npm и менеджеры пакетов
+
+- [pnpm 12.4](https://pnpm.io/blog/releases/12.4) научился управлять Rust crates и Python-пакетами вместе с npm-зависимостями в одном workspace.
+- [npmchart.com](https://www.npmchart.com/) сравнивает динамику скачиваний и активность репозиториев npm-пакетов; например, есть отдельный [график для Express](https://www.npmchart.com/p/express).
+- [Обзор шестнадцати недель релизов пакетных менеджеров](https://nesbitt.io/2026/09/10/package-manager-trends.html) показывает общие защитные меры: задержки публикации, запрет install scripts, как в [npm 12](https://github.com/npm/cli/releases/tag/v12.0.0), и [проверку пакета на вредоносный код при публикации](https://github.blog/changelog/2026-07-28-npm-publish-time-malware-scanning-and-dual-use-metadata/).
+- Изменения npm 12 признали [слишком рискованными для Node 22, 24 и 26](https://github.com/nodejs/Release/issues/1161), поэтому новая основная версия менеджера появится в комплекте только с Node 27.
+
+## 🛰️ Фреймворки, сборка и CMS
+
+### Открытые Vite-серверы сканируют в поисках секретов
+
+Злоумышленники массово [ищут доступные из интернета dev-серверы Vite](https://www.f5.com/labs/articles/cloud-takeover-mass-scanning-for-exposed-vite-endpoints-cve-2026-39364). Уязвимость обходила `server.fs.deny` и позволяла прочитать `.env` с ключами и паролями. Исправления вошли в Vite 7.3.2 и 8.0.5, а dev-сервер по-прежнему не следует публиковать в сеть без защиты.
+
+Свежий [Vite 8.3](https://github.com/vitejs/vite/releases/tag/v8.3.0) стоит устанавливать вместе с проверкой конфигурации: само обновление не исправит сервер, который намеренно слушает внешний интерфейс.
+
+- [Playwright 1.63](https://github.com/microsoft/playwright/releases/tag/v1.63.0) разрешил тестам объявлять именованные блокировки, чтобы сценарии с общим ресурсом не выполнялись одновременно.
+- GitHub Actions получил [`cache-mode`](https://socket.dev/blog/github-actions-cache-mode), ограничивающий доступ к кэшу на уровне workflow или job. Мера снижает риск атак вроде [компрометации npm-пакетов TanStack](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem).
+- Vercel представил [фиксированную цену CDN для Pro-команд](https://vercel.com/blog/introducing-flat-rate-cdn), которая делает расходы предсказуемее при скачках трафика.
+
+### Конструкторы сайтов и CMS
+
+- [Frappe Builder](https://github.com/frappe/builder) — визуальный low-code конструктор сайтов с открытым исходным кодом.
+- [Drupal.js](https://github.com/ruvnet/drupaljs) переосмысливает Drupal на Node.js, Vite, Tailwind и Supabase и поставляется с примером плагина, конфигурацией и Dockerfile.
+- [ScrewFast](https://github.com/mearashadowfax/ScrewFast) — минималистичный стартовый шаблон на Astro, Tailwind и Preline UI.
+- [Datenstrom Yellow](https://datenstrom.se/yellow/) достаточно распаковать на сервер, после чего небольшой сайт, документацию, wiki или блог можно редактировать прямо в браузере.
+- [Zenex CMS](https://github.com/raulcanodev/zenex-cms) — многоязычная headless CMS на Next.js 16, React 19, Prisma 6, PostgreSQL и Editor.js.
+- [nixtml](https://github.com/arnarg/nixtml) — генератор статических сайтов на Nix с коллекциями, таксономиями и привычной моделью контента.
+
+## 🤖 ИИ и агентная разработка
+
+### WebMCP дает агентам понятный интерфейс к сайту
+
+Rachel Nabors объясняет, как [Google и OpenAI предлагают сайтам взаимодействовать с агентами через WebMCP](https://agenticweb.nearestnabors.com/p/webmcp-agentic-web-openai-google). Вместо угадывания по кнопкам и тексту агент получает явно описанные действия и параметры — примерно как программный API для пользовательского интерфейса.
+
+Интеграция [`@freshjuice/astro-webmcp`](https://github.com/freshjuice-dev/astro-webmcp) показывает практическую сторону идеи: сайт на Astro можно открыть агентам одной строкой конфигурации.
+
+### Как строить интерфейсы и процессы вместе с агентами
+
+- [UI Skills](https://www.ui-skills.com/) — набор инструкций по дизайн-инженерии, которые помогают людям и агентам создавать более последовательные интерфейсы.
+- Nicholas C. Zakas описал [пять ролей инженера при работе с ИИ](https://humanwhocodes.com/blog/2026/09/five-roles-working-ai/): от постановки задачи и задания ограничений до проверки и интеграции результата.
+- [`git-lrc`](https://github.com/HexmosTech/git-lrc) запускает небольшое ИИ-ревью каждого Git-коммита и пытается поймать проблему до того, как она накопится в большой набор изменений.
+- [Ante](https://ante.run/) — автономный агент для терминала в виде одного Rust-бинарника без runtime-зависимостей.
+- [Hunk](https://www.hunk.dev/) показывает полный diff в терминале и хранит рядом объяснение агента, почему был изменен конкретный участок.
+- Разработчики поделились [примерами удачных сайтов, созданных с ИИ](https://x.com/EthanDriskill/status/2095713237513728445), чтобы обсуждать не только объем сгенерированного кода, но и качество результата.
+
+## 🧰 Инструменты и библиотеки
+
+### SnapDOM 3.0 превращает DOM-элементы в изображения
+
+[SnapDOM](https://snapdom.dev/) — альтернатива [html2canvas](https://github.com/niklasvh/html2canvas) без зависимостей, которая понимает веб-шрифты, псевдоэлементы и Shadow DOM. [Версия 3.0](https://github.com/zumerlab/snapdom/releases/tag/v3.0.0) быстрее повторно снимает изменившиеся элементы, автоматически встраивает шрифты и создает изображение напрямую из строки HTML через `fromString()`.
+
+### Eraser Diagrams отдает разработчику контроль над раскладкой
+
+[Eraser Diagrams](https://www.eraser.io/blog/open-sourcing-eraser-diagrams) — открытые Node API и CLI, которые превращают JSON-описание схемы в PNG или HTML. В отличие от Mermaid и D2, библиотека не расставляет блоки автоматически: координаты задает разработчик или модель, а инструмент прокладывает связи и применяет стили.
+
+### Проверки, терминалы и командная строка
+
+- [picospinner](https://github.com/tinylibs/picospinner) — маленький CLI-спиннер без зависимостей с заменяемыми символами и настраиваемым потоком вывода.
+- [wterm](https://wterm.dev/) рисует веб-терминал обычными DOM-элементами, поэтому поддерживает системное выделение текста, поиск и доступность. Эмулятор написан на Zig и скомпилирован в WebAssembly.
+- Скрипт [`git-uncommit`](https://github.com/below43/git-uncommit) отменяет последний или несколько последних коммитов, но оставляет изменения подготовленными к следующему коммиту.
+- [ghostty-web](https://github.com/coder/ghostty-web) переносит VT100-ядро Ghostty в браузер и сохраняет совместимость с API xterm.js.
+
+### Визуальные и прикладные инструменты
+
+- [Page Rage](https://page-rage.com/) превращает страницу в интерактивную игрушку, где можно разрушать готовые сайты или подключить расширение к любой странице.
+- [VibeSail](https://vibesail.com/) — бесплатный трехмерный симулятор управления парусной лодкой прямо в браузере.
