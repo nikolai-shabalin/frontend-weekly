@@ -10,6 +10,23 @@ export default defineConfig({
 	experimental: {
 		incrementalBuild: true,
 	},
+	vite: {
+		build: {
+			rolldownOptions: {
+				onLog(level, log, defaultHandler) {
+					if (
+						log.code === 'MODULE_LEVEL_DIRECTIVE' &&
+						log.id?.includes('?astroPropagatedAssets') &&
+						log.message.includes('use astro:head-inject')
+					) {
+						return;
+					}
+
+					defaultHandler(level, log);
+				}
+			}
+		}
+	},
 	integrations: [
 		mdx(),
 		sitemap({
