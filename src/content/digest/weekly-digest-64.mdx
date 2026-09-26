@@ -1,0 +1,241 @@
+---
+title: "Еженедельный дайджест #64: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Sep 28 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #64! 🗞️", index: 0 },
+  { text: "Safari 27 прокачал платформу и получил MCP! 🧭", index: 1 },
+  { text: "CSS умеет больше без сборки и JavaScript! 🎨", index: 2 },
+  { text: "tinyjs собирает desktop-приложения меньше 10 МБ! 🪶", index: 3 },
+  { text: "DuckDB хранит базу прямо в браузере! 🦆", index: 4 },
+  { text: "React справляется даже с миллионными диффами! ⚛️", index: 5 },
+  { text: "Node.js 26.10 получил debounce и throttle! ⚙️", index: 6 },
+  { text: "Transformers.js запускает новые модели в браузере! 🤖", index: 7 },
+  { text: "CI Linear переварил в четыре раза больше тестов! 🧪", index: 8 },
+  { text: "Plotly.js 4 рисует векторы и понимает CSS Color 4! 📊", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и платформа
+
+### Браузеры хотят показывать лёгкое превью изображения до полной загрузки
+
+Размытые заглушки давно помогают скрыть ожидание большой картинки, но обычно разработчик готовит их и переключает самостоятельно. В предложении об [атрибуте `previewsrc`](https://patrickbrosset.com/articles/2026-09-22-blurry-before-beautiful-image-previews-for-the-web/) эту работу берёт на себя браузер: сначала он показывает маленькое превью, а затем заменяет его оригиналом.
+
+Если идея дойдёт до стандарта и получит широкую поддержку, страницы смогут выглядеть стабильнее во время загрузки, а для распространённого эффекта понадобится меньше JavaScript и дополнительной разметки.
+
+### DuckDB-Wasm сохраняет полноценную базу данных в браузере
+
+В руководстве по [DuckDB-Wasm и OPFS](https://duckdb.org/2026/09/18/opfs-wasm) показано, как запустить [DuckDB](https://duckdb.org/) на стороне клиента и сохранить файл базы так, чтобы данные не пропали после перезагрузки страницы. Для хранения используется [Origin Private File System](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system) — изолированная область файловой системы, доступная конкретному сайту.
+
+### Адаптивные `iframe` появились в Chrome 154
+
+[Новые возможности `iframe`](https://developer.chrome.com/blog/responsive-iframes) позволяют подстроить размер встроенного блока под его содержимое, выбрать измерение, от которого зависит расчёт, и реагировать на дальнейшие изменения. Вложенная страница должна явно разрешить такое поведение, поэтому чужой сайт нельзя незаметно заставить раскрыть свои размеры.
+
+### Обновления браузеров
+
+- [Chrome DevTools получил улучшенный MCP-сервер](https://developer.chrome.com/blog/new-in-devtools-october-2026), отслеживание рекламных скриптов и более современные устройства в режиме эмуляции.
+- В [Edge появились новые инструменты для компонентов и AI-агентов](https://blogs.windows.com/msedgedev/2026/09/21/new-in-edge-for-developers-create-better-components-and-make-your-site-agent-ready/): WebMCP помогает описывать действия страницы, а [OpaqueRange API](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/OpaqueRange/explainer.md) даёт компонентам безопасный способ работать с диапазонами текста.
+- [Chrome 155 Beta](https://developer.chrome.com/blog/chrome-155-beta) добавил CSS-функцию `symbols()`, свойство `margin-trim`, поддержку JPEG XL и другие изменения платформы.
+- Интерактивная [периодическая таблица HTML](https://blog.alena.rocks/en/artifacts/html-elements/) раскладывает по категориям все 115 элементов Living Standard.
+
+## 🎨 CSS и дизайн
+
+### 12 современных возможностей CSS, которым не нужна сборка
+
+Обзор [CSS-функций, готовых к использованию сегодня](https://flaviocopes.com/modern-css-features/) показывает, какие привычные задачи уже решаются средствами браузера. Нативная вложенность частично заменяет Sass, `:has()` позволяет выбрать родителя по его содержимому, а новые возможности цветов и компоновки сокращают количество вспомогательных классов.
+
+### Как не потерять корневую область прокрутки
+
+Статья о [root scroller](https://polypane.app/blog/the-root-scroller-and-how-not-to-lose-it/) объясняет, почему привычные комбинации `height` и `overflow` иногда передают прокрутку от документа внутреннему элементу. После этого могут перестать работать восстановление позиции, сворачивание адресной строки на мобильном устройстве и другие браузерные удобства.
+
+### Анимации по событию прокрутки уже работают в Chrome
+
+[Scroll-triggered animations](https://cydstumpel.nl/css-scroll-triggered-animations-are-here-and-i-completely-missed-them/) запускаются, когда прокрутка пересекает заданную точку, а не непрерывно следуют за положением страницы. Для этого используются `timeline-trigger` и `animation-trigger`.
+
+Это отличается от scroll-driven animation: первая модель напоминает переключатель, а вторая связывает весь прогресс анимации со скроллом. Разделение помогает выбрать более простой вариант для появления карточек, закреплённых подсказок и последовательных переходов.
+
+### Практические CSS-приёмы
+
+- Пока псевдоэлемент `::checkmark` не готов для чекбоксов, [кастомный вариант можно построить поверх прозрачного нативного `input`](https://piccalil.li/blog/a-decent-custom-checkbox-for-until-checkmark-is-ready/). Так сохраняются фокус, управление с клавиатуры и стандартное состояние формы.
+- Функция CSS `round()` помогла [исправить дрожащие индикаторы загрузки в Safari](https://www.sanity.io/engineering/we-fixed-wobbly-spinners-in-safari-without-ai): размеры и координаты округляются так, чтобы браузер не пересчитывал их между соседними пикселями.
+- Набор [рисованных аннотаций на чистом CSS](https://neat-annotations.syabro.com/) добавляет подчёркивания, окружности и стрелки через атрибут `data-note`, без картинок и графических редакторов.
+- В материале [«Props — это не дизайн-система»](https://vitonsky.net/blog/2026/09/18/design-system/) объясняется, почему свободные параметры стилей превращают каждый экземпляр кнопки в отдельный дизайн. Ограниченные варианты и общие токены делают интерфейс последовательнее.
+
+## ♿ Доступность и развитие
+
+- Презентация [«19½ фактов о доступности в HTML и CSS»](https://noti.st/matuzo/OD53aV/slides) собирает неочевидные детали семантики, клавиатурного управления и поведения интерфейсов, которые легко пропустить при обычной разработке.
+- Эссе [о кризисе образования в веб-разработке](https://molily.de/web-dev-education/) разбирает, почему системные знания о платформе могут теряться за быстрыми фреймворками и генерацией кода и как сохранить обучение фундаментальным принципам.
+- В тексте [«Теперь мы все продуктовые инженеры»](https://seldo.com/posts/we-are-all-product-engineers-now) разработчикам предлагают глубже понимать задачи пользователей, а не ограничиваться реализацией уже готового технического задания.
+- Размышление [«AI, сделай сайт хорошим»](https://www.zachleat.com/web/ai-websites/) напоминает: инструменты ускоряют выпуск интерфейса, но не заменяют внимание к качеству, содержанию и удобству результата.
+- История о [«смертельной спирали» старшего инженера](https://sunilpai.dev/posts/the-senior-engineer-death-spiral/) показывает, как попытка молча доказать свою ценность на новой позиции приводит к изоляции и выгоранию.
+
+<TelegramCTA/>
+
+## 📦 JavaScript и фреймворки
+
+### tinyjs собирает настольные JavaScript-приложения размером меньше 10 МБ
+
+[tinyjs](https://tinyjs.app/) объединяет нативное системное окно, веб-интерфейс и backend на базе [txiki.js](https://github.com/saghul/txiki.js/). Backend получает доступ к системе и FFI, а сборки для macOS, Linux и Windows остаются небольшими; инструмент также помогает с подписью готового приложения.
+
+Выбор зависит от требований проекта. [Electrobun](https://blackboard.sh/electrobun/) поддерживает несколько окон и работу с GPU, [Perry](https://www.perryts.com/) компилирует TypeScript заранее и рисует нативные элементы AppKit, Win32 и GTK4, а [Neutralinojs](https://neutralino.js.org/) делает ещё более компактные приложения, но сознательно ограничивает привилегированный JavaScript-backend. [Electron](https://www.electronjs.org/) и экспериментальный [Deno Desktop](https://deno.com/blog/v2.9#deno-desktop) тяжелее, зато предлагают зрелую или более широкую платформу.
+
+### V8 может нарушить обещание «постоянного времени» в криптографическом коде
+
+Исследование [поведения V8 в constant-time JavaScript](https://soatok.blog/2026/09/12/the-v8-javascript-runtime-undermined-my-constant-time-javascript-library/) показывает, что отсутствие обычных ветвлений ещё не гарантирует защиту от утечки времени. Представление логических значений и `-0` способно повлиять на обращения к кэшу процессора и выдать информацию о секретных данных.
+
+Практический вывод: критичную криптографию нельзя считать безопасной только потому, что исходный JavaScript выглядит одинаково для всех входов. Нужны проверенные библиотеки, тестирование машинного кода и понимание оптимизаций конкретного движка.
+
+### Как Notion синхронизирует одновременное редактирование
+
+В статье о [CRDT в редакторе Notion](https://www.notion.com/blog/how-notion-handles-concurrent-editing-with-crdts) разбирается, как изменения от нескольких людей объединяются без постоянной блокировки документа. CRDT хранит операции так, чтобы разные копии смогли прийти к одному состоянию даже после временной работы офлайн.
+
+Это полезный взгляд на архитектуру совместных редакторов: кроме передачи текста по сети приходится решать порядок операций, конфликты, локальный отклик и восстановление соединения.
+
+- Материал [о небольших, но важных изменениях Solid 2.0](https://www.brenelz.com/posts/solidjs-its-the-little-things/) дополняет [обзор большого релиза-кандидата](https://www.solidjs.com/blog/solid-2-0-rc-the-big-reveal) и показывает, как мелкие улучшения API влияют на ежедневную работу.
+- [VueUse 15.0](https://github.com/vueuse/vueuse/releases/tag/v15.0.0) обновил коллекцию готовых composable-функций для Vue.
+
+## ⚛️ React и экосистема
+
+### GitHub вывел рендеринг огромных pull request за пределы React
+
+Команда GitHub рассказала, как [показывает pull request с тысячами файлов и миллионом изменённых строк](https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/) в настольном [приложении Copilot](https://github.com/features/ai/github-app), построенном на React и [Tauri](https://v2.tauri.app/). Для строк кода обычное дерево компонентов оказалось слишком дорогим, поэтому этот слой рендерится напрямую вне React.
+
+### Redact предлагает синхронную альтернативную реализацию React API
+
+[TanStack Redact](https://github.com/TanStack/redact) — экспериментальный компактный runtime, совместимый с API React 19.3 и подключаемый через Vite-плагин. Идея [«проекции React»](https://tannerlinsley.com/posts/projecting-react) состоит в том, чтобы сохранить знакомую модель компонентов, но заменить внутренний механизм исполнения.
+
+### React-Redux пробует сигналы для точечного запуска селекторов
+
+В [React-Redux 9.4 Alpha 0](https://github.com/reduxjs/react-redux/releases/tag/v9.4.0-alpha.0) появился экспериментальный `useSignalSelector`. Обычный Redux при каждом `dispatch` запускает все подключённые селекторы, а новая версия запоминает, какие участки состояния прочитал каждый селектор, и повторяет вычисление только при их изменении.
+
+### Безопасность и интеграции React
+
+- [Next.js 16.3.6 закрыл критическую уязвимость](https://nextjs.org/blog/nextjs-security-update-september-22-2026) удалённого выполнения кода в `ImageResponse` из `next/og`. Команда также [анонсировала отдельное обновление безопасности](https://nextjs.org/blog/upcoming-nextjs-security-release-september-2026), которое исправит ещё девять проблем.
+- [Интеграция Astro](https://astro.build/) [`@astrojs/react` 7.0](https://github.com/withastro/astro/releases/tag/@astrojs/react@7.0.0) перешла с Babel на Oxc и получила поддержку React Compiler через настройку `compiler: true`.
+
+### Компоненты и библиотеки React
+
+- [Playroom](https://github.com/seek-oss/playroom) подключается к собственной библиотеке компонентов и показывает JSX сразу во всех темах и размерах экрана; возможности можно оценить в [живом примере](https://cubes.trampoline.cx/).
+- [React Live 5](https://github.com/FormidableLabs/react-live/releases/tag/react-live%405.0.0) обновил редактор интерактивных примеров компонентов для документации и блогов. Базовое подключение описано в [документации React Live](https://nearform.com/open-source/react-live/docs).
+- [pdfcn](https://www.pdfcn.dev/) предлагает копируемые компоненты таблиц, заголовков, счетов и отчётов для генерации PDF. На выбор доступны WASM-движки [Takumi](https://takumi.kane.tw/docs/pdf) и [Forme](https://docs.formepdf.com/quickstart), которым не нужен headless-браузер.
+- [loading.dev](https://loading.dev/) содержит 29 CSS-индикаторов загрузки для React 19 с поддержкой `prefers-reduced-motion`; у каждого есть [интерактивная настройка](https://loading.dev/spinners/wave) размера, цвета и длительности.
+- [Animal Island UI](https://guokaigdg.github.io/animal-island-ui/) — библиотека React-компонентов в милом игровом стиле. После [претензии Nintendo](https://github.com/github/dmca/blob/master/2026/09/2026-09-03-nintendo.md) автор заменил исходные образы собственными; доступен [каталог компонентов](https://guokaigdg.github.io/animal-island-ui/#/skill) и [англоязычный README](https://github.com/guokaigdg/animal-island-ui).
+
+### Обновления React-библиотек
+
+- [React Native Reanimated 4.7](https://github.com/software-mansion/react-native-reanimated/releases/tag/4.7.0) по умолчанию запускает layout-анимации на новом движке.
+- [Frimousse 0.4](https://frimousse.liveblocks.io/) предлагает лёгкий компонент выбора эмодзи без навязанных стилей.
+- [React Three Fiber 9.8](https://github.com/pmndrs/react-three-fiber/releases/tag/v9.8.0) добавил совместимость с React 19.3.
+
+## ⚙️ Node.js и npm
+
+### Встроенные API Node.js могут заменить часть npm-пакетов
+
+Практический обзор [12 встроенных возможностей Node.js](https://flaviocopes.com/node-builtins/) показывает альтернативы `axios`, `dotenv`, `nodemon`, `chalk` и другим привычным зависимостям. Для каждой функции указан уровень стабильности в Node 24 LTS и ограничения, из-за которых внешний пакет всё ещё может быть удобнее.
+
+### Node.js 26.10 добавил встроенные `debounce` и `throttle`
+
+В [Node.js 26.10 Current](https://nodejs.org/en/blog/release/v26.10.0) появились асинхронные [`util.debounce()` и `util.throttle()`](https://github.com/nodejs/node/pull/65899) с поддержкой `AbortSignal`. Первый метод откладывает вызов, пока события не затихнут, второй ограничивает частоту выполнения — оба полезны для потоков событий и сетевых операций.
+
+Новый [`util.markPromiseAsHandled()`](https://github.com/nodejs/node/pull/65805) позволяет явно отметить Promise обработанным вместо пустого `.catch(() => {})`. Для LTS-ветки вышел [Node.js 22.23.3](https://nodejs.org/en/blog/release/v22.23.3) с обновлёнными корневыми сертификатами, OpenSSL, npm и Undici.
+
+### Node.js готовит изменения платформы
+
+- Начиная с Node.js 27, [Intel Mac получит только экспериментальную поддержку](https://github.com/nodejs/node/pull/65427): официальных x64-сборок для macOS больше не будет, а установщик останется только для Arm.
+- Предложенный флаг [`--process-timeout`](https://github.com/nodejs/node/pull/66138) сможет остановить зависший процесс, включая бесконечный синхронный цикл, и сообщить, что удерживало приложение запущенным.
+- GitHub Actions [удалил Node 20 из runner-образов](https://github.blog/changelog/2026-09-23-node-20-is-no-longer-available-in-github-actions), поэтому авторам Actions нужно перейти на `runs.using: node24` и выпустить новую версию.
+- Экспериментальный PR [уменьшает бинарник Node примерно на треть](https://github.com/nodejs/node/pull/66186) за счёт дополнительного сжатия и удаления символов. Автор также [рассказал об использовании Grok](https://x.com/yagiznizipli/status/2102476047786844494) при подготовке изменения.
+- Daniel Lemire описал, как [эксперименты с AI ускорили Ada, simdjson и simdutf](https://lemire.me/blog/2026/09/22/a-summer-of-ai-optimization/) — библиотеки, входящие в Node.js.
+
+### npm делает автоматическую публикацию безопаснее
+
+[Stage-only токены npm](https://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation/) разрешают CI подготовить релиз, но не опубликовать его самостоятельно. Финальное действие подтверждает мейнтейнер с двухфакторной аутентификацией. Это промежуточный вариант для проектов, которые пока не могут перейти на [trusted publishing](https://docs.npmjs.com/trusted-publishers).
+
+В январе 2027 года npm планирует отключить прямую публикацию токенами, обходящими 2FA, поэтому процессы релиза стоит проверить заранее.
+
+### Аналитик проник в группу, атаковавшую цепочки поставки
+
+[Расследование WIRED](https://www.wired.com/story/an-undercover-google-analyst-infiltrated-a-notorious-supply-chain-hacking-gang/) рассказывает, как специалист Google внедрился в чат группы, стоявшей за серией атак Mini Shai-Hulud. Наблюдение помогло понять устройство кампании, вовремя нарушить работу злоумышленников и собрать доказательства.
+
+Операция привела к [аресту двух подозреваемых в Австралии](https://www.afp.gov.au/news-centre/media-release/two-wa-men-charged-following-afp-fbi-wapf-disruption-alleged-global). Для разработчиков это ещё одно напоминание, что атака на популярный пакет или учётную запись мейнтейнера может быстро распространиться по множеству проектов.
+
+### Отладка, пакеты и серверный код
+
+- Рассказ [об исправлении ошибки `Duplex.from()`](https://amanchadha.substack.com/p/how-i-traced-a-nodejs-streams-bug) проводит начинающего контрибьютора от воспроизведения проблемы в Node.js Streams до первого pull request в ядро.
+- Руководство [по публикации подпапки в npm](https://www.bram.us/2026/09/20/npm-publish-subfolder/) помогает убрать `dist/` или `src/` из путей импорта, сохранив понятную структуру исходного репозитория.
+- В статье о [быстрых SSE-ответах](https://thecodebarbarian.com/sse-yield-star.html) асинхронные генераторы и `Promise.race()` используются для отправки данных по мере готовности и контроля нескольких источников событий.
+- [secure-eval-worker](https://blog.platformatic.dev/introducing-secure-eval-worker) запускает недоверенный или сгенерированный JavaScript в отдельном Worker с лимитами времени, памяти и списком разрешённых функций. Решение использует Permission Model в Node 26, но авторы отдельно предупреждают, что это не полноценная песочница.
+- [CVE Lite CLI](https://owasp.github.io/cve-lite-cli/) проверяет lock-файл по базам OSV и npm, показывает путь до уязвимой транзитивной зависимости и сразу предлагает команды обновления для разных пакетных менеджеров.
+- Окружения [vitest-gpu и jest-gpu](https://ben3d.ca/blog/native-gpu-testing-for-vitest-and-jest) дают тестам контексты WebGL и WebGPU прямо в Node.js. Так можно компилировать шейдеры, запускать вычисления и сравнивать кадры без браузера.
+
+### Обновления Node.js-инструментов
+
+- [dotenv 18](https://github.com/motdotla/dotenv) получил CLI и ускоренный опциональный парсер, но отказался от прежней предзагрузки `-r dotenv/config` в пользу `dotenv run --`; детали перечислены в [журнале изменений](https://github.com/motdotla/dotenv/blob/master/CHANGELOG.md#1800-2026-09-17).
+- [Tinypool 2.2](https://github.com/tinylibs/tinypool) теперь [принимает объект `URL`](https://github.com/tinylibs/tinypool/pull/141) как имя файла для задачи в пуле Worker Threads.
+- [NestJS 12.1](https://github.com/nestjs/nest/releases/tag/v12.1.0) добавил встроенную [работу с cookie](https://github.com/nestjs/nest/pull/17834), [защиту от CSRF](https://github.com/nestjs/nest/pull/17836) и заголовки безопасности.
+- [mongodb-memory-server 11.3](https://github.com/typegoose/mongodb-memory-server) запускает настоящий временный MongoDB для интеграционных тестов.
+- [SuperTest 7.3](https://github.com/forwardemail/supertest) обновил библиотеку с цепочечным API для тестирования HTTP-серверов.
+- [SQL Formatter 15.9](https://github.com/sql-formatter-org/sql-formatter) форматирует SQL-запросы для чтения, логов и редакторов.
+- [pnpm 12.6](https://pnpm.io/blog/releases/12.6) умеет устранять лишние версии зависимостей во всём workspace во время установки, сохраняет рабочий `node_modules` после перемещения проекта на macOS и Linux и добавляет `--save-types` для пакетов `@types/*`.
+
+## 🤖 ИИ и WebGPU
+
+### Transformers.js 4.3 запускает больше AI-моделей прямо в браузере
+
+[Transformers.js 4.3](https://github.com/huggingface/transformers.js/releases/tag/4.3.0) научился возвращать структурированный результат, например JSON, поддержал DeepSeek v4 и включил WebGPU в Safari 26+. Обновлённая [документация Transformers.js](https://huggingface.co/docs/transformers.js/index) помогает подобрать модель и настроить выполнение, а готовый [skill для агента](https://github.com/huggingface/transformers.js/blob/main/.ai/skills/transformers-js/SKILL.md) даёт ему инструкции по работе с библиотекой.
+
+Hugging Face также открыла [207 WebGPU-ядер под лицензией Apache 2.0](https://huggingface.co/blog/webgpu-kernels). В коллекции есть матричное умножение, attention и квантование — низкоуровневые операции, из которых можно собирать собственный runtime для моделей.
+
+### Jev отвечает числами вместо длинного текста
+
+Simon Willison разобрал [Jev — быструю decision model](https://simonwillison.net/2026/Sep/21/jev/). На вход ей передают полуструктурированное состояние и вопросы, а на выходе получают только вероятности, варианты выбора и оценки.
+
+Узкий формат полезен там, где нужен предсказуемый числовой сигнал, а не свободный ответ языковой модели: например, для ранжирования, маршрутизации или выбора следующего действия.
+
+## ⚒️ Инструменты и библиотеки
+
+### Linear перестроила CI после четырёхкратного роста тестов
+
+Из-за активного использования coding agents тестовый набор Linear вырос в четыре раза, а вместе с ним увеличились время и стоимость CI. В разборе [перестройки конвейера](https://linear.app/now/ci-bottleneck-reworked) команда рассказывает, как переписала type-aware правила ESLint на обычный анализ AST и сократила время линтинга на 55%.
+
+Переход к [Oxlint](https://oxc.rs/docs/guide/usage/linter) упростился, а выборочное отключение изоляции Vitest снизило ежемесячные расходы ещё на 17%. Важно, что команда не отключала проверки вслепую, а измеряла отдельные этапы и меняла только подтверждённые узкие места.
+
+### Plotly.js 4 обновил библиотеку интерактивных графиков
+
+[Plotly.js 4](https://plotly.com/blog/announcing-plotly-js-4-plotly-py-7/) поставляется с собственными TypeScript-типами, принимает цвета в любом формате CSS Color 4 и умеет строить quiver-графики для изображения векторных полей. Карты теперь работают через MapLibre вместо Mapbox GL, поэтому для базовых сценариев не требуется токен Mapbox.
+
+Обновление подойдёт приложениям с научной и бизнес-визуализацией, но из-за крупной версии перед переходом стоит проверить удалённые API и поведение существующих графиков.
+
+### Critical 9 полностью переписал извлечение критического CSS
+
+[Critical 9](https://github.com/addyosmani/critical) находит стили, нужные для первого экрана, и встраивает их в HTML, чтобы содержимое появлялось быстрее и улучшался LCP. В [релизе 9.0](https://github.com/addyosmani/critical/releases/tag/v9.0.0) можно выбрать быстрый движок без браузера для заранее созданного HTML или вариант на Playwright для SPA; также появилась MCP-интеграция.
+
+### Эксперимент с Rust-версией dev-сервера Vite вызвал спор
+
+Lovable [переписала dev-сервер Vite на Rust](https://lovable.dev/blog/faster-previews-oj) и назвала проект [OJ](https://rapha.land/introducing-oj/), рассчитывая ускорить предпросмотр приложений. Evan You [оспорил опубликованные сравнения](https://socket.dev/blog/oj-vite-rust) и предупредил, что множество отдельных форков увеличит стоимость сопровождения.
+
+История хорошо показывает ограничение бенчмарков: важно сравнивать одинаковые сценарии, конфигурации и объём работы, а не только один красивый показатель.
+
+### Инструменты для интерфейсов и разработки
+
+- [`@shadcn/lint`](https://github.com/shadcn-ui/lint) — плагин для ESLint и Oxlint, который запрещает необработанные цвета и произвольное переопределение компонентов, направляя разработчиков и агентов к токенам дизайн-системы.
+- [Devframe](https://devfra.me/posts/pluggable-extensible-playful-devtools) позволяет один раз описать инструмент разработчика как обработчик Web Standard Request, а затем подключить его к разным приложениям и средам.
+- [Semfont](https://rohanadwankar.github.io/posts/semfont.html) оценивает слова по эмоциональной окраске и значимости, а затем меняет их цвет, насыщенность и наклон. Исходный код доступен в [репозитории проекта](https://github.com/RohanAdwankar/semfont).
+- [Slidev](https://sli.dev/) создаёт презентации из Markdown на стеке Vue и добавляет подсветку кода, интерактивные компоненты и инструменты для технических выступлений.
+- [Mailflare](https://github.com/hieunc229/mailflare) — самостоятельно размещаемый почтовый ящик для своего домена на Cloudflare Email Routing, Workers, D1 и R2.
+- [gridstack.js 14](https://github.com/gridstack/gridstack.js/releases/tag/v14.0.0) добавил режим списка, в котором перетаскиваемые виджеты перестраиваются как упорядоченная лента; поведение показано в [демонстрациях](https://gridstackjs.com/demo/index.html).
+- [image-dimensions 2.6](https://github.com/sindresorhus/image-dimensions) определяет размеры изображения, читая минимально необходимую часть файла.
+- [Feedsmith 3.0](https://feedsmith.dev/) разбирает и создаёт ленты RSS, Atom и JSON Feed.
+- [npmchart.com](https://www.npmchart.com/) строит графики загрузок, релизов и активности репозитория для npm-пакетов и сравнивает их между собой; например, доступна отдельная [страница Svelte](https://www.npmchart.com/p/svelte).
+- [GitHub Actions `cache-mode`](https://socket.dev/blog/github-actions-cache-mode) ограничивает доступ к кэшу уровнем workflow или job и уменьшает риск отравления кэша, похожего на атаку, описанную в [разборе компрометации пакетов TanStack](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem).
+
+### Обновления
+
+- [Turborepo 2.11](https://turborepo.dev/blog/2-11) экспериментально добавил Rust, Python и Go в граф задач и ускорил запуск до четырёх раз по сравнению с версией 2.9.
+- [ESLint 10.11](https://eslint.org/blog/2026/09/eslint-v10.11.0-released/) ускорил запуск и сам процесс линтинга.
+- [billboard.js 4.1](https://netil.medium.com/billboard-js-4-1-0-live-resizing-configurable-subchart-react-subpath-csp-safe-worker-e1a6fd0ece88) добавил живое изменение размера, настраиваемые вспомогательные графики и CSP-совместимый Worker.
+- [QuickJS-ng 0.17](https://github.com/quickjs-ng/quickjs/releases/tag/v0.17.0) обновил компактный встраиваемый движок JavaScript.
+- [Superdiff 4.3](https://github.com/DoneDeal0/superdiff) сравнивает объекты, массивы и текст, а [обновление 4.3](https://github.com/DoneDeal0/superdiff/releases/tag/v4.3.0) научилось показывать различия в коде по строкам и токенам.
