@@ -1,0 +1,182 @@
+---
+title: "Еженедельный дайджест #65: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Oct 07 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #65! 🗞️", index: 0 },
+  { text: "Браузеры обсуждают новые возможности платформы. 🧪", index: 1 },
+  { text: "CSS Modules помогли GitHub ускорить страницы. 🎨", index: 2 },
+  { text: "JavaScript получает новые методы итераторов. 📦", index: 3 },
+  { text: "Preact 11, Nuxt 4.6 и Remix 3 уже здесь. ⚛️", index: 4 },
+  { text: "TypeScript уточняет типы после filter. 📘", index: 5 },
+  { text: "Node.js умеет обходиться без части npm-пакетов. ⚙️", index: 6 },
+  { text: "Агенты получили новые инструменты. 🤖", index: 7 },
+  { text: "Anthropic ускорила интерфейс Claude. 🚀", index: 8 },
+  { text: "Vite+, EmDash и Effect обновились. 🛠️", index: 9 }
+]
+---
+
+## 🧪 HTML и браузерная платформа
+
+### Почему разработчики не всегда используют возможности браузера
+
+Нолан Лоусон разбирает, [почему разработчики часто собирают собственные компоненты вместо встроенных возможностей браузера](https://nolanlawson.com/2026/10/03/why-dont-more-developers-use-the-platform/). Нативные элементы обычно проще поддерживать и они уже умеют работать с клавиатурой, но иногда их сложно настроить под дизайн или нужное поведение. В [обсуждении статьи](https://news.ycombinator.com/item?id=49950554) приводят конкретные ограничения платформы. Перед установкой библиотеки полезно проверить, решает ли задачу сам браузер.
+
+### Chrome позволит ограничить соединения страницы
+
+В Chrome 152 появится HTTP-заголовок [Connection-Allowlist](https://developer.chrome.com/blog/connection-allowlist-announcement). С его помощью сайт сможет перечислить серверы, к которым странице разрешено обращаться, а браузер заблокирует остальные подключения. Это помогает снизить риск нежелательных запросов, например после внедрения стороннего скрипта. При настройке нужно учесть все внешние сервисы, которые действительно нужны странице.
+
+### Разработчики обсуждают следующие общие задачи для браузеров
+
+Олли Уильямс предложил [кандидатов для будущей программы совместимости браузеров](https://olliewilliams.xyz/blog/interop-and-beyond/). Среди них — [Sanitizer API](https://github.com/web-platform-tests/interop/issues/1336) для безопасной очистки HTML, [focusgroup](https://github.com/web-platform-tests/interop/issues/1348) для управления фокусом в группах элементов и [grid-lanes](https://github.com/web-platform-tests/interop/issues/1445) для новых возможностей сетки. Пока это предложения, а не обещание скорого появления во всех браузерах.
+
+- В [Safari Technology Preview 253](https://webkit.org/blog/18357/release-notes-for-safari-technology-preview-253/) в инструментах разработчика появилось замедление сети: так проще проверять загрузку сайта при плохом соединении.
+- [Firefox 157 обновил оформление](https://blog.mozilla.org/en/firefox/new-firefox-design-is-here/). Разработчикам полезно проверить, как их сайты выглядят рядом с новым браузерным интерфейсом.
+- [Полифил Custom Attributes](https://www.keithcirkel.co.uk/custom-attributes-polyfill/) показывает, как добавлять повторно используемое поведение обычным HTML-элементам через атрибуты с собственным жизненным циклом. Это экспериментальная идея для будущего стандарта.
+- Энди Белл объясняет, [как не вызывать масштабирование страницы при двойном касании кнопки](https://piccalil.li/blog/stop-buttons-triggering-zoom-when-theyre-double-tapped/). Материал пригодится при настройке мобильных элементов управления.
+- Разработчики [example.com объяснили появление JavaScript на странице](https://www.oliverdunk.com/2026/09/30/iana-reply): многие автоматические клиенты его не запускают, поэтому передаваемых данных становится меньше. [История изменения сайта](https://www.debugbear.com/blog/example-dot-com-redesign-history) дает дополнительный контекст.
+
+## 🎨 CSS и дизайн интерфейсов
+
+### GitHub заменил CSS-in-JS на CSS Modules и ускорил серверный рендеринг
+
+GitHub рассказал, [как за три года перевел сайт со styled-components на CSS Modules](https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css/). CSS-файлов стало больше, зато время серверного рендеринга страницы, по измерениям команды, сократилось на 55%. Стили больше не нужно вычислять во время работы JavaScript для каждого компонента.
+
+[CSS Modules](https://github.com/css-modules/css-modules) — соглашение для инструментов сборки: классы из файла .module.css получают уникальные имена и не сталкиваются с классами из других компонентов. [Инструкция по началу работы](https://github.com/css-modules/css-modules/blob/master/docs/get-started.md) показывает, как это устроено.
+
+### CSS может определять пересечение элементов
+
+Ахмад Шадид показал [эксперимент по обнаружению сближения и перекрытия элементов только средствами CSS](https://ishadeed.com/article/css-detect-overlap/). Он сочетает позиционирование относительно опорного элемента, контейнерные запросы и анимации от прокрутки.
+
+### Контейнерные запросы требуют другого подхода к адаптивной верстке
+
+В статье о [контейнерных запросах](https://www.smashingmagazine.com/2026/09/stop-treating-css-container-queries-traditional-media-queries/) предлагают ориентироваться на пространство, доступное компоненту, а не переносить в них привычные контрольные точки всей страницы. Так одна карточка может работать в боковой колонке и в основной области без отдельных правил для каждого экрана.
+
+- Темани Афиф нашел [способ получать сведения о CSS Grid через анимации от прокрутки](https://blog.master.dev/extracting-grid-information-using-css/): эксперимент позволяет узнавать число строк и колонок и положение элементов без JavaScript.
+- В материале о [плавной типографике](https://blog.damato.design/posts/fluid-typography/) объясняют, почему автор предпочитает единицы ширины окна контейнерным запросам для размера шрифта.
+- [Transitions.dev](https://transitions.dev/) собрал примеры CSS-переходов для интерфейсов; [исходный код проекта](https://github.com/Jakubantalik/transitions.dev) помогает разобраться в реализации.
+- [Шпаргалка по дизайну интерфейсов](https://interfaces.dev/cheat-sheet) показывает на иллюстрациях приемы работы с цветом, скруглениями, масштабом, анимацией и доступностью.
+- Конструктор [Bastardica](https://bastardica.mitpit.com) смешивает символы двух веб-шрифтов и дает скачать результат — необычный способ поэкспериментировать с типографикой.
+- В [soundcn](https://www.soundcn.xyz/) собрано более 800 звуков для веб-интерфейсов; перед использованием стоит проверить лицензии. Есть и [репозиторий проекта](https://github.com/kapishdima/soundcn).
+- Правила проверки CSS вынесены из [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn/releases/tag/v77.0.0) в отдельный пакет [eslint-cssicorn](https://github.com/sindresorhus/eslint-cssicorn). Так правила для стилей можно подключать независимо от большого набора правил для JavaScript.
+
+## 📚 Обучение веб-разработке
+
+- Маттиас Бинеггер пишет о [проблемах обучения веб-разработке](https://molily.de/web-dev-education/), а Энди Белл [отвечает на его размышления](https://bell.bz/in-response-to-the-death-of-web-development-education/). Оба текста помогают задуматься, как люди осваивают основы платформы на фоне все более сложного набора инструментов.
+
+## 📦 JavaScript и Web API
+
+### Три новых метода итераторов приблизились к стандарту JavaScript
+
+По итогам [сентябрьского заседания TC39](https://github.com/tc39/agendas/blob/main/2026/09.md) финальной стадии достигли предложения о [разбиении итератора на части](https://github.com/tc39/proposal-iterator-chunking/), [объединении значений в строку](https://github.com/tc39/proposal-iterator-join) и [проверке наличия значения](https://github.com/tc39/proposal-iterator-includes). Итератор позволяет получать элементы последовательности по одному; новые методы сокращают код, который раньше приходилось писать вручную. Метод includes уже [доступен в Chrome 154](https://developer.chrome.com/release-notes/154#javascript), но перед использованием без запасного варианта нужно проверить поддержку других браузеров.
+
+### Объекты без прототипа можно создавать быстрее
+
+Маттео Коллина исследовал [производительность объектов с null вместо прототипа](https://adventures.nodeland.dev/archive/optimizing-objects-with-null-prototypes/). Такой объект удобен как словарь без унаследованных свойств, но V8 сразу хранит его свойства в менее быстром режиме. Автор показывает способ сначала создать обычный объект, а затем убрать прототип, сохранив быстрый доступ к свойствам. Подробности устройства движка есть в [объяснении команды V8](https://v8.dev/blog/fast-properties).
+- В статье о [необычной записи с тегированным шаблоном](https://shukla.io/blog/2026-09/pun.html) показано, как передать функции объект с именем и значением переменной. Пример помогает разобраться сразу в двух возможностях JavaScript.
+- На площадке [Dittytoy](https://dittytoy.net/) появился [трек Take on Me, полностью воссозданный на JavaScript](https://dittytoy.net/ditty/2dd99fc839), включая синтезированный вокал. Пример показывает возможности программной генерации звука в браузере.
+
+## ⚛️ React и похожие библиотеки
+
+### Preact 11 обновил гидрацию и работу с ref
+
+[Preact 11](https://preactjs.com/blog/preact-11/) вышел после долгой подготовки, которую можно проследить по [обсуждению релиза](https://github.com/preactjs/preact/issues/2621). Библиотека улучшила гидрацию — подключение интерактивности к HTML, подготовленному на сервере, — и автоматически передает ref компонентам. Пакет теперь публикуется только как ESM, поэтому перед обновлением стоит проверить сборку по [руководству по миграции](https://preactjs.com/guide/v11/upgrade-guide/).
+
+- [Ink 8.0](https://github.com/vadimdemedes/ink/releases/tag/v8.0.0) — библиотека для терминальных интерфейсов на React — требует React 19.3 и добавляет смещение прокрутки для длинных экранов.
+- [Inferno 10](https://github.com/infernojs/inferno/releases/tag/v10.0.0) переносит больше работы из времени выполнения в JSX-компилятор, чтобы быстрее отображать интерфейс.
+- Таннер Линсли представил [идею Redact](https://tannerlinsley.com/posts/projecting-react) — более простой реализации, совместимой с API React. За развитием можно следить в [репозитории](https://github.com/TanStack/redact).
+- [Redux Toolkit 2.13](https://github.com/reduxjs/redux-toolkit/releases/tag/v2.13.0) добавил поддержку TypeScript 7 для проектов, которые используют этот набор инструментов управления состоянием.
+
+## 🧩 Фреймворки
+
+### Nuxt 4.6 делает серверную часть менее зависимой от Nitro
+
+В [Nuxt 4.6](https://nuxt.com/blog/v4-6) появилась экспериментальная возможность собирать серверную часть через Vite без обязательной привязки к Nitro. Также добавлены встроенные сессии и поддержка Vue Vapor. Вместе с релизом вышел [Nuxt CLI 4.0](https://github.com/nuxt/cli/releases/tag/v4.0.0). Для существующего проекта особенно важно проверить настройки сервера и модулей перед переходом.
+
+### Remix 3 вышел без обязательной зависимости от React
+
+[Remix 3.0](https://github.com/remix-run/remix/releases/tag/remix%403.0.0) стал стабильным релизом обновленного полнофункционального фреймворка. Теперь React для него не обязателен, а [описание релиз-кандидата](https://remix.run/blog/remix-3-release-candidate) объясняет новый подход подробнее. Это заметное изменение для разработчиков, которые связывали Remix только с React-приложениями.
+
+- [SvelteKit 3](https://svelte.dev/blog/sveltekit-3-is-here) в основном упрощает и приводит в порядок существующие возможности. [Удаленные функции](https://svelte.dev/docs/kit/remote-functions) пока остаются экспериментальными; пройти изменения поможет [руководство по миграции с командой sv migrate](https://svelte.dev/docs/kit/migrating-to-sveltekit-3).
+- [Qwik 2.0 дошел до релиз-кандидата](https://next.qwik.dev/blog/qwik-2-rc/), а [Ember 7.3](https://blog.emberjs.com/ember-released-7-3/) получил очередное обновление.
+- Команда Angular описала [новый компилятор с компонентами на Rust](https://blog.angular.dev/an-update-on-angulars-typescript-7-powered-compiler-9619a35e2b0a): перенос TypeScript 7 на Go не предоставляет часть API, которыми пользуется нынешняя сборка. Параллельно вышел [Angular 22.2](https://github.com/angular/angular/releases/tag/v22.2.0).
+- [Vinext 1.0](https://blog.cloudflare.com/vinext-nextjs-on-vite/) реализует возможности Next.js поверх Vite, поддерживает Pages Router и App Router и предлагает путь миграции существующих приложений.
+- Автор Solid сравнивает [архитектуру HTMX, React, LiveView и других подходов](https://dev.to/playfulprogramming/the-grand-unifying-architecture-of-frontend-bhk): все они по-разному распределяют между клиентом и сервером навигацию, содержимое и быстрый отклик интерфейса. [Solid 2.0](https://www.solidjs.com/blog/solid-2-0-rc-the-big-reveal) пытается охватить больше таких сценариев.
+- В [бенчмарке JavaScript-фреймворков](https://krausest.github.io/js-framework-benchmark/) появились [результаты Chrome 154](https://krausest.github.io/js-framework-benchmark/2026/chrome154.html) для 196 реализаций одного приложения. Сравнивать их полезно по нескольким показателям сразу: скорости, размеру сборки и объему выполняемой работы.
+
+## 📘 TypeScript
+
+- Статья о [читаемых регулярных выражениях на TypeScript](https://www.rahuljuliato.com/posts/emacs-rx-in-typescript) показывает, как собирать большое выражение для SemVer из небольших именованных частей. Так проще понять и изменить сложную проверку строки.
+- Разбор [автоматического уточнения типов после filter](https://radekmie.dev/blog/on-automatic-type-refinements/) показывает, какие функции проверки позволяют TypeScript сузить тип элементов массива, а какие оставляют исходный тип.
+- [Typia 15.0](https://typia.io/) генерирует проверки значений во время выполнения на основе типов TypeScript. Это полезно на границе приложения, где данные пришли извне и одного описания типа недостаточно.
+
+## ⚙️ Node.js и серверные рантаймы
+
+### Встроенные возможности Node.js заменяют часть зависимостей
+
+Флавио Копес собрал [12 встроенных модулей и API Node.js](https://flaviocopes.com/node-builtins/), которые закрывают задачи популярных npm-пакетов. Для каждого он отмечает уровень стабильности и ограничения. Если нужная функция уже есть в Node.js, проект можно упростить, но переход требует проверки поведения и поддержки нужной версии рантайма.
+
+### Booking.com снизил стоимость Node.js-сервиса на 38%
+
+Инженеры Booking.com описали, [как перестроили запуск и распределение нагрузки в Node.js-сервисе](https://medium.com/booking-com-development/node-js-at-scale-rebalanced-how-we-cut-cost-by-38-62ce247a3002). Они перешли с PM2 на рабочие потоки [Watt](https://docs.platformatic.dev/docs/getting-started/quick-start) и изменили конфигурацию процессов. Полученная экономия относится к их нагрузке; общий принцип — измерять, где сервис тратит ресурсы, прежде чем увеличивать число серверов.
+
+- Разработчик рассказал, [почему вернулся с Deno на Node.js](https://dbushell.com/2026/10/03/deno-to-node/): генератор сайта удалось перенести почти без изменений, а экосистема Node за это время заметно улучшилась. Для сравнения есть его [старый рассказ о выборе Deno](https://dbushell.com/2021/03/12/built-with-deno/).
+- [Bun экспериментирует с предварительной компиляцией JavaScript](https://x.com/jarredsumner/status/2104739495895781679). В показанном примере запуск быстрее и расход памяти ниже, но итоговый исполняемый файл примерно вдвое больше. Это предварительные результаты, а не обещание для всех программ.
+
+## 🤖 ИИ и инструменты агентов
+
+- В руководстве по [модификациям Claude Code](https://claude.dev/blog/getting-started-with-claude-code-mods/) показано, как расширять поведение агента на JavaScript: реагировать на события и добавлять собственный интерфейс. [Описание Mods](https://claude.com/resources/articles/claude-code-mods) помогает понять возможности механизма.
+- [Pi 1.0](https://earendil.com/posts/pi-1-0/) — компактный агент для программирования на Node.js — получил поддержку MCP и дополнительных моделей через Codemode. Экспериментальный [Pi Durable](https://earendil.com/posts/pi-durable/) предназначен для длительных задач, которые должны переживать сбои.
+- [Cloudflare Turnstile Spin](https://blog.cloudflare.com/turnstile-spin/) помогает агентам настраивать защиту Turnstile для создаваемых сайтов.
+
+## 🚀 Производительность и качество
+
+### Anthropic сократила время до готовности интерфейса Claude
+
+Команда Anthropic описала [двухнедельную работу над скоростью веб-приложения Claude](https://claude.dev/blog/how-we-made-claude-ai-faster/). Время до возможности начать вводить текст для 75-го процентиля пользователей сократилось с 3,1 до 0,55 секунды. Помогли измерения небольших сдвигов верстки, поиск дорогого селектора :root:has(), устранение лишних перезагрузок и исправление взаимодействия с предварительной загрузкой Chrome. История показывает, почему общая метрика скорости не всегда указывает на конкретную причину задержки.
+
+- В [практическом руководстве Storybook по тестированию компонентов](https://storybook.js.org/blog/component-testing-a-practical-guide-for-frontend-developers/) объясняют, как проверять отдельные части интерфейса до сборки целой страницы.
+- [Size Limit](https://github.com/ai/size-limit) позволяет задать предел размера или времени загрузки JavaScript и сообщать в CI, когда изменение выходит за бюджет.
+- [Netlify сократила задержку запуска Edge Functions примерно в пять раз](https://www.netlify.com/blog/edge-functions-firecracker-microvms/), перейдя от размещенных V8-изолятов к микро-VM в собственной edge-сети. Это серверная оптимизация, которая может ускорить ответ пользователю.
+- [Lightpanda 1.0](https://lightpanda.io/blog/posts/lightpanda-1-0) — браузер без графического интерфейса для автоматизации. Его можно использовать через Puppeteer или Playwright либо [запускать сценарии на JavaScript](https://lightpanda.io/docs/usage/pandascript).
+
+## ⚒️ Инструменты и библиотеки
+
+### Vite+ 1.0 объединил задачи разработки в одном CLI
+
+[Vite+ 1.0](https://voidzero.dev/posts/announcing-vite-plus-1-0) предлагает команду vp для запуска сервера разработки, линтинга, форматирования, тестов и сборки. При желании через нее можно управлять версией Node.js и пакетным менеджером. Настройки хранятся в vite.config.ts, а [команда миграции](https://viteplus.dev/guide/migrate) помогает перевести существующий проект. В [обзоре работы VoidZero](https://blog.cloudflare.com/voidzero-update/) также упомянуты изменения в Oxc React Compiler, Vitest и линтинге с учетом типов.
+
+### EmDash 1.0 предлагает CMS для сайтов на Astro
+
+[EmDash достиг версии 1.0](https://emdashcms.com/blog/emdash-1-0). Это открытая CMS на Astro: каждый сайт получает MCP-сервер, чтобы агент мог работать с содержимым. Для расширений появился [прием плагинов](https://emdashcms.com/blog/emdash-plugin-registry) и [каталог](https://plugins.emdashcms.com/). В [техническом рассказе Cloudflare](https://blog.cloudflare.com/emdash-cms-plugin-registry/) объясняется децентрализованный реестр на AT Protocol и запуск плагинов в изолированной среде. Проект также может работать на Node.js.
+
+### Mermaid 12 меняет расположение диаграмм по умолчанию
+
+В [Mermaid 12.0](https://github.com/mermaid-js/mermaid/releases/tag/mermaid%4012.0.0) для блок-схем и нескольких других типов диаграмм по умолчанию используется движок ELK. Старые схемы могут выглядеть иначе; если важен прежний вид, можно указать layout: dagre. Также добавлены [диаграммы вариантов использования UML](https://mermaid.ai/open-source/syntax/usecase.html).
+
+### Effect 4 перестроил основу библиотеки
+
+[Effect 4.0](https://effect.website/blog/releases/effect/40) обновил библиотеку для приложений, где нужно управлять ошибками, параллельными задачами и ресурсами. Команда переписала внутренний механизм выполнения: по ее измерениям, минимальная сборка стала в пять раз меньше, а расход памяти на параллельную задачу — на 86% ниже. Для существующих проектов это крупное обновление, поэтому перед переходом нужно проверить изменения API.
+
+### Обновления инструментов
+
+- [Cloudflare выпустила единый cf CLI](https://blog.cloudflare.com/cloudflare-cf-cli-launch/) для всех своих API: прежде Wrangler покрывал только часть возможностей.
+- [Markuplint 5.0](https://markuplint.dev/) проверяет HTML-разметку на ошибки. Можно посмотреть [релиз в репозитории](https://github.com/markuplint/markuplint/releases/tag/v5.0.0) и попробовать [интерактивную площадку](https://playground.markuplint.dev/).
+- [npm stage publish теперь умеет создавать новый пакет](https://github.blog/changelog/2026-10-02-npm-staged-publishing-now-supports-creating-new-packages/): автоматизации больше не нужен отдельный первый выпуск вручную.
+- [pnpm 12.8](https://github.com/pnpm/pnpm/releases/tag/v12.8.0) и более новая [версия 12.10](https://pnpm.io/blog/releases/12.10.0) получили отдельные записи о релизах; при обновлении стоит читать изменения для всех пропущенных версий.
+- [MSW 3.0](https://github.com/mswjs/msw/releases/tag/v3.0.0) стал пакетом только с ESM, добавил плагин для Vite и перехват навигации, отправки форм и подписок GraphQL. Библиотека помогает подменять ответы API при тестировании.
+- [QUnit 3.0](https://qunitjs.com/upgrade-guide-3.x/) опубликовал руководство по переходу для проектов с тестами на QUnit.
+- [TinyBase 10](https://tinybase.org/guides/releases/#v10-0) обновил библиотеку для хранения и синхронизации данных в приложении.
+- [TanStack Charts 1.0](https://tanstack.com/blog/tanstack-charts-1-0) позволяет описывать диаграммы типизированным JavaScript независимо от фреймворка и выводить их через SVG или Canvas. В [каталоге примеров](https://tanstack.com/charts/catalog) есть столбчатые, линейные и другие виды графиков.
+- [DOCX 9.8](https://github.com/dolanmiu/docx/releases/tag/9.8.0) расширил генерацию документов Word из JavaScript: появились диаграммы, фигуры, водяные знаки и новые математические обозначения. [Сайт библиотеки](https://docx.js.org/) содержит примеры.
+- [wavesurfer 8.0](https://github.com/katspaugh/wavesurfer.js) обновил библиотеку отображения звуковой волны и воспроизведения аудио, улучшив эффективность и исправив ошибки.
+- [pretty-bytes 7.2](https://github.com/sindresorhus/pretty-bytes) переводит число байтов в понятную строку, например размер файла для интерфейса.
+- [postal-mime 4.0](https://github.com/postalsys/postal-mime) разбирает почтовые сообщения в разных JavaScript-средах.
+- [Video.js 10](https://videojs.org/blog/videojs-10) обновил библиотеку для создания видеоплееров на веб-страницах.
+- [ESLint 10.12](https://eslint.org/blog/2026/10/eslint-v10.12.0-released/) получил очередное обновление инструмента для статической проверки JavaScript-кода.
+- [pixelmatch 8.0](https://github.com/mapbox/pixelmatch) сравнивает изображения попиксельно и использует более точную для восприятия цвета метрику. После обновления количество найденных различий может измениться.
+- [PR Comment Inbox](https://humanwhocodes.com/blog/2026/09/introducing-pr-comment-inbox/) собирает комментарии к GitHub pull request в интерфейс, похожий на почтовый ящик, с темами и отметками о прочтении.
+- [Electron Forge 8](https://github.com/electron/forge/releases/tag/v8.0.1) обновил инструменты для сборки и публикации настольных приложений на Electron.
+- В [Git 2.56](https://github.blog/open-source/git/highlights-from-git-2-56/) появились git add --resolved для подготовленных исправлений конфликтов и git branch --delete-merged для удаления уже слитых веток.
+- Автор заметки объясняет [историю популярных портов 3000 и 8080](https://smarmelling.com/posts/the-accidental-history-of-3000-8080-and-other-port-numbers.html), которые часто встречаются в локальной разработке.
+- [Опрос State of Devs 2026](https://2026.stateofdevs.com/en-US/) собрал ответы более пяти тысяч разработчиков о карьере, [отношении к ИИ](https://2026.stateofdevs.com/en-US/ai/), [увлечениях](https://2026.stateofdevs.com/en-US/hobbies/) и [условиях работы](https://2026.stateofdevs.com/en-US/workplace/).
