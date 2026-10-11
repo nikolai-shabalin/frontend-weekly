@@ -1,0 +1,163 @@
+---
+title: "Еженедельный дайджест #66: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Oct 12 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #34! 🗞️", index: 0 },
+  { text: "Interop 2026: браузеры синкаются! 🤝", index: 1 },
+  { text: "Chrome 145 уже в строю! 🚀", index: 2 },
+  { text: "setHTML вместо innerHTML — мощно! 🔒", index: 3 },
+  { text: "Oxfmt beta: форматим быстрее! ⚡", index: 4 },
+  { text: "React Doctor проверит проект! 🩺", index: 5 },
+  { text: "styled-components снова с нами! 💅", index: 6 },
+  { text: "Node ест вдвое меньше RAM! 🧠", index: 7 },
+  { text: "WebMCP: сайты для AI-агентов! 🤖", index: 8 },
+  { text: "OpenSeadragon 6.0: зумим HD! 🔍", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и Платформа
+
+### Cloudflare открыла набор данных о реальной скорости сайтов
+
+[Cloudflare собрала в BigQuery обезличенные показатели Core Web Vitals](https://blog.cloudflare.com/how-fast-is-the-web/) с 10 000 крупных сайтов. Данные обновляются ежедневно и учитывают не только Chrome, но и Safari/WebKit. Это удобная точка отсчёта для производительности: например, исследование показывает, что задержка LCP чаще связана не с загрузкой файла, а с тем, что происходит на странице до его показа.
+
+### Chrome 155 получил поддержку JPEG XL
+
+В [Chrome 155 появилась поддержка JPEG XL](https://developer.chrome.com/blog/jpeg-xl-in-chrome) — формата изображений `.jxl`, который умеет давать более компактные файлы, HDR и современные возможности сжатия. Для веба это ещё один вариант доставки тяжёлой графики; [заметки к релизу](https://chromestatus.com/release-notes/155) помогут проверить остальные изменения браузера.
+
+- Открыт [опрос State of HTML 2026](https://survey.devographics.com/en-US/survey/state-of-html/2026) о формах, веб-компонентах и API браузера. Его результаты используют команды браузеров при планировании развития платформы.
+- У зарезервированного домена [`example.com`](https://example.com) появился новый дизайн и многоязычный JavaScript. Историю и причины такого необычного [обновления сайта](https://www.debugbear.com/blog/example-dot-com-redesign-history) разобрали отдельно, как и [ответ IANA](https://www.oliverdunk.com/2026/09/30/iana-reply) на вопрос о его назначении.
+- Rachel Andrew собрала [сентябрьские изменения веб-платформы](https://web.dev/blog/web-platform-09-2026): `progress()`, `alpha()` и `revert-rule` стали доступны во всех основных браузерах.
+- [Одиннадцатый опрос пользователей экранных читалок WebAIM](https://webaim.org/projects/screenreadersurvey11/) собрал 1 780 ответов. Он показывает, какими программами люди пользуются на практике и почему доступность нужно проверять не только автоматическими тестами.
+- SVG 2 приблизился к статусу рекомендации W3C: [обновлённая Candidate Recommendation](https://www.w3.org/news/2026/updated-candidate-recommendation-scalable-vector-graphics-svg-2/) сосредоточена на одинаковом поведении в браузерах.
+- В исследовании [медленных сайтов авиакомпаний](https://calibreapp.com/blog/airline-websites-are-slow) по реальным пользовательским метрикам около 95% участников не прошли Core Web Vitals на мобильных устройствах. Это наглядный повод измерять производительность на настоящих устройствах и сетях.
+- Статья [«Почему разработчики не используют возможности платформы?»](https://nolanlawson.com/2026/10/03/why-dont-more-developers-use-the-platform/) предлагает перед новой библиотекой проверить, нельзя ли решить задачу уже существующими HTML, CSS и Browser API.
+- Руководство [по двунаправленному тексту](https://blog.master.dev/you-dont-know-bidi-and-neither-does-chatgpt/) объясняет, почему смешение языков с разным направлением письма ломает интерфейсы и как учитывать это в разметке.
+- [Интерактивное объяснение passkey](https://howdopasskeyswork.com/) показывает, как вход без пароля связывает устройство, сайт и криптографические ключи.
+
+## 🎨 CSS и дизайн
+
+### CSS Anchor Positioning берёт на себя позиционирование подсказок
+
+[CSS Anchor Positioning](https://allthingssmitty.com/2026/10/05/css-does-your-tooltip-positioning-now/) позволяет привязать tooltip или выпадающее меню к элементу через `anchor-name` и `position-anchor`. Браузер сохраняет связь при прокрутке и изменении размера окна — меньше кода для измерений и подписок на события. Patrick Brosset также разбирает, [почему встроенные `title`-подсказки используют редко](https://patrickbrosset.com/articles/2026-10-02-opening-the-can-of-tooltips/) и каким мог бы стать стилизуемый `::tooltip`.
+
+### Dart Sass 2.0 запланирован на декабрь
+
+Команда Sass описала [путь к Dart Sass 2](https://sass-lang.com/blog/the-road-to-dart-sass-2/). Многие предупреждения об устаревшем синтаксисе из ветки 1.x станут ошибками, поэтому сейчас подходящий момент запустить сборку с предупреждениями и обновить старые стили.
+
+- [Panda CSS 2.0](https://panda-css.com/blog/panda-css-v2) сохранил знакомый `css()` API, но получил компилятор на Rust. В релизе также есть публикуемые дизайн-системы, стили для View Transitions, ESLint-плагин и пресет типографики.
+- Temani Afif показывает, как реализовать [`children-count()` в современном CSS](https://css-tip.com/children-count/) и строить стили, зависящие от количества дочерних элементов.
+- [CSS Doodle](https://css-doodle.com/) использует CSS как язык для генерации узоров, фонов и иконок. На [странице примеров](https://css-doodle.com/discover) можно подсмотреть идеи, а [v0.55](https://github.com/css-doodle/css-doodle/releases/tag/v0.55.0) добавляет новые типы мозаик.
+- [pure-web-bottom-sheet](https://github.com/viliket/pure-web-bottom-sheet) — доступный веб-компонент нижней панели на CSS Scroll Snap и scroll-driven animations; [примеры](https://viliket.github.io/pure-web-bottom-sheet/) помогают оценить поведение на устройствах с тач-вводом.
+- [Gradient Visualizer](https://lab.ishadeed.com/tools/gradient-visualizer/) разбирает сложное значение `background` с градиентами на слои: их можно изучать по отдельности, редактировать и собрать обратно в CSS.
+
+<TelegramCTA/>
+
+## 📦 JavaScript
+
+### Deno присоединяется к Cloudflare
+
+[Deno станет частью Cloudflare](https://blog.cloudflare.com/deno-joins-cloudflare/). Для разработчиков это заметное сближение рантайма JavaScript и инфраструктуры edge: обе команды обещают сохранить открытый характер Deno и развивать инструменты для запуска кода ближе к пользователю.
+
+- Библиотека [audio](https://github.com/audiojs/audio) собрала более 140 высокоуровневых операций над звуком в JavaScript: от шумоподавления и эквалайзера до синтеза и анализа музыки.
+- [astromd4x](https://github.com/pi0/astro-md4x) заменяет `@astrojs/markdown-remark` в Astro и обещает рендер Markdown в 50–70 раз быстрее благодаря одной нативной зависимости.
+- Миниатюрный реактивный пакет [µsignal](https://github.com/WebReflection/usignal) совместим по ощущениям с Preact Signals и Solid, а с Brotli занимает около 816 байт.
+- [Amber](https://amber-lang.com/) — типобезопасный язык, который компилируется в Bash и помогает поймать часть ошибок ещё до запуска скрипта.
+- [wasm-git](https://github.com/petersalomonsen/wasm-git) переносит Git на libgit2 и WebAssembly, поэтому подходит и для Node.js, и для браузера.
+
+## ⚛️ React и фреймворки
+
+### Next.js 16.4 рекомендует Cache Components по умолчанию
+
+В [Next.js 16.4](https://nextjs.org/blog/next-16-4) Cache Components стали рекомендуемым вариантом и включаются в новых приложениях через `create-next-app`. В [документации кэширования](https://nextjs.org/docs/app/getting-started/caching) объясняется, какие части интерфейса можно переиспользовать, а в релизе описаны [улучшения для агентных инструментов](https://nextjs.org/blog/next-16-4#new-agent-features) и [изменения для всех приложений](https://nextjs.org/blog/next-16-4#improvements-for-all-apps).
+
+### Preact 11 и Remix 3.0 развиваются своим путём
+
+[Preact 11](https://preactjs.com/blog/preact-11/) добавил [Hydration 2.0](https://preactjs.com/guide/v11/upgrade-guide/#hydration-20) и автоматическую передачу `ref`; при использовании `preact/compat` пригодится его [руководство по обновлению](https://preactjs.com/guide/v11/upgrade-guide/). [Remix 3.0](https://github.com/remix-run/remix/releases/tag/remix%403.0.0) вышел из стабильной ветки и больше не построен на React, а в статье о [шести месяцах с v3](https://sergiodxa.com/articles/the-remix-way) можно узнать, как изменился подход к приложению.
+
+- [Визуальная нотация деревьев React](https://julesblom.com/writing/react-visual-notation) предлагает отдельно показывать, где элемент находится в DOM, и какой компонент его создал. [Песочница](https://julesblom.com/react-trees) строит такие схемы из вставленного кода.
+- Эксперимент [с дополнительными оптимизациями React Compiler](https://jimmyhmiller.com/what-does-the-react-compiler-even-do) разбирает код компилятора и проверяет, что дадут инлайнинг, блоки и вывод селекторов.
+- [React Aria Sheet](https://react-aria.adobe.com/blog/sheet) — свайпаемая нижняя панель, в которой инерция и анимации построены на scroll snapping и view timelines. Сам компонент доступен в [React Aria](https://react-aria.adobe.com/Sheet), а [релиз 1.22](https://react-aria.adobe.com/releases/v1-22-0) включает его в [библиотеку React Aria](https://react-aria.adobe.com/).
+- Бенчмарк [React Compiler и Context](https://jjenzz.com/making-react-context-cheap/) на 5 000 радиокнопок исследует, может ли компилятор снизить потребность в context selectors.
+- [Практики структуры папок React-проекта](https://www.robinwieruch.de/react-folder-structure/) помогают выбрать структуру, которая не превратится в лабиринт с ростом приложения.
+- [TanStack Charts 1.0](https://tanstack.com/blog/tanstack-charts-1-0) предлагает типизированные графики, собранные из меток и шкал, с выводом в SVG или Canvas. Это переосмысление прежнего [React Charts](https://react-charts.tanstack.com/); [каталог примеров](https://tanstack.com/charts/catalog) показывает готовые комбинации и код.
+- [Ink 8](https://github.com/vadimdemedes/ink/releases/tag/v8.0.0) обновил React-рендерер для терминалов: `Box` теперь умеет прокручиваться, а перерисовка затрагивает только изменившиеся части строк.
+- [Redux Toolkit 2.13](https://github.com/reduxjs/redux-toolkit/releases/tag/v2.13.0) добавил поддержку TypeScript 7 и исправил создание нового селектора в `useQuery`. Документация пакетов Redux теперь собрана на [redux.js.org](https://redux.js.org/), включая [раздел Redux Toolkit](https://redux.js.org/toolkit).
+- [Mantine 9.7](https://mantine.dev/changelog/9-7-0/) добавил компонент [Tour](https://mantine.dev/core/tour/) для знакомства с интерфейсом и расширил доступ к документации через MCP.
+- [React Native Testing Library 14.1](https://github.com/callstack/react-native-testing-library/releases/tag/v14.1.0) поддерживает React Native 0.88 и React 19.3, а также добавляет пользовательское событие `pullToRefresh()`.
+- [React Native Skia 3.0](https://wcandillon.github.io/react-native-skia/docs/getting-started/migration/) переходит на графический бэкенд Skia Graphite. Перед обновлением полезно свериться с руководством по миграции, особенно если приложение использует собственные шейдеры или сложную графику.
+- [Lexical 0.51](https://github.com/facebook/lexical/releases/tag/v0.51.0) переведён только на ESM и приближает расширяемый редактор Meta к версии 1.0.
+- В [Base UI 1.9](https://github.com/mui/base-ui/releases/tag/v1.9.0) появились фильтруемые меню в preview, а также исправления фокуса и Drawer. Доступен и [Material UI 9.5](https://github.com/mui/material-ui/releases/tag/v9.5.0).
+- [MSW 3.0](https://mswjs.io/blog/introducing-msw-3.0) стал ESM-only, получил GraphQL-подписки и уменьшил размер. Это обновление для тех, кто подменяет сетевые запросы в тестах и разработке.
+- [Shaders](https://shaders.com/updates/shaders-is-open-source) открыл исходники WebGPU-движка и более 190 компонентов эффектов; [каталог](https://shaders.com/docs/components) содержит варианты для React, Vue, Svelte, Solid и обычного JavaScript.
+- [liquid-glass-svelte](https://github.com/Tozaburo/liquid-glass-svelte) воспроизводит эффект жидкого стекла Apple в Svelte с настройкой размытия, бликов и границ.
+- [ng2-charts](https://github.com/valor-software/ng2-charts) приносит Chart.js в Angular и устанавливается через Angular CLI, а официальный репозиторий [Angular Skills](https://github.com/angular/skills) даёт агентам актуальные инструкции по разработке Angular-приложений.
+- [@lucky-media/astro-seo](https://github.com/lucky-media/astro-seo) переносит знакомую из Next.js идею `generateMetadata` в Astro: общие SEO-настройки задаются один раз, а страницы могут их переопределять.
+
+## 📘 TypeScript
+
+### TypeScript 7 пытаются портировать на Rust
+
+[ts-rust](https://github.com/pingdotgg/ts-rust) — очень ранний эксперимент по переносу компилятора TypeScript 7 на Rust с помощью ИИ-агентов. Это не замена официальному компилятору, но интересный пример того, как можно исследовать производительность и архитектуру привычного инструмента.
+
+## ⚙️ Node.js
+
+### Node.js 26.11 добавляет тайм-аут процесса и развивает SQLite
+
+[Node.js 26.11.0](https://nodejs.org/en/blog/release/v26.11.0) получил `--process-timeout`, который завершает зависший процесс, виртуальные таблицы в `node:sqlite`, `Buffer.stringLength()` и поддержку Alpine x64 второго уровня. Полезные детали реализации — в PR для [тайм-аута](https://github.com/nodejs/node/pull/66138), [SQLite](https://github.com/nodejs/node/pull/65787) и [`Buffer.stringLength()`](https://github.com/nodejs/node/pull/66064). Новый дизайн документации временно [откатили в 26.11.1](https://nodejs.org/en/blog/release/v26.11.1), потому что он не отдавал HTML; экспериментальная версия остаётся на [beta.docs.nodejs.org](https://beta.docs.nodejs.org/).
+
+- [Vite+ 1.0](https://voidzero.dev/posts/announcing-vite-plus-1-0) объединяет выбор версии Node.js, пакетный менеджер и фронтенд-инструменты в команду `vp`; он уже указан среди вариантов на [странице скачивания Node.js](https://nodejs.org/en/download).
+- Будущие версии Node.js должны синхронно загружать большинство ES-модулей: соответствующий [коммит](https://github.com/nodejs/node/commit/c89ec290f0f82f544e39e6e5f2eab3b6de2c1cca) и [PR](https://github.com/nodejs/node/pull/62530) оставляют асинхронный путь для top-level `await`, loader hooks и похожих случаев. В основной ветке также уже появился [V8 15.5](https://github.com/nodejs/node/pull/66537).
+- Matteo Collina объясняет, почему объекты с [`null`-прототипом](https://adventures.nodeland.dev/archive/optimizing-objects-with-null-prototypes/) могут сначала работать медленнее в V8 и как сохранить производительность.
+- В материале о [пуле потоков Node.js на занятой машине](https://blog.platformatic.dev/more-threads-on-an-already-busy-machine) показано, почему число потоков нельзя всегда приравнивать к числу ядер CPU.
+- Новый сопровождающий [wait-on](https://github.com/jeffbski/wait-on) делится опытом [поддержки пакета с помощью агентов](https://www.kevinold.com/blog/a-week-maintaining-wait-on).
+- Сравнение [сборки JavaScript в один исполняемый файл](https://flaviocopes.com/javascript-single-executable/) рассматривает подходы Node.js, Bun и Deno.
+- [DOCX 9.9](https://github.com/dolanmiu/docx/releases/tag/9.9.0) улучшает генерацию Word-документов из JavaScript и приближает раскладку к поведению Word; возможности библиотеки собраны на [docx.js.org](https://docx.js.org/).
+- [H3 v2](https://h3.dev/blog/v2) переписан вокруг стандартных `Request` и `Response`, поэтому одно HTTP-приложение можно запускать в Node, Bun, Deno и Workers. У фреймворка есть [краткое руководство](https://h3.dev/guide) по маршрутизации и middleware.
+- [Klattsch](https://crashunited.itch.io/klattsch/devlog/1580425/klattsch-engine-is-free-software-put-it-in-your-game) превращает фонемы в синтезированную речь в стиле 1980-х и работает как npm-пакет в Node.js и браузере.
+- [Feedsmith 3.0](https://feedsmith.dev/) читает и генерирует RSS, Atom и JSON Feed в браузере и Node.js. Для старых проектов есть [миграция с v2](https://feedsmith.dev/migration/v2-to-v3) и [быстрый старт](https://feedsmith.dev/quick-start).
+- [pnpm 12.10](https://pnpm.io/blog/releases/12.10.0) экспериментирует с linker `loaded`: зависимости можно загружать прямо из хранилища pnpm без связывания `node_modules`.
+- [Hono 5.0 RC](https://github.com/honojs/hono/blob/v5.0.0-rc.0/docs/MIGRATION.md) переходит на ESM-only, требует Node 22.12+ и выносит адаптеры рантаймов в отдельные пакеты.
+- [Execa 10.1](https://github.com/sindresorhus/execa/releases/tag/v10.1.0) исправляет пограничные случаи запуска процессов, включая наследование `process.env` при `extendEnv: false`.
+- [Handlebars 4.7.10](https://github.com/handlebars-lang/handlebars.js/releases/tag/v4.7.10) закрывает две критические уязвимости JavaScript-инъекций: проекты на ранних 4.x стоит обновить.
+- У [he 2.0](https://github.com/mathiasbynens/he) — первый релиз за восемь лет: кодировщик и декодировщик HTML-сущностей перешёл на ESM и именованные экспорты.
+
+## 🤖 ИИ
+
+### WebMCP для Preact
+
+Сервер [preact-mcp](https://github.com/JoviDeCroock/preact-mcp) даёт ИИ-агентам доступ к документации и репозиториям Preact через более чем 13 ресурсов. Это пример того, как фреймворки начинают готовить не только документацию для людей, но и структурированный контекст для инструментов разработки.
+
+## ⚒️ Инструменты и библиотеки
+
+### Медиа, графика и интерфейсные заготовки
+
+- [Fantasy Map Generator](https://github.com/Azgaar/Fantasy-Map-Generator) — интерактивный редактор фэнтезийных карт с открытым исходным кодом для писателей, игровых мастеров и картографов.
+- [Dither It!](https://ditherit.com/) обрабатывает изображения локально в браузере и позволяет выбирать алгоритм и вид дизеринга.
+- В [Public Domain Image Archive](https://pdimagearchive.org/) собрано более 11 000 произведений, перешедших в общественное достояние: их можно искать, скачивать и использовать повторно.
+- [Remocn](https://github.com/Remocn/remocn) добавляет в реестр shadcn готовые компоненты для Remotion: переходы, затухания и другие заготовки для программного создания роликов.
+- [Video.js 10](https://videojs.org/blog/videojs-10) объединяет наработки нескольких HTML-видеоплееров в один проект. В нём есть React и веб-компоненты, а размер базовой сборки уменьшен примерно на 60%.
+- [Snippets](https://snippeteditor.com/) создаёт аккуратные скриншоты кода с настройкой фона, типографики, окна и композиции.
+- [Vizua](https://vizua.io/) предлагает локальные браузерные инструменты для сжатия, изменения размера, конвертации и редактирования изображений.
+- [Pascal Editor](https://github.com/pascalorg/editor) — локальный 3D-редактор на React Three Fiber и WebGPU, который запускается в браузере или CLI и умеет подключать агентов по MCP.
+
+### Git, терминал и рабочий процесс
+
+- [Saggar](https://saggar.marginalutility.dev/) — менеджер терминалов для macOS: агенты и shell-сессии можно держать рядом, читать их вывод и в любой момент перехватывать управление.
+- [GitSync Lite](https://apps.apple.com/in/app/gitsync-lite/id6759090001) следит за локальными Git-репозиториями из строки меню macOS и показывает незакоммиченные или неотправленные изменения.
+- Расширение GitHub CLI [gh-stack](https://github.com/github/gh-stack) помогает разбивать большую работу на цепочку небольших зависимых pull request, которые проще проверять по одному.
+- [vy](https://github.com/ynqa/vy) — терминальный просмотрщик JSON и YAML с поиском, обходом дерева, извлечением и преобразованием данных через jaq.
+- [Oak](https://github.com/oakdotspace/oak) — система контроля версий для агентов, состоящая из переиспользуемой библиотеки и CLI.
+
+### Остальное
+
+- ICANN начала [новый раунд заявок на домены верхнего уровня](https://newgtldprogram.icann.org/en/application-rounds/round2); список предложенных зон доступен на [gtlds.fyi](https://gtlds.fyi/) и включает даже `.node`.
+- Sindre Sorhus [отключил внешние pull request](https://bsky.app/profile/sindresorhus.com/post/3mwtgzhv7uk2t) в своих репозиториях из-за потока сгенерированных ИИ-вкладов, но продолжает их сопровождать.
+- Daniel Lemire сравнил [сборку бинарника Node.js разными линкерами](https://lemire.me/blog/2026/10/06/linking-node-js-with-mold/): `mold` заметно обошёл GNU `ld` и `gold`.
+- Опубликованы результаты [опроса разработчиков Stack Overflow 2026](https://survey.stackoverflow.co/2026), основанные на ответах 30 903 человек.
+- В коротком посте Paul Graham рассуждает, [что делать компании без домена `.com`](https://x.com/paulg/status/2106663759221543263) с её названием.
+- [Anthropeum](https://anthropeum.com/) — ежедневная браузерная игра: нужно определить место и эпоху десяти музейных артефактов.
+- Статья [о долгой и устойчивой карьере в веб-разработке](https://dbushell.com/2026/10/07/sustainable-web-career/) предлагает личный взгляд на навыки и технологии, в которые стоит вкладывать время в период перемен.
