@@ -1,0 +1,201 @@
+---
+title: "Еженедельный дайджест #68: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Oct 26 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #68! 🗞️", index: 0 },
+  { text: "Interop 2027: разработчики выбирают будущее веб-платформы. 🧪", index: 1 },
+  { text: "CSS учится случайности, а calc-size() подгоняет узоры. 🎨", index: 2 },
+  { text: "JavaScript умеет удивлять даже после форматирования. 📦", index: 3 },
+  { text: "TanStack Start 1.0 готов, Next.js закрывает уязвимости. ⚛️", index: 4 },
+  { text: "Astro 7.4 и Void обновляют инструменты сборки. 🛰️", index: 5 },
+  { text: "TypeScript 7.1 ускоряется, tsrs пробует Rust. 📘", index: 6 },
+  { text: "Node.js чинит безопасность, Deno и Bun пробуют новое. ⚙️", index: 7 },
+  { text: "Агенты получают DevTools, проверки и память проекта. 🤖", index: 8 },
+  { text: "Графики, SVG и полезные утилиты завершают выпуск. 🧰", index: 9 }
+]
+---
+
+## 🧪 HTML и веб-платформа
+
+### Разработчики выбирают приоритеты Interop 2027
+
+В проекте Interop производители браузеров совместно улучшают поддержку веб-возможностей. Сейчас можно [расставить приоритеты для предложений на 2027 год](https://interop-rank.fxdx.dev/): выбрать около десяти функций, которые хотелось бы видеть одинаково работающими в браузерах.
+
+[Джош Комо](https://www.joshwcomeau.com/css/interop-2027/) выделяет новые функции CSS и анимации при прокрутке. [Сара Суэйдан](https://www.sarasoueidan.com/blog/interop-2027-rankings/) ставит на первое место доступность и focusgroup, а [Деклан Чидлоу](https://vale.rocks/micros/20261011-0700) — улучшения SVG и порядка чтения. Свои варианты объяснили [Стюарт Робсон](https://www.alwaystwisted.com/articles/and-thats-my-rank-2027-edition), [Эрик Мейер](https://meyerweb.com/eric/thoughts/2026/10/14/my-interop-2027-rankings/), [Ана Родригес](https://ohhelloana.blog/my-interop-2027/) и [Тайлер Стика](https://tylersticka.com/journal/interop-2027-rank/).
+
+### Chrome 157 тестирует новые CSS-возможности, а unload уходит
+
+[Chrome 157 перешёл в бета-канал](https://chromestatus.com/release-notes/157). Среди готовящихся изменений — сокращённая запись для углов, строковое значение text-overflow и anchor-valid. Пока новые свойства не стали повсеместными, их стоит применять с проверкой поддержки.
+
+Браузер также [завершил отказ от события unload](https://developer.chrome.com/blog/unload-deprecated-in-chrome): обработчик больше не срабатывает по умолчанию при уходе со страницы. Для сохранения состояния и реакции на закрытие вкладки лучше изучить pagehide и visibilitychange — они лучше сочетаются с современным жизненным циклом страницы.
+
+### JPEG XL пришёл в основные браузеры: как он выглядит рядом с AVIF
+
+После включения JPEG XL по умолчанию в [Firefox 158](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/158) формат поддерживают основные браузеры. [Джейк Арчибальд сравнил JPEG XL и AVIF](https://jakearchibald.com/2026/jpeg-xl-vs-avif/) на веб-задачах: качество картинки важно оценивать вместе с размером файла и скоростью обработки. Отдельная [галерея крошечных изображений](https://jpegxl.info/art/big_gallery.html) показывает, сколько деталей можно сохранить даже при размере меньше 200 байт.
+
+- [Опрос State of HTML 2026](https://survey.devographics.com/en-US/survey/state-of-html/2026) собирает опыт разработчиков с HTML, веб-компонентами, браузерными API и постепенным улучшением сайтов.
+- [Safari блокирует инфраструктуру «разрешения личности»](https://webkit.org/blog/18438/blocking-identity-resolution-infrastructure/): трекеры могут связывать адрес электронной почты из формы с действиями человека на разных сайтах и устройствах.
+- [CrUX экспериментально учитывает мягкие переходы в SPA](https://web.dev/blog/crux-experimental-soft-navs). Когда приложение меняет экран без загрузки нового HTML-документа, Core Web Vitals раньше хуже отражали этот переход.
+- В материале о [будущем WCAG 3](https://tetralogical.com/blog/2026/10/15/wcag3/) объясняют, почему доступность нельзя сводить к перечню пройденных проверок и чем предлагаемый стандарт отличается от WCAG 2.
+- [pour](https://pour.dev/) проверяет доступность страницы прямо в браузере и показывает нарушения WCAG поверх интерфейса, разделяя их по серьёзности.
+- [Как веб-сжатие работает со склеенными данными](https://theconsensus.dev/p/2026/10/04/compression-and-concatenation-on-the-web.html?focus=1): практическое сравнение gzip, Brotli и zstd помогает понять, что происходит, когда сервер собирает ответ из нескольких частей.
+- [Нолан Лоусон размышляет о будущем веб-компонентов](https://nolanlawson.com/2026/10/19/do-web-components-have-a-future-if-nobody-is-writing-them/). Технология позволяет создавать собственные HTML-элементы, но её перспективы зависят и от того, насколько охотно разработчики ими пользуются.
+- [Эксперимент с декларативными частичными обновлениями HTML](https://daverupert.com/2026/10/html-recursion/) показывает, как повторяющуюся разметку можно обновлять без привычного клиентского рендеринга; техническая основа описана [в предложении Chromium](https://developer.chrome.com/docs/web-platform/declarative-partial-updates).
+
+## 🎨 CSS и дизайн
+
+### CSS-функция random() добавляет управляемую случайность
+
+В [стабильном Chrome 156](https://chromestatus.com/release-notes/156) появилась CSS-функция random(). В [разборе с живыми примерами](https://www.smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function/) показано, как слегка менять положение букв, карточек и других элементов прямо в стилях. Так можно сделать композицию менее механической без отдельного JavaScript-кода. Случайность здесь служит оформлению: текст и управление интерфейсом всё равно должны оставаться понятными.
+
+- [Ахмад Шадид использует calc-size() и round()](https://ishadeed.com/article/fit-height-background-pattern-calc-size/), чтобы высота элемента совпадала с целым числом повторений фонового узора. Это избавляет от обрезанного последнего ряда; поддержку браузеров пока нужно учитывать.
+- [Математическая шкала размеров заголовков](https://www.craigabbott.co.uk/blog/2026/using-maths-to-balance-your-heading-styles/) помогает сделать заголовки разных уровней согласованными, не подбирая каждый размер на глаз.
+- [Расширение DevTools для анимаций, запускаемых прокруткой](https://www.bram.us/2026/10/14/scroll-triggered-animations-debugger-devtools-extension/) рисует диапазоны активации и показывает текущее состояние анимации. Его можно [установить из Chrome Web Store](https://chromewebstore.google.com/detail/ganooodmdnigcfdddlijnhkipjklbgag) или изучить [исходный код](https://github.com/bramus/scroll-triggered-animations-debugger-extension/).
+- [Furifont](https://furifont.antfu.me/) автоматически добавляет чтение над японскими иероглифами средствами OpenType, без HTML-разметки ruby и JavaScript. Реализация доступна [в репозитории шрифта](https://github.com/antfu/furifont).
+
+## 📦 JavaScript
+
+### Форматирование меняет поведение программы: необычный пример с Tetris
+
+Исследователь собрал [JavaScript-код, который после форматирования превращается из Tetris в Snake](https://trustsig.eu/blog/javascript-divergence/). Причина — сочетание тонкостей синтаксиса и допущений инструментов, которые «очищают» код. Это наглядное напоминание: результат преобразования следует проверять тестами, особенно если исходник недоверенный или намеренно запутан.
+
+- В [интерактивной статье о Proxy](https://www.bryanpg.com/articles/pragma-twice/proxy.html) видно, как перехват чтения и записи свойств заставляет обычный на вид объект вести себя неожиданно. Это полезно для понимания реактивности и отладки библиотек.
+- [Приём с String.replace() как итератором](https://www.lazutkin.com/blog/2026-10-13-replace-as-an-iterator) позволяет вызывать функцию для каждого совпадения регулярного выражения; автор сравнивает его с более очевидными альтернативами.
+- В [истории перехода с Zod 3 на Zod 4.5](https://trigger.dev/blog/zod-4-got-rid-of-a-bunch-of-cpus-for-us) команда Trigger.dev рассказывает, почему валидация данных стала потреблять примерно на треть меньше CPU при ста миллионах разборов в день.
+- [Очередь промисов p-queue 10](https://github.com/sindresorhus/p-queue/releases/tag/v10.0.0) избавилась от зависимостей и получила EventTarget; [репозиторий проекта](https://github.com/sindresorhus/p-queue) объясняет, как ограничивать число одновременно выполняемых задач.
+
+## ⚛️ React и React Native
+
+### TanStack Start 1.0 стал стабильным
+
+[TanStack Start 1.0](https://tanstack.com/blog/tanstack-start-1-0) вышел из статуса кандидата в релизы. Это полноценный фреймворк для React на основе [TanStack Router](https://tanstack.com/): он соединяет маршрутизацию, серверные функции и вывод страниц, чтобы проект не собирал эти части по отдельности.
+
+При выборе инструмента полезно смотреть не только на скорость. Есть [сравнение одного приложения с Next.js 16.4](https://www.fabwaseem.com/blog/tanstack-start-vs-nextjs), официальные инструкции по [переходу с Next.js](https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js) и [с кандидата в релизы](https://tanstack.com/start/latest/docs/framework/react/migrate-from-release-candidate). Разработчики описали [переезд с Astro](https://sarthakmishra.com/blog/astro-to-tanstack-start) и [миграцию старого проекта](https://sesam.hu/post/down-the-rabbit-hole-tanstack-start-migration). В [обсуждении Райана Карниато](https://bsky.app/profile/ryansolid.bsky.social/post/3mxrordjou22l) и [ветке сообщества React](https://www.reddit.com/r/reactjs/comments/1x52hc9/tanstack_start_10_is_finally_stable/) можно посмотреть на практические вопросы релиза.
+
+### Next.js исправил две критические уязвимости
+
+[Обновление безопасности Next.js](https://nextjs.org/blog/nextjs-security-update-october-14-2026) закрывает две возможности удалённого выполнения кода: одну в use cache, связанную с [уязвимостью React Server Components](https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3), и другую в обработке SVG оптимизатором изображений. Для уязвимости use cache уже опубликован [разбор с демонстрацией атаки](https://hash-sec.com/blog/the-use-cache-rce-how-a-typed-array-bug-in-nextjs-became-remote-code-execution).
+
+Проектам на Next.js следует перейти на исправленные версии 16.4.1 или 15.5.28. Если React Server Components используются вне Next.js, нужно также проверить версии пакетов react-server-dom по рекомендациям React.
+
+### React Router передаёт переходы между страницами React
+
+[React Router 8.5](https://reactrouter.com/changelog#v850) пометил собственные API переходов между экранами как устаревающие в пользу компонента React ViewTransition. В [руководстве по миграции](https://reactrouter.com/how-to/view-transitions) показано, как обернуть Outlet и заменить старые настройки. Ещё появился экспериментальный [режим только для API](https://reactrouter.com/start/framework/rendering#api-only-mode-unstable), когда сервер обслуживает загрузчики и действия, а HTML остаётся статическим.
+
+- [Документация React DevTools для агентов](https://react.dev/reference/dev-tools/react-devtools-cdt-mcp) описывает, как инструменты разработки передают агенту сведения о компонентах и профилировании через Chrome DevTools MCP.
+- Команда Next.js рассказывает, как [уменьшила число экранов-заглушек в конструкторе v0](https://nextjs.org/blog/improving-navigation-experience-in-v0-with-nextjs-16-4): помогли предварительная загрузка по намерению пользователя, частичный prefetch и новый navigation() API. Сам [конструктор v0](https://v0.app/) служит примером интерфейса с частыми переходами.
+- [Более 10 тысяч сайтов ресторанов перенесли с Next.js на Astro](https://building.owner.com/project-speed), оставив React только в интерактивных фрагментах. Для страниц меню заявлено сокращение p75 LCP с 5,4 до 0,7 секунды.
+- [Раннее начало загрузки WebAssembly-модуля](https://bra31k.dev/en/blog/same-bytes-17-percent-faster) ускорило редактор Recraft на 17%. Пока компонент ожидал Suspense, загрузка 9 МБ откладывалась; перестановка работы убрала это ожидание.
+- [Expo SDK 58](https://expo.dev/changelog/sdk-58) использует [React Native 0.88](https://reactnative.dev/blog/2026/10/19/react-native-0.88). Отдельно [React Native for Web снова получил активных сопровождающих](https://github.com/necolas/react-native-web/discussions/2872) и переезжает в организацию React Foundation.
+- [Подготовка React Native-приложения к складному экрану](https://shift.infinite.red/apple-didnt-invent-the-foldable-it-might-make-you-support-one-7a00c142e77d) разбирает разные уровни совместимости: интерфейс должен нормально переживать изменение размеров и способа раскрытия устройства.
+- [Tamagui 3](https://tamagui.dev/blog/version-three) помогает делить компоненты и стили между React в браузере и React Native; в версии 3 появился экспериментальный нативный движок тем.
+- [Shopify Hydrogen 2026.10](https://shopify.dev/changelog/blog/hydrogen-2026-10-is-now-available) теперь можно подключать как библиотеку к существующим приложениям Next.js или React Router.
+- [Unistyles 3.6](https://github.com/jpudysz/react-native-unistyles/releases/tag/v3.6.0) пробует подключение к Metro без отдельного Babel-плагина, а [Motion 14.6](https://motion.dev/changelog) добавляет перемещение элементов списка с клавиатуры и stepFrames для тестов анимации.
+
+## 🛰️ Фреймворки и сборка
+
+### Astro 7.4 помогает искать долгие этапы сборки
+
+В [Astro 7.4](https://astro.build/blog/astro-740/) команда добавила флаг astro build --timings, который показывает, где именно сборка тратит время. Экспериментальный параллельный prerendering распределяет генерацию страниц между рабочими потоками. Это особенно интересно большим статическим сайтам, где ожидание сборки уже заметно разработчикам.
+
+### Void открыл инструменты сборки и развёртывания
+
+Команда Vite [опубликовала исходный код Void](https://blog.cloudflare.com/deploy-with-void/) — набора для полноценных приложений и их развёртывания. Если проекту нужен серверный код рядом с интерфейсом, такие решения сокращают количество разрозненных настроек. Пока инструмент развивается, стоит проверять, насколько он подходит конкретному способу размещения приложения.
+
+- [Foldkit](https://foldkit.dev/) — фронтенд-фреймворк на TypeScript и Effect, который делает состояние и побочные действия явными; это помогает понимать, откуда появились данные и что может изменить интерфейс.
+- [Mastro](https://mastrojs.github.io/) — небольшой фреймворк и генератор статических сайтов, рассчитанный на серверный HTML без сложной инфраструктуры.
+- [Marionette](https://marionettejs.com/) предлагает заранее согласованную структуру приложения и контракты для разработки интерфейсов с помощью coding agents.
+- [Проект Fixi](https://fixiproject.org/) объединяет маленькие библиотеки для HTML с дополнительным поведением, потоковой выдачи, обновления DOM и обёрток над fetch().
+- [Spiceflow](https://getspiceflow.com/) — типизированный API-фреймворк с возможностями React Server Components, совместимый с Node.js, Bun и Cloudflare Workers.
+- [Elysia 2.0 RC](https://next.elysiajs.com/blog/elysia-20-rc/) готовит следующее крупное обновление серверного фреймворка; [Vuetify 4.3](https://github.com/vuetifyjs/vuetify/releases/tag/v4.3.0) обновляет библиотеку компонентов Vue.
+- [tsup 9.0](https://github.com/egoist/tsup/releases/tag/v9.0.0) и [ESLint 10.13](https://eslint.org/blog/2026/10/eslint-v10.13.0-released/) обновили инструменты сборки и проверки JavaScript-кода.
+- В [истории миграции 70 тысяч тестов с Jest на Vitest](https://nothing-else.blog/blog/we-migrated-70000-tests-from-jest-to-vitest-yes-in-2-months) команда Miro делится опытом работы с монорепозиторием из 800 пакетов и использованием агентов для повторяющихся изменений.
+- [Knip помог Sentry удалить 28 тысяч строк неиспользуемого кода](https://tkdodo.eu/blog/dead-code-shouldnt-exist). Сам [Knip](https://knip.dev/) находит мёртвые файлы, экспорты и зависимости, которые легко пропустить при ручной уборке.
+
+## 📘 TypeScript
+
+### tsrs переносит компилятор TypeScript на Rust
+
+Cloudflare и VoidZero [представили экспериментальный tsrs](https://blog.cloudflare.com/typescript-rust-port/) — реализацию компилятора TypeScript на Rust, которую развивают вместе с командой TypeScript и включают в экосистему [Oxc](https://oxc.rs/). Заявленные измерения показывают ускорение до восьми раз относительно компилятора TypeScript 7 на Go, но результат зависит от проекта, а инструмент пока экспериментальный. Работу можно запускать и через WebAssembly.
+
+[История создания первой версии](https://building.owner.com/tsrs) описывает участие coding agents и конкретный эффект в одном проекте: проверка типов сократилась с 80 до 7 секунд. Сопутствующее [обсуждение с участием команды TypeScript](https://news.ycombinator.com/item?id=50167925) помогает понять, какие вопросы ещё открыты. Пока tsrs стоит пробовать параллельно с привычной проверкой, чтобы заметить различия в диагностике.
+
+### TypeScript 7.1 вышел в бета-версии
+
+[TypeScript 7.1 Beta](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/) добавляет программный API и продолжает работу над скоростью новой реализации. В опубликованном примере проверка документации MUI стала в 1,9 раза быстрее и потребовала примерно вдвое меньше памяти. Тем, кто создаёт плагины или инструменты поверх TypeScript, важен именно API; остальным пока разумно проверить бета-версию на своём проекте и сравнить результаты.
+
+## ⚙️ Node.js
+
+### Для Node.js вышли исправления безопасности
+
+[Объявленные на 21 октября обновления Node.js уже доступны](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases): 26.12.1, 24.22.1 и 22.23.4. Они закрывают несколько уязвимостей, в том числе ошибки проверки DNS-имён и TLS-сертификатов. Если сервер или инструменты разработки используют поддерживаемую ветку Node.js, стоит обновиться до исправленной версии своей ветки.
+
+- В [Node.js 26.12.0](https://nodejs.org/en/blog/release/v26.12.0) сделали стабильным конфигурационный файл и разрешили синхронно загружать большинство ES-модулей; [Node.js 24.22.0 LTS](https://nodejs.org/en/blog/release/v24.22.0) получил util.throttle и util.debounce. Для развёртывания используйте более новые версии с исправлениями безопасности из новости выше.
+- [Skia Canvas 4.0](https://skia-canvas.org/) предоставляет Canvas API для Node.js на движке Skia: графику можно создавать на сервере без браузера.
+
+## 🚀 Другие рантаймы
+
+- В статье о [конкуренции Deno с Node.js](https://www.vlt.io/blog/competition-keeps-javascript-moving) объясняют, как идеи альтернативных рантаймов влияли на Node.js и npm. Поводом стало [присоединение Deno к Cloudflare](https://deno.com/blog/cloudflare).
+- Для [Bun обсуждают компиляцию JavaScript заранее](https://x.com/jarredsumner/status/2104739495895781679): [черновой pull request](https://github.com/oven-sh/bun/pull/45631) показывает путь к исполняемым файлам без JIT и байткода. Это пока работа в процессе.
+- [tinyjs](https://tinyjs.app/) позволяет собирать нативные приложения с JavaScript и системным WebView без поставки Chromium.
+- [Dialogue Ts](https://github.com/Hussseinkizz/dialogue) помогает строить обмен событиями в реальном времени на основе Socket.IO, Hono и Bun.
+
+## 🤖 ИИ и разработка
+
+### Как проверять код, написанный агентами
+
+В статье [«Проверяйте шаблон, тестируйте решение»](https://www.robinwieruch.de/testing-ai-generated-code/) предлагается разделять две задачи: линтер ловит повторяющиеся структурные ошибки, а тесты проверяют важные пользовательские сценарии. Это практичнее, чем автоматически создавать тест рядом с каждым компонентом, если он лишь повторяет код компонента.
+
+Для более сложных процессов [zeroshot](https://github.com/the-open-engine/zeroshot) позволяет настроить циклы проверки, исправления и контрольные условия перед передачей результата. Такой процесс полезен, когда агент меняет много файлов и одной успешной сборки недостаточно.
+
+- [Lighthouse для Claude Code](https://lighthouse-md.com/) превращает результаты PageSpeed Insights и Lighthouse в план исправлений в CLAUDE.md; рекомендации всё равно нужно сверять с реальным поведением сайта.
+- [Codenotch](https://github.com/vinzdg/codenotch) показывает на macOS остаток лимита coding assistants и состояние их работы в компактном индикаторе.
+- [UI Skills](https://www.ui-skills.com/) собирает инструкции и инструменты, которые помогают агентам создавать согласованные интерфейсы.
+- [peek-cli](https://github.com/puffinsoft/peek-cli) даёт агенту возможность снять скриншот открытой вкладки и проверить результат визуально.
+- [Yedric AI](https://www.yedric.ai/) предлагает встраивать в приложения помощника, который выполняет пользовательские действия по текстовому запросу.
+- [TokenBlast](https://www.tokenblast.cc/) помогает настраивать параметры Claude Code через готовые наборы и ползунки.
+- [OpenWiki](https://github.com/langchain-ai/openwiki) создаёт и поддерживает связанную документацию по кодовой базе; [Claude-Mem](https://github.com/thedotmack/claude-mem) сохраняет проектный контекст между сеансами работы агента.
+- [jax-js](https://jax-js.com/) запускает вычисления для машинного обучения в браузере через WebGPU и WebAssembly: это способ выполнять модели и обработку изображений без обязательного сервера.
+
+## 🧰 Инструменты и библиотеки
+
+### Chartist 2.0 возвращает лёгкие графики на SVG
+
+[Chartist 2.0](https://chartist.dev/) обновил библиотеку графиков, которую можно оформлять обычным CSS. Появились составной API и серверный рендеринг в SVG, поэтому график можно подготовить ещё до запуска JavaScript в браузере. Для проектов на прежней версии есть [руководство по переходу с 1.x](https://chartist.dev/docs/coming-from-1x/).
+
+### Pele выводит Mermaid-диаграммы в настраиваемый SVG
+
+[Pele](https://pele.run/) берёт знакомый синтаксис [Mermaid](https://mermaid.js.org) и рисует адаптивный SVG, цвета которого можно менять через CSS-переменные. Автор делает ставку на небольшой размер и отсутствие зависимостей; оценить результат можно [в интерактивной песочнице](https://pele.run/playground).
+
+- [Maplair](https://maplair.org/2026/10/19/maplair-4.0.0.html) — ответвление Leaflet с вращением карты, поиском, тепловыми картами и другими возможностями, которые сборщик может исключать, если они не используются. У исходного проекта тоже есть [план выпуска Leaflet 2.0](https://github.com/Leaflet/Leaflet/issues/10435).
+- [Веб-компонент rich-input](https://rich-input.netlify.app/) собирает поле поиска, где обычный текст сочетается с подсвеченными фильтрами вида key:value и подсказками при вводе.
+- [TanStack Hotkeys](https://tanstack.com/hotkeys/latest) обрабатывает сочетания клавиш и их различия между платформами. Новые [области действия сочетаний](https://tanstack.com/hotkeys/latest/docs/framework/react/guides/hotkeys-provider-and-scopes) помогают, например, закрывать клавишей Escape активное окно, не затрагивая экран под ним.
+- [Pretext 1.0](https://github.com/chenglou/pretext/releases/tag/v1.0.0) рассчитывает разбиение многострочного текста без доступа к DOM, используя алгоритмы, близкие к браузерным.
+- [Chokidar 6.0](https://github.com/paulmillr/chokidar/releases/tag/6.0.0) сверяет события наблюдения за файлами с состоянием диска, чтобы после серии быстрых правок не сообщать о лишних изменениях; общая документация есть [в репозитории](https://github.com/paulmillr/chokidar).
+- [Happy DOM 21.0](https://github.com/capricorn86/happy-dom/releases/tag/v21.0.0) по умолчанию блокирует загрузку таблиц стилей и iframe; [библиотека](https://github.com/capricorn86/happy-dom) имитирует браузерную среду для тестов без открытия настоящего браузера.
+- [env.style](https://www.env.style/) меняет цвет или значок favicon для разных окружений Next.js и Vite, чтобы вкладки разработки и продакшена было легче различать.
+- [Pixel](https://pixelgui.com/) рисует React-интерфейсы в терминале с поддержкой графического протокола Kitty: там возможны шрифты, градиенты и даже встроенные веб-представления.
+- [Particle Charts](https://particlecharts.com/) строит адаптивные графики из обычного JSON в виде движущихся частиц.
+- [SubPulse](https://github.com/hafizovic/SubPulse) показывает активность каналов, на которые подписан пользователь YouTube: частоту публикаций и время с последнего обновления. Это веб-приложение со статистикой, а не ссылка на видеоролик.
+
+## 🖼️ Графика и медиаинструменты
+
+- [3dsvg](https://3dsvg.design/) превращает SVG, текст или рисунок в трёхмерную модель, которую можно выгрузить в GLB или STL.
+- [Reels Editor](https://www.reels-editor.com/) редактирует фото и видео прямо на устройстве: обрезает, меняет размер, добавляет фильтры и удаляет фон без обязательной загрузки файла на сервер.
+- [Textmode Overlay](https://extension.textmode.art/) превращает содержимое видео и canvas в живую текстовую графику с настройками вида.
+- [Reicon](https://reicon.dev/) собрал тысячи SVG-иконок в двух стилях и готовые варианты подключения для разных UI-фреймворков.
+- [EXIF Data Viewer](https://metacleanai.com/exif-viewer/) показывает метаданные фото и видео локально в браузере — полезно проверить дату, камеру, редактор и другие поля перед публикацией.
+- [fontglyph](https://fontglyph.com/) создаёт и редактирует наборы иконок, а затем экспортирует их в шрифт WOFF2.
+- [Imagetools](https://github.com/JonasKruckenberg/imagetools) обрабатывает изображения во время сборки через директивы импорта и sharp, чтобы не хранить вручную множество размеров одного файла.
+- [Paper.js 0.13](https://github.com/paperjs/paper.js/releases/tag/v0.13.0) и [0.14](https://github.com/paperjs/paper.js/releases/tag/v0.14.0) стали заметными обновлениями инструмента для векторной графики на canvas; возможности показаны на [сайте проекта](https://paperjs.org/) и [в примерах](https://paperjs.org/examples/).
+- [LittleJS 1.27](https://frankforce.com/littlejs-is-2d-and-3d-now/) добавил трёхмерные возможности к небольшому игровому движку без зависимостей.
+- [Morphicons 2.0](https://github.com/guillermolg00/morphicons/releases/tag/v2.0.0) научился плавно превращать друг в друга не только контурные, но и залитые SVG-иконки; [демо анимаций](https://www.morphicons.com/) помогает быстро оценить эффект.
+- [Strudel Flow 2](https://xyflow.com/strudel-flow) позволяет соединять музыкальные инструменты и эффекты на схеме, построенной с помощью [React Flow](https://reactflow.dev), и получать код для [Strudel](https://strudel.cc). [Исходники](https://github.com/xyflow/strudel-flow) и [пояснение команды](https://xyflow.com/blog/strudel-flow-version-2) показывают, как добавлять собственные узлы.
+
+## 🌍 Веб и сообщество
+
+- [PHP выпустил срочные исправления для веток 8.5, 8.4, 8.3 и 8.2](https://www.php.net/archive/2026.php#2026-10-21-5): две критические уязвимости при определённых условиях позволяют выполнять код на сервере без входа в систему. [PHP Foundation объясняет выпуск](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) и то, как проект усиливает работу над безопасностью. Если фронтенд размещён рядом с PHP-сервером, обновление инфраструктуры касается и его.
+- Реакцию сообщества на уязвимости PHP можно увидеть и в [ироничном обсуждении](https://x.com/Denche2005/status/2112997524319752587); само обновление, конечно, лучше не откладывать.
+- [/dev/null](https://dev-null.sh/) — небольшая социальная сеть для разработчиков с привязкой к GitHub; пример [профиля участника](https://dev-null.sh/@peterc) показывает, как устроены страницы сообщества.
+- [Headlines](https://www.headlines.games/) предлагает угадать год события по заголовкам новостей — короткая игра для перерыва между задачами.
