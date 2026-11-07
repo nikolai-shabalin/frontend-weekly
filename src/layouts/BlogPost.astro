@@ -79,7 +79,7 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
       background: repeating-linear-gradient(
         90deg,
         rgba(var(--line), 0.7) 0 18px,
-        rgba(243, 191, 31, 0.95) 18px 30px
+        rgba(var(--accent-yellow-bg-rgb), 0.95) 18px 30px
       );
       border-radius: 999px;
     }
@@ -149,7 +149,7 @@ const {title, description, pubDate, slug = '', mascotMessages = []} = Astro.prop
       line-height: 1.6;
       font-style: italic;
       color: rgb(var(--ink-soft));
-      background: rgba(243, 191, 31, 0.22);
+      background: rgba(var(--accent-yellow-bg-rgb), 0.22);
       padding: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-xl);
       border-radius: 0 var(--radius-md) var(--radius-md) 0;
       border-left: 8px solid var(--accent-red);
