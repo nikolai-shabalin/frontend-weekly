@@ -170,7 +170,7 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
         font-size: var(--text-xs);
         font-weight: 700;
         color: var(--accent-dark);
-        background: rgba(243, 191, 31, 0.45);
+        background: rgba(var(--accent-yellow-bg-rgb), 0.45);
         padding: 0.24rem 0.62rem;
         border-radius: 999px 999px 999px 0;
         border: 1px solid rgba(var(--line), 0.45);
@@ -199,14 +199,14 @@ const groupedPosts = otherPosts.reduce((groups, post) => {
         .featured-post {
           background:
             radial-gradient(circle at 90% 12%, rgba(var(--accent-yellow-bg-rgb), 0.16), transparent 52%),
-            radial-gradient(circle at 4% 94%, rgba(127, 216, 169, 0.12), transparent 58%),
+            radial-gradient(circle at 4% 94%, rgba(125, 217, 187, 0.12), transparent 58%),
             var(--paper-color);
           border-color: rgba(var(--line), 0.58);
         }
 
         .featured-read-more {
           border-color: rgba(var(--accent-rgb), 0.34);
-          box-shadow: 0 10px 20px rgba(255, 154, 106, 0.12);
+          box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.12);
         }
 
         .grid-post {

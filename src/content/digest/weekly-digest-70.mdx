@@ -1,0 +1,255 @@
+---
+title: "Еженедельный дайджест #70: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Nov 09 2026"
+mascotMessages: [
+  { text: "Фронти на связи! Открываем выпуск №70 релизами Stylelint и Stylistic. 🗞️", index: 0 },
+  { text: "Safari пробует тёмную тему для светлых сайтов, а Chrome 157 рисует HTML на холсте. 🧪", index: 1 },
+  { text: "CSS укладывает карточки в плитку, а у Geist появился шрифт с засечками. 🎨", index: 2 },
+  { text: "Скрипт на Polymarket поменялся по прежнему адресу. Разбираемся, как проверять содержимое файла. 🔒", index: 3 },
+  { text: "djs умеет поставить скрипт на паузу даже во время await. 📦", index: 4 },
+  { text: "Discord пробует клиент на Rust, а Redux Toolkit готовится к версии 3.0. ⚛️", index: 5 },
+  { text: "TypeScript проверяет сообщения между окнами, а Effect читает CSV по частям. 📘", index: 6 },
+  { text: "У Node.js 27 вышла первая альфа с V8 15.6 и новым лимитом памяти. ⚙️", index: 7 },
+  { text: "Считаем расходы на код с ИИ и смотрим, как агенты ищут ошибки в V8. 🤖", index: 8 },
+  { text: "В Three.js растекается жидкость, Parcel перешёл на Rust, а Vitest выбирает тесты по правкам. ⚒️", index: 9 }
+]
+---
+
+## 🎨 Проверка CSS
+
+### Вышли Stylelint 18 и Stylistic 6
+
+[Stylelint 18.0.0](https://github.com/stylelint/stylelint/releases/tag/18.0.0) точнее проверяет значения CSS, в том числе записанные через `var()`. Перед обновлением стоит свериться с [руководством по переходу на Stylelint 18](https://stylelint.io/migration-guide/to-18/): изменились требования к Node.js и некоторые параметры командной строки.
+
+В [`@stylistic/stylelint-plugin` 6.0.0](https://github.com/stylelint-stylistic/stylelint-stylistic/releases/tag/v6.0.0) обновили правила оформления стилей. Например, правило, которое ограничивает число объявлений в одной строке, переехало из Stylelint в плагин. Отдельный пакет [`@stylistic/stylelint-config` 6.0.0](https://github.com/stylelint-stylistic/stylelint-config/releases/tag/v6.0.0) тоже требует Stylelint 18 и включает настройки для SCSS и Less.
+
+Плагин нужно обновлять вместе со Stylelint:
+
+```bash
+pnpm up @stylistic/stylelint-plugin@latest stylelint@latest
+```
+
+После обновления проверьте свою конфигурацию по [руководству по переходу на Stylistic 6](https://stylelint-stylistic.github.io/migration-guide/to-6.0.0). Например, для SCSS и Less в правилах теперь используются отдельные префиксы. Если удобнее начать с готового набора правил оформления, добавьте [встроенный пресет `@stylistic/stylelint-plugin/recommended`](https://stylelint-stylistic.github.io/user-guide/configs) в поле `extends`.
+
+Спасибо firefoxic за новость о релизах Stylelint и Stylistic!
+
+## 🧪 HTML и веб-платформа
+
+### Safari пробует автоматически затемнять сайты
+
+В бета-версии Safari 27.3 можно включить [адаптивную тёмную тему](https://webkit.org/blog/18541/introducing-adaptive-dark-mode/). Когда у сайта есть только светлое оформление, браузер сам подбирает тёмные цвета. По данным WebKit, около 40% загрузок страниц приходится на пользователей с тёмным режимом, а собственную тёмную тему страницы используют примерно в 10% загрузок.
+
+
+- В [бета-версии Chrome 158](https://chromestatus.com/release-notes/158) тестируют элемент `<install>` для установки веб-приложений и CSS-состояния `:playing` и `:paused` для медиа. Отдельный сайт отслеживает [вывод XSLT из браузеров](https://xslt.rip/). Эту технологию используют, чтобы преобразовывать XML, например в HTML.
+- Рэйчел Эндрю собрала [октябрьские изменения веб-платформы](https://web.dev/blog/web-platform-10-2026?hl=en). Среди них поддержка анимаций, привязанных к прокрутке, во всех основных браузерных движках.
+- Мисти Де Мео объясняет, [как сохранить копию сайта](https://blog.mistys-internet.website/post/2026/10/29/if-you-love-a-website-back-it-up/), если он может исчезнуть. В статье есть способы сделать снимок страницы прямо в браузере, автоматически обойти ссылки и встроить получившийся архив.
+
+## 🎨 CSS и дизайн
+
+### Плитка с карточками разной высоты средствами CSS
+
+В [руководстве по CSS Grid Lanes](https://piccalil.li/blog/native-masonry-layouts-with-css-grid-lanes/) Салех Мубашар показывает, как собрать раскладку в духе Pinterest. Карточки занимают свободное место в колонках, поэтому у каждой может быть своя высота. В статье есть примеры горизонтальной раскладки, вложенных сеток и настройки того, насколько плотно располагаются элементы.
+
+Отдельный пример посвящён порядку карточек. Внешний вид сетки может отличаться от порядка элементов в HTML, по которому пользователь перемещается клавишей Tab.
+
+### Как новые возможности CSS влияют на размеры элементов
+
+Габриэль Шойомбо показывает [четыре ситуации, в которых современный CSS усложняет раскладку](https://www.smashingmagazine.com/2026/11/modern-css-might-make-your-front-end-more-complex/). Например, запросы к контейнеру помогают менять вид карточки по ширине родителя. Однако настройка контейнера меняет и правила расчёта его размера. В одном из примеров из-за этого элемент внутри flex-контейнера сжимается до нулевой ширины.
+
+Автор также разбирает, как условия в `:has()` связывают стили с разметкой. Если компонент переиспользуется на нескольких страницах, стоит посмотреть, как его поведение меняется при другой вложенности и ширине.
+
+
+- Кори Лависка разобрал [решение CSS Working Group о курсоре для элементов форм](https://www.abeautifulsite.net/posts/revisiting-buttons-and-cursors/). При включённом `appearance: base` для кнопок и других элементов формы, по которым можно щёлкнуть, предусмотрен `cursor: pointer`. В статье есть аргументы участников и данные, на которые они опирались.
+- Рэйчел Эндрю объясняет, [зачем CSS добавляет универсальные `flow-start` и `flow-end`](https://rachelandrew.co.uk/archives/2026/11/02/making-features-generic-in-css/). Эти значения описывают начало и конец потока для выравнивания элементов.
+- Деклан Чидлоу вспоминает, [как `display: table` помогал строить страницы до Flexbox](https://vale.rocks/posts/table-display-values), и на примерах показывает, чем отличаются значения для таблицы, строки и ячейки.
+- Иван Кристьянто выяснил, [почему разбиение веб-шрифта замедлило отрисовку текста](https://www.ivankristianto.com/split-webfont-text-layout/). Буквы `i` и `j` оказались в другом файле, поэтому браузеру пришлось дополнительно обрабатывать слова с этими буквами. В статье есть скрипт для проверки собственных стилей шрифтов.
+- Крис Койер собрал [колонки, которые движутся с разной скоростью при прокрутке](https://blog.master.dev/multi-column-different-speed-scrolling/). Их движение зависит от позиции на странице через CSS-анимации.
+- Дэниел Шварц собрал [примеры запросов с `@custom-media`](https://blog.master.dev/useful-custom-media-presets/). Одно условие для ширины экрана или настроек пользователя можно назвать и переиспользовать в разных правилах.
+- [sidebearing-trim](https://sidebearing-trim.js.org/) помогает выровнять видимый край букв. В [объяснении принципа](https://sidebearing-trim.js.org/preface) видно, как пустое пространство внутри шрифта влияет на выравнивание. Код доступен в [репозитории проекта](https://github.com/peksi/sidebearing-trim).
+- [ColorSym](https://colorsym.com/) предлагает дополнять цвета символами. Например, знак оранжевого сочетает элементы знаков красного и жёлтого. Символы доступны в SVG и в виде шрифта.
+- В [Astrotypes](https://astrotypes.com/) можно сравнить пары шрифтов на живых примерах и скопировать команду установки выбранной пары в проект на Astro.
+
+## 🔒 Безопасность веба
+
+### Как сторонний скрипт превратился в атаку на Polymarket
+
+Скотт Хелм разобрал [подмену скрипта мониторинга Polymarket](https://blog.report-uri.com/polymarkets-csp-allowed-every-part-of-the-2-6-million-crypto-theft/). Как и в [случае с забытыми тегами `<script>`](https://blog.report-uri.com/deadtag-how-forgotten-website-tags-became-a-delivery-network-for-iphone-spyware/), сайт продолжал доверять внешнему ресурсу, когда тот уже стал опасным. Браузер загрузил код с уже разрешённого адреса, но файл по этому адресу изменился. Политика безопасности CSP пропустила запрос, потому что источник остался прежним.
+
+Для статичных файлов можно задать [контрольную сумму через Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Subresource_Integrity). Тогда браузер проверяет, что получил именно ту версию, которую указал сайт. Заголовок [`Integrity-Policy-Report-Only`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Integrity-Policy-Report-Only) помогает сначала собрать отчёты о ресурсах без такой проверки.
+
+- [Request Map](https://requestmap.webperf.tools/) помогает увидеть, какие адреса запрашивает страница, а [Third Party Web](https://www.thirdpartyweb.today/) показывает типичную нагрузку от сторонних сервисов. Чтобы уменьшить влияние на интерфейс, можно [изменить порядок загрузки стороннего JavaScript](https://web.dev/articles/optimizing-content-efficiency-loading-third-party-javascript) или вынести подходящие скрипты в отдельный поток с [Partytown](https://partytown.qwik.dev/).
+- В исследовании [скриптов для распознавания браузеров по Canvas](https://nullpt.rs/fingerprinting-bioweapons) нашли код со скрытыми символами Unicode. В них спрятали инструкции, рассчитанные на то, чтобы ИИ отказывался разбирать скрипт. [Fingerprint Garden](https://fingerprint.garden/) показывает найденные примеры, а [BrowserLeaks](https://browserleaks.com/canvas) демонстрирует, какие особенности отрисовки позволяют различать браузеры.
+
+## 📦 JavaScript, среды выполнения и WebAssembly
+
+### Экспериментальный движок djs сохраняет состояние работающего скрипта
+
+Армин Ронахер, создатель [Flask](https://flask.palletsprojects.com/en/stable/), представил [движок JavaScript djs](https://github.com/earendil-works/djs), который работает в WebAssembly. Он умеет сохранить состояние виртуальной машины и продолжить выполнение в другой среде. Остановиться можно даже там, где код ждёт результат через `await`. Такой подход позволяет перенести незавершённую задачу вместе с её состоянием.
+
+- Бартош показал [как собрать строки и запустить JavaScript без кавычек и круглых скобок](https://blog.ikaes.de/generating-strings-without-parentheses-in-javascript/). Это головоломка про синтаксис и неявное преобразование значений.
+- В Cloudflare Workers можно [включить встроенный Temporal](https://developers.cloudflare.com/workers/configuration/compatibility-flags/#enable-the-temporal-api) флагом совместимости. API помогает работать с датами, временем и часовыми поясами. Для дат совместимости с 1 декабря его планируют включить по умолчанию.
+- Команда Microsoft объясняет, [как уменьшила размер `clarity.js` после сжатия](https://clarity.microsoft.com/blog/how-we-made-clarity-js-smaller/). Удаление импортов вида `import *` помогло, а вынос повторяющегося кода в функции иногда давал более крупный файл. Статья показывает, почему размер исходника и размер загрузки стоит измерять отдельно.
+- Сергей Целовальников сравнил, [какие символы считаются пробельными в Java, Python и JavaScript](https://serce.me/posts/2026-10-30-how-hard-is-it-to-check-for-whitespace). Для обычного пробела языки согласны, но некоторые символы Unicode дают разные результаты.
+- Кейт Холтерхофф объясняет, [зачем вебу несколько сред выполнения JavaScript](https://redmonk.com/kholterhoff/2026/10/27/js-runtime-monoculture/). Выбор между движками и средами влияет на то, какие возможности получает разработчик и насколько легко перенести приложение.
+- Николя Шарпантье разобрал [пробел в предупреждениях Dependabot для Bun](https://charpeni.com/blog/the-bun-dependabot-gap-dependabot-alerts-dont-see-bun-lock). Если GitHub не читает `bun.lock`, часть зависимостей, которые подтянулись автоматически, остаётся вне поля зрения.
+- [Handwired](https://chenglou.me/handwired/) превращает JavaScript в сеть математических операций, которую можно запустить на GPU. Автор [Pretext](https://chenglou.me/pretext/) показал на этом подходе поиск по 100 тысячам JSON-документов.
+- [CheerpJ 5.0](https://labs.leaningtech.com/blog/cheerpj-5.0) позволяет запускать Java 21 и 25 в браузере с помощью WebAssembly. В комплект входит JDK, поэтому код можно даже скомпилировать во вкладке.
+- Джеймс Лонг [возвращает к жизни Prepack](https://jamesbox.exe.xyz/artifacts/prepack-revived/), инструмент, который выполняет часть JavaScript заранее. В [демо с React](https://jamesbox.exe.xyz/northstar/prepack/) можно сравнить время серверной отрисовки обычным React, результатом Prepack и сочетанием обоих подходов.
+
+## ⚛️ React и фреймворки
+
+### Redux Toolkit готовится к версии 3.0
+
+Марк Эриксон опубликовал [план развития Redux Toolkit](https://github.com/reduxjs/redux-toolkit/discussions/5536). В 3.0 команда собирается оставить только стандартные модули JavaScript (ESM). Проектам, которые загружают библиотеку через `require()`, понадобится проверить способ подключения.
+
+### В Next.js экспериментируют с обработчиками маршрутов на Go
+
+В [прототипе Next.js](https://github.com/vercel/next.js/pull/100130) серверный маршрут можно описать в файле `route.go`. Из него экспортируют обработчики HTTP-методов, например `GET`, а Turbopack компилирует код для отдельного процесса на Go. Пока это эксперимент для App Router.
+
+- В [ноябрьском обновлении безопасности Next.js](https://nextjs.org/blog/november-2026-security-release) закрыли семь уязвимостей, в том числе в Cache Components. Исправления выпустили в ветках 16.4.5 и 15.5.29.
+- Vercel [переносит Data Cache приложений Next.js в Runtime Cache](https://vercel.com/blog/simplifying-runtime-caching-on-vercel). Меняются лимиты хранилища и тарификация чтения и записи. В [графике перехода](https://vercel.com/changelog/data-cache-is-moving-to-runtime-cache) даты и условия разбиты по тарифам.
+- Александр Тротель в [разборе внутреннего устройства React](https://www.alexandretrotel.org/articles/understanding-react-internals) начинает с сервера и доходит до дерева Fiber, приоритетов обновлений и этапа, на котором React применяет изменения к странице.
+- Харрисон Милбрадт рассказывает, [почему его команда перешла с Next.js на TanStack Start](https://harrisonmilbradt.com/writing/nextjs-to-tanstack-start). Последним аргументом стали утечки памяти, которые команда обнаружила в двух версиях Next.js 16.3 на работающем сервисе.
+- Корбин Кратчли показывает, [как сохранить правки пользователя при повторной загрузке данных](https://playfulprogramming.com/posts/writable-derived-state). Если хранить отдельно черновик и ответ сервера, значение для формы можно вычислить как `clientData ?? serverData` без синхронизации через `useEffect`.
+- [Skullet](https://skullet.lochie.me) строит заглушку по размерам настоящего компонента, чтобы интерфейс меньше прыгал при появлении данных. В [документации](https://skullet.lochie.me/docs) есть примеры подключения, а в [разборе работы](https://skullet.lochie.me/docs#how) показано, как инструмент измеряет скрытый компонент.
+- В [react-resizable-panels 4.16](https://github.com/bvaughn/react-resizable-panels/releases/tag/4.16.0) появился `Workspace` с перетаскиваемыми вкладками. Вкладка сохраняет состояние при переносе в другую панель. Поведение можно проверить в [демо рабочего пространства](https://react-resizable-panels.vercel.app/examples/workspace).
+
+### Компоненты и инструменты для React
+
+- [Loading UI](https://github.com/turbostarter/loading-ui) предлагает спиннеры и другие индикаторы загрузки для React. Их можно добавить через командную утилиту shadcn.
+- [SVAR React File Manager](https://github.com/svar-widgets/react-filemanager) добавляет в приложение файловый менеджер для просмотра, сортировки и предпросмотра файлов. Через API можно подключить свои операции с файлами.
+- В [FormSCN](https://www.formscn.space/) форму на shadcn/ui можно собрать перетаскиванием полей, посмотреть результат и выгрузить код на TypeScript.
+- [React Trace](https://react-trace.js.org/) помогает найти в исходниках компонент, который сейчас отрисован в браузере.
+- [Evil Buttons](https://www.evilbuttons.com/) собирает необычные анимированные кнопки, которые можно установить через реестр shadcn/ui.
+- [Dotzee](https://github.com/Ayatpunch/dotzee) переносит в React подход к хранению состояния, знакомый по Pinia. Компоненты могут подписываться только на нужные им данные.
+
+### Обновления фреймворков и библиотек
+
+- В [Preact 11.1](https://github.com/preactjs/preact/releases/tag/11.1.0) появилась совместимость с кодом, который преобразовал React Compiler. [Preact 11.2](https://github.com/preactjs/preact/releases/tag/11.2.0) добавил поддержку отдельных реестров пользовательских элементов внутри Shadow DOM. Это позволяет разным частям страницы независимо использовать одинаковые имена элементов.
+- Вышли [XState 6.0 Beta](https://github.com/statelyai/xstate/releases/tag/xstate%406.0.0-beta.0) для описания поведения через состояния и переходы и [бета `@xstate/react` 7](https://github.com/statelyai/xstate/releases/tag/%40xstate/react%407.0.0-beta.0) для подключения к React. Команда больше не планирует менять публичные API до стабильного релиза.
+- [TanStack Redact 0.3](https://github.com/TanStack/redact/releases/tag/%40tanstack%2Fredact%400.3.0), компактная альтернатива React для синхронной отрисовки, добавила плагины Webpack и Rspack для одностраничных приложений.
+- В [кандидате в релизы React Native 0.89](https://github.com/react/react-native/releases/tag/v0.89.0-rc.0) ускорили раскладку текста и вызовы нативных модулей. Из этой версии также удалили устаревшие API моста между JavaScript и нативным кодом.
+- [Nuxt DevTools v4](https://nuxt.com/blog/devtools-v4) переходит на Devframe и Vite DevTools. Благодаря общей основе в Nuxt теперь доступна полная панель Vue DevTools, в которой можно исследовать компоненты и их состояние.
+- [Nuxt 4.6.4 и Nitro 2.13.6](https://github.com/nuxt/nuxt/releases/tag/v4.6.4) закрывают одиннадцать проблем безопасности. Обновление относится к стабильным веткам.
+- В [кандидате в релизы Nitro 3](https://nitro.build/blog/v3-rc) зафиксировали API, уменьшили размер установки и добавили проверку серверных маршрутов через Vitest. Экспериментальная команда `nitro serve` запускает исходный код без отдельной сборки.
+
+## 📘 TypeScript
+
+### Сообщения между вкладками и фреймами с проверкой типов
+
+Павел Гринченко показывает, [как сделать `postMessage` типобезопасным с обёрткой меньше 350 байт](https://evilmartians.com/chronicles/how-to-make-postmessage-type-safe-in-under-350-bytes). `postMessage` позволяет передавать данные между окнами или фреймами. Когда отправитель и получатель пользуются одним описанием сообщений, TypeScript может заметить неверное имя события или поле ещё при разработке.
+
+- По данным [GitHub Octoverse 2026](https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/), TypeScript лидирует на GitHub по числу участников, а JavaScript занимает третье место. GitHub также отметил признаки использования ИИ примерно в 44% принятых пул-реквестов на TypeScript.
+- В [Effect 4.1](https://effect.website/blog/releases/effect/41) появились средства для криптографических операций, поиска файлов по шаблону и чтения CSV частями. Последнее помогает обрабатывать большие таблицы, не загружая файл целиком.
+
+## ⚙️ Node.js
+
+### Вышла первая альфа Node.js 27
+
+[Первая альфа Node.js 27](https://nodejs.org/en/blog/release/v27.0.0-alpha.0.0.0) открывает [новый график релизов](https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule). Крупные версии теперь сначала проходят примерно полгода альфа-тестирования, а затем переходят в стадию Current. Для рабочих проектов есть [ветка Node.js 26 Lithium](https://nodejs.org/en/blog/release/v26.13.0) с долгосрочной поддержкой. Сроки обновлений перечислены в [таблице выпусков Node.js](https://nodejs.org/en/about/previous-releases).
+
+В [обзоре перехода на V8 15.6](https://nodejs.org/en/blog/announcements/notable-v8-changes-from-node-js-26-to-27-alpha) команда разбирает новые возможности JavaScript. [`Math.sumPrecise()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sumPrecise) уменьшает погрешность при сложении чисел, а [`Iterator.zip()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator/zip) группирует элементы нескольких последовательностей по позиции. Отложенное выполнение модулей через [`import defer`](https://github.com/tc39/proposal-defer-import-eval) и [неизменяемые буферы `ArrayBuffer`](https://github.com/tc39/proposal-immutable-arraybuffer) доступны за флагами.
+
+- В лимите памяти [теперь учитываются данные объектов `Buffer`](https://github.com/nodejs/node/pull/66601). Лимит по умолчанию равен половине физической памяти с нижней границей в 256 МБ и верхней в 4 ГБ. Формат сериализации объектов V8 тоже изменился, поэтому старые версии Node.js могут не прочитать данные, записанные новой.
+- Поиск файлов через [`fs.glob()`](https://nodejs.org/docs/v27.0.0-alpha.0.0.0/api/fs.html#fsglobpattern-options-callback) получил нативную реализацию. Сетевой API [`net/promises`](https://nodejs.org/docs/v27.0.0-alpha.0.0.0/api/net.html#netpromises-api) можно попробовать в экспериментальном режиме, а [`--allow-env`](https://nodejs.org/docs/v27.0.0-alpha.0.0.0/api/cli.html#--allow-env) добавляет контроль доступа к переменным окружения.
+- Вместе с альфой поставляется [npm 12](https://github.com/npm/cli/releases/tag/v12.0.0). При переходе пригодится [список несовместимых изменений npm](https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/).
+
+### Что помогает защитить установку пакетов
+
+Бруно Юркович описал [эксперимент с недельной задержкой установки свежих пакетов](https://brunoj.com/nothing-installs-at-our-company-until-its-a-week-old/). Если вредоносную версию удалят вскоре после публикации, она не успеет попасть в проекты команды. Автор рассказывает, какие проблемы возникли с файлами фиксации зависимостей и в каких случаях задержка не поможет.
+
+Эндрю Несбитт сравнил, [как реестры пакетов подписывают релизы и подтверждают их происхождение](https://nesbitt.io/2026/10/30/signing-and-attestations-across-package-registries.html). Подпись помогает проверить подлинность файла, а сведения о происхождении связывают его с конкретной сборкой. Один из примеров применения такого подхода — [mise, который проверяет происхождение npm-пакетов по умолчанию](https://github.com/jdx/mise/releases/tag/v2026.11.1).
+
+- Vercel [блокирует известные вредоносные версии npm-пакетов](https://vercel.com/changelog/blocking-malicious-npm-packages-before-and-during-installation) до и во время установки зависимостей при сборке.
+- Шейн Фридман рассказывает, [почему npm не дал опубликовать пакет `estee`](https://smoores.dev/post/no_npm_estee_is_not_a_typo/). Фильтр принял имя за возможную опечатку в `testem`. В статье эту проверку объясняют через [расстояние Левенштейна](https://en.wikipedia.org/wiki/Levenshtein_distance), то есть число правок, нужных для превращения одного слова в другое.
+- В [pnpm 12.17](https://pnpm.io/blog/releases/12.17.0) появилась проверка требований к общим зависимостям для глобально установленных пакетов. Также исправили права на файлы в Docker и повторную установку изменившихся локальных зависимостей.
+
+### Серверные фреймворки и пакеты
+
+- В [обзоре обновлений безопасности Express](https://expressjs.com/en/blog/2026-10-31-security-releases/) собрали исправления для `body-parser` и `multer`. Там же объясняют, что делать с уязвимостью в обработке Brotli.
+- Вышел [Fastify 5.12.8](https://github.com/fastify/fastify/releases/tag/v5.12.8). Среди связанных обновлений есть [исправление обхода префикса в прокси Fastify](https://github.com/fastify/fastify-http-proxy/security/advisories/GHSA-h3vp-4jfr-v364). В [Hono 4.13.16](https://github.com/honojs/hono/releases/tag/v4.13.16) также закрыли несколько уязвимостей.
+- [NestJS 12.3](https://github.com/nestjs/nest/releases/tag/v12.3.0) добавил [адаптер на базе `node:http`](https://github.com/nestjs/nest/pull/18063). Он позволяет запускать сервер на стандартном модуле Node.js, сохраняя привычные методы обработки запросов.
+- [Wiki.js 3](https://js.wiki/) позволяет поднять собственную вики на Node.js. Для подключения внешних систем есть модули, а [исходный код Wiki.js](https://github.com/Requarks/wiki) доступен под лицензией AGPL.
+- Клиент базы данных [Postgres.js 4.0](https://github.com/porsager/postgres/releases/tag/v4.0.0) переписали. Появились отмена запросов через `AbortSignal` и планировщик, который помогает коротким запросам меньше ждать длинных. [Руководство по переходу](https://github.com/porsager/postgres#upgrading-from-v3) объясняет изменения в типах параметров и подключении через ESM.
+- [Got 16.2](https://github.com/sindresorhus/got/releases/tag/v16.2.0) позволяет передать валидатор в `.json()`, чтобы сразу проверить структуру HTTP-ответа и получить типизированный результат.
+- [fast-json-stringify 7.3](https://github.com/fastify/fast-json-stringify/releases/tag/v7.3.0) может использовать быстрый путь `JSON.stringify` в Node.js 25 и новее. В [замерах авторов изменения](https://github.com/fastify/fast-json-stringify/pull/906) пропускная способность выросла примерно вдвое.
+- [express-fileupload 1.6](https://github.com/richardgirges/express-fileupload/releases/tag/v1.6.0) исправляет проверку `Content-Type`. Специально составленный заголовок мог надолго занять цикл обработки событий.
+- [Koa 3.3](https://github.com/koajs/koa/releases/tag/v3.3.0) укрепляет защиту серверного фреймворка.
+- [ora 10](https://github.com/sindresorhus/ora) требует Node.js 22 и обновляет индикатор в терминале, сохраняя остальной вывод программы.
+- [marked-terminal 8.0](https://github.com/mikaelbr/marked-terminal/releases/tag/v8.0.0) показывает Markdown в терминале. В новой версии появилась команда `mt` и поддержка изображений через протоколы Kitty и iTerm2.
+
+## 🤖 ИИ
+
+### Сколько стоит собрать одно приложение с ИИ на разных фреймворках
+
+Нолан Лоусон попросил Claude [собрать одно приложение на двенадцати стеках](https://nolanlawson.com/2026/10/28/the-ai-cost-of-javascript-frameworks/). Для каждого стека он повторил опыт пять раз. Стоимость заметно менялась от запуска к запуску, а [Гаутам Параб показал](https://gautamparab.com/writing/sixty-of-sixty-six-ranges-overlap/), что диапазоны затрат для большинства пар стеков пересекаются.
+
+В этом опыте лучше различался размер JavaScript, который получал браузер. Медиана составила 0 КБ у Astro, 18 КБ у Hono с htmx и 36 КБ у SvelteKit. У React Router, TanStack Start и Next.js она была от 115 до 142 КБ. [Код эксперимента](https://github.com/nolanlawson/agent-framework-benchmark) позволяет повторить сравнение.
+
+### Google готовит общую настройку для обучения ИИ на материалах сайтов
+
+Google объявил о [поддержке общего правила для обучения моделей в `robots.txt`](https://developers.google.com/search/blog/2026/10/ai-training-control). Это файл, в котором сайт публикует правила для автоматических обходчиков. Идея инициативы IETF AIPREF в том, чтобы владелец сайта мог выразить своё предпочтение один раз для нескольких поставщиков ИИ, которые поддержат этот механизм. Google рассчитывает добавить поддержку в 2027 году.
+
+### Генератор тестов и ИИ полгода искали уязвимости в V8
+
+Команда Google Project Zero [сравнила Fuzzilli и BigSleep](https://projectzero.google/2026/10/fuzzing-v-AI.html). Первый инструмент генерирует программы, чтобы проверить поведение движка, а второй анализирует изменения в коде с помощью языковой модели. За полгода они нашли 37 и 45 уязвимостей соответственно. Часть находок совпала, поэтому совместное применение двух методов помогло увидеть больше проблем.
+
+- Сопровождающий TanStack Query [рассказал о нагрузке от некачественных пул-реквестов, сделанных с ИИ](https://bsky.app/profile/tkdodo.eu/post/3mzdpknm7x227). Время на их разбор отодвигает работу над шестой версией библиотеки.
+- Лори Восс предложил [пересмотреть собеседования для начинающих разработчиков с учётом ИИ](https://seldo.com/posts/a-proposal-how-to-hire-junior-engineers-in-the-age-of-ai) и обсудил, что теперь можно проверять на практических заданиях.
+- Саймон Уиллисон собрал [примеры браузерных игр, созданных с помощью агентов](https://simonwillison.net/2026/Oct/28/vibe-game-development/), и описал, какие игровые задачи у них уже получается решать.
+
+### Инструменты для работы с агентами
+
+- [Reticle](https://github.com/reticlehq/reticle) даёт агенту доступ к работающему приложению в режиме разработки. Через MCP он может проверить, что произошло после действия в интерфейсе, посмотреть сетевые запросы и найти ошибки в консоли.
+- [Juggler](https://juggler.studio/) собирает работу с агентами в одном интерфейсе. Сессию, запущенную на рабочем компьютере или сервере, можно открыть в настольном приложении и браузере.
+- [zot](https://www.zot.sh/) запускает агента в терминале и подключается к разным поставщикам моделей. Агент может редактировать файлы и выполнять команды.
+- В [Agent Scripts](https://github.com/steipete/agent-scripts) собраны инструкции, навыки и небольшие вспомогательные скрипты, которыми автор пользуется при работе с агентами.
+- [Apache Maka](https://github.com/apache/maka) ведёт журнал действий агента, чтобы можно было восстановить ход его работы.
+- [Webcmd](https://webcmd.dev/) запоминает повторяющиеся действия агента на сайте и превращает их в команды для следующих запусков.
+- [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) предоставляет среду для запуска агентов. Плагины позволяют добавлять возможности под конкретную задачу.
+- [Browy](https://browyhq.github.io/) добавляет агента в боковую панель Chrome. Он может читать активную вкладку, нажимать кнопки, заполнять формы и делать снимки страницы.
+- [OpenFox](https://github.com/co-l/openfox) ориентирован на локальные языковые модели. Он поддерживает вызов инструментов и отслеживает выполнение условий задачи.
+- Расширение [WAVE AI Code Review & Analysis](https://marketplace.visualstudio.com/items?itemName=devprod.vulnerability-extension) добавляет проверку кода с помощью ИИ прямо в VS Code.
+- В [Ness](https://getness.dev/) можно вести несколько сессий Claude Code или Codex параллельно в одном приложении для macOS.
+- [Copilot Credits](https://marketplace.visualstudio.com/items?itemName=leonbjorklund.copilot-usage-extension) читает локальные журналы Copilot и показывает расход кредитов за день и месяц, а также разбивку по моделям.
+
+## 🕹️ Графика и игры
+
+- Мисаки Накано показывает, [как сделать эффект растекающейся жидкости на Three.js](https://mofu-dev.com/en/blog/fluid-foundation/). Одна карта хранит толщину слоя, другая задаёт движение, а шейдер рисует результат для каждого пикселя.
+- В [phoria2](https://kevs3d.co.uk/phoria2/) можно собрать трёхмерный график или просмотрщик модели на WebGL 2. На странице библиотеки есть интерактивные примеры.
+- [edge-aura](https://github.com/takuyajodai/edge-aura) рисует мягкое свечение по краям экрана через Canvas 2D. Для React предусмотрен отдельный адаптер.
+- [drawably](https://github.com/danielwh2/drawably) добавляет элементам интерфейса вид рисунка от руки. Библиотека каждый раз немного меняет линии и предлагает небольшую обёртку для React.
+- GitHub запустил [четырнадцатый Game Off](https://github.blog/open-source/gaming/game-off-2026-the-theme-is-shift/) с темой SHIFT. Страницу игры можно отправить на [itch.io до 1 декабря](https://itch.io/jam/game-off-2026).
+- В [WhoDunnitAI](https://www.whodunnitai.com/) расследование строится на голосовых разговорах с виртуальными подозреваемыми.
+
+## ⚒️ Инструменты и библиотеки
+
+### Parcel 3 переписали на Rust
+
+В [первой альфе Parcel 3](https://v3.parceljs.org/blog/v3-alpha/) ядро сборщика стало самостоятельной программой на Rust. В одном из тестов на большом репозитории холодная сборка была до ста раз быстрее, чем в Parcel 2. Плагины можно писать на JavaScript и TypeScript, а также на Rust, Go, Swift и C.
+
+В сборщик включили Tailwind и MDX. Поддержку React Compiler можно включить отдельно, а серверные компоненты React доступны в бета-режиме. Для приложений на Node.js появилось горячее обновление при правках.
+
+- В [сравнении производительности десяти дизайн-систем](https://denodell.com/blog/design-systems-should-be-fast-by-default) Ден Оделл показывает, как измерять скорость компонентов на реальных объёмах данных. В его примерах раскрывается список из 249 вариантов и переключаются 100 флажков. Такие сценарии помогают обнаружить замедление до выпуска изменений.
+- В [Chrome DevTools](https://developer.chrome.com/blog/new-in-devtools-november-2026) появился визуальный редактор `position-area` для позиционирования относительно опорного элемента. Также улучшили диагностику манифестов для установки веб-приложений и сервер MCP.
+- GitHub объявил, что [событие `pull_request_target` будет отключено по умолчанию в публичных репозиториях](https://github.blog/changelog/2026-11-02-pull_request_target-blocked-by-default-december-2), если его явно не разрешить политикой событий. В публикации есть даты временных отключений и основного перехода.
+- [x18n](https://x18n.dev/) проверяет файлы переводов и обращения к ним из кода. Инструмент продолжает идеи [i18n-ally](https://github.com/lokalise/i18n-ally) и находит пропущенные, сломанные и неиспользуемые ключи.
+- [webframe](https://github.com/tractordev/webframe) запускает страницу по адресу или из HTML-файла как команду в терминале. Сообщения из консоли идут в обычный вывод, а исключения в поток ошибок.
+- [File Viewer](https://github.com/flyfish-dev/file-viewer) показывает документы Office, PDF, чертежи, архивы и другие файлы прямо в браузере. Примеры форматов можно открыть в [демо просмотрщика](https://demo.file-viewer.app/?lang=en-US), а сам компонент подключить к React, Vue или Svelte.
+- [Real Fake Data](https://marketplace.visualstudio.com/items?itemName=przeslijmi.real-fake-data) вставляет в VS Code вымышленные имена, адреса и номера документов с реалистичным форматом. Это пригодится для форм и демонстраций.
+- В [MarkText](https://marktext.me/) результат разметки Markdown виден прямо во время редактирования. Приложение доступно для Linux, macOS и Windows.
+- [DevGhost for IDE](https://marketplace.visualstudio.com/items?itemName=devghost.devghost-local) строит отчёты об активности по истории коммитов Git.
+- [Rune](https://rune.build/) объединяет редактор кода и несколько терминальных сессий в одном приложении.
+- [Pokechi](https://marketplace.visualstudio.com/items?itemName=d9once.pokechi) добавляет в VS Code питомца, который вылупляется из яйца и развивается по мере работы в редакторе.
+
+### Обновления
+
+- В [Vitest 5.1](https://vitest.dev/blog/vitest-5-1) флаг `--since-last-run` повторно запускает тесты, затронутые правками с прошлого запуска. Vitest запоминает, какие файлы загружал каждый тест. Ещё добавили интерактивный просмотр изменений сохранённых результатов тестов.
+- [Rspack 2.3](https://rspack.rs/blog/announcing-2-3) перешёл на [SWC Next](https://github.com/swc-project/swc-next), обновлённый инструмент разбора JavaScript. По замерам команды, сборки стали быстрее на 5–20%, а пиковое потребление памяти снизилось.
+- В [первой бете Leaflet 2.0](https://github.com/Leaflet/Leaflet/releases/tag/v2.0.0-beta.1) у библиотеки карт появились встроенные типы TypeScript. Сборщик теперь может удалить неиспользуемый код, а импорт по умолчанию заменили именованными импортами.
+- В [ESLint 10.14](https://eslint.org/blog/2026/10/eslint-v10.14.0-released/) исправили пограничные случаи в нескольких правилах, включая `no-invalid-this` и `object-shorthand`.
+- В [Shiki 4.6](https://shiki.style/) ускорили обработку дополнительных стилей подсветки и уменьшили размер модуля WebAssembly, который ищет совпадения по регулярным выражениям.
+- [jsdom 31.0](https://github.com/jsdom/jsdom/releases/tag/v31.0.0), который имитирует браузерный DOM в тестах, получил новую реализацию CSS с поддержкой вложенности, каскадных слоёв и `@scope`. Также изменилось подключение Canvas и поведение при разборе блокирующих скриптов.
+- В [Vite+ 1.5](https://github.com/voidzero-dev/vite-plus/releases/tag/v1.5.0) добавили загрузчик TypeScript через `node --import vite-plus/register`. Его можно подключить к встроенному запуску тестов Node.js или к AVA.
+- Вышла [первая бета Storybook 11](https://github.com/storybookjs/storybook/releases/tag/v11.0.0-beta.0). Storybook позволяет открывать компоненты отдельно от приложения и проверять, как они выглядят в разных состояниях.

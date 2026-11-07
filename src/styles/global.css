@@ -54,26 +54,26 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --accent: #ff9a6a;
-    --accent-dark: #ffc18f;
-    --accent-rgb: 255, 154, 106;
-    --accent-yellow: #f0c66a;
-    --accent-yellow-bg-rgb: 196, 156, 82;
-    --accent-green: #7fd8a9;
-    --accent-red: #ff8278;
-    --bg-color: #111615;
-    --paper-color: #1a2320;
-    --ink: 244, 239, 231;
-    --ink-soft: 216, 199, 181;
-    --muted: 167, 154, 142;
-    --line: 91, 104, 97;
-    --focus-outline-color: #ffd4b5;
-    --black: 244, 239, 231;
-    --gray: 167, 154, 142;
-    --gray-dark: 216, 199, 181;
-    --gray-light: 26, 35, 32;
-    --gray-gradient: rgba(26, 35, 32, 0.86), #111615;
-    --accent-hover: #ffe0c7;
+    --accent: #79c9f2;
+    --accent-dark: #a5e1ff;
+    --accent-rgb: 121, 201, 242;
+    --accent-yellow: #c4b5fd;
+    --accent-yellow-bg-rgb: 167, 139, 250;
+    --accent-green: #7dd9bb;
+    --accent-red: #ff8da1;
+    --bg-color: #11151d;
+    --paper-color: #1a202b;
+    --ink: 237, 240, 248;
+    --ink-soft: 196, 204, 222;
+    --muted: 151, 163, 185;
+    --line: 82, 96, 119;
+    --focus-outline-color: #c4b5fd;
+    --black: 237, 240, 248;
+    --gray: 151, 163, 185;
+    --gray-dark: 196, 204, 222;
+    --gray-light: 26, 32, 43;
+    --gray-gradient: rgba(26, 32, 43, 0.86), #11151d;
+    --accent-hover: #d5caff;
     --shadow-soft: 0 18px 36px rgba(0, 0, 0, 0.42);
   }
 }
@@ -135,8 +135,8 @@ body {
   body {
     background:
       radial-gradient(1200px 360px at 110% -10%, rgba(var(--accent-yellow-bg-rgb), 0.12), transparent 68%),
-      radial-gradient(900px 400px at -18% 14%, rgba(255, 130, 120, 0.1), transparent 70%),
-      radial-gradient(640px 280px at 90% 82%, rgba(127, 216, 169, 0.11), transparent 75%),
+      radial-gradient(900px 400px at -18% 14%, rgba(255, 141, 161, 0.1), transparent 70%),
+      radial-gradient(640px 280px at 90% 82%, rgba(125, 217, 187, 0.11), transparent 75%),
       var(--bg-color);
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -257,7 +257,7 @@ code {
   border-radius: 5px;
   font-size: 0.88em;
   color: rgb(var(--ink));
-  background: rgba(243, 191, 31, 0.26);
+  background: rgba(var(--accent-yellow-bg-rgb), 0.26);
 }
 
 pre {
@@ -277,7 +277,7 @@ blockquote {
   padding: var(--space-md) var(--space-lg);
   border-left: 6px solid var(--accent);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  background: rgba(243, 191, 31, 0.2);
+  background: rgba(var(--accent-yellow-bg-rgb), 0.2);
   color: rgb(var(--ink-soft));
   font-style: italic;
 }
