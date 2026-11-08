@@ -22,7 +22,7 @@ mascotMessages: [
 
 [Stylelint 18.0.0](https://github.com/stylelint/stylelint/releases/tag/18.0.0) точнее проверяет значения CSS, в том числе записанные через `var()`. Перед обновлением стоит свериться с [руководством по переходу на Stylelint 18](https://stylelint.io/migration-guide/to-18/): изменились требования к Node.js и некоторые параметры командной строки.
 
-В [`@stylistic/stylelint-plugin` 6.0.0](https://github.com/stylelint-stylistic/stylelint-stylistic/releases/tag/v6.0.0) обновили правила оформления стилей. Например, правило, которое ограничивает число объявлений в одной строке, переехало из Stylelint в плагин. Отдельный пакет [`@stylistic/stylelint-config` 6.0.0](https://github.com/stylelint-stylistic/stylelint-config/releases/tag/v6.0.0) тоже требует Stylelint 18 и включает настройки для SCSS и Less.
+В [`@stylistic/stylelint-plugin` 6.0.0](https://github.com/stylelint-stylistic/stylelint-stylistic/releases/tag/v6.0.0) переехало правило Stylelint, которое ограничивает число объявлений в одной строке, и добавилось несколько новых правил оформления.
 
 Плагин нужно обновлять вместе со Stylelint:
 
@@ -30,7 +30,9 @@ mascotMessages: [
 pnpm up @stylistic/stylelint-plugin@latest stylelint@latest
 ```
 
-После обновления проверьте свою конфигурацию по [руководству по переходу на Stylistic 6](https://stylelint-stylistic.github.io/migration-guide/to-6.0.0). Например, для SCSS и Less в правилах теперь используются отдельные префиксы. Если удобнее начать с готового набора правил оформления, добавьте [встроенный пресет `@stylistic/stylelint-plugin/recommended`](https://stylelint-stylistic.github.io/user-guide/configs) в поле `extends`.
+После обновления проверьте свою конфигурацию по [руководству по переходу на Stylistic 6](https://stylelint-stylistic.github.io/migration-guide/to-6.0.0). Новые функции `defineStylistic()` и `defineStylisticOverride()` позволяют указать синтаксис, например SCSS или Less, один раз для всего блока настроек. Имена правил при этом можно записывать в короткой форме.
+
+Если удобнее начать с готового набора правил оформления, добавьте [встроенный пресет `@stylistic/stylelint-plugin/recommended`](https://stylelint-stylistic.github.io/user-guide/configs) в поле `extends`. Пресет будет пополняться по мере развития плагина, а отдельные настройки можно переопределить в своём проекте.
 
 Спасибо firefoxic за новость о релизах Stylelint и Stylistic!
 
