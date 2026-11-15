@@ -1,0 +1,222 @@
+---
+title: "Еженедельный дайджест #71: Новости фронтенда"
+description: "Самые интересные новости из мира фронтенд-разработки за последнюю неделю"
+pubDate: "Nov 16 2026"
+mascotMessages: [
+  { text: "Фронти на связи — выпуск #71! 🗞️", index: 0 },
+  { text: "Firefox 160 распознаёт речь на устройстве, а SVG получает связанные параметры. 🧪", index: 1 },
+  { text: "CSS рисует диаграммы, замечает пересечения и учится случайности. 🎨", index: 2 },
+  { text: "Parcel переписали на Rust, а TypeScript 7 уже пробует WebAssembly. 📦", index: 3 },
+  { text: "React получает декларативный drag-and-drop, UI SDK и обновлённую виртуализацию. ⚛️", index: 4 },
+  { text: "Node.js экспериментирует с green threads и закрывает важные уязвимости. 🟢", index: 5 },
+  { text: "Агентам помогают Modern Web Guidance, локальные скриншоты и проверенный контекст. 🤖", index: 6 },
+  { text: "Проверяем интерфейсы: контраст, доступность, HTML и спецификации API. ♿", index: 7 },
+  { text: "Инструменты недели: PDF-вьюер, form-saver, Heroshot и Drydock. 🧰", index: 8 },
+  { text: "Не забудьте обновить Vite, Next.js и поддерживаемые версии Node.js. 🔒", index: 9 }
+]
+---
+
+import TelegramCTA from '../../components/TelegramCTA.astro';
+
+## 🧪 HTML и веб-платформа
+
+### Firefox 160 добавил распознавание речи прямо на устройстве
+
+В стабильном [Firefox 160](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/160) на десктопе появилось распознавание речи без отправки аудио на сервер: его можно использовать через [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API#on-device_speech_recognition). Это полезно для голосового ввода и приложений, где важна приватность. В этой же версии за флагами можно проверить `blocking="render"` и отложенную загрузку аудио и видео.
+
+### SVG готовится к связанным параметрам
+
+Roman Komarov показал, как [linked parameters для SVG](https://blog.kizu.dev/link-parameters-soon/) позволят переиспользовать и связывать значения внутри векторной графики. Это может заметно упростить создание настраиваемых и интерактивных схем, иконок и иллюстраций без дублирования разметки.
+
+- В эссе [«Веба более чем достаточно»](https://ftrain.com/aboard-the-web-is-more-than-enough) собраны возможности WebAssembly, Web Crypto, WebGL и Web Audio, с которыми браузер давно стал средой для серьёзных приложений.
+- [Zigzag](https://zigzagbrowser.com) — очень компактный браузер для macOS: его размер заявлен всего в 18 МБ.
+- [The Website Specification](https://specification.website/) помогает свериться с тем, что для сайта обязательно, что рекомендуется, а чего лучше избегать вне зависимости от выбранного стека.
+
+## 🎨 CSS и дизайн
+
+### Адаптивность нужно проверять не только в обычном viewport
+
+В статье [Beyond the Viewport](https://ishadeed.com/article/beyond-the-viewport/) Ahmad Shadeed напоминает: реальный размер страницы меняют экранная клавиатура, split view, открытые DevTools и встроенные браузеры приложений. Его бесплатный [Site Seeing](https://lab.ishadeed.com/tools/site-seeing/) позволяет посмотреть макет в таких неудобных, но распространённых контекстах до того, как с ними столкнутся пользователи.
+
+### CSS можно использовать для расчётов и диаграмм
+
+Интерактивный материал [«Computing with CSS Layout»](https://noscript.ing/compute) показывает, как превратить особенности Grid, Flexbox и других механизмов раскладки в вычисления. Автор извлекает результаты этих «расчётов» обратно в числа и на их основе строит, например, анимированные графики.
+
+В статье о [создании диаграмм современным CSS](https://blog.master.dev/creating-diagrams-and-graphs-using-modern-css/?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web) показано, как для простых статичных схем использовать anchor positioning, `border-shape`, `shape()` и `if()`. Это не замена библиотеке визуализации, но хороший способ не подключать JavaScript там, где нужна небольшая схема в интерфейсе.
+
+### CSS научили замечать пересечение элементов
+
+Ahmad Shadeed разобрал, как [определять пересечение двух элементов только средствами CSS](https://ishadeed.com/article/css-detect-overlap/?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web). Решение использует anchor positioning и scroll-driven animations: это открывает путь к эффектам, которые раньше обычно требовали `IntersectionObserver` и ручных вычислений в JavaScript.
+
+### Новые приёмы для повседневного CSS
+
+- Lea Verou предлагает [гибкий и поддерживаемый способ работы с иконками](https://lea.verou.me/blog/2026/icons/?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web), в котором CSS помогает не размазывать одинаковые настройки по компонентам.
+- Техника [Using Declarations Just Once](https://css-tricks.com/css-using-declarations-just-once/) объединяет повторяющиеся CSS-объявления под одним селектором. Эксперимент с [css-dedup](https://github.com/j9t/css-dedup) на 30 сайтах показывает: размер не сжатого CSS иногда уменьшается заметно, но применять приём стоит выборочно.
+- Функция [`random()` в CSS](https://www.smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function/?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web) добавляет контролируемую неровность без генерации сотен строк препроцессором или JavaScript.
+- Короткое введение в [CSS Layers](https://kittygiraudel.com/2026/11/01/playing-with-css-layers/?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web) пригодится, чтобы управлять приоритетом стилей без бесконечного роста специфичности.
+- Rachel Andrew объясняет, почему рабочая группа CSS стремится делать [новые возможности универсальными](https://rachelandrew.co.uk/archives/2026/11/02/making-features-generic-in-css/), а не затачивать их под единственный сценарий.
+- Temani Afif показывает, как [собрать поведение `:nth-child()` современными средствами CSS](https://css-tricks.com/re-implementing-nth-child-with-modern-css/), чтобы лучше понять работу селекторов.
+
+### Инструменты для стилизации и отладки
+
+- [Scroll-Triggered Animations Debugger](https://www.bram.us/2026/10/14/scroll-triggered-animations-debugger-devtools-extension/?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web) — расширение DevTools для наглядной отладки анимаций, запускаемых прокруткой.
+- [Gradient Studio](https://gradientsaas.blogspot.com/) генерирует процедурные градиенты и экспортирует готовый CSS, Tailwind или SCSS.
+- [Higanbana](https://codepen.io/editor/grauconejo13/pen/01a19f17-72ac-7126-af68-406e31973978?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web) — вдохновляющий пример сада с SVG-цветами, где `random()` делает каждый цветок чуть отличающимся.
+- [Liquid Glass Forge](https://github.com/namipsg/liquid-glass-forge) экспериментирует с преломлением «жидкого стекла» на WebGL2 и CPU; результат можно проверить в [песочнице проекта](https://namipsg.github.io/liquid-glass-forge/#playground).
+- Бета [Safari 27.3](https://webkit.org/blog/18541/introducing-adaptive-dark-mode/) получила opt-in Adaptive Dark Mode: браузер может затемнить светлый сайт, если у него нет собственной тёмной темы.
+
+<TelegramCTA/>
+
+## ♿ Доступность и UX
+
+### Системные цвета нельзя считать автоматически контрастными
+
+Aaron Gustafson обнаружил, что парные системные цвета вроде `Highlight` и `HighlightText` могут давать плохой контраст: в тёмной теме Chrome на Android — всего 1,98:1. В статье [«System Colors Need to Work Together»](https://www.aaron-gustafson.com/notebook/system-colors-need-to-work-together/) и сопутствующем [кроссбраузерном исследовании](https://aarongustafson.github.io/system-color-study/) есть конкретные пары, которые выдерживают проверку.
+
+- [This Hue Shall Pass](https://thishueshallpass.clearleft.com/) проверяет все пары переднего плана и фона палитры по WCAG AA и AAA, а затем помогает довести близкий к проходному цвет до нужного контраста, не меняя его оттенок. О выборе цветовой коррекции авторы рассказывают [отдельно](https://clearleft.com/thinking/fix-the-contrast-without-losing-your-brand).
+- GitHub теперь распознаёт файл [`ACCESSIBILITY.md`](https://github.blog/open-source/maintainers/accessibility-statements-now-have-a-home-on-github/) и показывает заявление о доступности на странице репозитория.
+- Eric Bailey разбирает, как [сделать иммерсивные чаты с LLM доступнее](https://www.smashingmagazine.com/2026/11/making-immersive-llm-chat-experiences-more-accessible/): большие потоковые интерфейсы особенно нуждаются в ясном фокусе, корректных объявлениях состояния и управлении движением.
+- [form-saver](https://github.com/aarongustafson/form-saver) — веб-компонент, который запоминает значения первой вложенной формы и восстанавливает их после сбоя или прерванной сессии.
+- [rich-input](https://github.com/bramus/rich-input) совмещает автодополнение и подсветку внутри поля ввода через `<datalist>`, OpaqueRange API и CSS Custom Highlight API.
+- [pure-web-bottom-sheet](https://github.com/viliket/pure-web-bottom-sheet) — лёгкий framework-agnostic bottom sheet как веб-компонент на базе CSS scroll snap.
+
+## 📦 JavaScript и сборка
+
+### Parcel 3 переписали на Rust
+
+Вышла альфа [Parcel 3](https://v3.parceljs.org/blog/v3-alpha/): сборщик переписан на Rust и, по замерам команды на холодной сборке React Spectrum, может быть до 100 раз быстрее Parcel 2. Он работает самостоятельным бинарником без Node.js, поддерживает нативные плагины на Rust, Go и Swift, а JavaScript-плагины запускает во встроенном QuickJS.
+
+### JavaScript пробует общее состояние между потоками
+
+Erik Arvidsson исследует, как могли бы выглядеть [многопоточные программы на JavaScript с общими объектами](https://blog.arv.tools/archives/2026/11/02/18.35.20/). Он сравнивает форк [Porffor](https://porffor.dev/), TypeScript-библиотеку с проверкой владения и вариант на основе предложения TC39 о [structs](https://tc39.es/proposal-structs/). Пока это эксперимент, но он хорошо раскрывает компромисс между удобством общего состояния и безопасностью данных.
+
+### Новости языка, инструментов и экосистемы
+
+- У компилятора TypeScript 7 на Go появилась экспериментальная [WebAssembly-сборка](https://github.com/microsoft/TypeScript/pull/64174), которая уже лежит в раннем [TypeScript Playground v2](https://www.typescriptlang.org/play/v2/).
+- [`@eslint/shell`](https://eslint.org/blog/2026/11/eslint-shell-plugin-announcement/) официально добавляет ESLint-проверки shell-скриптов: Bash, `sh` и `mksh` получают правила в духе ShellCheck.
+- [Prepack](https://github.com/facebookarchive/prepack), архивированный оптимизатор JavaScript от Facebook, оживили с помощью агентов. James Long [рассказывает о работе](https://jamesbox.exe.xyz/artifacts/prepack-revived/) и даёт [экспериментальную демонстрацию](https://jamesbox.exe.xyz/northstar/prepack/).
+- Автор Rust-движка [Yavashark](https://yavashark.dev/blog/announcing-yavashark/) отчитался о 950 днях разработки: движок проходит около 82% test262, умеет серверный рендер React, а его возможности можно попробовать в [playground](https://yavashark.dev/).
+- Разбор [скрытых классов и inline cache в V8](https://bitlyst.blog/p/v8-hidden-classes-inline-cache) показывает, почему появление пятой формы объекта может замедлить один и тот же цикл вдвое.
+- [jsdom 31.0](https://github.com/jsdom/jsdom/releases/tag/v31.0.0) получил новый CSS-движок и canvas-бэкенд на Skia, а [Rolldown 1.3](https://github.com/rolldown/rolldown/releases/tag/v1.3.0) добавил экспериментальные import attributes.
+- Открылся [опрос State of JavaScript 2026](https://survey.devographics.com/en-US/survey/state-of-js/2026?ref=frontendfocus): можно отметить используемые возможности языка, библиотеки и инструменты.
+
+## 🛰️ Фреймворки и React
+
+### Drag-and-drop можно описывать декларативно
+
+[Declarative Dragging](https://declarative-dragging.github.io/) предлагает сначала описать допустимые результаты перетаскивания, а вычисление самого взаимодействия поручить библиотеке. Экспериментальная React-библиотека [Dragology](https://github.com/declarative-dragging/dragology) ориентирована на SVG-интерфейсы; её подход и варианты поведения удобно изучить на [демонстрациях](https://declarative-dragging.github.io/dragology/#/demos).
+
+### Производительность фреймворков можно отслеживать от релиза к релизу
+
+Проект e18e запустил [постоянные бенчмарки JavaScript-метафреймворков](https://e18e.dev/blog/launching-the-framework-performance-project.html). В [панели результатов](https://frameworks.e18e.dev/) сравниваются стоимость установки и сборки, скорость SSR и данные Core Web Vitals для Next.js, Nuxt, Astro и других. Важнее одного «победителя» здесь динамика: такой подход уже привёл к исправлениям в Nuxt, React и Solid.
+
+### React: компоненты, документация и релизы
+
+- [Storybook 11 beta](https://storybook.js.org/blog/storybook-11-beta/) добавляет более точные метаданные компонентов, type-safe stories, headless CLI и официальные skills для агентов.
+- В документации React объяснили, как [сохранять значения полей после Action](https://react.dev/reference/react-dom/components/form#preserve-form-values-after-an-action), а для [`requestFormReset`](https://react.dev/reference/react-dom/requestFormReset) появилась отдельная справочная страница.
+- [UI SDK](https://ui-sdk.dev/docs/core/changelog/introducing-ui-sdk) от Vercel и shadcn — библиотека низкоуровневых поведений: навигации с клавиатуры, попапов, drag-and-drop. Из таких блоков можно собирать собственные компоненты; начать можно с [документации UI SDK](https://ui-sdk.dev/docs/core).
+- [Text.js](https://textjs.org/) запускает React-приложения в консоли DevTools: с роутингом, раскладкой, клавиатурным вводом и ASCII-шрифтами. Исходники доступны на [GitHub](https://github.com/anomalyco/textjs).
+- [Jeasx 3.0](https://www.jeasx.dev/news) использует JSX как серверный шаблонный язык поверх Fastify и esbuild — без React и гидрации. Релиз научился стримить страницу до завершения асинхронных компонентов; есть [живые примеры](https://expo.jeasx.dev).
+- [Exact](https://ccheever.expo.app/) — новый Rust-фреймворк от сооснователя Expo. Его интерфейсы пишутся на ограниченном языке Contract, который проще генерировать и тестировать агентам.
+- [React Shepherd 8.0](https://github.com/shipshapecode/shepherd/releases/tag/v8.0.0-react-shepherd) обновляет React-обёртку для пошаговых туров на базе [Shepherd](https://www.shepherdjs.dev/); перед коммерческим использованием стоит свериться с [условиями и рецептами React](https://docs.shepherdjs.dev/recipes/react/).
+- [react-virtualized 10.0](https://github.com/bvaughn/react-virtualized/releases/tag/10.0.0) переведён на TypeScript и функциональные компоненты; для больших списков теперь требуется React 18+.
+- [React Native Audio API 1.0](https://swmansion.com/changelog/react-native-audio-api-1-0-0/) стабилизировал Web Audio API для React Native, добавив пространственный звук; FFmpeg стал необязательной зависимостью.
+- [Mantine 9.8](https://mantine.dev/changelog/9-8-0/) приносит picker эмодзи и новые компоненты `Diff`, `PhoneInput`, а также выбор недели и квартала.
+- [BagUI](https://www.bagui.pro/) собрал блоки и шаблоны SaaS-страниц для React и `shadcn/ui`; [исходный код](https://github.com/anelkabag/bag-ui) открыт.
+- [Vectoys](https://vectoys.com/) даёт React-компоненты небольших 3D-устройств в SVG, внутри экранов которых может жить интерактивный HTML.
+
+### Сравнения и релизы фреймворков
+
+- Сравнение [шести React-библиотек графиков и SVG вручную](https://dev.to/gusevp/six-react-chart-libraries-against-hand-written-svg-what-i-found-46ib) показывает: на обычной скорости различия невелики, но при CPU throttling и больших данных разрыв растёт.
+- В разборе [Remix v3 и TanStack Start](https://marmelab.com/blog/2026/11/12/remix-v3-fast-pages-thin-ecosystem.html) одинаковый сайт реализуют на двух подходах и сравнивают скорость страниц с состоянием экосистемы.
+- [Remix 3.2](https://github.com/remix-run/remix/releases/tag/remix%403.2.0) добавил middleware для Content Security Policy с nonce, а [Wiki.js 3.3](https://js.wiki/) обновил open-source вики на JavaScript и Node.js.
+
+## ⚙️ Node.js
+
+### В Node.js появился эксперимент с green threads
+
+В Node.js открыт PR с [экспериментальной реализацией green threads](https://github.com/nodejs/node/pull/67288). Это лёгкие воркеры, которые делят небольшой пул потоков ОС, но получают отдельный V8 isolate; API Node.js внутри них пока нет. В замерах автора тысяча таких воркеров заняла примерно 1 ГБ памяти вместо 6,7 ГБ у обычных `Worker Threads`.
+
+Идея ещё очень ранняя, но может быть важна для задач с большим числом изолированных вычислений, где полноценные потоки расходуют слишком много памяти.
+
+### Вышли важные обновления безопасности Node.js
+
+[Ноябрьские security-релизы Node.js](https://nodejs.org/en/blog/vulnerability/november-2026-security-releases) закрывают уязвимости HTTP/2, TLS, `zlib` и модели разрешений в ветках [26.13.1](https://nodejs.org/en/blog/release/v26.13.1), [24.22.3](https://nodejs.org/en/blog/release/v24.22.3) и [22.23.5](https://nodejs.org/en/blog/release/v22.23.5). Семь проблем имеют высокий уровень критичности; самая серьёзная могла позволить удалённому клиенту прочитать память другого подключения. Обновления также включают недавний [фикс Undici](https://github.com/nodejs/undici/releases/tag/v8.12.4).
+
+Если dev-сервер Vite доступен из сети через `--host` или `server.host`, нужно отдельно обновиться до исправленной версии: [уязвимость Vite](https://github.com/vitejs/vite/security/advisories/GHSA-p4f5-76q4-ffq7) позволяет удалённое выполнение кода. [Next.js 16.4.5 и 15.5.29](https://nextjs.org/blog/november-2026-security-release) также исправляют семь проблем, включая утечку данных между арендаторами кэша.
+
+### Что готовит Node.js 27
+
+Luciano Mammino собрал [обзор Node.js 27](https://nodejsdesignpatterns.com/blog/whats-new-in-nodejs-27/): новые iterator helpers, promise-версия `node:net/promises`, виртуальная файловая система без флага и список [breaking changes](https://nodejsdesignpatterns.com/blog/whats-new-in-nodejs-27/#heads-up-nodejs-27-breaking-changes). В ближайшей альфе ожидается включённый по умолчанию [Web Worker API](https://github.com/nodejs/node/pull/65323), а отдельный PR предлагает встроенный модуль [`node:yaml`](https://github.com/nodejs/node/pull/67157).
+
+Отдельно Joyee Cheung перечислила [изменения JavaScript между V8 14.6 и 15.6](https://nodejs.org/en/blog/announcements/notable-v8-changes-from-node-js-26-to-27-alpha): Math.sumPrecise, новые методы итераторов и особенности сортировки, дат и промисов. Это полезная шпаргалка перед переходом с Node.js 26 на альфу 27.
+
+### Node.js: платформы, безопасность и библиотеки
+
+- [Netlify Server](https://www.netlify.com/blog/introducing-netlify-server/) — ранний доступ к долгоживущему Node.js-бэкенду для WebSocket и состояния в памяти.
+- Платформа [Val Town](https://blog.val.town/winding-down) завершает работу. Tom MacWright объяснил, почему переход на Deno и его [модель безопасности](https://macwright.com/2026/11/09/deno-security-model) оказался для сервиса удачным решением.
+- Socket разобрал, как скомпрометированный релиз [`bee-js`](https://socket.dev/blog/bee-js-compromise) попал в npm через trusted publishing с формально корректным provenance.
+- Статья [«Your JS Error Is Lying to You»](https://blog.gaborkoos.com/posts/2026-11-12-Your-JS-Error-Is-Lying-to-You/) объясняет, почему при логировании ошибка с сообщением иногда превращается в пустой объект `{}`.
+- [forges](https://forges.link/) — единый типизированный клиент для issues, pull request, уведомлений, проверок и webhooks GitHub, GitLab, Bitbucket, Codeberg, Gitea и других forge-платформ.
+- [AWS Emulator](https://github.com/aws/aws-emulator) — официальный локальный эмулятор множества AWS API. Amazon описывает, как он даёт [более быстрый feedback при работе с агентами](https://aws.amazon.com/blogs/aws-insights/better-feedback-for-building-with-agents/) и как сам проект [собирался с их помощью](https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator).
+- [vlt 1.7](https://vlt.io/blog/vlt-1-7) добавил `vlt deploy` для переноса workspace и production-зависимостей в отдельную папку и закрепляет Git-зависимости на конкретном коммите.
+- [Postgres.js 4.1](https://github.com/porsager/postgres/releases/tag/v4.1.0) развивает большой [релиз 4.0](https://github.com/porsager/postgres/releases/tag/v4.0.0): добавлены `sql.batch()`, `query_timeout` и возвращена поддержка Node 18.
+
+## 🤖 ИИ и агентная разработка
+
+### Modern Web Guidance 1.0 помогает агентам не ошибаться в веб-стандартах
+
+[Modern Web Guidance 1.0](https://developer.chrome.com/blog/modern-web-guidance-v1) — стабильный набор skills от команды Chrome, который снабжает coding agents сведениями о современных HTML, CSS, Baseline и рекомендациях платформы. Над проектом работают не только сотрудники Google: среди владельцев есть представители Firefox и Edge. В дополнение Chrome опубликовал [десять частых ошибок ИИ при веб-разработке](https://developer.chrome.com/blog/top-10-things-ai-gets-wrong-in-web-dev).
+
+Сам набор и инструкции по подключению собраны в [документации Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance?utm_source=CSS-Weekly&utm_campaign=Issue-640&utm_medium=web).
+
+### Как сделать интерфейс для агентов и проверить его результат
+
+- Статья об [интерфейсах, понимающих намерение пользователя](https://agustinbarrientos.com/writing/senior-eye/interfaces-that-understand-what-we-want) предлагает применять небольшие модели принятия решений к заранее заданным вариантам, в том числе через экспериментальный on-device Decisions API в Chrome.
+- В материале о [локальном визуальном регрессионном тестировании с Playwright](https://mainmatter.com/blog/2026/11/03/local-visual-regression-testing/) показано, как `toHaveScreenshot` даёт агенту повторяемую обратную связь по интерфейсу.
+- [Drydock](https://drydock.org/) сравнивает артефакты и зависимости пакета перед публикацией в npm, PyPI или VS Code Marketplace — удобно, чтобы заметить неожиданное изменение до релиза.
+- [OpenAPI Audit](https://octri.dev/openapi-audit) проверяет OpenAPI-спецификацию по 14 правилам и оценивает, насколько хорошо из неё получится сгенерировать SDK.
+
+## ⚒️ Инструменты и библиотеки
+
+### Инструменты для интерфейсов, тестирования и качества
+
+- [Britecharts 3.0](https://britecharts.github.io/britecharts/blog/britecharts-3) делает готовые D3-графики доступными по умолчанию: добавлены таблицы данных для скринридеров, клавиатурная навигация, тёмная тема, типы TypeScript и treemap. Подробности есть в [документации](https://britecharts.github.io/britecharts/docs/Britecharts).
+- [EmbedPDF 3.0](https://www.embedpdf.com/) — open-source просмотрщик PDF для vanilla JavaScript, React, Vue, Svelte и Angular. Обновление [v3](https://github.com/embedpdf/embed-pdf-viewer/releases/tag/v3.0.0) даёт готовый viewer, headless-компоненты и отдельный PDF-движок; доступно [демо](https://www.embedpdf.com/demo).
+- [chrome-capture](https://github.com/paulirish/chrome-capture) одной командой `npx` записывает вкладку Chrome 153+ в MP4 с высокой частотой кадров и звуком — пригодится для воспроизводимых демо в README или pull request.
+- В [Playwright 1.65](https://github.com/microsoft/playwright/releases/tag/v1.65.0) тест-раннер научился работать под Bun и получил новый отчёт о сбоях.
+- [Heroshot](https://heroshot.dev/) — open-source автоматизация скриншотов: после изменения UI обновляет снимки в документации одной командой.
+- [playwright-soak-test](https://github.com/denodell/playwright-soak-test) многократно проигрывает пользовательские сценарии с виртуальными часами, чтобы найти в SPA утечки DOM-узлов и обработчиков событий.
+- [@lexingtonthemes/astro-image-inspector](https://github.com/Lexington-Themes/astro-image-inspector) добавляет в dev toolbar Astro инспектор изображений: по наведению видны реальный и отрисованный размеры, режим загрузки и предупреждения.
+- [pour](https://pour.dev/) — быстрая проверка доступности по WCAG 2.2 в виде расширения, CLI, bookmarklet или расширения VS Code.
+- [Markuplint](https://markuplint.dev/) проверяет HTML, JSX, Vue, Svelte, Pug, PHP и другие шаблоны через CLI или расширение VS Code.
+- [njsscan](https://github.com/ajinabraham/njsscan) ищет небезопасные паттерны в Node.js-коде статическим анализом, а [FormPath](https://form-path.com/) находит недостижимые вопросы и битые ссылки на поля в сложных формах.
+
+### Медиа, документы и небольшие полезные находки
+
+- [dom-docx](https://dom-docx.com/) преобразует семантичные фрагменты HTML в редактируемые документы Word с абзацами, списками, таблицами, изображениями и flex-раскладкой.
+- [Logos](https://logos.lndev.me/) — каталог более 15 тысяч SVG-логотипов, а [Svg/icons](https://svgicons.com/) индексирует свыше 312 тысяч открытых векторных иконок.
+- [ffmpegdownload](https://ffmpegdownload.com/) собирает готовые бинарники FFmpeg под нужную ОС, архитектуру, версию и лицензию.
+- [Mitos](https://mitos.shared.oxide.computer/) превращает изображения в стилизованную ASCII-графику, анимации и SVG с настройками дизеринга, символов и цветов.
+- [So Very Bright](https://www.soverybright.com/) создаёт HDR JPEG и gain map из логотипа, чтобы графика могла выглядеть ярче обычного белого на совместимых дисплеях.
+- [ConvertYard](https://convertyard.com/) выполняет локальную в браузере конвертацию и редактирование изображений, PDF, аудио и других файлов пакетами до тысячи штук.
+- [Removerized](https://github.com/yossdotpro/removerized) запускает в браузере через WebAssembly инструменты удаления фона, увеличения изображений и пакетной обработки без отправки файлов на сервер.
+- [openvid](https://github.com/CristianOlivera1/openvid) — браузерный редактор для записи экрана, мокапов устройств и динамического зума, который экспортирует готовые продуктовые демо.
+- [ascii.rest](https://ascii.rest/) собрал 236 небольших ASCII-анимаций и текстовых баннеров для веб-страниц, README и терминала.
+- [Tinkerfont](https://tinkerfont.com/) — расширение Chrome и Firefox для просмотра свойств шрифтов на странице и быстрой подмены гарнитуры.
+- [HaxxorWPM](https://haxxorwpm.0s.is/) предлагает потренировать скорость печати на командах Bash, Python, Vim и стилизованном «хакерском» синтаксисе.
+
+## 🛡️ Безопасность и веб
+
+### Защита от ботов требует проверять последствия
+
+Terence Eden описал [ловушку для ботов, игнорирующих `robots.txt`](https://shkspr.mobi/blog/2026/11/blunt-banhammer-blocks-basic-bots-ballistically/): она отправляет нарушителей в honeypot и затем банит их. Подход снизил расход трафика почти на 90%, но не лишён компромиссов. Другой опыт — год борьбы со скрейперами через [правила Cloudflare](https://patronview.com/news/99-percent-of-my-website-traffic-is-bots/).
+
+- Эксперимент с [«запретными» фразами в тестовом коде](https://utkusen.substack.com/p/tricking-deepseek-into-not-hacking) показал, что некоторые ИИ-агенты отказываются анализировать такой проект. Это любопытное наблюдение, но не надёжная защита.
+- Анализ логов в статье [«Мои человеческие посетители были ботами»](https://luna-park.app/blog/my-human-visitors-were-bots) напоминает, почему метрики посещаемости стоит сверять с поведением и серверными данными, а не принимать за чистую монету.
+
+## 🌐 Сообщество и графика
+
+- В [CSS-Tricks 20](https://css-tricks.com/css-tricks-version-20/) рассказали о техническом обновлении сайта: очистке JavaScript и перестройке Sass.
+- Three.js-эксперимент [«Spreading Liquid»](https://mofu-dev.com/en/blog/fluid-foundation/) разбирает эффект растекающейся жидкости, который можно адаптировать для интерфейсной графики.
+- mrdoob публикует ежедневные визуальные эксперименты [Codevember 2026](https://github.com/mrdoob/codevember-2026) с исходниками и живыми примерами.
